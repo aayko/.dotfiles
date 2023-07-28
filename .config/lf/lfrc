@@ -1,0 +1,113 @@
+set previewer ctpv
+set cleaner ctpvclear
+&ctpv -s $id
+&ctpvquit $id
+
+# Settings
+set ratios 1:1
+set info size:time
+
+set hidden      true
+set ignorecase  true
+set icons       true
+set scrolloff   8
+set tabstop     4
+
+cmd unarchive ${{
+    case "$f" in
+        *.zip) unzip "$f" ;;
+        *.tar.gz) tar -xzvf "$f" ;;
+        *.tar.bz2) tar -xjvf "$f" ;;
+        *.tar) tar -xvf "$f" ;;
+        *.rar) unrar -x "$f" ;;
+        *.7z) 7z -x "$f";;
+        *) echo "Unsupported format" ;;
+        esac
+
+}}
+
+cmd unarchive-delete ${{
+    case "$f" in
+        *.zip) unzip "$f" && trash "$f" ;;
+        *.tar.gz) tar -xzvf "$f" && trash "$f" ;;
+        *.tar.bz2) tar -xjvf "$f" && trash "$f" ;;
+        *.tar) tar -xvf "$f" && trash "$f" ;;
+        *.rar) unrar -x "$f" && trash "$f" ;;
+        *.7z) 7z -x "$f" && trash "$f" ;;
+        *) echo "Unsupported format" ;;
+        esac
+}}
+
+cmd trash ${{
+    files=$(printf "$fx" | tr '\n' ';')
+    while [ "$files" ]; do
+        file=${files%%;*}
+
+        trash-put "$(basename "$file")"
+        if [ "$files" = "$file" ]; then
+            files=''
+        else
+            files="${files#*;}"
+        fi
+    done
+}}
+
+cmd restore_trash ${{
+    trash-restore
+}}
+
+cmd zip ${{
+    set -f
+    mkdir $1
+    cp -r $fx $1
+    zip -r $1.zip $1
+    rm -rf $1
+}}
+
+# Bindings
+map d
+map m
+map s
+map "
+map '
+map t
+
+map e $nvim "$f"
+map sw %feh --bg-scale "$f"
+map se $sudoedit "$f"
+
+map ` !true
+map au unarchive
+map ad unarchive-delete
+map aa zip
+
+map dd trash
+map dr restore_trash
+map p paste
+map x cut
+map y copy
+map c %echo $f | xsel -ib && echo 'File path copied to clipboard'
+map <enter> open
+map mf :push %touch<space>
+map mk :push %mkdir<space>
+map me :push %nvim<space>
+map R reload
+map C clear
+
+# movement
+map g/ cd /
+map gh cd /home/ayko/
+map gc cd /home/ayko/.config
+map gn cd /home/ayko/.config/nvim/
+map gk cd /home/ayko/desktop
+map gd cd /home/ayko/documents
+map gD cd /home/ayko/downloads
+map gr cd /home/ayko/repos
+map gu cd /home/ayko/uni
+map gw cd /home/ayko/web
+map gp cd /home/ayko/pictures
+map gv cd /home/ayko/pictures/videos
+map gl cd /home/ayko/.local
+map gs cd /home/ayko/.local/share
+map gt cd /usr/local/share/
+map gf cd /home/ayko/.mozilla/firefox/profile.ayko/chrome
