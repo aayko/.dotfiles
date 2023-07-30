@@ -55,6 +55,10 @@ return {
                     filter = { event = "msg_showmode" },
                 },
             },
+            presets = {
+                command_palette = true,
+                lsp_doc_border = true,
+            }
         },
     },
     {
@@ -65,7 +69,7 @@ return {
             stages = "static",
             render = "minimal",
             timeout = 2000,
-        }, 
+        },
     },
     {
         'lewis6991/gitsigns.nvim',

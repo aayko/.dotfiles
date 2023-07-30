@@ -265,28 +265,28 @@ user_pref("identity.fxaccounts.enabled", true);
 // PREF: Push API seems to be needed for Sync
 user_pref("dom.push.enabled", true);
 
-user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true)
-user_pref("browser.compactmode.show", true)
-user_pref("browser.urlbar.maxRichResults", 6)
+user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+user_pref("browser.compactmode.show", true);
+user_pref("browser.urlbar.maxRichResults", 6);
 user_pref("browser.urlbar.groupLabels.enabled", false); // hide Firefox Suggest label in URL dropdown box
 user_pref("browser.safebrowsing.downloads.remote.enabled", true);
 
 // 60hz+
-// user_pref("general.smoothScroll",                       true); // DEFAULT
-// user_pref("mousewheel.default.delta_multiplier_y",      275);  // 250-400
+user_pref("general.smoothScroll",                       true); // DEFAULT
+user_pref("mousewheel.default.delta_multiplier_y",      275);  // 250-400
 
 // 120hz+
-user_pref("general.smoothScroll",                                       true); // DEFAULT
-user_pref("general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS", 12);
-user_pref("general.smoothScroll.msdPhysics.enabled",                    true);
-user_pref("general.smoothScroll.msdPhysics.motionBeginSpringConstant",  600);
-user_pref("general.smoothScroll.msdPhysics.regularSpringConstant",      650);
-user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaMS",         25);
-user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaRatio",      2.0);
-user_pref("general.smoothScroll.msdPhysics.slowdownSpringConstant",     250);
-user_pref("general.smoothScroll.currentVelocityWeighting",              1.0);
-user_pref("general.smoothScroll.stopDecelerationWeighting",             1.0);
-user_pref("mousewheel.default.delta_multiplier_y",                      300); // 250-400
+// user_pref("general.smoothScroll",                                       true); // DEFAULT
+// user_pref("general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS", 12);
+// user_pref("general.smoothScroll.msdPhysics.enabled",                    true);
+// user_pref("general.smoothScroll.msdPhysics.motionBeginSpringConstant",  600);
+// user_pref("general.smoothScroll.msdPhysics.regularSpringConstant",      650);
+// user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaMS",         25);
+// user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaRatio",      2.0);
+// user_pref("general.smoothScroll.msdPhysics.slowdownSpringConstant",     250);
+// user_pref("general.smoothScroll.currentVelocityWeighting",              1.0);
+// user_pref("general.smoothScroll.stopDecelerationWeighting",             1.0);
+// user_pref("mousewheel.default.delta_multiplier_y",                      300); // 250-400
 
 /****************************************************************************
  * END: BETTERFOX                                                           *

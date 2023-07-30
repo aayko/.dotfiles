@@ -7,29 +7,36 @@ return {
     },
     {
         'catppuccin/nvim',
+        lazy = false,
+        priority = 1000,
         config = function()
+            vim.api.nvim_create_autocmd("ColorScheme", {
+                callback = function()
+                    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+                end,
+            })
             require("catppuccin").setup {
-                styles = {
-                    comments = {"italic"},
-                },
+                transparent_background = true,
                 show_end_of_buffer = true,
             }
+            vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+            vim.cmd("colorscheme catppuccin-macchiato")
         end,
     },
-    {
-        'zaldih/themery.nvim',
-        opts = function()
-            return {
-                themes = {
-                    "gruvbox",
-                    "catppuccin-mocha",
-                    "catppuccin-macchiato",
-                    "tokyonight",
-                },
-                themeConfigFile = "~/.config/nvim/lua/settings/themery.lua",
-                livePreview = true,
-            },
-            require('settings.themery')
-        end,
-    },
+    -- {
+    --     'zaldih/themery.nvim',
+    --     opts = function()
+    --         return {
+    --             themes = {
+    --                 "gruvbox",
+    --                 "catppuccin-mocha",
+    --                 "catppuccin-macchiato",
+    --                 "tokyonight",
+    --             },
+    --             themeConfigFile = "~/.config/nvim/lua/settings/themery.lua",
+    --             livePreview = true,
+    --         },
+    --         require('settings.themery')
+    --     end,
+    -- },
 }

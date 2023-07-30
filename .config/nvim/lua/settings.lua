@@ -26,6 +26,8 @@ vim.keymap.set = function(mode, lhs, rhs, opts)
   return keymap_set(mode, lhs, rhs, opts)
 end
 
+vim.cmd([[ autocmd BufNewFile,BufRead *.json setlocal filetype=jsonc ]])
+
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
@@ -67,11 +69,21 @@ vim.opt.laststatus = 3
 
 vim.opt.showtabline = 0
 
-vim.opt.wrap = false
+-- vim.opt.wrap = false
+vim.opt.wrap = true
+vim.opt.breakindent = true
+vim.opt.showbreak = string.rep(" ", 3) -- Make it so that long lines wrap smartly
+vim.opt.linebreak = true
 
-vim.opt.cursorline = true
+-- vim.opt.cursorline = true
 
-vim.opt.iskeyword:append("-")
+vim.opt.background = "dark"
+
+-- split windows
+vim.opt.splitright = true -- new vertical splits will appear on the right
+vim.opt.splitbelow = true -- new horizontal splits will appear on the bottomvim.opt.iskeyword:append("-")
+
+vim.opt.belloff = "all"
 
 vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
