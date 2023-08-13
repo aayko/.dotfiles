@@ -73,7 +73,7 @@ map '
 map t
 
 map e $nvim "$f"
-map sw %feh --bg-scale "$f"
+# map sw %feh --bg-scale "$f"
 map se $sudoedit "$f"
 
 map ` !true
@@ -88,17 +88,26 @@ map x cut
 map y copy
 map c %echo $f | xsel -ib && echo 'File path copied to clipboard'
 map <enter> open
+map md :push %mkdir<space>
 map mf :push %touch<space>
-map mk :push %mkdir<space>
 map me :push %nvim<space>
+map ms :push %sudoedit<space>
 map R reload
 map C clear
+map o %chmod +x $f
 
 # movement
 map g/ cd /
 map gh cd /home/ayko/
-map gc cd /home/ayko/.config
-map gn cd /home/ayko/.config/nvim/
+map gcc cd /home/ayko/.config
+map gcn cd /home/ayko/.config/nvim
+map gcw cd /home/ayko/.config/waybar
+map gce cd /home/ayko/.config/eww
+map gcr cd /home/ayko/.config/rofi
+map gcd cd /home/ayko/.config/dunst
+map gck cd /home/ayko/.config/kitty
+map gch cd /home/ayko/.config/hypr
+map gcl cd /home/ayko/.config/lf
 map gk cd /home/ayko/desktop
 map gd cd /home/ayko/documents
 map gD cd /home/ayko/downloads

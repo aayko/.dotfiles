@@ -11,11 +11,12 @@ return {
                 endtry
                 endfunction
                 nnoremap <space>g <cmd>call FugitiveToggle()<CR>
-            ]])
+                ]])
         end,
     },
     {
         'windwp/nvim-autopairs',
+        enabled = true,
         event = "InsertEnter",
         opts = {},
     },
@@ -34,9 +35,14 @@ return {
                 timer = 150,
             },
         },
+        keys = {
+            vim.keymap.set("n", "=p", "<Plug>(YankyPutAfterFilter)"),
+            vim.keymap.set("n", "=P", "<Plug>(YankyPutBeforeFilter)"),
+        },
     },
     {
         'kylechui/nvim-surround',
+        enabled = true,
         opts = {},
     },
     {
@@ -57,12 +63,6 @@ return {
     },
     {
         'numToStr/Comment.nvim',
-        opts = {},
-    },
-    {
-        'Wansmer/treesj',
-        keys = { '<space>m', '<space>j', '<space>s' },
-        dependencies = { 'nvim-treesitter/nvim-treesitter' },
         opts = {},
     },
     {
@@ -91,9 +91,9 @@ return {
                     augend.date.alias["%H:%M:%S"],
                     augend.date.alias["%H:%M"],
                     augend.constant.alias.bool,
-                    augend.constant.alias.alpha,
-                    augend.constant.alias.Alpha,
                     augend.semver.alias.semver,
+                    -- augend.constant.alias.alpha,
+                    -- augend.constant.alias.Alpha,
                 },
             }
 
@@ -107,4 +107,7 @@ return {
             vim.keymap.set("v", "g<C-x>",require("dial.map").dec_gvisual(), {noremap = true})
         end
     },
+    { "wellle/targets.vim" },
+    { "nvim-treesitter/nvim-treesitter-context" },
+    { "mbbill/undotree" },
 }

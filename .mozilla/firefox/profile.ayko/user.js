@@ -270,6 +270,7 @@ user_pref("browser.compactmode.show", true);
 user_pref("browser.urlbar.maxRichResults", 6);
 user_pref("browser.urlbar.groupLabels.enabled", false); // hide Firefox Suggest label in URL dropdown box
 user_pref("browser.safebrowsing.downloads.remote.enabled", true);
+user_pref("full-screen-api.warning.delay", -1);
 
 // 60hz+
 user_pref("general.smoothScroll",                       true); // DEFAULT

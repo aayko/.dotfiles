@@ -20,7 +20,7 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-source ~/.zsh/catppuccin_macchiato-zsh-syntax-highlighting.zsh
+source ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
 source ~/.ssh-web
 
 lfcd () {
@@ -62,16 +62,16 @@ alias :q="exit"
 alias so="clear && exec zsh"
 alias trash-empty="sudo rm -rf ~/.local/share/Trash/*"
 
-export THEME_DIR="/usr/local/share/themes/Catppuccin-Macchiato-Standard-Mauve-dark/gtk-4.0"
-export GTK4_PATH="/home/ayko/.config/gtk-4.0"
-
-alias empty-gtk4="sudo rm -rf \"$GTK4_PATH/assets\" \"$GTK4_PATH/gtk.css\" \"$GTK4_PATH/gtk-dark.css\""
-alias update-theme="\
-    empty-gtk4 \
-    && sudo ln -s \"$THEME_DIR/assets\" \"$GTK4_PATH/assets\" \
-    && sudo ln -s \"$THEME_DIR/gtk.css\" \"$GTK4_PATH/gtk.css\" \
-    && sudo ln -s \"$THEME_DIR/gtk-dark.css\" \"$GTK4_PATH/gtk-dark.css\" \
-    "
+# export THEME_DIR="/usr/local/share/themes/Catppuccin-Macchiato-Standard-Mauve-dark/gtk-4.0"
+# export GTK4_PATH="/home/ayko/.config/gtk-4.0"
+#
+# alias empty-gtk4="sudo rm -rf \"$GTK4_PATH/assets\" \"$GTK4_PATH/gtk.css\" \"$GTK4_PATH/gtk-dark.css\""
+# alias update-theme="\
+#     empty-gtk4 \
+#     && sudo ln -s \"$THEME_DIR/assets\" \"$GTK4_PATH/assets\" \
+#     && sudo ln -s \"$THEME_DIR/gtk.css\" \"$GTK4_PATH/gtk.css\" \
+#     && sudo ln -s \"$THEME_DIR/gtk-dark.css\" \"$GTK4_PATH/gtk-dark.css\" \
+# "
 
 ZSH_THEME_GIT_PROMPT_PREFIX=""
 ZSH_THEME_GIT_PROMPT_SUFFIX=""
@@ -98,3 +98,4 @@ zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
 path+=('/home/ayko/.local/share/gem/ruby/3.0.0/bin')
 path+=('/home/ayko/.cargo/bin')
 export PATH
+export PATH=$PATH:/home/ayko/.spicetify

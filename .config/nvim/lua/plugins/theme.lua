@@ -1,9 +1,7 @@
 return {
     {
         'ellisonleao/gruvbox.nvim',
-    },
-    {
-        'folke/tokyonight.nvim',
+        enabled = false,
     },
     {
         'catppuccin/nvim',
@@ -13,30 +11,32 @@ return {
             vim.api.nvim_create_autocmd("ColorScheme", {
                 callback = function()
                     vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+                    vim.api.nvim_set_hl(0, "WinSeparator", { bg = "None", fg= "#313244" })
+                    vim.api.nvim_set_hl(0, "LineNr", { fg= "#b4befe" })
                 end,
             })
             require("catppuccin").setup {
-                transparent_background = true,
+                transparent_background = false,
                 show_end_of_buffer = true,
             }
-            vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-            vim.cmd("colorscheme catppuccin-macchiato")
+            vim.cmd("colorscheme catppuccin-mocha")
         end,
     },
-    -- {
-    --     'zaldih/themery.nvim',
-    --     opts = function()
-    --         return {
-    --             themes = {
-    --                 "gruvbox",
-    --                 "catppuccin-mocha",
-    --                 "catppuccin-macchiato",
-    --                 "tokyonight",
-    --             },
-    --             themeConfigFile = "~/.config/nvim/lua/settings/themery.lua",
-    --             livePreview = true,
-    --         },
-    --         require('settings.themery')
-    --     end,
-    -- },
+    {
+        'zaldih/themery.nvim',
+        enabled = false,
+        opts = function()
+            return {
+                themes = {
+                    "gruvbox",
+                    "catppuccin-mocha",
+                    "catppuccin-macchiato",
+                    "tokyonight",
+                },
+                themeConfigFile = "~/.config/nvim/lua/settings/themery.lua",
+                livePreview = true,
+            },
+            require('settings.themery')
+        end,
+    },
 }

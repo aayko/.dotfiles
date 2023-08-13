@@ -1,0 +1,86 @@
+.buttons {
+    opacity: 1;
+    background-color: $widget-background;
+    border-radius: 12px;
+    padding: 15px;
+    font-family: JetBrainsMono Nerd Font Mono;
+    // margin-bottom: 30px;
+    // box-shadow: 0px 0px 6px 6px rgb(0, 0, 0, .4);
+}
+
+.poweroff,
+.reboot,
+.firmware,
+.exit,
+.restart {
+    margin:  0px;
+    padding: 8px 12px;
+    padding-right: 20px;
+    font-family: mononoki Nerd Font;
+    font-size: 28px;
+    background-color: $primary;
+    border-radius: 16px 8px;
+}
+
+.poweroff {
+    background-color: $red;
+    color: $widget-background;
+}
+
+.reboot {
+    background-color: $green;
+    color: $widget-background;
+}
+
+.exit {
+    background-color: $yellow;
+    color: $widget-background;
+}
+
+.firmware {
+    color: $primary;
+    background-color: $background;
+}
+
+.restart {
+    color: $primary;
+    background-color: $background;
+}
+
+.fetch {
+    font-size: 20px;
+    border-radius: 12px;
+    background-color: $widget-background;
+    padding: 30px 55px 30px 55px;
+    // box-shadow: 0px 0px 6px 6px rgb(0, 0, 0, .4);
+}
+
+.wm {
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+    color: $primary;
+}
+
+.host {
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+    color: $primary;
+}
+
+.uptime {
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+    color: $primary;
+}
+
+.packages {
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+    color: $primary;
+}
+
+.kernal {
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+    color: $primary;
+}

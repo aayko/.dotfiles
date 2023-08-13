@@ -10,13 +10,17 @@
     background-color: transparent !important;
 } */
 
+/* Change adress bar border radius */
+#urlbar-background,#urlbar {
+    border-radius: 8px !important;
+}
+
 /* Change adress bar focused color */
 #urlbar-container {
     --toolbar-field-focus-border-color: #c6a0f6 !important;
-    border-radius: 9px !important;
 }
 
-/* Make tabs border work better with rounded window corners */
+/* Align tabs rounded corner with window rounded corner */
 box.scrollbox-clip {
     padding-left: 3px !important;
     padding-top: 2px !important;

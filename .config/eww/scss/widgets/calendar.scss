@@ -1,0 +1,50 @@
+// Calendar
+.cal {
+    background-color: $background;
+    font-family: JetBrainsMono Nerd Font;
+    font-size: 22px;
+    font-weight: normal;
+    border-radius: 25px;
+
+    .cal-in {
+        padding: 10px 10px 10px 10px;
+        color: $white;
+
+        .cal {
+            &.highlight {
+                padding: 20px;
+            }
+
+            padding: 10px 10px 10px 10px;
+            margin-left: 10px;
+        }
+    }
+}
+
+calender {
+    color: $red;
+}
+
+calendar:selected {
+    color: $red;
+}
+
+calendar.header {
+    font-family: JetBrainsMono Nerd Font;
+    color: $purple;
+    font-weight: bold;
+}
+
+calendar.button {
+    color: $purple;
+    font-weight: bold;
+}
+
+calendar.highlight {
+    color: $red;
+    font-weight: bold;
+}
+
+calendar:indeterminate {
+    color: $black;
+}

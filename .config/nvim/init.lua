@@ -23,5 +23,6 @@ require("lazy").setup("plugins", {
         border = "rounded",
     },
 })
+require("autocmds")
 require("settings")
 require("keymaps")

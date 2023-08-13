@@ -1,33 +1,3 @@
--- show cursor line only in active window
-vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
-  callback = function()
-    local ok, cl = pcall(vim.api.nvim_win_get_var, 0, "auto-cursorline")
-    if ok and cl then
-      vim.wo.cursorline = true
-      vim.api.nvim_win_del_var(0, "auto-cursorline")
-    end
-  end,
-})
-vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
-  callback = function()
-    local cl = vim.wo.cursorline
-    if cl then
-      vim.api.nvim_win_set_var(0, "auto-cursorline", cl)
-      vim.wo.cursorline = false
-    end
-  end,
-})
--- make all keymaps silent by default
-local keymap_set = vim.keymap.set
----@diagnostic disable-next-line: duplicate-set-field
-vim.keymap.set = function(mode, lhs, rhs, opts)
-  opts = opts or {}
-  opts.silent = opts.silent ~= false
-  return keymap_set(mode, lhs, rhs, opts)
-end
-
-vim.cmd([[ autocmd BufNewFile,BufRead *.json setlocal filetype=jsonc ]])
-
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
@@ -48,7 +18,7 @@ vim.opt.undofile = true
 vim.opt.smartindent = true
 vim.opt.expandtab = true
 
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
 vim.opt.scrolloff = 4
@@ -58,14 +28,7 @@ vim.opt.updatetime = 50
 
 vim.opt.clipboard = "unnamedplus"
 
--- Remove new line comment behaviour
-vim.opt.formatoptions:remove({"c","r","o"})
-vim.opt_local.formatoptions:remove({"c","r","o"})
-vim.cmd([[autocmd BufNewFile,BufRead * setlocal formatoptions-=cro]])
-
 vim.g.netrw_banner = 0
-
-vim.opt.laststatus = 3
 
 vim.opt.showtabline = 0
 
@@ -75,13 +38,16 @@ vim.opt.breakindent = true
 vim.opt.showbreak = string.rep(" ", 3) -- Make it so that long lines wrap smartly
 vim.opt.linebreak = true
 
--- vim.opt.cursorline = true
+vim.opt.cursorline = true
 
 vim.opt.background = "dark"
 
 -- split windows
 vim.opt.splitright = true -- new vertical splits will appear on the right
-vim.opt.splitbelow = true -- new horizontal splits will appear on the bottomvim.opt.iskeyword:append("-")
+vim.opt.splitbelow = true -- new horizontal splits will appear on the bottom
+
+-- vim.opt.iskeyword:append("-")
+vim.cmd("set iskeyword-=_")
 
 vim.opt.belloff = "all"
 
@@ -95,3 +61,8 @@ vim.g.showmatch = true
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+
+vim.o.pumheight = 8
+vim.g.lsp_preview_max_width = 8
+
+vim.o.laststatus = 3

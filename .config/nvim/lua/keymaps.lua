@@ -1,15 +1,5 @@
 local keymap = vim.keymap
 
--- Close window
-keymap.set('n', '<leader>q',  '<CMD>q<CR>')
-
--- Close Buffer
-keymap.set('n', '<leader>c',  '<CMD>bd<CR>')
-
--- Format file
-keymap.set("n", "<leader>f=", vim.lsp.buf.format)
-keymap.set("n", "<leader>=", "gg=G<C-o>", { noremap = true })
-
 -- Search/Replace pattern for word below cursor
 keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { silent = false })
 
@@ -18,20 +8,20 @@ keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true })
 keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
 -- Move lines with alt+hjkl
-keymap.set('n', '<A-j>', ':m .+1<CR>==')
-keymap.set('n', '<A-k>', ':m .-2<CR>==')
-keymap.set('i', '<A-j>', '<Esc>:m .+1<CR>==gi')
-keymap.set('i', '<A-k>', '<Esc>:m .-2<CR>==gi')
-keymap.set('v', '<A-j>', ":m '>+1<CR>gv=gv")
-keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv")
+keymap.set('n', '<A-j>', ':m .+1<CR>==', { silent = true })
+keymap.set('n', '<A-k>', ':m .-2<CR>==', { silent = true })
+keymap.set('i', '<A-j>', '<Esc>:m .+1<CR>==gi', { silent = true })
+keymap.set('i', '<A-k>', '<Esc>:m .-2<CR>==gi', { silent = true })
+keymap.set('v', '<A-j>', ":m '>+1<CR>gv=gv", { silent = true })
+keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv", { silent = true })
 
 -- New file
-keymap.set("n", "<leader>fn", "<CMD>enew<cr>", { desc = "New File" })
+keymap.set("n", "<leader>fn", vim.cmd.enew, { desc = "New File" })
 
 -- Save file
-keymap.set({ "i", "v", "n", "s" }, "<C-s>", "<CMD>update<cr><esc>", { desc = "Save file" })
+keymap.set({ "i", "v", "n", "s" }, "<C-s>", "<CMD>update<CR><ESC>", { desc = "Save file" })
 
--- Better indenting
+-- Don't leave visual after indent
 keymap.set("v", "<", "<gv")
 keymap.set("v", ">", ">gv")
 
@@ -39,27 +29,20 @@ keymap.set("v", ">", ">gv")
 keymap.set("n", "Q", "<nop>")
 keymap.set("n", "q<CMD>", "<nop>")
 
--- New lines
-keymap.set("n", '<Leader>o', 'o<Esc>0"_D')
-keymap.set("n", '<Leader>O', 'O<Esc>0"_D')
-
 -- Repeat last macro
 keymap.set('n', ',', '@@')
-
--- Swap ^ and 0
-keymap.set("n", "^", "0")
-keymap.set("n", "0", "^")
 
 -- Remap U to redo
 keymap.set("n", "<S-u>", "<C-r>")
 
+-- ! for shell command
 keymap.set("n", "!", ":!", { silent = false })
 
 -- Toggle word wrap
-keymap.set("n", "<leader>ww", "<CMD>set wrap!<CR>")
+keymap.set("n", "<leader>lw", "<CMD>set wrap!<CR>", { silent = true })
 
 -- Unbind space outside of insert
-keymap.set({ 'n', 'v' }, '<Space>', '<Nop>')
+keymap.set({ 'n', 'v' }, '<space>', '<nop>')
 
 -- Delete a word using Ctrl+Backspace
 keymap.set("i", "<C-BS>", "<C-w>")
@@ -68,8 +51,8 @@ keymap.set("i", "<C-H>", "<C-w>")
 keymap.set("c", "<C-H>", "<C-w>")
 
 -- Go to start-of-line/end-of-line
-keymap.set("n", "H", "0")
-keymap.set("n", "L", "$")
+keymap.set({ "n", "v" }, "0", "^")
+keymap.set({ "n", "v" }, "^", "0")
 
 -- Move to window using the movement keys
 keymap.set("n", "<left>", "<C-w>h")
@@ -92,26 +75,25 @@ keymap.set("n", "{", "{zz", { noremap = true })
 keymap.set("n", "<C-o>", "<C-o>zz", { noremap = true })
 keymap.set("n", "<C-i>", "<C-i>zz", { noremap = true })
 
--- Mapping for dd that doesn't yank an empty line into your default register:
-keymap.set("n", "dd", function()
-  if vim.api.nvim_get_current_line():match("^%s*$") then
-    return '"_dd'
-  else
-    return "dd"
-  end
-end, { expr = true })
+-- Center on first search
+vim.cmd("cnoremap <silent><expr> <enter> index(['/', '?'], getcmdtype()) >= 0 ? '<enter>zz' : '<enter>'")
 
--- Resize window using <ctrl> arrow keys
-vim.keymap.set("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
-vim.keymap.set("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
-vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
-vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
+keymap.set("n", "<C-Up>", "<CMD>resize +2<CR>", { desc = "Increase window height", silent = true })
+keymap.set("n", "<C-Down>", "<CMD>resize -2<CR>", { desc = "Decrease window height", silent = true})
+keymap.set("n", "<C-Left>", "<CMD>vertical resize -2<CR>", { desc = "Decrease window width", silent = true})
+keymap.set("n", "<C-Right>", "<CMD>vertical resize +2<CR>", { desc = "Increase window width", silent = true})
+
+-- Paste over while keeping register
+keymap.set("v", "<leader>p", "\"_dP")
 
 -- Themery
 keymap.set("n", "<leader>th", "<CMD>Themery<CR>")
 
 -- NvimTree
-keymap.set('n', '<leader>e',  '<CMD>NvimTreeToggle<CR>')
+keymap.set('n', '<leader>e', vim.cmd.NvimTreeToggle)
 
--- Workspaces
-keymap.set('n', '<leader>wa', '<CMD>WorkspacesAdd<CR>')
+-- UndoTree
+keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
+
+-- Clear highlight
+keymap.set('n', '<leader>n', '<CMD>noh<CR>')

@@ -1,0 +1,25 @@
+#!/usr/bin/bash
+
+function selection(){
+    grim -g "$(slurp)" - | swappy -f - -o ~/pictures/Screenshots/Screenshot-$(date +%s).png
+}
+
+function full_screen(){
+    grim - | swappy -f - -o ~/pictures/Screenshots/Screenshot-$(date +%s).png
+}
+
+doc() {
+    echo "Usage:
+    screenshot [Options]
+
+    Options:
+        selection       Screenshots the selected area
+        full_screen     Screenshots the focussed screen
+        all_screens     Screenshots all screens"
+}
+
+case $1 in 
+    selection) selection                ;;
+    full_screen) full_screen            ;;
+    *) doc                              ;;
+esac
