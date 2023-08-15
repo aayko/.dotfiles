@@ -24,14 +24,18 @@ fi             # FILE
 *.reg  
 
 # directories
-uni/            󱆀
-home/           
-downloads/      
-pictures/       󰵝
-videos/         
-web/            
-repos/          
-desktop/        
+Uni/            󱆀
+Phone/          
+Home/           
+Downloads/      
+Pictures/       󰵝
+Documents/      󱔘
+Videos/         
+Web/            
+Music/          
+Sync/           
+Repos/          
+Desktop/        
 .git/           
 img/            
 __pycache__/    

@@ -11,8 +11,8 @@
 (defwidget sidebar-widget []
   (eventbox
     :halign "start"
-    :onhover "eww update side=true"
-    :onhoverlost "eww update side=false"
+    ;; :onhover "eww update side=true"
+    ;; :onhoverlost "eww update side=false"
     (revealer
       :transition "slideleft"
       :reveal side

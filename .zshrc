@@ -1,26 +1,17 @@
-#PROMPT title
-# DISABLE_AUTO_TITLE="true"
-
-# Change emulator title to wd
-# case $TERM in xterm*)
-#     precmd () {print -Pn "\e]0;%1~\a"}
-#     ;;
-# esac
-
-# VIA caps lock remap
-# MT(MOD_LCTL, KC_ESC)
-
-export ZSH="$HOME/.oh-my-zsh"
-
-plugins=(
-    git 
-    zsh-autosuggestions 
-    zsh-syntax-highlighting
-    # zsh-vi-mode
-)
-
-source $ZSH/oh-my-zsh.sh
 source ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
+
+# Created by Zap installer
+[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
+plug "zsh-users/zsh-autosuggestions"
+plug "zsh-users/zsh-history-substring-search"
+plug "zap-zsh/supercharge"
+# plug "zap-zsh/zap-prompt"
+plug "zsh-users/zsh-syntax-highlighting"
+plug "jeffreytse/zsh-vi-mode"
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
 source ~/.ssh-web
 
 lfcd () {
@@ -62,35 +53,50 @@ alias :q="exit"
 alias so="clear && exec zsh"
 alias trash-empty="sudo rm -rf ~/.local/share/Trash/*"
 
-# export THEME_DIR="/usr/local/share/themes/Catppuccin-Macchiato-Standard-Mauve-dark/gtk-4.0"
-# export GTK4_PATH="/home/ayko/.config/gtk-4.0"
+autoload -Uz vcs_info
+autoload -U colors && colors
+
+zstyle ':vcs_info:*' enable git 
+
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+
+
+zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
+# 
++vi-git-untracked(){
+    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
+        git status --porcelain | grep '??' &> /dev/null ; then
+        hook_com[staged]+='!' # signify new files with a bang
+    fi
+}
+
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:git:*' formats " %{%F{blue}%}%m%c%{%F{green}%}*%b%f"
+
+# PROMPT='%F{blue}%~ %F{green}$(git_prompt_info)%f > '
+PROMPT="%F{blue}%~\$vcs_info_msg_0_%f > "
+# PROMPT+="\$vcs_info_msg_0_ "
+
+# ZSH_THEME_GIT_PROMPT_PREFIX=""
+# ZSH_THEME_GIT_PROMPT_SUFFIX=""
 #
-# alias empty-gtk4="sudo rm -rf \"$GTK4_PATH/assets\" \"$GTK4_PATH/gtk.css\" \"$GTK4_PATH/gtk-dark.css\""
-# alias update-theme="\
-#     empty-gtk4 \
-#     && sudo ln -s \"$THEME_DIR/assets\" \"$GTK4_PATH/assets\" \
-#     && sudo ln -s \"$THEME_DIR/gtk.css\" \"$GTK4_PATH/gtk.css\" \
-#     && sudo ln -s \"$THEME_DIR/gtk-dark.css\" \"$GTK4_PATH/gtk-dark.css\" \
-# "
-
-ZSH_THEME_GIT_PROMPT_PREFIX=""
-ZSH_THEME_GIT_PROMPT_SUFFIX=""
-
-is_git_repo() {
-  git rev-parse --is-inside-work-tree >/dev/null 2>&1
-}
-
-update_prompt() {
-  if is_git_repo; then
-    PROMPT='%F{blue}%~ %F{green}$(git_prompt_info)%f > '
-  else
-    PROMPT='%F{blue}%~ > '
-  fi
-}
-
-precmd() {
-  update_prompt
-}
+# is_git_repo() {
+#   git rev-parse --is-inside-work-tree >/dev/null 2>&1
+# }
+#
+# update_prompt() {
+#   if is_git_repo; then
+#     PROMPT='%F{blue}%~ %F{green}$(git_prompt_info)%f > '
+#   else
+#     PROMPT='%F{blue}%~ > '
+#   fi
+# }
+#
+# precmd() {
+#   update_prompt
+# }
 
 #don't add failed command to ~/.zsh_history
 zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
@@ -99,3 +105,7 @@ path+=('/home/ayko/.local/share/gem/ruby/3.0.0/bin')
 path+=('/home/ayko/.cargo/bin')
 export PATH
 export PATH=$PATH:/home/ayko/.spicetify
+
+# Load and initialise completion system
+autoload -Uz compinit
+compinit
