@@ -21,7 +21,7 @@ export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 export ZSH=$HOME/.oh-my-zsh
 
 source $HOME/.ssh-web
-source $HOME/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
+source $HOME/.config/zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
 
 plugins=(
     zsh-autosuggestions 
@@ -29,7 +29,7 @@ plugins=(
     zsh-vi-mode
 )
 source $ZSH/oh-my-zsh.sh
-source $HOME/.zsh/aliases.zsh
+source $HOME/.config/zsh/aliases.zsh
 
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
@@ -40,6 +40,7 @@ bindkey -v '^?' backward-delete-char
 
 zle_highlight=('paste:none')
 unsetopt BEEP
+stty ixany
 
 source ~/.ssh-web
 
@@ -58,13 +59,6 @@ function lfcd () {
 }
 
 bindkey -s "^o" "lfcd^M"
-
-# Basic auto/tab complete:
-autoload -U compinit
-zstyle ':completion:*' menu select
-zmodload zsh/complist
-compinit
-_comp_options+=(globdots)
 
 # ------ PROMPT ------
 ZSH_THEME_GIT_PROMPT_PREFIX=""
