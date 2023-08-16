@@ -100,15 +100,16 @@ map o %chmod +x $f
 # movement
 map g/ cd /
 map gh cd /home/ayko/
+
 map gcc cd /home/ayko/.config
 map gcn cd /home/ayko/.config/nvim
-map gcw cd /home/ayko/.config/waybar
 map gce cd /home/ayko/.config/eww
 map gcr cd /home/ayko/.config/rofi
 map gcd cd /home/ayko/.config/dunst
 map gck cd /home/ayko/.config/kitty
 map gch cd /home/ayko/.config/hypr
 map gcl cd /home/ayko/.config/lf
+
 map gk cd /home/ayko/Desktop
 map gd cd /home/ayko/Documents
 map gD cd /home/ayko/Downloads
@@ -117,7 +118,6 @@ map gu cd /home/ayko/Uni
 map gw cd /home/ayko/Web
 map gp cd /home/ayko/Pictures
 map gv cd /home/ayko/Pictures/videos
-map gl cd /home/ayko/.local
-map gs cd /home/ayko/.local/share
-map gt cd /usr/local/share/
+map gb cd /home/ayko/.local/bin
+map gi cd /home/ayko/.local/share/icons
 map gf cd /home/ayko/.mozilla/firefox/profile.ayko/chrome
