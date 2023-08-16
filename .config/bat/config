@@ -1,0 +1,7 @@
+--theme="Catppuccin-mocha"
+
+# --style="numbers,changes,header"
+--style="full"
+
+# Use C++ syntax for Arduino .ino files
+# --map-syntax "*.ino:C++"

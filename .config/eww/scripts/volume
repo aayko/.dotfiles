@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if ! $(pamixer --get-mute); then
+    echo " "
+else
+    echo " "
+fi
+
