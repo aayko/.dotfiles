@@ -1,4 +1,0 @@
-include "%L"
-
-<Multi_key> <comma> <e> : "è" U00E8
-<Multi_key> <comma> <a> : "à" U00E0
