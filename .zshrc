@@ -58,7 +58,6 @@ function lfcd () {
 }
 
 bindkey -s "^o" "lfcd^M"
-bindkey -s "^r" fzf_history_search
 
 # Basic auto/tab complete:
 autoload -U compinit
