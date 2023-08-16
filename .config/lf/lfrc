@@ -87,7 +87,7 @@ map dr restore_trash
 map p paste
 map x cut
 map y copy
-map c %echo $f | xsel -ib && echo 'File path copied to clipboard'
+map c $wl-copy $f
 map <enter> open
 map md :push %mkdir<space>
 map mf :push %touch<space>
