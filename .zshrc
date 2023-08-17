@@ -1,10 +1,20 @@
-# DISABLE_AUTO_TITLE="true"
+export EDITOR="nvim"
+export VISUAL="nvim"
+export TERMINAL="kitty"
+export BROWSER="firefox"
+export MANPAGER='nvim +Man!'
 
-# Change emulator title to wd
-# case $TERM in xterm*)
-#     precmd () {print -Pn "\e]0;%1~\a"}
-#     ;;
-# esac
+export ZSH=$HOME/.config/zsh
+export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
+source $ZSH/catppuccin_mocha-zsh-syntax-highlighting.zsh
+
+[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
+plug "zsh-users/zsh-autosuggestions"
+plug "zap-zsh/supercharge"
+plug "jeffreytse/zsh-vi-mode"
+plug "zsh-users/zsh-syntax-highlighting"
+
+source $ZSH/aliases.zsh
 
 # VIA caps lock remap
 # MT(MOD_LCTL, KC_ESC)
@@ -12,37 +22,9 @@
 #don't add failed command to ~/.zsh_history
 zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
 
-export EDITOR="nvim"
-export VISUAL="nvim"
-export TERMINAL="kitty"
-export BROWSER="firefox"
-
-export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
-export ZSH=$HOME/.oh-my-zsh
-
-source $HOME/.ssh-web
-source $HOME/.config/zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
-
-plugins=(
-    zsh-autosuggestions 
-    zsh-syntax-highlighting
-    zsh-vi-mode
-)
-source $ZSH/oh-my-zsh.sh
-source $HOME/.config/zsh/aliases.zsh
-
-# Use vim keys in tab complete menu:
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -v '^?' backward-delete-char
-
 zle_highlight=('paste:none')
 unsetopt BEEP
 stty ixany
-
-source ~/.ssh-web
 
 function lfcd () {
     tmp="$(mktemp)"
@@ -58,29 +40,52 @@ function lfcd () {
     fi
 }
 
-bindkey -s "^o" "lfcd^M"
+export FZF_DEFAULT_COMMAND="find -L"
 
-# ------ PROMPT ------
-ZSH_THEME_GIT_PROMPT_PREFIX=""
-ZSH_THEME_GIT_PROMPT_SUFFIX=""
-
-is_git_repo() {
-  git rev-parse --is-inside-work-tree >/dev/null 2>&1
+function fzf_cd() {
+    cd $HOME && cd "$(fd -t d --hidden | fzf --preview="tree -L 1 {}" --bind="space:toggle-preview" --preview-window=:hidden)"
 }
 
-update_prompt() {
-  if is_git_repo; then
-    PROMPT='%F{blue}%~ %F{green}$(git_prompt_info)%f > '
-  else
-    PROMPT='%F{blue}%~%f > '
-  fi
+function fzf_nvim() {
+    local selected_file
+    selected_file="$(fzf)"
+    if [ -n "$selected_file" ]; then
+        cd "$HOME" && nvim "$selected_file"
+    fi
+}
+
+bindkey -s "^e" "lfcd^M"
+bindkey -s "^o" "fzf_cd^M"
+bindkey -s "^v" "fzf_nvim^M"
+
+# ------ PROMPT ------
+__git_files () { 
+    _wanted files expl 'local files' _files     
+}
+
+function is_dirty {
+    [[ $(git diff --shortstat 2> /dev/null | tail -n1) != "" ]] && echo "*"
+}
+
+function set_prompt {
+    local branch_name=$(git symbolic-ref --short HEAD 2>/dev/null)
+    local dirty_status="$(is_dirty)"
+
+    local git_info=""
+    if [ -n "$branch_name" ]; then
+        git_info="%F{green}$branch_name$dirty_status "
+    fi
+
+    PS1="%F{blue}%~ $git_info%f> "
 }
 
 precmd() {
-  update_prompt
+    set_prompt
 }
-
 # ------ PATH ------
 path+=('/home/ayko/.local/share/gem/ruby/3.0.0/bin')
 path+=('/home/ayko/.cargo/bin')
 path+=('/home/ayko/.spicetify')
+
+autoload -Uz compinit
+compinit

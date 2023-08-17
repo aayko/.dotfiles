@@ -23,3 +23,5 @@ alias cat="bat"
 alias p="sudo pacman"
 alias py="clear && python3"
 alias so="clear && exec zsh"
+
+source $HOME/.ssh-web
