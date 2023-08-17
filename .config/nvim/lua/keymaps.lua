@@ -60,6 +60,14 @@ keymap.set("n", "<down>", "<C-w>j")
 keymap.set("n", "<up>", "<C-w>k")
 keymap.set("n", "<right>", "<C-w>l")
 
+keymap.set("n", "L", "$")
+keymap.set("n", "H", "^")
+
+keymap.set({ "n", "v" }, "s", "V")
+
+keymap.set("n", "Q", "q")
+keymap.set("n", "q", "@w")
+
 -- Center on movement
 keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true })
 keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true })

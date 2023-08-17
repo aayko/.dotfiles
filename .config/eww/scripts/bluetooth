@@ -21,7 +21,7 @@ if [ "$bluetooth_device_connected" -eq 0 ] ; then
 else
     icon="󰂯"
     text="${device_name}"
-    col="#b7bdf8"
+    col="#89b4fa"
     eww update bt_toggle=true
 fi
 

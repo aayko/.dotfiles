@@ -1,6 +1,7 @@
 (defwindow sidebar
   :geometry (geometry
-    :x "0px"
+    :x "-5px"
+    :y "8px"
     :width "1px"
     ;; :height "100%"
   :anchor "top right")
@@ -11,8 +12,6 @@
 (defwidget sidebar-widget []
   (eventbox
     :halign "start"
-    ;; :onhover "eww update side=true"
-    ;; :onhoverlost "eww update side=false"
     (revealer
       :transition "slideleft"
       :reveal side

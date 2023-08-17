@@ -1,20 +1,36 @@
-$background-bar: rgba(11, 10, 16, 1);
-$background: $background-bar;
-$widget-background: rgba(17, 16, 25, 1);
-$shadow: rgba(0, 0, 0, 0.3);
-$grey: rgba(105, 101, 124, 0.7);
+$Rosewater:	#f5e0dc;
+$Flamingo:	#f2cdcd;
+$Pink:	    #f5c2e7;
+$Purple:	#cba6f7;
+$Red:	    #f38ba8;
+$Maroon:	#eba0ac;
+$Orange:	#fab387;
+$Yellow:	#f9e2af;
+$Green:	    #a6e3a1;
+$Sky:	    #89dceb;
+$Sapphire:	#74c7ec;
+$Blue:	    #89b4fa;
+$Lavender:	#b4befe;
+$Subtext1:	#bac2de;
+$Subtext0:	#a6adc8;
+$Overlay2:	#9399b2;
+$Overlay1:	#7f849c;
+$Overlay0:	#6c7086;
+$Surface2:	#585b70;
+$Surface1:	#45475a;
+$Surface0:	#313244;
+$Base:	    #1e1e2e;
+$Mantle:	#181825;
+$Crust:     #11111b;
 
-$black:   #282A36;
-$red:     #E97193; // #F37F97;
-$green:   #AAC5A0; // #5ADECD;
-$yellow:  #f6d6b3; // #F2A272;
-$orange:  #f2c798; // #F2A272;
-$blue:    #A8C5E6; // #BAB4D9; //#8897F4;
-$purple:  #DFA7E7; // #C574DD;
-$purple2: #ecdbee; // #C574DD;
-$teal:    #72B69C; // #79E6F3;
-$white:   #eae9f0; // #FDFDFD;
+$Grey: $Surface0;
+$Primary:   #cdd6f4;
+$Background: $Base;
+$Alt-background: rgba($Surface0, 0.3);
+$Border-size: 3px;
+$Border-clr: $Surface1;
 
-$primary:   #eacded; // #F37F97;
-$secondary: #71e9c2; // #F37F97;
-$tertiary:  #f0db93;
+
+$Font-size: 1.4rem;
+$Icon-font-size: 1.5rem;
+

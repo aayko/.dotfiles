@@ -1,58 +1,10 @@
-$bt-clr: #b7bdf8;
-$wifi-clr: #a6da95;
-$font-size: 1.4rem;
-$icon-font-size: 1.5rem;
-
-.wifi {
-    // margin-left: 5px;
-}
-
-// attempt to make icons "consistent"
-.wifi-icon {
-    // margin-right: 12px;
-}
-
-.wifi-icon {
-    // padding-right: 5px;
-    font-size: $icon-font-size;
-}
-
-.wifi-label {
-    // padding-right: 5px;
-    font-size: $font-size;
-}
-
-.wifi-label {
-    color: $wifi-clr;
-}
-
-// bluetooth
-.bluetooth {
-    color: red;
-}
-
-.bluetooth-icon {
-    // padding-right: 5px;
-    font-size: $icon-font-size;
-}
-
-.bluetooth-label {
-    color: $bt-clr;
-    // padding-left: 7px;
-    font-size: $font-size;
-}
-
-.bluetooth-icon {
-    // margin-right: 5px
-}
-
 /** General **/
 .bar_class { 
-    background-color: $background-bar;
+    border: $Border-size solid $Surface1;
+    background-color: $Background;
     border-radius: 12px;
     margin: 10px 10px 5px 10px;
     padding: 4px;
-    // box-shadow: 0 6px 5px 2px $shadow;
 }
 
 .module {
@@ -60,18 +12,13 @@ $icon-font-size: 1.5rem;
     border-radius: 10px 10px 0px 10px;
 }
 
-.side {
-    background-color: $background;
-    border-width: 0px;
-    padding: 15px 15px 15px 15px;
-    border-radius: 16px;
-    margin: 65px 15px 15px 15px;
-    box-shadow: 0 6px 5px 2px $shadow;
+.icons {
+    margin-right: -10px;
 }
 
 .icons * {
-    // margin-right: 10px;
-    // margin-left: 10px;
+    margin-left: 2px;
+    padding-right: 5px;
 }
 
 .center_modules {
@@ -79,18 +26,22 @@ $icon-font-size: 1.5rem;
     border-radius: 0px 0px 0px 0px;
 }
 
-/** tooltip!! **/
+/** tooltip **/
 tooltip.background {
-    background-color: $background;
+    background-color: $Background;
+    border: 2px solid $Surface1;
     font-size: 18;
     border-radius: 10px;
-    color: $white;
+    color: $Primary;
 }
 
 tooltip label {
     margin: 6px;
 }
 
+tooltip {
+    margin-top: 5px;
+}
 
 /** Widgets **/
 
@@ -102,58 +53,56 @@ tooltip label {
 .clock_date_class {
     font-size: 24;
     margin: 0px 10px -4px 5px;
-    color: $white;
+    color: $Primary;
 }
 
 .clock_time_class {
-    color: $white;
+    color: $Primary;
     font-weight: bold;
     margin: 2px 10px 0px 2px;
 }
 
 .membar {
-    color: $red;
-    background-color: $widget-background;
+    color: $Orange;
+    background-color: $Grey;
     border-radius: 10px;
 }
 
 .batbar {
-    color: $green;
-    background-color: $widget-background;
+    color: $Green;
+    background-color: $Grey;
     border-radius: 10px;
 }
 
 .brightbar trough highlight {
-    background-image: linear-gradient(to right, $yellow 30%, $white 50%, $yellow 100% *50);
+    background-image: linear-gradient(to right, $Orange 30%, rgba($Orange, 0.9) 50%, $Orange 100% *50);
     border-radius: 10px;
 }
 
 .volbar trough highlight {
-    background-image: linear-gradient(to right, $teal 30%, $green 50%, $teal 100% *50);
+    background-image: linear-gradient(to right, $Green 30%, rgba($Green, 0.9) 50%, $Green 100% *50);
     border-radius: 10px;
 }
 
 .volume_icon {
     font-size: 24;
-    color: $teal;
-    // margin: 0px 10px 0px 5px;
+    color: $Green;
+    margin-right: -5px;
     padding-right: 2px;
 }
 
 .bright_icon {
-    // font-family: JetBrainsMono Nerd Font;
-    font-size: 24;
-    color: $yellow;
-    // margin: 0px 15px 0px 0px;
-    padding-right: 6px;
+    font-size: 30px;
+    color: $Orange;
+    padding-right: 12px;
 }
 
 .iconmem {
-    color: $red;
+    color: $Orange;
 }
 
 .iconbat {
-    color: $green;
+    color: $Green;
 }
 
 .iconbat,
@@ -162,8 +111,35 @@ tooltip label {
     margin: 10px;
 }
 
+.wifi {
+}
+
+.wifi-icon {
+    margin-right: 5px;
+    font-size: $Icon-font-size;
+}
+
+.wifi-label {
+    font-size: $Font-size;
+    color: $Pink;
+}
+
+// bluetooth
+.bluetooth {
+    color: red;
+}
+
+.bluetooth-icon {
+    font-size: $Icon-font-size;
+}
+
+.bluetooth-label {
+    color: $Blue;
+    font-size: $Font-size;
+}
+
 .separ {
-    color: $grey;
+    color: $Grey;
     // font-weight: bold;
     font-size: 24px;
     margin-right: 8px;
@@ -185,7 +161,7 @@ tooltip label {
 // #----- workspaces -----#
 .workspaces-widget {
     font-size: 28px;
-    color: $grey;
+    color: $Grey;
 }
 
 .workspace-entry {
@@ -194,11 +170,11 @@ tooltip label {
 }
 
 .workspace-entry.occupied {
-    color: $primary;
+    color: $Primary;
 }
 
 .app-name {
-    color: $purple2;
+    color: $Primary;
     font-size: 18px;
     font-weight: bold;
     margin: 10px 0px 0px 0px;
@@ -212,11 +188,11 @@ tooltip label {
     font-size: 20px;
     font-weight: bold;
     margin: 0px 12px 0px 12px;
-    color: $red;
+    color: $Red;
 }
 
 .audio-box {
-    background-color: $background;
+    background-color: $Background;
     border-radius: 16px;
 }
 
@@ -231,7 +207,7 @@ tooltip label {
 }
 
 .speaker_text {
-    color: $blue;
+    color: $Green;
     font-size: 26px;
     font-weight: bold;
     margin: 20px 0px 0px 0px;
@@ -239,14 +215,13 @@ tooltip label {
 
 .speaker_bar scale trough highlight {
     all: unset;
-    background-image: linear-gradient(to right, #afcee0 30%, #92B6F4 50%, #77a5bf 100% *50);
+    background-image: linear-gradient(to right, #afcee0 30%, $Green 50%, #77a5bf 100% *50);
     border-radius: 24px;
 }
 
 .speaker_bar scale trough {
     all: unset;
-    background-color: $widget-background;
-    box-shadow: 0 6px 5px 2px $shadow;
+    background-color: $Grey;
     border-radius: 24px;
     min-height: 13px;
     min-width: 120px;
@@ -264,7 +239,7 @@ tooltip label {
 }
 
 .mic_text {
-    color: $blue;
+    color: $Green;
     font-size: 26px;
     font-weight: bold;
     margin: 0px 0px 0px 0px;
@@ -272,14 +247,13 @@ tooltip label {
 
 .mic_bar scale trough highlight {
     all: unset;
-    background-image: linear-gradient(to right, #afcee0 30%, #92B6F4 50%, #77a5bf 100% *50);
+    background-image: linear-gradient(to right, #afcee0 30%, $Green 50%, #77a5bf 100% *50);
     border-radius: 24px;
 }
 
 .mic_bar scale trough {
     all: unset;
-    box-shadow: 0 6px 5px 2px $shadow;
-    background-color: $widget-background;
+    background-color: $Grey;
     border-radius: 24px;
     min-height: 13px;
     min-width: 120px;
@@ -287,15 +261,14 @@ tooltip label {
 }
 
 .audio_sep {
-    color: $black;
+    color: $Grey;
     font-size: 18;
     margin: 0px 0px 0px 0px;
 }
 
 scale trough {
     all: unset;
-    background-color: $widget-background;
-    box-shadow: 0 2px 3px 2px $shadow;
+    background-color: $Grey;
     border-radius: 16px;
     min-height: 10px;
     min-width: 70px;
@@ -303,6 +276,6 @@ scale trough {
 }
 
 .scale highlight {
-    background-image: linear-gradient(to right, $red 30%, $purple 50%, $red 100% *50);
+    background-image: linear-gradient(to right, $Red 30%, $Purple 50%, $Red 100% *50);
     border-radius: 15px;
 }

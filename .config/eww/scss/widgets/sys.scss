@@ -1,5 +1,5 @@
 .sys_sep {
-    color: $widget-background;
+    color: $Alt-background;
     font-size: 18;
     margin: 0px 10px 0px 10px;
 }
@@ -7,7 +7,7 @@
 .sys_text_bat_sub,
 .sys_text_mem_sub {
     font-size: 16;
-    color: $white;
+    color: $Primary;
     margin: 2px 0px 0px 25px;
 }
 
@@ -25,30 +25,31 @@
 }
 
 .sys_win {
-    background-color: $background;
-    border-radius: 25px;
+    background-color: $Background;
+    border: 3px solid $Surface1;
+    border-radius: 15px;
 }
 
 .sys_bat {
-    color: $green;
-    background-color: $grey;
+    color: $Green;
+    background-color: $Alt-background;
     border-radius: 10px;
 }
 
 .sys_mem {
-    color: $orange;
-    background-color: $widget-background;
+    color: $Orange;
+    background-color: $Alt-background;
     border-radius: 10px;
 }
 
 .sys_icon_bat,
 .sys_text_bat {
-    color: $green;
+    color: $Green;
 }
 
 .sys_icon_mem,
 .sys_text_mem {
-    color: $orange;
+    color: $Orange;
 }
 
 .sys_bat_box {

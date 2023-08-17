@@ -7,7 +7,7 @@
 }
 
 .msc_bg {
-	background-color: $widget-background;
+	background-color: $Alt-background;
 	// min-width: 140px;
 	margin: 0px 5px 5px 0px;
 	padding-bottom: 10px;
@@ -17,14 +17,14 @@
 .song {
 	font-size: 24px;
 	font-weight: bold;
-	color: $primary;
+	color: $Primary;
 	margin: 10px 0px 0px 15px;
 }
 
 .song_artist {
 	font-size: 18px;
 	font-weight: bold;
-	color: $primary;
+	color: $Primary;
 	margin: 0px 0px 0px 15px;
 }
 
@@ -34,7 +34,7 @@
 .song_btn_play {
 	font-size: 28px;
 	font-weight: normal;
-	color: $primary;
+	color: $Primary;
 	margin: 0px 26px 0px 24px;
 }
 
@@ -44,7 +44,7 @@
 
 .msc_ctl_bg {
 	margin: 0px 5px;
-	background-color: $widget-background;
+	background-color: $Alt-background;
 	border-radius: 12px;
 }
 
@@ -55,16 +55,15 @@
 
 .song_prog highlight {
 	all: unset;
-	background-color: $primary;
-	// background-image: linear-gradient(to right, $red 30%, $purple 50%, $red 100% *50);
+	background-color: $Primary;
 	border-radius: 8px;
 }
 
+// volume bar
 .song_prog trough {
 	min-height: 5px;
-	background-color: rgba($grey, 0.2);
+	background-color: $Background;
 	box-shadow: none;
-    // box-shadow: 0 6px 5px 2px rgba($shadow, 0.2);
 }
 
 // .song_prog scale trough  {
@@ -77,7 +76,7 @@
 // }
 
 .music_prog_bg {
-	background-color: $widget-background;
+	background-color: $Alt-background;
 	border-radius: 12px;
 	padding: 5px;
 	
@@ -104,27 +103,27 @@
 .sidebar_mic_bar scale trough highlight,
 .sidebar_spotify_bar scale trough highlight {
 	all: unset;
-    background-color: $primary;
+    background-color: $Primary;
 	border-radius: 24px;
 }
 
 .sidebar_volume_bar scale trough highlight{
-	background-color: $primary;
+	background-color: $Primary;
 }
 
 .sidebar_mic_bar scale trough highlight{
-	background-color: $primary;
+	background-color: $Primary;
 }
 
 .sidebar_spotify_bar scale trough highlight{
-	background-color: $green;
+	background-color: $Green;
 }
 
 .sidebar_spotify_bar trough, 
 .sidebar_mic_bar trough, 
 .sidebar_volume_bar trough {
 	min-width: 10px;
-	background-color: rgba($grey, 0.2);
+	background-color: $Grey;
 	box-shadow: none;
 }
 
@@ -134,14 +133,14 @@
 }
 
 .sidebar_vol_icon{
-	color: $primary;
+	color: $Primary;
 }
 .sidebar_mic_icon{
-	color: $primary;
+	color: $Primary;
 	
 }
 .sidebar_spotify_icon{
-	color: $green;
+	color: $Green;
 }
 
 

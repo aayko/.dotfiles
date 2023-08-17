@@ -1,6 +1,14 @@
+.side {
+    border: $Border-size solid $Surface1; 
+    background-color: $Background;
+    padding: 15px 15px 15px 15px;
+    border-radius: 15px;
+    margin: 65px 15px 15px 15px;
+}
+
 .buttons {
     opacity: 1;
-    background-color: $widget-background;
+    background-color: $Alt-background;
     border-radius: 12px;
     padding: 15px;
     font-family: JetBrainsMono Nerd Font Mono;
@@ -18,39 +26,39 @@
     padding-right: 20px;
     font-family: mononoki Nerd Font;
     font-size: 28px;
-    background-color: $primary;
+    background-color: $Primary;
     border-radius: 16px 8px;
 }
 
 .poweroff {
-    background-color: $red;
-    color: $widget-background;
+    background-color: $Red;
+    color: $Background;
 }
 
 .reboot {
-    background-color: $green;
-    color: $widget-background;
+    background-color: $Green;
+    color: $Background;
 }
 
 .exit {
-    background-color: $yellow;
-    color: $widget-background;
+    background-color: $Yellow;
+    color: $Background;
 }
 
 .firmware {
-    color: $primary;
-    background-color: $background;
+    color: $Primary;
+    background-color: $Background;
 }
 
 .restart {
-    color: $primary;
-    background-color: $background;
+    color: $Primary;
+    background-color: $Background;
 }
 
 .fetch {
     font-size: 20px;
     border-radius: 12px;
-    background-color: $widget-background;
+    background-color: $Alt-background;
     padding: 30px 55px 30px 55px;
     // box-shadow: 0px 0px 6px 6px rgb(0, 0, 0, .4);
 }
@@ -58,29 +66,29 @@
 .wm {
     font-family: "JetBrainsMono Nerd Font";
     font-weight: bold;
-    color: $primary;
+    color: $Primary;
 }
 
 .host {
     font-family: "JetBrainsMono Nerd Font";
     font-weight: bold;
-    color: $primary;
+    color: $Primary;
 }
 
 .uptime {
     font-family: "JetBrainsMono Nerd Font";
     font-weight: bold;
-    color: $primary;
+    color: $Primary;
 }
 
 .packages {
     font-family: "JetBrainsMono Nerd Font";
     font-weight: bold;
-    color: $primary;
+    color: $Primary;
 }
 
 .kernal {
     font-family: "JetBrainsMono Nerd Font";
     font-weight: bold;
-    color: $primary;
+    color: $Primary;
 }

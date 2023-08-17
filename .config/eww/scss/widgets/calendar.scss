@@ -1,14 +1,15 @@
 // Calendar
 .cal {
-    background-color: $background;
+    background-color: $Background;
+    border: $Border-size solid $Surface1;
     font-family: JetBrainsMono Nerd Font;
     font-size: 22px;
     font-weight: normal;
-    border-radius: 25px;
+    border-radius: 15px;
 
     .cal-in {
         padding: 10px 10px 10px 10px;
-        color: $white;
+        color: $Primary;
 
         .cal {
             &.highlight {
@@ -22,29 +23,29 @@
 }
 
 calender {
-    color: $red;
+    color: $Red;
 }
 
 calendar:selected {
-    color: $red;
+    color: $Red;
 }
 
 calendar.header {
     font-family: JetBrainsMono Nerd Font;
-    color: $purple;
+    color: $Purple;
     font-weight: bold;
 }
 
 calendar.button {
-    color: $purple;
+    color: $Purple;
     font-weight: bold;
 }
 
 calendar.highlight {
-    color: $red;
+    color: $Red;
     font-weight: bold;
 }
 
 calendar:indeterminate {
-    color: $black;
+    color: $Grey;
 }

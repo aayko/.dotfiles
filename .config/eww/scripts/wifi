@@ -4,7 +4,7 @@ status=$(nmcli g | grep -oE "disconnected")
 essid="$(nmcli c | grep wlan0 | awk '{print ($1)}')"
 
 if [ $status ] ; then
-    icon="󰤯"
+    icon="󰖪"
     text=""
     col="#38384D"
     eww update wifi_toggle=false
@@ -12,7 +12,7 @@ if [ $status ] ; then
 else
     icon="󰖩"
     text="${essid}"
-    col="#a6da95"
+    col="#f5c2e7"
     eww update wifi_toggle=true
 fi
 
@@ -23,4 +23,3 @@ elif [[ "$1" == "--name" ]]; then
 elif [[ "$1" == "--icon" ]]; then
 	echo $icon
 fi
-
