@@ -27,8 +27,8 @@ return {
                 side = "right",
             },
             hijack_directories = {
-                enable = false,
-                auto_open = false,
+                enable = true,
+                auto_open = true,
             },
             actions = {
                 open_file = {
