@@ -48,9 +48,10 @@ function fzf_cd() {
 
 function fzf_nvim() {
     local selected_file
+    cd "$HOME"
     selected_file="$(fzf)"
     if [ -n "$selected_file" ]; then
-        cd "$HOME" && nvim "$selected_file"
+        nvim "$selected_file"
     fi
 }
 

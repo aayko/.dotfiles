@@ -1,8 +1,7 @@
 alias dot="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 alias lf="lfcd"
 
-alias v="nvim"
-alias vim="nvim"
+alias e="nvim"
 alias se="sudoedit"
 
 alias rm="trash-put"
