@@ -4,7 +4,7 @@ alias lf="lfcd"
 alias e="nvim"
 alias se="sudoedit"
 
-alias rm="trash-put"
+alias rm="trash-put --verbose"
 alias srm="sudo trash-put"
 
 alias mkdir="mkdir -vp"
