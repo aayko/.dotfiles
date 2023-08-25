@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+if $(pamixer --get-mute); then
+    pamixer -u
+else
+    pamixer -t
+fi
