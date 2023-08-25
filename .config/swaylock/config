@@ -1,0 +1,39 @@
+# vim:ft=conf
+
+clock
+datestr=%d/%m
+
+ignore-empty-password
+indicator-idle-visible
+line-uses-inside
+
+screenshots
+effect-blur=50x4
+
+indicator-thickness=19
+indicator-radius=150
+
+inside-color=181825
+ring-color=1E1E2E
+text-color=cdd6f4
+
+key-hl-color=cba6f7
+bs-hl-color=f38ba8
+
+# WRONG
+
+inside-wrong-color=1e1e2e
+ring-wrong-color=1e1e2e
+text-wrong-color=f38ba8
+
+# VER
+
+inside-ver-color=1e1e2e
+ring-ver-color=1e1e2e
+text-ver-color=cdd6f4
+
+# CLEAR
+
+inside-clear-color=1e1e2e
+ring-clear-color=1e1e2e
+text-clear-color=89b4fa
