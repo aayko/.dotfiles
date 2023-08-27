@@ -3,10 +3,10 @@ alias lf="lfcd"
 
 alias e="nvim"
 alias se="sudoedit"
-
-alias rm="rm -v"
+alias epk="nvim ~/packages-list"
 
 alias mkdir="mkdir -vp"
+alias rmv="rm -v"
 alias cp="cp -v"
 alias mv="mv -v"
 
