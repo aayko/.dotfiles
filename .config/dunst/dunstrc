@@ -132,7 +132,12 @@
 [brightness]
     appname = "brightness"
     highlight = "#cba6f7"
-    ristory_ignore = true
+    history_ignore = true
+
+[spotify]
+    appname = "Spotify"
+    timeout = 1
+    skip_display = true
 
 [wi-fi]
     appname = "wifi"
