@@ -13,6 +13,7 @@ plug "zsh-users/zsh-autosuggestions"
 plug "zap-zsh/supercharge"
 plug "jeffreytse/zsh-vi-mode"
 plug "zsh-users/zsh-syntax-highlighting"
+plug "unixorn/fzf-zsh-plugin"
 
 source $ZSH/aliases.zsh
 
@@ -25,6 +26,25 @@ zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
 zle_highlight=('paste:none')
 unsetopt BEEP
 stty ixany
+
+export FZF_DEFAULT_COMMAND="find -L"
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+--color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8
+--height 40%
+--preview-window=:hidden"
+
+function fnvim() {
+    local selected_file
+    cd "$HOME"
+    selected_file="$(fzf)"
+    if [ -n "$selected_file" ]; then
+        nvim "$selected_file"
+    else
+        cd -
+    fi
+}
 
 function lfcd () {
     tmp="$(mktemp)"
@@ -40,24 +60,18 @@ function lfcd () {
     fi
 }
 
-export FZF_DEFAULT_COMMAND="find -L"
+# Paste last command output
+zmodload -i zsh/parameter
 
-function fzf_cd() {
-    cd $HOME && cd "$(fd -t d --hidden | fzf --preview="tree -L 1 {}" --bind="space:toggle-preview" --preview-window=:hidden)"
+insert-last-command-output() {
+  LBUFFER+="$(eval $history[$((HISTCMD-1))])"
 }
+zle -N insert-last-command-output
 
-function fzf_nvim() {
-    local selected_file
-    cd "$HOME"
-    selected_file="$(fzf)"
-    if [ -n "$selected_file" ]; then
-        nvim "$selected_file"
-    fi
-}
-
-bindkey -s "^e" "lfcd^M"
-bindkey -s "^o" "fzf_cd^M"
-bindkey -s "^v" "fzf_nvim^M"
+bindkey "^x" insert-last-command-output
+bindkey "^o" fzf-cd-widget
+bindkey -s "^T" "lfcd^Mclear^M"
+bindkey -s "^v" "fnvim^M"
 
 # ------ PROMPT ------
 __git_files () { 
@@ -83,10 +97,6 @@ function set_prompt {
 precmd() {
     set_prompt
 }
-# ------ PATH ------
-path+=('/home/ayko/.local/share/gem/ruby/3.0.0/bin')
-path+=('/home/ayko/.cargo/bin')
-path+=('/home/ayko/.spicetify')
 
 autoload -Uz compinit
 compinit
