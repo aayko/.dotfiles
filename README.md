@@ -1,11 +1,11 @@
-# Remap caps lock to esc on tap and ctrl on hold
+# Remap Caps Lock to ESC and CTRL
 
-Install caps2esc
+1. Install caps2esc
 ```
 sudo pacman -S interception-caps2esc`  
 ```
 
-Create udevmon job
+2. Create udevmon job
 ```
 `sudo echo "- JOB: intercept -g $DEVNODE | caps2esc | uinput -d $DEVNODE
 DEVICE:
@@ -13,7 +13,7 @@ EVENTS:
 EV_KEY: [KEY_CAPSLOCK, KEY_ESC]
 " > /etc/interception/udevmon.d/config.yaml
 ```
-Create udevmon service
+3. Create udevmon service
 ```
 sudo echo "[Unit]
 Description=udevmon
@@ -27,7 +27,7 @@ ExecStart=/usr/bin/nice -n -20 /usr/bin/udevmon
 WantedBy=multi-user.target" > /ect/systemd/system/udevmon.service`
 ```
 
-Start service and start at startup
+4. Start service and start at startup
 ```
 systemctl enable --now udevmon
 ```
