@@ -7,4 +7,4 @@ After=systemd-udev-settle.service
 ExecStart=/usr/bin/nice -n -20 /usr/bin/udevmon
 
 [Install]
-WantedBy=multi-user.target" > /etc/systemd/system/udevmon.service
+WantedBy=multi-user.target
