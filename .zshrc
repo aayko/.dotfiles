@@ -18,7 +18,7 @@ plug "unixorn/fzf-zsh-plugin"
 source $ZSH/aliases.zsh
 
 # VIA caps lock remap
-# MT(MOD_LCTL, KC_ESC)
+# MT(MOD_LCTL,KC_ESC)
 
 #don't add failed command to ~/.zsh_history
 zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
