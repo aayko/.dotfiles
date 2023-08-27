@@ -65,7 +65,7 @@
                           :value volume_percent 
                           :onchange "amixer sset Master {}%" )
                         (label  
-                          :text "墳" 
+                          :text "󰕾" 
                           :vexpand false
                           :class "sidebar_vol_icon")
                       )
@@ -82,7 +82,7 @@
                           :value mic_percent 
                           :onchange "amixer sset Capture {}%")
                         (label  
-                          :text "" 
+                          :text "󰍮" 
                           :vexpand false
                           :class "sidebar_mic_icon"))
         (box 
