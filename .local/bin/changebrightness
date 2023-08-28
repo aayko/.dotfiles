@@ -7,11 +7,11 @@ send_notification() {
 
 case $1 in
 up)
-	brillo -u 150000 -A 10
+	pkexec brillo -u 150000 -A 10
 	send_notification "$1"
 	;;
 down)
-	brillo -u 150000 -U 10
+	pkexec brillo -u 150000 -U 10
 	send_notification "$1"
 	;;
 esac
