@@ -1,7 +1,11 @@
 #!/bin/bash
 
 status=$(nmcli g | grep -oE "disconnected")
-essid="$(nmcli c | grep wlan0 | awk '{print ($1)}')"
+if [ -d "/proc/acpi/button/lid" ]; then
+    essid="$(nmcli c | grep wlan0 | awk '{print ($1)}')"
+else
+    essid="$(nmcli c | grep wlp4s0 | awk '{print ($1)}')"
+fi
 
 if [ $status ] ; then
     icon="󰖪"

@@ -11,7 +11,7 @@
     background-color: $Alt-background;
     border-radius: 12px;
     padding: 15px;
-    font-family: JetBrainsMono Nerd Font Mono;
+    font-family: FiraCode Nerd Font;
     // margin-bottom: 30px;
     // box-shadow: 0px 0px 6px 6px rgb(0, 0, 0, .4);
 }
@@ -24,7 +24,7 @@
     margin:  0px;
     padding: 8px 12px;
     padding-right: 20px;
-    font-family: mononoki Nerd Font;
+    font-family: FiraCode Nerd Font;
     font-size: 28px;
     background-color: $Primary;
     border-radius: 16px 8px;
@@ -63,32 +63,35 @@
     // box-shadow: 0px 0px 6px 6px rgb(0, 0, 0, .4);
 }
 
+.wm,
+.host,
+.uptime,
+.packages,
+.kernal {
+    font-family: Mononoki Nerd Font;
+}
+
 .wm {
-    font-family: "JetBrainsMono Nerd Font";
     font-weight: bold;
     color: $Primary;
 }
 
 .host {
-    font-family: "JetBrainsMono Nerd Font";
     font-weight: bold;
     color: $Primary;
 }
 
 .uptime {
-    font-family: "JetBrainsMono Nerd Font";
     font-weight: bold;
     color: $Primary;
 }
 
 .packages {
-    font-family: "JetBrainsMono Nerd Font";
     font-weight: bold;
     color: $Primary;
 }
 
 .kernal {
-    font-family: "JetBrainsMono Nerd Font";
     font-weight: bold;
     color: $Primary;
 }

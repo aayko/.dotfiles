@@ -5,7 +5,7 @@
 (include "yuck/sidebar/sidebar.yuck")
 
 ;; Variables
-(defpoll clock_time :interval "1s" "date '+\%H\%M'")
+(defpoll clock_time :interval "1s" "date '+\%H󰇙\%M'")
 (defpoll clock_date :interval "1m" "date '+%b %d'")
 
 (defpoll calendar_day :interval "1m" "date '+%d'")
@@ -28,8 +28,8 @@
 
 (deflisten appname "scripts/appname")
 
-(deflisten workspaces :initial "[]" "scripts/get-workspaces")
-(deflisten current_workspace :initial "1" "scripts/get-active-workspace")
+(deflisten workspaces :interval "1ms" :initial "[]" "scripts/get-workspaces")
+(deflisten current_workspace :interval "1ms" :initial "1" "scripts/get-active-workspace")
 
 (defvar system false)
 
@@ -266,7 +266,6 @@
     :space-evenly false
     :halign "start"
     :class "icons"
-    (bright)
     (volume)
     (wifi)
     (bluetooth)
@@ -342,7 +341,7 @@
         :value {EWW_BATTERY["BAT0"].capacity}
         :class "sys_bat"
         :thickness 9
-        (label :text ""
+        (label :text "󰂄"
           :class "sys_icon_bat"
           :limit-width 2
         :wrap false))
@@ -384,7 +383,7 @@
         :class "sys_mem"
         :thickness 9
         (label
-          :text ""
+          :text "󰍛"
           :class "sys_icon_mem"
           :limit-width 2
           :wrap false

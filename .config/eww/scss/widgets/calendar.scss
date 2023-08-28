@@ -1,8 +1,12 @@
 // Calendar
+calendar,
+.cal {
+    font-family: FiraCode Nerd Font;
+}
+
 .cal {
     background-color: $Background;
     border: $Border-size solid $Surface1;
-    font-family: JetBrainsMono Nerd Font;
     font-size: 22px;
     font-weight: normal;
     border-radius: 15px;
@@ -22,16 +26,11 @@
     }
 }
 
-calender {
-    color: $Red;
-}
-
 calendar:selected {
     color: $Red;
 }
 
 calendar.header {
-    font-family: JetBrainsMono Nerd Font;
     color: $Purple;
     font-weight: bold;
 }
