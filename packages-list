@@ -38,6 +38,7 @@ bluez-libs
 zsh
 zap
 light-git
+brillo
 cava
 cheat
 cloc
@@ -117,6 +118,7 @@ swww
 swaylock-effects-git
 swaylock-blur-bin
 swayidle
+hyprpicker
 wl-clipboard
 wl-clip-persist-git
 xwaylandvideobridge-cursor-mode-2-git
