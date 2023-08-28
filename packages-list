@@ -13,7 +13,6 @@ betterdiscord-installer
 ctpv-git
 lf
 bat
-lsd
 ffmpeg
 ffmpegthumbnailer
 pdftoppm
@@ -95,18 +94,11 @@ via-appimage
 vmware-horizon-client
 nm-connection-editor
 
-nerd-fonts-inter
-noto-fonts
-ttf-cascadia-code-nerd
-ttf-daddytime-mono-nerd
+noto-fonts-cjk
 ttf-firacode-nerd
-ttf-google-sans
 ttf-icomoon-feather
-ttf-iosevka-nerd
 ttf-mononoki-nerd
 ttf-ubuntu-nerd
-ttf-segoe-ui-variable
-ttf-liberation
 ttf-jetbrains-mono-nerd
 
 pamixer
