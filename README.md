@@ -1,3 +1,8 @@
+# Install packages
+```
+cat packages-list | xargs -I {} yay -S --needed --noconfirm --sudoloop {}
+```
+
 # Remap Caps Lock to ESC and CTRL
 
 1. Install caps2esc
