@@ -1,0 +1,4 @@
+[Default Applications]
+application/pdf=org.gnome.Evince.desktop;
+application/x-ipynb+json=vscodium.desktop;
+

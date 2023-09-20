@@ -88,7 +88,7 @@ map p paste
 map x cut
 map y copy
 map c $wl-copy $f
-map <enter> open
+map <enter> $mimeo $f
 map md :push %mkdir<space>
 map mf :push %touch<space>
 map me :push %nvim<space>
@@ -121,3 +121,4 @@ map gv cd /home/ayko/Pictures/videos
 map gb cd /home/ayko/.local/bin
 map gi cd /home/ayko/.local/share/icons
 map gf cd /home/ayko/.mozilla/firefox/profile.ayko/chrome
+map gs cd /home/ayko/Sync
