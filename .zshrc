@@ -23,26 +23,28 @@ source $ZSH/aliases.zsh
 #don't add failed command to ~/.zsh_history
 zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
 
-zle_highlight=('paste:none')
+# zle_highlight=('paste:none')
 unsetopt BEEP
 stty ixany
 
-export FZF_DEFAULT_COMMAND="find -L"
+export FZF_DEFAULT_COMMAND="fd --hidden \
+--exclude .cache \
+--exclude .log \
+--exclude .cargo \
+--exclude .rustup \
+"
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
---color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8
---height 40%
---preview-window=:hidden"
+--color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
+--height 50%
+"
 
 function fnvim() {
     local selected_file
-    cd "$HOME"
     selected_file="$(fzf)"
     if [ -n "$selected_file" ]; then
         nvim "$selected_file"
-    else
-        cd -
     fi
 }
 
