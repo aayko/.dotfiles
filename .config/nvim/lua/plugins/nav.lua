@@ -37,42 +37,4 @@ return {
             },
         },
     },
-    {
-        'natecraddock/workspaces.nvim',
-        keys = {
-            {'<leader>wa', '<CMD>WorkspacesAdd<CR>' }
-        },
-        opts = {},
-    },
-    {
-        "folke/flash.nvim",
-        enabled = true,
-        event = "VeryLazy",
-        opts = {
-            modes = {
-                char = {
-                    enabled = false,
-                },
-                search = {
-                    enabled = false,
-                },
-            },
-        },
-        keys = {
-            {
-                "x",
-                mode = { "n", "x", "o" },
-                function()
-                    require("flash").jump({
-                        search = {
-                            mode = function(str)
-                                return "\\<" .. str
-                            end,
-                        }
-                    })
-                end,
-                desc = "Flash",
-            },
-        },
-    },
 }

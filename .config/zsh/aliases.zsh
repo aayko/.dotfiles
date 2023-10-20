@@ -1,7 +1,7 @@
 alias dot="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 alias lf="lfcd"
 
-alias e="nvim"
+alias v="nvim"
 alias code="codium"
 alias se="sudoedit"
 alias epk="nvim ~/packages-list"

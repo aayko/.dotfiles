@@ -116,6 +116,7 @@ map gD cd /home/ayko/Downloads
 map gr cd /home/ayko/Repos
 map gu cd /home/ayko/Uni
 map gw cd /home/ayko/Web
+map gm cd /run/media/ayko
 map gp cd /home/ayko/Pictures
 map gv cd /home/ayko/Pictures/videos
 map gb cd /home/ayko/.local/bin

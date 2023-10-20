@@ -19,7 +19,7 @@ keymap.set("n", "Q", "<nop>")
 keymap.set("n", "q<CMD>", "<nop>")
 
 -- Repeat last macro
-keymap.set('n', ',', '@@')
+keymap.set('n', ',', '@w')
 
 -- Remap U to redo
 keymap.set("n", "<S-u>", "<C-r>")
@@ -44,9 +44,6 @@ keymap.set({ "n", "v" }, "H", "^")
 
 keymap.set({ "n", "v" }, "s", "V")
 
-keymap.set("n", "Q", "q")
-keymap.set("n", "q", "@w")
-
 -- Center on movement
 keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true })
 keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true })
@@ -70,9 +67,6 @@ keymap.set("n", "<C-Up>", "<CMD>resize +2<CR>", { desc = "Increase window height
 keymap.set("n", "<C-Down>", "<CMD>resize -2<CR>", { desc = "Decrease window height", silent = true})
 keymap.set("n", "<C-Left>", "<CMD>vertical resize -2<CR>", { desc = "Decrease window width", silent = true})
 keymap.set("n", "<C-Right>", "<CMD>vertical resize +2<CR>", { desc = "Increase window width", silent = true})
-
--- Paste over while keeping register
-keymap.set("v", "<leader>p", "\"_dP")
 
 -- NvimTree
 keymap.set('n', '<leader>e', vim.cmd.NvimTreeToggle)

@@ -8,12 +8,11 @@ export ZSH=$HOME/.config/zsh
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 source $ZSH/catppuccin_mocha-zsh-syntax-highlighting.zsh
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 plug "zsh-users/zsh-autosuggestions"
 plug "zap-zsh/supercharge"
-plug "jeffreytse/zsh-vi-mode"
 plug "zsh-users/zsh-syntax-highlighting"
-plug "unixorn/fzf-zsh-plugin"
 
 source $ZSH/aliases.zsh
 
@@ -27,26 +26,12 @@ zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
 unsetopt BEEP
 stty ixany
 
-export FZF_DEFAULT_COMMAND="fd --hidden \
---exclude .cache \
---exclude .log \
---exclude .cargo \
---exclude .rustup \
-"
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
 --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
 --height 50%
 "
-
-function fnvim() {
-    local selected_file
-    selected_file="$(fzf)"
-    if [ -n "$selected_file" ]; then
-        nvim "$selected_file"
-    fi
-}
 
 function lfcd () {
     tmp="$(mktemp)"
@@ -70,10 +55,13 @@ insert-last-command-output() {
 }
 zle -N insert-last-command-output
 
+# ------ BINDS ------
+bindkey -e
 bindkey "^x" insert-last-command-output
 bindkey "^o" fzf-cd-widget
-bindkey -s "^T" "lfcd^Mclear^M"
-bindkey -s "^v" "fnvim^M"
+bindkey -s "^t" "lfcd^Mclear^M"
+bindkey -s "^v" 'v $(fzf)^Mclear^M'
+bindkey '^[[Z' reverse-menu-complete
 
 # ------ PROMPT ------
 __git_files () { 

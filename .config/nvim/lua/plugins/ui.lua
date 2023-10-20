@@ -5,35 +5,6 @@ return {
         opts = {},
     },
     {
-        'goolord/alpha-nvim',
-        enabled = false,
-        event = "VimEnter",
-        config = function()
-            local alpha = require("alpha")
-            local dashboard = require("alpha.themes.dashboard")
-            dashboard.section.header.val = {
-                "                                                    ",
-                " ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ",
-                " ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ",
-                " ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ",
-                " ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ",
-                " ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ",
-                " ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
-                "                                                    "
-            }
-            dashboard.section.buttons.val = {
-                dashboard.button("fn", "  > New File", "<CMD>ene!<CR>"),
-                dashboard.button("ff", "  > Find File", "<CMD>Telescope find_files<CR>"),
-                dashboard.button("fr", "  > Recent Files", "<CMD>Telescope oldfiles<CR>"),
-                dashboard.button("fg", "  > Find in Files", "<CMD>Telescope live_grep<CR>"),
-                dashboard.button("fc", "  > Configuration", "<CMD>cd $HOME/.config/nvim | Telescope find_files<CR>"),
-            }
-            dashboard.section.buttons.opts.hl = "Comment"
-            dashboard.section.header.opts.hl = "Function"
-            alpha.setup(dashboard.opts)
-        end,
-    },
-    {
         'norcalli/nvim-colorizer.lua',
         config = function()
             require("colorizer").setup {

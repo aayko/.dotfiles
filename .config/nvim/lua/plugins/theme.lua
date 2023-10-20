@@ -22,21 +22,4 @@ return {
             vim.cmd("colorscheme catppuccin-mocha")
         end,
     },
-    {
-        'zaldih/themery.nvim',
-        enabled = false,
-        opts = function()
-            return {
-                themes = {
-                    "gruvbox",
-                    "catppuccin-mocha",
-                    "catppuccin-macchiato",
-                    "tokyonight",
-                },
-                themeConfigFile = "~/.config/nvim/lua/settings/themery.lua",
-                livePreview = true,
-            },
-            require('settings.themery')
-        end,
-    },
 }
