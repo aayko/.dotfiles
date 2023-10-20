@@ -91,12 +91,12 @@
 [urgency_low]
     background = "#1E1E2E"
     frame_color = "#45475A"
-    timeout = 5
+    timeout = 2
 
 [urgency_normal]
     background = "#1E1E2E"
     frame_color = "#cba6f7"
-    timeout = 5
+    timeout = 2
 
 [urgency_critical]
     background = "#1E1E2E"
@@ -136,7 +136,6 @@
 
 [spotify]
     appname = "Spotify"
-    timeout = 1
     skip_display = true
 
 [wi-fi]
