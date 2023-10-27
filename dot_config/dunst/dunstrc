@@ -89,17 +89,17 @@
     mouse_right_click = do_action
 
 [urgency_low]
-    background = "#111111"
-    frame_color = "#45475A"
+    background = "#000000"
+    frame_color = "#333333"
     timeout = 2
 
 [urgency_normal]
-    background = "#1E1E2E"
-    frame_color = "#ffffff"
+    background = "#000000"
+    frame_color = "#333333"
     timeout = 2
 
 [urgency_critical]
-    background = "#1E1E2E"
+    background = "#000000"
     timeout = 0
     frame_color = "#DE0000"
     foreground = "#DE0000"
