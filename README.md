@@ -23,3 +23,4 @@ sudo cp extras/udevmon.service /etc/systemd/system/
 ```
 systemctl enable --now udevmon
 ```
+Dotfiles managed using chezmoi
