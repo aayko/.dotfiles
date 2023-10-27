@@ -1,0 +1,98 @@
+configuration {
+    display-drun: "";
+    display-calc: "Calc:";
+    display-window: "Windows:";
+    fixed-num-lines: false;
+    drun-display-format: "{name}";
+    font: "Cartograph CF 16";
+    modi: "window,run,drun,calc";
+    kb-remove-to-eol: "Control+Alt+k";
+    kb-accept-entry: "Control+m,Return,KP_Enter";
+    kb-row-up: "Up,Control+p,Control+k";
+    kb-row-down: "Down,Control+n,Control+j";
+}
+
+@theme "/dev/null"
+
+* {
+  bg: #000000;
+  bg-alt: #000000;
+  bg-selected: #222222;
+
+  fg: #ffffff;
+  fg-alt: #dddddd;
+
+  bc: #ffffff;
+  bc-accent: #ffffff;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  spacing: 0;
+}
+
+window {
+  width: 30%;
+  background-color: @bg;
+  border: 2px;
+  border-color: @bc-accent;
+  border-radius: 0px;
+  padding: 8px 20px 20px 20px;
+}
+
+element {
+  border-radius: 0px;
+  padding: 8 12;
+  background-color: transparent;
+  text-color: @fg-alt;
+}
+
+element selected {
+  text-color: @fg;
+  background-color: @bg-selected;
+}
+
+element-text {
+  background-color: transparent;
+  text-color: inherit;
+  vertical-align: 0.5;
+}
+
+element-icon {
+  size: 14;
+  padding: 0 10 0 0;
+  background-color: transparent;
+}
+
+entry {
+  background-color: @bg-alt;
+  padding: 12px;
+  text-color: @fg;
+  placeholder: "Search";
+  placeholder-color: @fg-alt;
+}
+
+inputbar {
+  children: [prompt, entry];
+  background-color: @bg;
+  border: 0px 0px 2px 0px;
+  border-color: @bc-accent;
+}
+
+listview {
+  background-color: @bg;
+  columns: 1;
+  lines: 8;
+}
+
+mainbox {
+  children: [inputbar, listview];
+  background-color: @bg;
+  spacing: 12px;
+}
+
+prompt {
+  enabled: true;
+  padding: 12 0 0 0;
+  background-color: @bg-alt;
+  text-color: @fg;
+}

@@ -1,0 +1,33 @@
+#!/usr/bin/bash
+
+file="Screenshot-$(date +%s).png"
+folder="$(xdg-user-dir SCREENSHOTS)"
+
+function region(){
+    hyprshot -o $folder -f $file -m region -s
+}
+
+function window() {
+    hyprshot -o $folder -f $file -m window -sc
+}
+
+function monitor(){
+    hyprshot -o $folder -f $file -m output -sc
+}
+
+doc() {
+    echo "Usage:
+    screenshot [Options]
+
+    Options:
+        region       Screenshots the selected area
+        window     Screenshots the focussed window
+        monitor     Screenshots the focussed screen"
+}
+
+case $1 in 
+    region) region      ;;
+    window) window      ;;
+    monitor) monitor    ;;
+    *) doc              ;;
+esac

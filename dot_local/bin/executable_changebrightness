@@ -1,0 +1,17 @@
+#!/bin/bash
+
+send_notification() {
+	brightness=$(printf "%.0f\n" "$(light -G)")
+	notify-send -a "brightness" -t 2000 -r 9991 -u low -i "brightness" -h int:value:"$brightness" "Brightness" "Currently at ${brightness}%"
+}
+
+case $1 in
+up)
+	pkexec brillo -u 150000 -A 10
+	send_notification "$1"
+	;;
+down)
+	pkexec brillo -u 150000 -U 10
+	send_notification "$1"
+	;;
+esac

@@ -1,0 +1,9 @@
+[Default Applications]
+application/pdf=org.gnome.Evince.desktop;
+application/x-ipynb+json=vscodium.desktop;
+image/apng=org.gnome.Loupe.desktop;
+image/vnd.microsoft.icon=org.gnome.Loupe.desktop;
+image/jpeg=org.gnome.Loupe.desktop;
+image/webp=org.gnome.Loupe.desktop;
+video/mp4=vlc.desktop;
+video/x-matroska=vlc.desktop;
