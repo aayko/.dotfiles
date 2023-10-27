@@ -12,22 +12,23 @@
 
 /* Change adress bar border radius */
 #urlbar-background,#urlbar {
-    border-radius: 8px !important;
+    border-radius: 0px !important;
 }
 
 /* Change adress bar focused color */
 #urlbar-container {
-    --toolbar-field-focus-border-color: #c6a0f6 !important;
+    --toolbar-field-focus-border-color: #ffffff !important;
 }
 
 /* Align tabs rounded corner with window rounded corner */
-box.scrollbox-clip {
-    padding-left: 3px !important;
-    padding-top: 2px !important;
-}
+/* box.scrollbox-clip { */
+/*     padding-left: 3px !important; */
+/*     padding-top: 2px !important; */
+/* } */
 
 tab.tabbrowser-tab > stack > vbox {
-    border-radius: 9px !important;
+    border-radius: 0px !important;
+    border-color: #ffffff !important;
 }
 
 /* Add padding to search bar */

@@ -8,7 +8,7 @@ return {
             config = function()
                 require("mason").setup({
                     ui = {
-                        border = "rounded"
+                        border = "single"
                     }
                 })
             end,

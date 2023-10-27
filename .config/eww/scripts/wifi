@@ -2,10 +2,12 @@
 
 status=$(nmcli g | grep -oE "disconnected")
 if [ -d "/proc/acpi/button/lid" ]; then
-    essid="$(nmcli c | grep wlan0 | awk '{print ($1)}')"
+    interface="wlan0"
 else
-    essid="$(nmcli c | grep wlp4s0 | awk '{print ($1)}')"
+    interface="wlp3s0"
 fi
+
+essid=$(nmcli -t -f NAME c | head -n 1)
 
 if [ $status ] ; then
     icon="󰖪"
@@ -15,8 +17,8 @@ if [ $status ] ; then
 
 else
     icon="󰖩"
-    text="${essid}"
-    col="#f5c2e7"
+    text=$essid
+    col="#ffffff"
     eww update wifi_toggle=true
 fi
 

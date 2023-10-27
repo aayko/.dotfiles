@@ -111,5 +111,5 @@ return {
     { "nvim-treesitter/nvim-treesitter-context" },
     { "mbbill/undotree" },
     { "chaoren/vim-wordmotion" },
-    { "andweeb/presence.nvim" },
+    -- { "andweeb/presence.nvim" },
 }

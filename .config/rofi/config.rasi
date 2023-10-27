@@ -15,15 +15,15 @@ configuration {
 @theme "/dev/null"
 
 * {
-  bg: #24273A;
-  bg-alt: #24273A;
-  bg-selected: #313244;
+  bg: #000000;
+  bg-alt: #000000;
+  bg-selected: #222222;
 
-  fg: #CAD3F5;
-  fg-alt: #7f849c;
+  fg: #ffffff;
+  fg-alt: #dddddd;
 
-  bc: #5b6078;
-  bc-accent: #cba6f7;
+  bc: #ffffff;
+  bc-accent: #ffffff;
   border: 0;
   margin: 0;
   padding: 0;
@@ -33,14 +33,14 @@ configuration {
 window {
   width: 30%;
   background-color: @bg;
-  border: 3px;
+  border: 2px;
   border-color: @bc-accent;
-  border-radius: 10px;
+  border-radius: 0px;
   padding: 8px 20px 20px 20px;
 }
 
 element {
-  border-radius: 6px;
+  border-radius: 0px;
   padding: 8 12;
   background-color: transparent;
   text-color: @fg-alt;

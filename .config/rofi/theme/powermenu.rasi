@@ -19,7 +19,7 @@ window {
     text-color:                     @FG;
     border:                  	    2px;
     border-color:                   @BGA;
-    border-radius:                  10px;
+    border-radius:                  0px;
     width:                          110px;
     x-offset:                       -3%;
     y-offset:                       0;
@@ -46,7 +46,7 @@ element {
     background-color:               @BG;
     text-color:                     @FG;
     orientation:                    horizontal;
-    border-radius:                  10px;
+    border-radius:                  0px;
     padding:                        20px;
 }
 
@@ -64,7 +64,7 @@ element selected {
     background-color:               @BGA;
     text-color:                     @SEL;
     border:                  	    0px 0px 0px 0px;
-    border-radius:                  10px;
+    border-radius:                  0px;
     border-color:                   @BDR;
 }
 

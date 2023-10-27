@@ -12,7 +12,7 @@ logout=""
 ddir="$HOME/.config/rofi/theme"
 
 # Variable passed to rofi
-options="$lock\n$shutdown\n$reboot"
+options="$lock\n$suspend\n$shutdown\n$reboot"
 
 chosen="$(echo -e "$options" | $rofi_command -p "UP - $uptime" -dmenu -selected-row 0)"
 case $chosen in

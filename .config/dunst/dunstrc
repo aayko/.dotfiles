@@ -20,11 +20,11 @@
     progress_bar_frame_width = 1
     progress_bar_min_width = 400
     progress_bar_max_width = 400
-    progress_bar_corner_radius = 10
+    progress_bar_corner_radius = 0
     icon_path = /home/ayko/.local/share/icons/
 
     default_icon = "bell"
-    icon_corner_radius = 10
+    icon_corner_radius = 0
     indicate_hidden = yes
     transparency = 0
     separator_height = 2
@@ -32,9 +32,9 @@
     horizontal_padding = 24
     text_icon_padding = 24
     frame_width = 3
-    highlight = "#cba6f7"
+    highlight = "#ffffff"
 
-    foreground = "#cdd6f4"
+    foreground = "#ffffff"
     
     gap_size = 0
 
@@ -81,7 +81,7 @@
     always_run_script = true
     title = Dunst
     class = Dunst
-    corner_radius = 10
+    corner_radius = 0
     ignore_dbusclose = false
     force_xwayland = false
     force_xinerama = false
@@ -89,25 +89,25 @@
     mouse_right_click = do_action
 
 [urgency_low]
-    background = "#1E1E2E"
+    background = "#111111"
     frame_color = "#45475A"
     timeout = 2
 
 [urgency_normal]
     background = "#1E1E2E"
-    frame_color = "#cba6f7"
+    frame_color = "#ffffff"
     timeout = 2
 
 [urgency_critical]
     background = "#1E1E2E"
     timeout = 0
-    frame_color = "#f38ba8"
-    foreground = "#f38ba8" 
+    frame_color = "#DE0000"
+    foreground = "#DE0000"
 
 [charged]
     appname = "charged"
-    frame_color = "#a6e3a1"
-    foreground = "#a6e3a1"
+    frame_color = "#00BC04"
+    foreground = "#00BC04"
 
 [experimental]
     per_monitor_dpi = false
@@ -131,7 +131,7 @@
 
 [brightness]
     appname = "brightness"
-    highlight = "#cba6f7"
+    highlight = "#ffffff"
     history_ignore = true
 
 [spotify]

@@ -6,7 +6,6 @@ export MANPAGER='nvim +Man!'
 
 export ZSH=$HOME/.config/zsh
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
-source $ZSH/catppuccin_mocha-zsh-syntax-highlighting.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
@@ -26,12 +25,7 @@ zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
 unsetopt BEEP
 stty ixany
 
-export FZF_DEFAULT_OPTS=" \
---color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
---color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
---color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
---height 50%
-"
+export FZF_DEFAULT_OPTS="--height 50%"
 
 function lfcd () {
     tmp="$(mktemp)"
@@ -81,7 +75,7 @@ function set_prompt {
         git_info="%F{green}$branch_name$dirty_status "
     fi
 
-    PS1="%F{blue}%~ $git_info%f> "
+    PS1="%~ $git_info%f> "
 }
 
 precmd() {
