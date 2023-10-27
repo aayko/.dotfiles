@@ -1,9 +1,0 @@
-#!/bin/bash
-
-if $(eww get system); then
-    eww update system=false
-    eww close system
-else
-    eww update system=true
-    eww open system
-fi

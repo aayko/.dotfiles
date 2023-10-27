@@ -55,9 +55,9 @@ return {
         'akinsho/toggleterm.nvim',
         opts = {
             open_mapping = [[<C-\>]],
-            float_opts = {
-                border = 'curved',
-            },
+            -- float_opts = {
+            --     border = 'curved',
+            -- },
             direction = "float",
         },
     },

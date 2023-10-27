@@ -1,7 +1,0 @@
-#!/bin/bash
-
-if $(eww get side); then
-    eww update side=false
-else
-    eww update side=true
-fi

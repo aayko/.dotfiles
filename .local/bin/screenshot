@@ -1,11 +1,18 @@
 #!/usr/bin/bash
 
-function selection(){
-    grim -g "$(slurp)" - | swappy -f - -o ~/pictures/Screenshots/Screenshot-$(date +%s).png
+file="Screenshot-$(date +%s).png"
+folder="$(xdg-user-dir SCREENSHOTS)"
+
+function region(){
+    hyprshot -o $folder -f $file -m region -s
 }
 
-function full_screen(){
-    grim - | swappy -f - -o ~/pictures/Screenshots/Screenshot-$(date +%s).png
+function window() {
+    hyprshot -o $folder -f $file -m window -sc
+}
+
+function monitor(){
+    hyprshot -o $folder -f $file -m output -sc
 }
 
 doc() {
@@ -13,13 +20,14 @@ doc() {
     screenshot [Options]
 
     Options:
-        selection       Screenshots the selected area
-        full_screen     Screenshots the focussed screen
-        all_screens     Screenshots all screens"
+        region       Screenshots the selected area
+        window     Screenshots the focussed window
+        monitor     Screenshots the focussed screen"
 }
 
 case $1 in 
-    selection) selection                ;;
-    full_screen) full_screen            ;;
-    *) doc                              ;;
+    region) region      ;;
+    window) window      ;;
+    monitor) monitor    ;;
+    *) doc              ;;
 esac
