@@ -1,12 +1,6 @@
 #!/bin/bash
 
 status=$(nmcli g | grep -oE "disconnected")
-if [ -d "/proc/acpi/button/lid" ]; then
-    interface="wlan0"
-else
-    interface="wlp3s0"
-fi
-
 essid=$(nmcli -t -f NAME c | head -n 1)
 
 if [ $status ] ; then
