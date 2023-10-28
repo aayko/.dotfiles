@@ -1,7 +1,10 @@
 #!/bin/bash
 
+mkdir -p /tmp/eww
+file=/tmp/eww/bluetooth
+
 get_bt() {
-    bluetoothctl info $uuid | grep "Name" | awk '{print $2}'
+    bluetoothctl info $uuid | grep "Name" | awk '{print $2}' > $file
 }
 
 return_bt() {

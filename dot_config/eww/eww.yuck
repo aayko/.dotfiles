@@ -6,7 +6,7 @@
 (deflisten workspaces :initial "[]" "scripts/get-workspaces")
 (deflisten current_workspace :initial "1" "scripts/get-active-workspace")
 
-(deflisten bt_name :initial "Unknown" "scripts/bluetooth")
+(deflisten bt_name :initial "Unknown" `tail -F /tmp/eww/bluetooth`)
 (defvar bt_hover false)
 (defvar bt_state false)
 
