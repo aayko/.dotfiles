@@ -1,25 +1,27 @@
 #!/bin/bash
 
-status=$(nmcli g | grep -oE "disconnected")
-essid=$(nmcli -t -f NAME c | head -n 1)
+get_wifi() {
+    nmcli -t -f NAME c | head -n 1
+}
 
-if [ $status ] ; then
-    icon="󰖪"
-    text=""
-    col="#38384D"
-    eww update wifi_toggle=false
+return_wifi() {
+    if [[ $6 == *Not* ]]; then
+        eww update wifi_state=false
+    else
+        eww update wifi_state=true
+        get_wifi
+    fi
+}
 
-else
-    icon="󰖩"
-    text=$essid
-    col="#ffffff"
-    eww update wifi_toggle=true
+# initial state
+if [[ $(iwgetid) ]]; then
+    eww update wifi_state=true
+    get_wifi
 fi
 
-if [[ "$1" == "--color" ]]; then
-    echo $col	
-elif [[ "$1" == "--name" ]]; then
-	echo $text
-elif [[ "$1" == "--icon" ]]; then
-	echo $icon
+iwevent | while read -r event; do
+# filter to access point changes
+if [[ $event == *New* ]]; then
+    return_wifi $event
 fi
+done

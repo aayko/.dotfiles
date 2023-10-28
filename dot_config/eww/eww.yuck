@@ -1,35 +1,27 @@
 ;; Variables
 (defpoll clock_time :interval "1s" "date '+\%H󰇙\%M'")
-(defpoll clock_date :interval "1m" "date '+%b %d'")
-
-(defpoll wifi_color :interval "1s" "scripts/wifi --color")
-(defpoll wifi_name :interval "100ms" "scripts/wifi --name")
-(defpoll wifi_icon :interval "1s" "scripts/wifi --icon")
-
-(defpoll bt_color :interval "1s" "scripts/bluetooth --color")
-(defpoll bt_name :interval "1s" "scripts/bluetooth --name")
-(defpoll bt_icon :interval "1s" "scripts/bluetooth --icon")
 
 (deflisten appname "scripts/appname")
 
-(deflisten workspaces :interval "1ms" :initial "[]" "scripts/get-workspaces")
-(deflisten current_workspace :interval "1ms" :initial "1" "scripts/get-active-workspace")
+(deflisten workspaces :initial "[]" "scripts/get-workspaces")
+(deflisten current_workspace :initial "1" "scripts/get-active-workspace")
 
-(defvar bt_reveal false)
-(defvar bt_toggle false)
+(deflisten bt_name :initial "Unknown" "scripts/bluetooth")
+(defvar bt_hover false)
+(defvar bt_state false)
 
-(defvar wifi_reveal false)
-(defvar wifi_toggle false)
+(deflisten wifi_name :initial "Unknown" "scripts/wifi")
+(defvar wifi_hover false)
+(defvar wifi_state false)
 
 (defwidget workspaces []
-  (eventbox :onscroll "scripts/change-active-workspace {} ${current_workspace}" 
-            :class "workspaces-widget"
+  (eventbox :class "workspaces-widget"
     (box :space-evenly false
       (label :text "${workspaces}${current_workspace}" 
              :visible false)
       (for workspace in workspaces
         (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
-          ;; first (10th rn) workspace needs 2 windows to be considered active because of xwaylandvideobridge 
+          ;; 10th workspace needs 2 windows to be considered active because of xwaylandvideobridge 
           (box :class "workspace-entry ${workspace.id == current_workspace ? "current" : ""} ${(workspace.windows > 0 && workspace.id != 10) || (workspace.windows > 1 && workspace.id == 10) ? "occupied" : "empty"}"
             (label :text "${workspace.id == current_workspace ? "" : "" }")
             )
@@ -42,42 +34,40 @@
 (defwidget appnames []
   (eventbox
     (box
-      :orientation "h"
-      :space-evenly "false"
-      :vexpand "false"
-      :hexpand "false"
-      (literal
-      :content appname)
-      )))
+        (label
+        :class "app-name"
+        :limit-width "35"
+        :text appname
+        ))))
 
 (defwidget bluetooth [] 
-  (eventbox :onhover "eww update bt_reveal=true"
-            :onhoverlost "eww update bt_reveal=false"
+  (eventbox :onhover "eww update bt_hover=true"
+            :onhoverlost "eww update bt_hover=false"
             :onclick "bluetoothmenu"
     (box :class "bluetooth" 
          :vexpand "false" 
          :hexpand "false" 
          :space-evenly "false" 
       (button :class "bluetooth-icon" 
-              :style "color: ${bt_color};" bt_icon )
+              :style "color: ${bt_state ? '#ffffff' : '#333333'};" "${bt_state ? '󰂯' : '󰂲'}")
       (revealer :transition "slideright"
-                :reveal "${bt_reveal && bt_toggle}"
+                :reveal "${bt_hover && bt_state}"
                 :duration "350ms"
         (label    :class "bluetooth-label"
                   :text bt_name
           )))))
 
 (defwidget wifi [] 
-  (eventbox :onhover "eww update wifi_reveal=true"
-            :onhoverlost "eww update wifi_reveal=false"
+  (eventbox :onhover "eww update wifi_hover=true"
+            :onhoverlost "eww update wifi_hover=false"
     (box :class "wifi" 
          :vexpand "false" 
          :hexpand "false" 
          :space-evenly "false"
       (button :class "wifi-icon" 
-              :style "color: ${wifi_color};" wifi_icon)
+              :style "color: ${wifi_state ? '#ffffff' : '#333333'};" "${wifi_state ? '󰖩' : '󰖪'}")
       (revealer :transition "slideright"
-                :reveal "${wifi_reveal && wifi_toggle}"
+                :reveal "${wifi_hover && wifi_state}"
                 :duration "350ms"
         (label    :class "wifi-label"
                   :text wifi_name
@@ -95,8 +85,7 @@
       :thickness 4
       (button
         :class "iconbat"
-        :tooltip "battery on ${EWW_BATTERY["BAT0"].capacity}%"
-      "")))))
+        "")))))
 
 (defwidget clock_module []
   (eventbox
@@ -133,7 +122,6 @@
     (bluetooth)
 ))
 
-;;define widget groups
 (defwidget left []
   (box
     :orientation "h"
@@ -173,7 +161,7 @@
   ))
 
 (defwindow bar
-  :monitor 0
+  :monitor 1
   :exclusive false
   :geometry (geometry
     :width "100%"
