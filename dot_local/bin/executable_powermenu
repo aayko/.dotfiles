@@ -4,10 +4,10 @@ rofi_command="rofi -theme $HOME/.config/rofi/theme/powermenu.rasi"
 uptime=$(uptime -p | sed -e 's/up //g')
 
 layout=`cat $HOME/.config/rofi/theme/powermenu.rasi | grep BUTTON | cut -d'=' -f2 | tr -d '[:blank:],*/'`
-shutdown=""
-reboot=""
-lock=""
-suspend=""
+shutdown="󰤆"
+reboot=""
+lock=""
+suspend="󰤄"
 logout=""
 ddir="$HOME/.config/rofi/theme"
 

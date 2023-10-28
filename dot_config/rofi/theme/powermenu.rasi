@@ -55,7 +55,7 @@ element-text {
     text-color:       		        inherit;
     font:			                "Feather 20";
     expand:                         true;
-    horizontal-align:               0.5;
+    horizontal-align:               0.35;
     vertical-align:                 0.5;
     margin:                         0px 0px 0px 0px;
 }

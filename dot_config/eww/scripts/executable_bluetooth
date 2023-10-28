@@ -5,11 +5,11 @@ get_bt() {
 }
 
 return_bt() {
-    if [[ $(echo $@ | grep -o 'Connected: no') ]]; then
-        eww update bt_state=false
-    else
+    if [[ $(echo $@ | grep -o 'yes') ]]; then
         eww update bt_state=true
         get_bt
+    else
+        eww update bt_state=false
     fi
 }
 
