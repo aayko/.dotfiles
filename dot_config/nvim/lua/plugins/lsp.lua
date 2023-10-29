@@ -67,9 +67,6 @@ return {
         local cmp = require('cmp')
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
         local cmp_mappings = lsp.defaults.cmp_mappings({
-            ['<C-k>'] = cmp.mapping.select_prev_item(cmp_select),
-            ['<C-j>'] = cmp.mapping.select_next_item(cmp_select),
-            ["<C-Space>"] = cmp.mapping.complete(),
             ['<CR>'] = cmp.mapping.confirm({ select = true }),
         })
 
@@ -112,14 +109,13 @@ return {
             mapping = cmp_mappings,
         }
 
-        -- vim.cmd([[
-        --     highlight! link CmpPmenu         Pmenu
-        --     highlight! link CmpPmenuBorder   Pmenu
-        --     ]])
+        vim.cmd([[
+            highlight! link CmpPmenu         Pmenu
+            highlight! link CmpPmenuBorder   Pmenu
+            ]])
 
         lsp.set_preferences({
             suggest_lsp_servers = true,
-            sign_icons = {}
         })
 
         lsp.on_attach(function(client, bufnr)
@@ -135,7 +131,6 @@ return {
             vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
             vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, opts)
             vim.keymap.set("n", "<leader>=", vim.lsp.buf.format, opts)
-
         end)
 
         lsp.setup()
@@ -147,7 +142,7 @@ return {
         -- end
 
         vim.diagnostic.config({
-            virtual_text = true,
+            virtual_text = false,
             underline = false,
             update_in_insert = false,
         })

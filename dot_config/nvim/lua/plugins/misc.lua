@@ -110,4 +110,5 @@ return {
     { "wellle/targets.vim" },
     { "mbbill/undotree" },
     { "chaoren/vim-wordmotion" },
+    { "nvim-treesitter/playground" },
 }

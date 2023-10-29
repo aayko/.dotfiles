@@ -65,3 +65,20 @@ vim.o.pumheight = 8
 vim.g.lsp_preview_max_width = 8
 
 vim.o.laststatus = 0
+
+require("noirbuddy").setup{
+    preset = 'minimal',
+    colors = {
+        primary = '#689d6a',
+        secondary = '#458588',
+        background = '#080808',
+        diagnostic_error = '#ffffff',
+        diagnostic_warning = '#ffffff',
+        diagnostic_info = '#ffffff',
+        diagnostic_hint = '#ffffff',
+    }
+}
+vim.cmd([[
+    hi IndentBlanklineChar guifg=#222222
+    hi IndentBlanklineContextChar guifg=Variable 
+]])
