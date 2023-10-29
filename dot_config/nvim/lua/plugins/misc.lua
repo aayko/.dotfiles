@@ -108,8 +108,6 @@ return {
         end
     },
     { "wellle/targets.vim" },
-    { "nvim-treesitter/nvim-treesitter-context" },
     { "mbbill/undotree" },
     { "chaoren/vim-wordmotion" },
-    -- { "andweeb/presence.nvim" },
 }

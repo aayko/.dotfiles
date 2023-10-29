@@ -76,11 +76,14 @@ return {
         cmp.setup({
             window = {
                 completion = cmp.config.window.bordered({
+                    border = "single",
                     winhighlight = 'Normal:None,FloatBorder:IndentBlanklineChar,CursorLine:PmenuSel,Search:None',
                     scrollbar = false,
                 }),
                 documentation = cmp.config.window.bordered({
+                    border = "single",
                     winhighlight = 'Normal:None,FloatBorder:IndentBlanklineChar,CursorLine:PmenuSel,Search:None',
+                    scrollbar = false,
                 }),
             },
         })
@@ -116,6 +119,7 @@ return {
 
         lsp.set_preferences({
             suggest_lsp_servers = true,
+            sign_icons = {}
         })
 
         lsp.on_attach(function(client, bufnr)
@@ -136,15 +140,15 @@ return {
 
         lsp.setup()
 
-        local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-        for type, icon in pairs(signs) do
-            local hl = "DiagnosticSign" .. type
-            vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-        end
+        -- local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+        -- for type, icon in pairs(signs) do
+        --     local hl = "DiagnosticSign" .. type
+        --     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+        -- end
 
         vim.diagnostic.config({
-            virtual_text = false,
-            underline = true,
+            virtual_text = true,
+            underline = false,
             update_in_insert = false,
         })
 

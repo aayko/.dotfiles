@@ -1,11 +1,9 @@
-alias bare="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 alias dot="chezmoi"
 alias lf="lfcd"
 
 alias v="nvim"
-alias code="codium"
+alias c="env HOME=$XDG_CONFIG_HOME codium"
 alias se="sudoedit"
-alias epk="nvim ~/packages-list"
 
 alias mkdir="mkdir -vp"
 alias rm="rm -v"
@@ -16,13 +14,14 @@ alias df='df -h'
 alias free='free -m'
 
 alias grep='grep --color=always'
-alias ls="lsd -A --group-directories-first --sort=extension"
-alias ll="lsd -Al --group-directories-first --sort=extension"
-alias tree="lsd -A --depth=4 --tree --group-directories-first --sort=extension"
+alias ls="ls --color --group-directories-first"
+alias ll="ls -lh --color --group-directories-first"
+alias tree="tree -L 4"
 alias cat="bat"
 
 alias p="sudo pacman"
-alias py="clear && python3"
-alias so="clear && exec zsh"
+alias py="clear; python3"
+alias java="clear; java"
+alias so="clear; exec zsh"
 
-source $HOME/.ssh-web
+source $XDG_CONFIG_HOME/zsh/.ssh-web

@@ -8,8 +8,6 @@ shutdown="󰤆"
 reboot=""
 lock=""
 suspend="󰤄"
-logout=""
-ddir="$HOME/.config/rofi/theme"
 
 # Variable passed to rofi
 options="$lock\n$suspend\n$shutdown\n$reboot"

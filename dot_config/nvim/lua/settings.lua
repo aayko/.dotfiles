@@ -37,7 +37,7 @@ vim.opt.wrap = true
 vim.opt.breakindent = true
 vim.opt.linebreak = true
 
-vim.opt.cursorline = true
+vim.opt.cursorline = false
 
 vim.opt.background = "dark"
 
@@ -64,4 +64,4 @@ vim.g.loaded_netrwPlugin = 1
 vim.o.pumheight = 8
 vim.g.lsp_preview_max_width = 8
 
-vim.o.laststatus = 3
+vim.o.laststatus = 0

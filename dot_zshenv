@@ -1,0 +1,15 @@
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+
+export ZDOTDIR="$XDG_CONFIG_HOME"/zsh
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
+export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+mkdir -p "$XDG_DATA_HOME"/wineprefixes
+export WINEPREFIX="$XDG_DATA_HOME"/wineprefixes/default
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+export XCOMPOSEFILE="$XDG_CONFIG_HOME"/xcompose
+export WGETRC="$XDG_CONFIG_HOME/wgetrc"

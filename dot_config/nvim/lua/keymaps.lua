@@ -39,9 +39,6 @@ keymap.set("n", "<down>", "<C-w>j")
 keymap.set("n", "<up>", "<C-w>k")
 keymap.set("n", "<right>", "<C-w>l")
 
-keymap.set({ "n", "v" }, "L", "$")
-keymap.set({ "n", "v" }, "H", "^")
-
 keymap.set({ "n", "v" }, "s", "V")
 
 -- Center on movement
@@ -74,5 +71,9 @@ keymap.set('n', '<leader>e', vim.cmd.NvimTreeToggle)
 -- UndoTree
 keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
 
--- Clear highlight
-keymap.set('n', '<leader>n', '<CMD>noh<CR>')
+keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
+keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+
+keymap.set("x", "<leader>p", "\"_dP")
+
+keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })

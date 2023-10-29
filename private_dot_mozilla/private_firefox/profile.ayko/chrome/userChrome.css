@@ -16,9 +16,9 @@
 }
 
 /* Change adress bar focused color */
-#urlbar-container {
-    --toolbar-field-focus-border-color: #ffffff !important;
-}
+/* #urlbar-container { */
+/*     --toolbar-field-focus-border-color: #ffffff !important; */
+/* } */
 
 /* Align tabs rounded corner with window rounded corner */
 /* box.scrollbox-clip { */
@@ -28,7 +28,7 @@
 
 tab.tabbrowser-tab > stack > vbox {
     border-radius: 0px !important;
-    border-color: #ffffff !important;
+    /* border-color: #ffffff !important; */
 }
 
 /* Add padding to search bar */
@@ -39,7 +39,7 @@ tab.tabbrowser-tab > stack > vbox {
 /* Base color for the theme, dependent on whether it's a light theme or not */
 @media (prefers-color-scheme: dark) {
     :root {
-        --lwt-accent-color: #1c1b22;
+        --lwt-accent-color: #000000;
     }
 }
 
