@@ -192,7 +192,7 @@ user_pref("browser.newtabpage.activity-stream.telemetry", false);
  * SECTION: PESKYFOX                                                        *
 ****************************************************************************/
 /** MOZILLA UI ***/
-user_pref("layout.css.prefers-color-scheme.content-override", 2);
+// user_pref("layout.css.prefers-color-scheme.content-override", 2);
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 user_pref("app.update.suppressPrompts", true);
 user_pref("browser.compactmode.show", true);
@@ -265,7 +265,6 @@ user_pref("identity.fxaccounts.enabled", true);
 // PREF: Push API seems to be needed for Sync
 user_pref("dom.push.enabled", true);
 
-user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 user_pref("browser.compactmode.show", true);
 user_pref("browser.urlbar.maxRichResults", 6);
 user_pref("browser.urlbar.groupLabels.enabled", false); // hide Firefox Suggest label in URL dropdown box
