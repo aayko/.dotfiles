@@ -81,7 +81,7 @@ map au unarchive
 map ad unarchive-delete
 map aa zip
 
-map sd trash
+map dd trash
 map sr restore_trash
 map p paste
 map x cut
