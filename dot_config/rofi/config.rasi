@@ -21,9 +21,13 @@ configuration {
 
   fg: #ffffff;
   fg-alt: #dddddd;
+  fg-selected: #ffffff;
 
   bc: #ffffff;
-  bc-accent: #ffffff;
+  bc-accent: #444444;
+
+  placeholder-fg: #555555;
+
   border: 0;
   margin: 0;
   padding: 0;
@@ -47,7 +51,7 @@ element {
 }
 
 element selected {
-  text-color: @fg;
+  text-color: @fg-selected;
   background-color: @bg-selected;
 }
 
@@ -68,7 +72,7 @@ entry {
   padding: 12px;
   text-color: @fg;
   placeholder: "Search";
-  placeholder-color: @fg-alt;
+  placeholder-color: @placeholder-fg;
 }
 
 inputbar {
