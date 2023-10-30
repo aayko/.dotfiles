@@ -73,7 +73,6 @@ map '
 map t
 
 map e $nvim "$f"
-# map sw %feh --bg-scale "$f"
 map se $sudoedit "$f"
 
 map . set hidden!
@@ -82,8 +81,8 @@ map au unarchive
 map ad unarchive-delete
 map aa zip
 
-map dd trash
-map dr restore_trash
+map sd trash
+map sr restore_trash
 map p paste
 map x cut
 map y copy
@@ -91,8 +90,6 @@ map c $wl-copy $f
 map <enter> $mimeo $f
 map md :push %mkdir<space>
 map mf :push %touch<space>
-map me :push %nvim<space>
-map ms :push %sudoedit<space>
 map R reload
 map C clear
 map o %chmod +x $f
@@ -115,3 +112,4 @@ map gb cd /home/ayko/.local/bin
 map gi cd /home/ayko/.local/share/icons
 map gf cd /home/ayko/.mozilla/firefox/profile.ayko/chrome
 map gs cd /home/ayko/Sync
+map gt cd /home/ayko/.local/share/Trash/files
