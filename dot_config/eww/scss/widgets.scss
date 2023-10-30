@@ -1,141 +1,78 @@
 /** General **/
 .bar_class { 
-    border: $Border-size solid $Surface1;
-    background-color: $Background;
+    border: $border-size solid $bg1;
+    background-color: $bg;
     border-radius: 0px;
-    margin: 10px 10px 5px 10px;
+    margin: 10px;
+    margin-bottom: 5px;
     padding: 4px;
 }
 
-.module {
-    margin: 0px 0px 0px 0px;
-    border-radius: 10px 10px 0px 10px;
+.clock_time {
+    margin-right: 4px;
+    font-size: $font-size;
 }
 
-.icons {
-    margin-right: -10px;
+.wifi,
+.bluetooth {
+    // background-color: red;
 }
 
-.icons * {
-    margin-left: 2px;
-    padding-right: 5px;
-}
-
-.center_modules {
-    margin: 0px 0px 0px 0px;
-    border-radius: 0px 0px 0px 0px;
-}
-
-/** tooltip **/
-tooltip.background {
-    background-color: $Background;
-    border: 2px solid $Surface1;
-    font-size: 18;
-    border-radius: 0px;
-    color: $Primary;
-}
-
-tooltip label {
-    margin: 6px;
-}
-
-tooltip {
-    margin-top: 5px;
-}
-
-/** Widgets **/
-
-.clock_time_class,
-.clock_minute_class {
-    font-size: 28;
-}
-
-.clock_date_class {
-    font-size: 24;
-    margin: 0px 10px -4px 5px;
-    color: $Primary;
-}
-
-.clock_time_class {
-    color: $Primary;
-    font-weight: bold;
-    margin: 2px 10px 0px 2px;
-}
-
-.batbar {
-    color: $Green;
-    background-color: $Grey;
-    border-radius: 10px;
-}
-
-.iconbat {
-    color: $Green;
-}
-
-.iconbat {
-    font-size: 15;
-    margin: 10px;
+.wifi-label,
+.bluetooth-label {
+    // background-color: cyan;
+    margin-left: 6px;
+    font-size: $font-size;
 }
 
 .wifi {
 }
 
 .wifi-icon {
-    margin-right: 5px;
-    font-size: $Icon-font-size;
-}
-
-.wifi-label {
-    font-size: $Font-size;
-    color: $Pink;
+    font-size: $icon-size;
+    padding-right: 9px;
 }
 
 // bluetooth
 .bluetooth {
-    color: red;
 }
 
 .bluetooth-icon {
-    font-size: $Icon-font-size;
+    font-size: $icon-size;
+    padding-right: 1px;
 }
 
-.bluetooth-label {
-    color: $Blue;
-    font-size: $Font-size;
+.separator {
+    color: $bg1;
+    font-size: $font-size;
+    margin: 0 8px;
 }
 
-.separ {
-    color: $Grey;
-    // font-weight: bold;
-    font-size: 24px;
-    margin-right: 8px;
-    margin-left: 8px;
-}
-
-.bat_module {
-    background-color: rgba(00, 00, 00, 0.0);
-    border-radius: 16px;
-    margin: 0px 0px 0px 5px;
+.battery_percentage {
+    font-size: $font-size;
 }
 
 // #----- workspaces -----#
 .workspaces-widget {
     font-size: 28px;
-    color: $Grey;
+    color: $bg1;
 }
 
 .workspace-entry {
-    margin-right: 12px;
-    margin-left: 12px;
+    margin: 0 12px;
 }
 
 .workspace-entry.occupied {
-    color: $Primary;
+    color: $fg;
 }
 
 .app-name {
-    color: $Primary;
+    color: $fg;
     font-size: 18px;
     font-weight: bold;
-    margin: 4px 0px 0px 0px;
+}
+
+// vertical align offset
+.right_modules {
+    margin-top: 2px;
 }

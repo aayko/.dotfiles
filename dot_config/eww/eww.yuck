@@ -7,11 +7,9 @@
 (deflisten current_workspace :initial "1" "scripts/get-active-workspace")
 
 (deflisten bt_name :initial "Unknown" `tail -F /tmp/eww/bluetooth`)
-(defvar bt_hover false)
 (defvar bt_state false)
 
 (deflisten wifi_name :initial "Unknown" "scripts/wifi")
-(defvar wifi_hover false)
 (defvar wifi_state false)
 
 (defwidget workspaces []
@@ -34,122 +32,83 @@
 (defwidget appnames []
   (eventbox
     (box
-        (label
+      (label
         :class "app-name"
         :limit-width "35"
         :text appname
         ))))
 
 (defwidget bluetooth [] 
-  (eventbox :onhover "eww update bt_hover=true"
-            :onhoverlost "eww update bt_hover=false"
-            :onclick "bluetoothmenu"
+  (eventbox
     (box :class "bluetooth" 
-         :vexpand "false" 
-         :hexpand "false" 
          :space-evenly "false" 
+      :style "color: ${bt_state ? '#ffffff' : '#333333'};"
       (button :class "bluetooth-icon" 
-              :style "color: ${bt_state ? '#ffffff' : '#333333'};" "${bt_state ? '󰂯' : '󰂲'}")
-      (revealer :transition "slideright"
-                :reveal "${bt_hover && bt_state}"
-                :duration "350ms"
-        (label    :class "bluetooth-label"
-                  :text bt_name
-          )))))
+               "${bt_state ? '󰂯' : '󰂲'}")
+      (label    :class "bluetooth-label"
+                :text "${bt_state ? bt_name : "-" }"
+        ))))
 
 (defwidget wifi [] 
-  (eventbox :onhover "eww update wifi_hover=true"
-            :onhoverlost "eww update wifi_hover=false"
+  (eventbox
     (box :class "wifi" 
-         :vexpand "false" 
-         :hexpand "false" 
          :space-evenly "false"
+      :style "color: ${wifi_state ? '#ffffff' : '#333333'};"
       (button :class "wifi-icon" 
-              :style "color: ${wifi_state ? '#ffffff' : '#333333'};" "${wifi_state ? '󰖩' : '󰖪'}")
-      (revealer :transition "slideright"
-                :reveal "${wifi_hover && wifi_state}"
-                :duration "350ms"
-        (label    :class "wifi-label"
-                  :text wifi_name
-          )))))
+               "${wifi_state ? '󰖩' : '󰖪'}")
+      (label    :class "wifi-label"
+                :text "${wifi_state ? wifi_name : "-" }"
+        ))))
 
 (defwidget bat []
   (eventbox
-  (box
-    :class "bat_module"
-    :vexpand "false"
-    :hexpand "false"
-    (circular-progress
-      :value {EWW_BATTERY["BAT0"].capacity}
-      :class "batbar"
-      :thickness 4
-      (button
-        :class "iconbat"
-        "")))))
+    (box
+      (label :text "${EWW_BATTERY["BAT0"].capacity}%"
+             :class "battery_percentage"
+        ))))
 
 (defwidget clock_module []
   (eventbox
     (box
-      :class "module"
-      :space-evenly "false"
-      :orientation "h"
-      :spacing "0"
       (label
         :text clock_time
-      :class "clock_time_class" )
+        :class "clock_time" )
       )))
 
 (defwidget sep []
   (box
-    :class "module-2"
-    :vexpand "false"
-    :hexpand "false"
-    :valign "center"
     (label
-      :class "separ"
-      :valign "center"
+      :class "separator"
       :text "|"
-    )))
-
-;;define widget groups
-(defwidget icons []
-  (box
-    :orientation "h"
-    :space-evenly false
-    :halign "start"
-    :class "icons"
-    (wifi)
-    (bluetooth)
-))
+      )))
 
 (defwidget left []
   (box
     :orientation "h"
     :space-evenly false
-    :halign "start"
     :class "left_modules"
     (workspaces)))
 
 (defwidget center []
   (box
-    :orientation "h"
     :space-evenly false
-    :halign "center"
     :class "center_modules"
-    (appnames)))
+    (appnames)
+    ))
 
 (defwidget right []
   (box
-    :orientation "h"
     :space-evenly false
     :halign "end"
     :class "right_modules"
-    (icons)
+    (wifi)
+    (sep)
+    (bluetooth)
     (sep)
     (bat)
     (sep)
     (clock_module)
-  ))
+    ))
 
 (defwidget bar_layout []
   (centerbox
@@ -158,14 +117,15 @@
     (left)
     (center)
     (right)
-  ))
+    ))
 
 (defwindow bar
   :monitor 1
   :exclusive false
   :geometry (geometry
-    :width "100%"
-    :height "50px"
+  :width "100%"
+  ;; height is defined by the content .... (~55px)
+  :height "0px"
   :anchor "top center")
   :stacking "fg"
   :windowtype "dock"

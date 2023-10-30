@@ -89,17 +89,17 @@
     mouse_right_click = do_action
 
 [urgency_low]
-    background = "#000000"
+    background = "#080808"
     frame_color = "#333333"
     timeout = 2
 
 [urgency_normal]
-    background = "#000000"
+    background = "#080808"
     frame_color = "#333333"
     timeout = 2
 
 [urgency_critical]
-    background = "#000000"
+    background = "#080808"
     timeout = 0
     frame_color = "#DE0000"
     foreground = "#DE0000"
@@ -119,11 +119,6 @@
 [login]
     summary = "Login*"
     frame_color = "#1A8CFF"
-
-[airpods]
-    summary = "AirPods"
-    new_icon = "airpods"
-    history_ignore = true
 
 [discord]
     appname = "discord"

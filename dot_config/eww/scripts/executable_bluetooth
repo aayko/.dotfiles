@@ -17,9 +17,11 @@ return_bt() {
 }
 
 # initial state
-if [[ $(get_bt) ]]; then
+if [[ $(bluetoothctl info $uuid | grep "Name" | awk '{print $2}') ]]; then
     eww update bt_state=true
     get_bt
+else
+    eww update bt_state=false
 fi
 
 bluetoothctl | while read -r event; do

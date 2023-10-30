@@ -18,6 +18,7 @@ alias ls="ls --color --group-directories-first"
 alias ll="ls -lh --color --group-directories-first"
 alias tree="tree -L 4"
 alias cat="bat"
+alias ka="killall"
 
 alias p="sudo pacman"
 alias py="clear; python3"

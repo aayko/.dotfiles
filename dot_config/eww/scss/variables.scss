@@ -1,35 +1,8 @@
-$Rosewater:	#ffffff;
-$Flamingo:	#ffffff;
-$Pink:	    #ffffff;
-$Purple:	#ffffff;
-$Red:	    #ffffff;
-$Maroon:	#ffffff;
-$Orange:	#ffffff;
-$Yellow:	#ffffff;
-$Green:	    #ffffff;
-$Sky:	    #ffffff;
-$Sapphire:	#ffffff;
-$Blue:	    #ffffff;
-$Lavender:	#ffffff;
-$Subtext1:	#bac2de;
-$Subtext0:	#a6adc8;
-$Overlay2:	#9399b2;
-$Overlay1:	#7f849c;
-$Overlay0:	#333333;
-$Surface2:	#333333;
-$Surface1:	#333333;
-$Surface0:	#333333;
-$Base:	    #333333;
-$Mantle:	#333333;
-$Crust:     #333333;
+$border-size: 2px;
 
-$Grey: $Surface0;
-$Primary:   #ffffff;
-$Background: #000000;
-$Alt-background: rgba($Surface0, 0.3);
-$Border-size: 2px;
-$Border-clr: #ffffff;
+$bg: #080808;
+$bg1: #333333;
+$fg: #ffffff;
 
-
-$Font-size: 1.4rem;
-$Icon-font-size: 1.5rem;
+$font-size: 1.3rem;
+$icon-size: $font-size;

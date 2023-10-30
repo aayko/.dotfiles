@@ -81,4 +81,5 @@ require("noirbuddy").setup{
 vim.cmd([[
     hi IndentBlanklineChar guifg=#222222
     hi IndentBlanklineContextChar guifg=Variable 
+    hi WinSeparator guibg=#080808 guifg=#333333
 ]])
