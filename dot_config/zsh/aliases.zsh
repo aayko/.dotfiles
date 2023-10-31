@@ -2,7 +2,7 @@ alias dot="chezmoi"
 alias lf="lfcd"
 
 alias v="nvim"
-alias c="env HOME=$XDG_CONFIG_HOME codium"
+alias c="codium"
 alias se="sudoedit"
 
 alias mkdir="mkdir -vp"
