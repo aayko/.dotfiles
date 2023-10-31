@@ -21,6 +21,7 @@ return {
         opts = {},
     },
     {
+        -- auto rename and closing tags for html
         'windwp/nvim-ts-autotag',
         opts = {
             autotag = true,
@@ -28,13 +29,6 @@ return {
     },
     {
         'gbprod/yanky.nvim',
-        opts = {
-            highlight = {
-                on_put = false,
-                on_yank = true,
-                timer = 150,
-            },
-        },
         keys = {
             vim.keymap.set("n", "=p", "<Plug>(YankyPutAfterFilter)"),
             vim.keymap.set("n", "=P", "<Plug>(YankyPutBeforeFilter)"),
@@ -55,10 +49,8 @@ return {
         'akinsho/toggleterm.nvim',
         opts = {
             open_mapping = [[<C-\>]],
-            -- float_opts = {
-            --     border = 'curved',
-            -- },
-            direction = "float",
+            direction = "tab",
+            shade_terminals = false,
         },
     },
     {
@@ -92,8 +84,6 @@ return {
                     augend.date.alias["%H:%M"],
                     augend.constant.alias.bool,
                     augend.semver.alias.semver,
-                    -- augend.constant.alias.alpha,
-                    -- augend.constant.alias.Alpha,
                 },
             }
 
@@ -107,8 +97,6 @@ return {
             vim.keymap.set("v", "g<C-x>",require("dial.map").dec_gvisual(), {noremap = true})
         end
     },
-    { "wellle/targets.vim" },
     { "mbbill/undotree" },
-    { "chaoren/vim-wordmotion" },
     { "nvim-treesitter/playground" },
 }

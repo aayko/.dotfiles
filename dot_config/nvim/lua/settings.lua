@@ -64,7 +64,12 @@ vim.g.loaded_netrwPlugin = 1
 vim.o.pumheight = 8
 vim.g.lsp_preview_max_width = 8
 
-vim.o.laststatus = 0
+vim.cmd([[
+    set laststatus=0
+    hi! link StatusLine Comment
+    hi! link StatusLineNC Comment
+    set statusline=%{repeat('─',winwidth('.'))}
+]])
 
 require("noirbuddy").setup{
     preset = 'minimal',
@@ -82,4 +87,9 @@ vim.cmd([[
     hi IndentBlanklineChar guifg=#222222
     hi IndentBlanklineContextChar guifg=Variable 
     hi WinSeparator guibg=#080808 guifg=#333333
+    hi IncSearch guibg=#689d6a guifg=ffffff
+    augroup highlight_yank
+        autocmd!
+        au TextYankPost * silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=150})
+    augroup END
 ]])
