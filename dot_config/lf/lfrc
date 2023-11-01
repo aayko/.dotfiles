@@ -73,7 +73,6 @@ map "
 map '
 map t
 
-map e $nvim "$f"
 map se $sudoedit "$f"
 
 map . set hidden!

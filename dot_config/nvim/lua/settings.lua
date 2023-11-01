@@ -70,6 +70,9 @@ vim.cmd([[
     set statusline=%{repeat('─',winwidth('.'))}
 ]])
 
+-- Number of recent files
+vim.opt.shada = "!,'300,<50,s10,h"
+
 require("noirbuddy").setup{
     preset = 'minimal',
     colors = {

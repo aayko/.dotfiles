@@ -4,15 +4,15 @@ file="Screenshot-$(date +%s).png"
 folder="$(xdg-user-dir SCREENSHOTS)"
 
 function region(){
-    hyprshot -o $folder -f $file -m region -s
+    hyprshot -o "$folder" -f "$file" -m region -s
 }
 
 function window() {
-    hyprshot -o $folder -f $file -m window -sc
+    hyprshot -o "$folder" -f "$file" -m window -sc
 }
 
 function monitor(){
-    hyprshot -o $folder -f $file -m output -sc
+    hyprshot -o "$folder" -f "$file" -m output -sc
 }
 
 doc() {
