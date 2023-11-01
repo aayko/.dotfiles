@@ -52,50 +52,6 @@ toggle_scan() {
     fi
 }
 
-# Checks if controller is able to pair to devices
-pairable_on() {
-    if bluetoothctl show | grep -q "Pairable: yes"; then
-        echo "Pairable: on"
-        return 0
-    else
-        echo "Pairable: off"
-        return 1
-    fi
-}
-
-# Toggles pairable state
-toggle_pairable() {
-    if pairable_on; then
-        bluetoothctl pairable off
-        show_menu
-    else
-        bluetoothctl pairable on
-        show_menu
-    fi
-}
-
-# Checks if controller is discoverable by other devices
-discoverable_on() {
-    if bluetoothctl show | grep -q "Discoverable: yes"; then
-        echo "Discoverable: on"
-        return 0
-    else
-        echo "Discoverable: off"
-        return 1
-    fi
-}
-
-# Toggles discoverable state
-toggle_discoverable() {
-    if discoverable_on; then
-        bluetoothctl discoverable off
-        show_menu
-    else
-        bluetoothctl discoverable on
-        show_menu
-    fi
-}
-
 # Checks if a device is connected
 device_connected() {
     device_info=$(bluetoothctl info "$1")
@@ -213,7 +169,7 @@ device_menu() {
     fi
     paired=$(device_paired "$mac")
     trusted=$(device_trusted "$mac")
-    options="$connected\n$paired\n$trusted\n$divider\n$goback\nExit"
+    options="$connected\n$paired\n$trusted\n$divider\n$goback"
 
     # Open rofi menu, read chosen option
     chosen="$(echo -e "$options" | $rofi_command "$device_name:")"
@@ -250,14 +206,12 @@ show_menu() {
 
         # Get controller flags
         scan=$(scan_on)
-        pairable=$(pairable_on)
-        discoverable=$(discoverable_on)
 
         # Options passed to rofi
-        options="$devices\n$divider\n$power\n$scan\n$pairable\n$discoverable\nExit"
+        options="$devices\n$divider\n$power\n$scan"
     else
         power="Power: off"
-        options="$power\nExit"
+        options="$power"
     fi
 
     # Open rofi menu, read chosen option
@@ -273,12 +227,6 @@ show_menu() {
             ;;
         "$scan")
             toggle_scan
-            ;;
-        "$discoverable")
-            toggle_discoverable
-            ;;
-        "$pairable")
-            toggle_pairable
             ;;
         *)
             device=$(bluetoothctl devices | grep "$chosen")
