@@ -1,5 +1,5 @@
 [Default Applications]
-application/pdf=org.gnome.Evince.desktop;
+application/pdf=org.pwmt.zathura.desktop;
 application/x-ipynb+json=vscodium.desktop;
 image/apng=org.gnome.Loupe.desktop;
 image/vnd.microsoft.icon=org.gnome.Loupe.desktop;

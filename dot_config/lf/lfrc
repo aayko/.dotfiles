@@ -57,42 +57,82 @@ cmd restore_trash ${{
     trash-restore
 }}
 
-cmd zip ${{
-    set -f
-    mkdir $1
-    cp -r $fx $1
-    zip -r $1.zip $1
-    rm -rf $1
-}}
+cmd zip push :$zip<space>-r
+cmd tar push :$tar<space>cvf<space>.tar<left><left><left><left>
 
 # Bindings
-map d
-map m
-map s
-map "
-map '
-map t
+clearmaps
 
-map se $sudoedit "$f"
+map q quit
+map f find
+
+map F find-back
+map ; find-next
+map , find-prev
+map / search
+map ? search-back
+map n search-next
+map N search-prev
 
 map . set hidden!
 map ` !true
+map r rename
+map t toggle
+map <space> :toggle; down
+map v invert
+map u unselect
+map y copy
+map p paste
+map R :source /home/ayko/.config/lf/lfrc; reload
+map C clear
+map x cut
+map \$ push :$
+
+map j down
+map k up
+map h updir
+map l open
+map <c-u> half-up
+map <c-d> half-down
+map ] jump-next
+map [ jump-prev
+map gg top
+map G bottom
+map ms mark-save
+map "'" mark-load
+map '"' mark-remove
+
+map se $sudoedit "$f"
+map e $$EDITOR "$f"
+
 map au unarchive
 map ad unarchive-delete
-map aa zip
+map zz zip
+map zt tar
 
 map dd trash
-map sr restore_trash
-map p paste
-map x cut
-map y copy
-map c $wl-copy $f
-map <enter> $mimeo $f
-map md :push %mkdir<space>
-map mf :push %touch<space>
-map R reload
-map C clear
-map o %chmod +x $f
+map dr restore_trash
+
+map c ${{
+    wl-copy "$f"
+    lf -remote 'send echo "File path copied to clipboard"'
+}}
+
+map <enter> &xdg-open "$f"
+map o $mimeopen --ask "$f"
+map md push :%mkdir<space>
+map mf push :%touch<space>
+map me push :&kitty<space>nvim<space>
+
+map + ${{
+    chmod +x "$f"
+    lf -remote 'send reload'
+}}
+
+map w ${{
+    sudo chown -R $(whoami) "$f"
+    lf -remote 'send reload'
+}}
 
 # movement
 map g/ cd /
@@ -109,7 +149,6 @@ map gp cd /home/ayko/Pictures
 map gv cd /home/ayko/Pictures/videos
 map gl cd /home/ayko/.local
 map gb cd /home/ayko/.local/bin
-map gi cd /home/ayko/.local/share/icons
 map gf cd /home/ayko/.mozilla/firefox/profile.ayko/chrome
 map gs cd /home/ayko/Sync
 map gt cd /home/ayko/.local/share/Trash/files
