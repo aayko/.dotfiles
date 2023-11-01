@@ -73,6 +73,8 @@ vim.cmd([[
 -- Number of recent files
 vim.opt.shada = "!,'300,<50,s10,h"
 
+vim.cmd("set viminfofile=")
+
 require("noirbuddy").setup{
     preset = 'minimal',
     colors = {
@@ -85,6 +87,7 @@ require("noirbuddy").setup{
         diagnostic_hint = '#ffffff',
     }
 }
+
 vim.cmd([[
     " completion border color
     hi IndentBlanklineChar guifg=#222222
