@@ -45,8 +45,7 @@ vim.opt.background = "dark"
 vim.opt.splitright = true -- new vertical splits will appear on the right
 vim.opt.splitbelow = true -- new horizontal splits will appear on the bottom
 
--- vim.opt.iskeyword:append("-")
-vim.cmd("set iskeyword-=_")
+vim.opt.iskeyword:remove("_")
 
 vim.opt.belloff = "all"
 
@@ -84,10 +83,15 @@ require("noirbuddy").setup{
     }
 }
 vim.cmd([[
+    " completion border color
     hi IndentBlanklineChar guifg=#222222
-    hi IndentBlanklineContextChar guifg=Variable 
+
+    hi @ibl.indent.char.1 guifg=#222222
+    hi @ibl.scope.char.1 guifg=#ffffff
+
     hi WinSeparator guibg=#080808 guifg=#333333
     hi IncSearch guibg=#689d6a guifg=ffffff
+
     augroup highlight_yank
         autocmd!
         au TextYankPost * silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=150})

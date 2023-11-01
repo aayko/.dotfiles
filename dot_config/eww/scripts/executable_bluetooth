@@ -3,12 +3,14 @@
 mkdir -p /tmp/eww
 file=/tmp/eww/bluetooth
 
+[ -z $file ] && touch $file
+
 get_bt() {
-    bluetoothctl info $uuid | grep "Name" | awk '{print $2}' > $file
+    bluetoothctl info | grep "Name" | awk '{print $2}' > $file
 }
 
 return_bt() {
-    if [[ $(echo $@ | grep -o 'yes') ]]; then
+    if echo "$@" | grep -qo 'yes'; then
         eww update bt_state=true
         get_bt
     else
@@ -17,7 +19,7 @@ return_bt() {
 }
 
 # initial state
-if [[ $(bluetoothctl info $uuid | grep "Name" | awk '{print $2}') ]]; then
+if [[ $(bluetoothctl info | grep "Name" | awk '{print $2}') ]]; then
     eww update bt_state=true
     get_bt
 else
@@ -27,6 +29,6 @@ fi
 bluetoothctl | while read -r event; do
 # filter to access point changes
     if [[ $event == *Connected* ]]; then
-        return_bt $event
+        return_bt "$event"
     fi
 done

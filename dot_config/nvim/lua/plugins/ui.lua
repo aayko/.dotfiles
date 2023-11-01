@@ -10,9 +10,15 @@ return {
     },
     {
         'lukas-reineke/indent-blankline.nvim',
+        main = "ibl",
         opts = {
-            indent_blankline_use_treesitter = true,
-            show_current_context = true,
+            indent = {
+                char = "│"
+            },
+            scope = {
+                enabled = true,
+                show_start = false,
+            }
         },
     },
     {

@@ -13,22 +13,24 @@
 /* Change adress bar border radius */
 #urlbar-background,#urlbar {
     border-radius: 0px !important;
+    border-width: 1px !important;
 }
 
 /* Change adress bar focused color */
-/* #urlbar-container { */
-/*     --toolbar-field-focus-border-color: #ffffff !important; */
-/* } */
+#urlbar-container {
+    --toolbar-field-focus-border-color: #ffffff !important;
+}
 
 /* Align tabs rounded corner with window rounded corner */
-/* box.scrollbox-clip { */
-/*     padding-left: 3px !important; */
-/*     padding-top: 2px !important; */
-/* } */
+box.scrollbox-clip {
+    /* 3px left and uncomment top padding for rounded corners */
+    padding-left: 1px !important;
+    /* padding-top: 2px !important; */
+}
 
+/* Tabs ? */
 tab.tabbrowser-tab > stack > vbox {
     border-radius: 0px !important;
-    /* border-color: #ffffff !important; */
 }
 
 /* Add padding to search bar */
@@ -39,13 +41,13 @@ tab.tabbrowser-tab > stack > vbox {
 /* Base color for the theme, dependent on whether it's a light theme or not */
 @media (prefers-color-scheme: dark) {
     :root {
-        --lwt-accent-color: #000000;
+        --lwt-accent-color: #080808;
     }
 }
 
 @media (prefers-color-scheme: light) {
     :root {
-        --lwt-accent-color: #FAFAFC;
+        --lwt-accent-color: #080808;
     }
 }
 
