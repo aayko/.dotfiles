@@ -14,7 +14,6 @@ bat
 ffmpeg
 ffmpegthumbnailer
 pdftoppm
-libreoffice
 fontimage
 jq
 mdcat
@@ -103,3 +102,4 @@ hyprpicker
 wl-clipboard
 wl-clip-persist-git
 chezmoi
+imv

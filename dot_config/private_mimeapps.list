@@ -1,10 +1,10 @@
 [Default Applications]
 application/pdf=org.pwmt.zathura.desktop;
 application/x-ipynb+json=vscodium.desktop;
-image/apng=org.gnome.Loupe.desktop;
-image/vnd.microsoft.icon=org.gnome.Loupe.desktop;
-image/jpeg=org.gnome.Loupe.desktop;
-image/webp=org.gnome.Loupe.desktop;
+image/apng=imv.desktop;
+image/vnd.microsoft.icon=imv.desktop;
+image/jpeg=imv.desktop;
+image/webp=imv.desktop;
 video/mp4=vlc.desktop;
 video/x-matroska=vlc.desktop;
 text/plain=nvim.desktop;
@@ -18,3 +18,4 @@ x-scheme-handler/chrome=firefox.desktop
 x-scheme-handler/http=firefox.desktop;
 x-scheme-handler/https=firefox.desktop;
 x-scheme-handler/chrome=firefox.desktop;
+image/png=imv-dir.desktop;

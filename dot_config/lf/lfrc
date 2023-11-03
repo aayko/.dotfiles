@@ -118,7 +118,7 @@ map c ${{
     lf -remote 'send echo "File path copied to clipboard"'
 }}
 
-map <enter> &xdg-open "$f"
+map <enter> &mimeo "$f"
 map o $mimeopen --ask "$f"
 map md push :%mkdir<space>
 map mf push :%touch<space>

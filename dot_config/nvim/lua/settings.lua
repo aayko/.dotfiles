@@ -79,7 +79,6 @@ require("noirbuddy").setup{
     preset = 'minimal',
     colors = {
         primary = '#689d6a',
-        secondary = '#458588',
         background = '#080808',
         diagnostic_error = '#ffffff',
         diagnostic_warning = '#ffffff',
@@ -96,7 +95,7 @@ vim.cmd([[
     hi @ibl.scope.char.1 guifg=#ffffff
 
     hi WinSeparator guibg=#080808 guifg=#333333
-    hi IncSearch guibg=#689d6a guifg=ffffff
+    hi IncSearch guibg=#68a659
 
     augroup highlight_yank
         autocmd!
