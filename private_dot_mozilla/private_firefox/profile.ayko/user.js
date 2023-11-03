@@ -1,12 +1,3 @@
-//
-/* You may copy+paste this file and use it as it is.
- *
- * If you make changes to your about:config while the program is running, the
- * changes will be overwritten by the user.js when the application restarts.
- *
- * To make lasting changes to preferences, you will have to edit the user.js.
- */
-
 /****************************************************************************
  * Betterfox                                                                *
  * "Ad meliora"                                                             *
@@ -192,7 +183,6 @@ user_pref("browser.newtabpage.activity-stream.telemetry", false);
  * SECTION: PESKYFOX                                                        *
 ****************************************************************************/
 /** MOZILLA UI ***/
-// user_pref("layout.css.prefers-color-scheme.content-override", 2);
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 user_pref("app.update.suppressPrompts", true);
 user_pref("browser.compactmode.show", true);
@@ -243,16 +233,8 @@ user_pref("browser.bookmarks.openInTabClosesMenu", false);
 user_pref("layout.css.has-selector.enabled", true);
 
 /****************************************************************************
- * SECTION: SMOOTHFOX                                                       *
-****************************************************************************/
-// visit https://github.com/yokoffing/Betterfox/blob/master/Smoothfox.js
-// Enter your scrolling prefs below this line:
-
-/****************************************************************************
  * START: MY OVERRIDES                                                      *
 ****************************************************************************/
-// Enter your personal prefs below this line:
-
 user_pref("browser.download.useDownloadDir", true);
 user_pref("browser.download.always_ask_before_handling_new_types", false);
 user_pref("browser.urlbar.suggest.bookmark", false); // hide URL bar dropdown suggestions
@@ -270,24 +252,6 @@ user_pref("browser.urlbar.maxRichResults", 6);
 user_pref("browser.urlbar.groupLabels.enabled", false); // hide Firefox Suggest label in URL dropdown box
 user_pref("browser.safebrowsing.downloads.remote.enabled", true);
 user_pref("full-screen-api.warning.delay", -1);
-
-// 60hz+
-user_pref("general.smoothScroll",                       true); // DEFAULT
-user_pref("mousewheel.default.delta_multiplier_y",      275);  // 250-400
-
-// 120hz+
-// user_pref("general.smoothScroll",                                       true); // DEFAULT
-// user_pref("general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS", 12);
-// user_pref("general.smoothScroll.msdPhysics.enabled",                    true);
-// user_pref("general.smoothScroll.msdPhysics.motionBeginSpringConstant",  600);
-// user_pref("general.smoothScroll.msdPhysics.regularSpringConstant",      650);
-// user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaMS",         25);
-// user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaRatio",      2.0);
-// user_pref("general.smoothScroll.msdPhysics.slowdownSpringConstant",     250);
-// user_pref("general.smoothScroll.currentVelocityWeighting",              1.0);
-// user_pref("general.smoothScroll.stopDecelerationWeighting",             1.0);
-// user_pref("mousewheel.default.delta_multiplier_y",                      300); // 250-400
-
 /****************************************************************************
  * END: BETTERFOX                                                           *
 ****************************************************************************/
