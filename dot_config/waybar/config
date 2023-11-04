@@ -1,0 +1,31 @@
+// vim: ft=c
+{
+    "output": "DP-2",
+    "modules-left": [ "hyprland/workspaces" ],
+    "modules-center": [ "clock" ],
+    "modules-right": [ "battery" ],
+    "wlr/workspaces": {
+        "all-outputs": true,
+        "format": "{text}",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+        },
+    },
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% 󰃨",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+}

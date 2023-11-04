@@ -1,10 +1,10 @@
-source $XDG_CONFIG_HOME/fzf/fzf.zsh
+source $ZDOTDIR/fzf.zsh
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 plug "zsh-users/zsh-autosuggestions"
 plug "zap-zsh/supercharge"
 plug "zsh-users/zsh-syntax-highlighting"
 
-source $XDG_CONFIG_HOME/zsh/aliases.zsh
+source $ZDOTDIR/aliases.zsh
 
 # VIA caps lock remap
 # MT(MOD_LCTL,KC_ESC)

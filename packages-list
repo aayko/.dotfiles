@@ -46,7 +46,6 @@ sshfs
 syncthing
 mimeo
 mandb
-npm
 bc
 socat
 dictd
@@ -103,3 +102,17 @@ wl-clipboard
 wl-clip-persist-git
 chezmoi
 imv
+trash-cli
+hyprpaper
+npm
+zip
+unzip
+qt5-wayland
+qt6-wayland
+wlr-randr
+qt5ct
+libva-nvidia-driver
+man-pages
+man-db
+xdg-desktop-portal-hyprland-git
+xwaylandvideobridge-git
