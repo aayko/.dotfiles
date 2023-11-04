@@ -124,8 +124,8 @@ map md push :%mkdir<space>
 map mf push :%touch<space>
 map me push :&kitty<space>nvim<space>
 
-map + ${{
-    chmod +x "$f"
+map = ${{
+    [[ -x "$f" ]] && chmod -x "$f" || chmod +x "$f"
     lf -remote 'send reload'
 }}
 

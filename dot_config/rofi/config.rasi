@@ -5,7 +5,7 @@ configuration {
     fixed-num-lines: false;
     drun-display-format: "{name}";
     font: "Cartograph CF 16";
-    modi: "window,run,drun,calc";
+    modi: "window,run,drun";
     kb-remove-to-eol: "Control+Alt+k";
     kb-accept-entry: "Control+m,Return,KP_Enter";
 	kb-row-up: "Up,Control+p,Control+k,K";

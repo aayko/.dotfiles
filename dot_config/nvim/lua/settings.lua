@@ -63,6 +63,9 @@ vim.g.loaded_netrwPlugin = 1
 vim.o.pumheight = 8
 vim.g.lsp_preview_max_width = 8
 
+vim.opt.timeout = false
+vim.opt.ttimeout = false
+
 vim.cmd([[
     set laststatus=0
     hi! link StatusLine Comment
