@@ -4,16 +4,6 @@
     "modules-left": [ "hyprland/workspaces" ],
     "modules-center": [ "clock" ],
     "modules-right": [ "battery" ],
-    "wlr/workspaces": {
-        "all-outputs": true,
-        "format": "{text}",
-        "format-icons": {
-            "1": "",
-            "2": "",
-            "3": "",
-            "4": "",
-        },
-    },
     "battery": {
         "states": {
             // "good": 95,

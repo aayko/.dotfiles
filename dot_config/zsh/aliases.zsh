@@ -25,5 +25,5 @@ alias py="clear; python3"
 alias java="clear; java"
 alias so="clear; exec zsh"
 
-alias btui="bluetuith --adapter hci1"
+alias btui="bluetuith"
 source $XDG_CONFIG_HOME/zsh/.ssh-web

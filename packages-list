@@ -23,7 +23,7 @@ transmission-show
 blueberry
 blueman
 bluez
-bluez-utils
+bluez-utils-compat
 bluez-tools
 bluez-libs
 zsh
