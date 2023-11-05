@@ -1,21 +1,12 @@
 // vim: ft=c
 {
-    "output": "DP-2",
+    "output": [ "DP-2", "eDP-1" ],
     "modules-left": [ "hyprland/workspaces" ],
     "modules-center": [ "clock" ],
     "modules-right": [ "battery" ],
     "battery": {
-        "states": {
-            // "good": 95,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{capacity}% {icon}",
-        "format-charging": "{capacity}% 󰃨",
-        "format-plugged": "{capacity}% ",
-        "format-alt": "{time} {icon}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
+        "format": "{capacity}% ",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
     },
 }
