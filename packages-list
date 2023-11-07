@@ -7,13 +7,12 @@ vim
 vi
 discord
 discordupdater
-betterdiscord-installer
+vencord-desktop-bin
 ctpv-git
 lf
 bat
 ffmpeg
 ffmpegthumbnailer
-pdftoppm
 fontimage
 jq
 mdcat
@@ -119,3 +118,4 @@ xwaylandvideobridge-git
 gthumb
 bluetuith-bin
 tofi
+poppler
