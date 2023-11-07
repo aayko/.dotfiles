@@ -1,17 +1,13 @@
 #!/usr/bin/env bash
-rofi_command="rofi -theme $HOME/.config/rofi/theme/powermenu.rasi"
 
-uptime=$(uptime -p | sed -e 's/up //g')
+shutdown="shutdown"
+reboot="reboot"
+lock="lock"
+hibernate="hibernate"
 
-shutdown="󰤆"
-reboot=""
-lock=""
-suspend="󰤄"
+options="$lock\n$hibernate\n$shutdown\n$reboot"
 
-# Variable passed to rofi
-options="$lock\n$suspend\n$shutdown\n$reboot"
-
-chosen="$(echo -e "$options" | $rofi_command -p "UP - $uptime" -dmenu -selected-row 0)"
+chosen="$(echo -e "$options" | tofi)"
 case $chosen in
     "$lock")
         lock
@@ -19,10 +15,8 @@ case $chosen in
     "$shutdown")
         systemctl poweroff
         ;;
-    "$suspend")
-        playerctl play-pause
-        systemctl suspend
-        lock
+    "$hibernate")
+        systemctl hibernate
         ;;
     "$reboot")
         systemctl reboot
