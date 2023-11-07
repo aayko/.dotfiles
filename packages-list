@@ -72,7 +72,7 @@ nm-connection-editor
 noto-fonts-cjk
 ttf-firacode-nerd
 ttf-mononoki-nerd
-ttf-ubuntu-font-family
+ttf-ubuntu-nerd
 
 pamixer
 alsa-utils
