@@ -1,19 +1,5 @@
 return {
-    {
-        'tpope/vim-fugitive',
-        config = function()
-            vim.cmd([[
-                function FugitiveToggle() abort
-                try
-                exe filter(getwininfo(), "get(v:val['variables'], 'fugitive_status', v:false) != v:false")[0].winnr .. "wincmd c"
-                catch /E684/
-                G
-                endtry
-                endfunction
-                nnoremap <space>g <cmd>call FugitiveToggle()<CR>
-                ]])
-        end,
-    },
+    {'tpope/vim-fugitive'},
     {
         'windwp/nvim-autopairs',
         enabled = true,

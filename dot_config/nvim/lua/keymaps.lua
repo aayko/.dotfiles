@@ -67,3 +67,6 @@ keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 -- Escape vim terminal
 keymap.set("t", "<esc>", "<C-\\><C-n><C-w>h",{ silent = true })
+
+-- Fugitive
+keymap.set("n", "<leader>g", "<CMD>tab G<CR>")
