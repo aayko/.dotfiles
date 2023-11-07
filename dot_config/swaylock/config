@@ -9,34 +9,35 @@ line-uses-inside
 indicator
 fade-in=0.3
 
-color=080808
+effect-blur=7x5
+image=/home/ayko/Pictures/mountains.jpeg
 
-separator-color=ffffff
+separator-color=aaaaaa
 
 indicator-thickness=19
 indicator-radius=150
 
 inside-color=080808
 ring-color=111111
-text-color=ffffff
+text-color=aaaaaa
 
-key-hl-color=ffffff
-bs-hl-color=ffffff
+key-hl-color=aaaaaa
+bs-hl-color=aaaaaa
 
 # WRONG
 
 inside-wrong-color=080808
 ring-wrong-color=111111
-text-wrong-color=ffffff
+text-wrong-color=aaaaaa
 
 # VER
 
 inside-ver-color=080808
 ring-ver-color=111111
-text-ver-color=ffffff
+text-ver-color=aaaaaa
 
 # CLEAR
 
 inside-clear-color=080808
 ring-clear-color=111111
-text-clear-color=ffffff
+text-clear-color=aaaaaa

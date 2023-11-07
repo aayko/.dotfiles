@@ -17,6 +17,7 @@ case $chosen in
         ;;
     "$hibernate")
         systemctl hibernate
+        lock
         ;;
     "$reboot")
         systemctl reboot
