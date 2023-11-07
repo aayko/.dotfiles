@@ -118,7 +118,7 @@
 
 [brightness]
     appname = "brightness"
-    highlight = "#ffffff"
+    highlight = "#aaaaaa"
     history_ignore = true
 
 [spotify]

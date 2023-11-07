@@ -16,7 +16,7 @@ keymap.set("v", ">", ">gv")
 
 -- Unbind command history
 keymap.set("n", "Q", "<nop>")
-keymap.set("n", "q<CMD>", "<nop>")
+keymap.set("n", "q:", "<nop>")
 
 -- Repeat w macro
 keymap.set('n', ',', '@w')

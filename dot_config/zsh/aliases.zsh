@@ -2,6 +2,7 @@ alias dot="chezmoi"
 alias lf="lfcd"
 
 alias v="nvim"
+alias less="nvim -M"
 alias c="codium"
 alias se="sudoedit"
 
