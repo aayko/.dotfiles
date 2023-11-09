@@ -1,8 +1,5 @@
-set previewer ctpv
-set cleaner ctpvclear
-set shell zsh
-&ctpv -s $id
-&ctpvquit $id
+set previewer ~/.config/lf/preview
+set sixel true
 
 # Settings
 set ratios 1:1

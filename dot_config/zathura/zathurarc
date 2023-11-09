@@ -1,6 +1,7 @@
 set statusbar-h-padding 0
 set statusbar-v-padding 0
 set selection-clipboard clipboard
+set guioptions none
 map u scroll half-up
 map d scroll half-down
 map D toggle_page_mode
@@ -10,3 +11,15 @@ map K zoom in
 map J zoom out
 map i recolor
 map p print
+
+set default-bg "#080808" #00
+set default-fg "#aaaaaa" #01
+
+set statusbar-fg "#B0B0B0" #04
+set statusbar-bg "#202020" #01
+
+set highlight-color "#F4BF75" #0A
+set highlight-active-color "#6A9FB5" #0D
+
+set recolor-lightcolor "#080808" #00
+set recolor-darkcolor "#E0E0E0" #06

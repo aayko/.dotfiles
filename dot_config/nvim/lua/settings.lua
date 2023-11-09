@@ -81,7 +81,8 @@ vim.cmd("set viminfofile=")
 require("noirbuddy").setup{
     preset = 'minimal',
     colors = {
-        primary = '#689d6a',
+        primary = '#d2b92d',
+        secondary = '#689d6a',
         background = '#080808',
         diagnostic_error = '#ffffff',
         diagnostic_warning = '#ffffff',

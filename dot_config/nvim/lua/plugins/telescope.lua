@@ -6,22 +6,6 @@ return {
     },
     opts = {
         defaults = {
-            vimgrep_arguments = {
-                'rg',
-                '--color=always',
-                '--no-heading',
-                '--with-filename',
-                '--line-number',
-                '--column',
-                '--smart-case',
-                '--hidden',
-                '-u',
-            },
-            layout_config = {
-                horizontal = {
-                    preview_cutoff = 100,
-                },
-            },
             file_ignore_patterns = {
                 ".git/",
                 ".cache",
@@ -29,18 +13,6 @@ return {
                 "%.a",
                 "%.out",
                 "%.class",
-                "%.pdf",
-                "%.mkv",
-                "%.mp4",
-                "%.zip"
-            },
-        },
-        pickers = {
-            find_files = {
-                hidden= true,
-                find_commands = {
-                    '--no-ignore-vcs',
-                },
             },
         },
     },
@@ -54,6 +26,6 @@ return {
         vim.keymap.set('n', '<leader>pd', builtin.diagnostics, {})
         vim.keymap.set('n', '<leader>pg', builtin.live_grep, {})
         vim.keymap.set('n', '<leader>pr', builtin.oldfiles, {})
-        vim.keymap.set('n', '<leader>pc', '<CMD>cd $HOME/.config/nvim<CR>', {})
+        vim.keymap.set('n', '<leader>pc', '<CMD>cd $HOME/.config/nvim | Telescope find_files<CR>', {})
     end,
 }
