@@ -10,6 +10,8 @@ discordupdater
 vencord-desktop-bin
 ctpv-git
 lf
+chafa
+foot
 bat
 ffmpeg
 ffmpegthumbnailer
@@ -61,7 +63,6 @@ polkit-gnome
 flatpack
 obs-studio
 nwg-look
-kitty
 qbittorrent
 rofi-lbonn-wayland-git
 rofi-calc
