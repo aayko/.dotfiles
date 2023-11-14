@@ -1,13 +1,10 @@
 firefox
-brave-bin
 1password-beta
 
 neovim
-vim
-vi
 discord
 discordupdater
-vencord-desktop-bin
+vencord-installer-bin
 ctpv-git
 lf
 chafa
@@ -28,7 +25,6 @@ bluez-utils-compat
 bluez-tools
 bluez-libs
 zsh
-zap
 light-git
 brillo
 tldr

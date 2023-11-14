@@ -73,6 +73,19 @@ vim.cmd([[
     set statusline=%{repeat('─',winwidth('.'))}
 ]])
 
+vim.cmd([[
+    function! g:DisableMatchParen ()
+    if exists(":NoMatchParen")
+        :NoMatchParen
+        endif
+        endfunction
+
+        augroup plugin_initialize
+    autocmd!
+    autocmd VimEnter * call DisableMatchParen()
+    augroup END
+]])
+
 -- Number of recent files
 vim.opt.shada = "!,'300,<50,s10,h"
 
@@ -90,6 +103,13 @@ require("noirbuddy").setup{
         diagnostic_hint = '#ffffff',
     }
 }
+
+vim.cmd([[
+    set termguicolors
+    hi Cursor guifg=#aaaaaa guibg=#aaaaaa
+    hi Cursor2 guifg=#aaaaaa guibg=#aaaaaa
+    set guicursor=n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor20,o:hor50
+]])
 
 vim.cmd([[
     " completion border color

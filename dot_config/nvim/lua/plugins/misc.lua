@@ -85,4 +85,5 @@ return {
     },
     { "mbbill/undotree" },
     { "nvim-treesitter/playground" },
+    { "andweeb/presence.nvim" },
 }

@@ -119,7 +119,7 @@ map <enter> &mimeo "$f"
 map o $mimeopen --ask "$f"
 map md push :%mkdir<space>
 map mf push :%touch<space>
-map me push :&kitty<space>nvim<space>
+map me push :&foot<space>nvim<space>
 
 map = ${{
     [[ -x "$f" ]] && chmod -x "$f" || chmod +x "$f"
