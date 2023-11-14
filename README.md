@@ -23,4 +23,8 @@ sudo cp extras/udevmon.service /etc/systemd/system/
 ```
 systemctl enable --now udevmon
 ```
+
+# Remove default folders
+Set enabled to False in /etc/xdg/user-dirs.conf 
+
 Dotfiles managed using chezmoi
