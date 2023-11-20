@@ -1,6 +1,6 @@
 [Default Applications]
 application/pdf=org.pwmt.zathura.desktop;
-application/x-ipynb+json=vscodium.desktop;
+application/x-ipynb+json=codium.desktop;
 image/apng=imv.desktop;
 image/vnd.microsoft.icon=imv.desktop;
 image/jpeg=imv.desktop;
