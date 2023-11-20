@@ -86,4 +86,5 @@ return {
     { "mbbill/undotree" },
     { "nvim-treesitter/playground" },
     { "andweeb/presence.nvim" },
+    { "mechatroner/rainbow_csv" },
 }
