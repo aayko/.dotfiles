@@ -3,7 +3,7 @@ alias lf="lfcd"
 
 alias v="nvim"
 alias less="nvim -M"
-alias c="codium"
+alias c="codium --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland"
 alias se="sudoedit"
 
 alias mkdir="mkdir -vp"

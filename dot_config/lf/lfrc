@@ -101,6 +101,7 @@ map '"' mark-remove
 
 map se $sudoedit "$f"
 map e $$EDITOR "$f"
+map c $codium --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland "$f"
 
 map au unarchive
 map ad unarchive-delete
@@ -110,7 +111,7 @@ map zt tar
 map dd trash
 map dr restore_trash
 
-map c ${{
+map P ${{
     wl-copy "$f"
     lf -remote 'send echo "File path copied to clipboard"'
 }}
