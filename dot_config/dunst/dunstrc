@@ -123,6 +123,6 @@
 
 [spotify]
     appname = "Spotify"
-    skip_display = true
+    skip_display = false
 
 # vim: ft=cfg
