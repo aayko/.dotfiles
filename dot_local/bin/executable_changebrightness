@@ -2,18 +2,11 @@
 
 fade=150000
 
-send_notification() {
-	brightness=$(printf "%.0f\n" "$(pkexec brillo)")
-	notify-send -a "brightness" -t 2000 -r 9991 -u low -i "brightness" -h int:value:"$brightness" "Brightness" "Currently at ${brightness}%"
-}
-
 case $1 in
 up)
-    pkexec brillo -u $fade -A 10
-	send_notification "$1"
+    pkexec brillo -u $fade -q -A 10
 	;;
 down)
-    pkexec brillo -u $fade -U 10
-	send_notification "$1"
+    pkexec brillo -u $fade -q -U 10
 	;;
 esac
