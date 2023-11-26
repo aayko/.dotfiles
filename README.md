@@ -27,4 +27,9 @@ systemctl enable --now udevmon
 # Remove default folders
 Set enabled to False in /etc/xdg/user-dirs.conf 
 
+# Colloid theme install command
+```
+./install.sh -d ~/.local/share/themes -t grey -c dark -l --tweaks rimless black
+```
+
 Dotfiles managed using chezmoi
