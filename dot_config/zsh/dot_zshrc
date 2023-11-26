@@ -3,6 +3,7 @@ source $ZDOTDIR/fzf.zsh
 plug "zsh-users/zsh-autosuggestions"
 plug "zap-zsh/supercharge"
 plug "zsh-users/zsh-syntax-highlighting"
+plug "zsh-users/zsh-history-substring-search"
 
 source $ZDOTDIR/aliases.zsh
 
@@ -45,6 +46,14 @@ bindkey "^o" fzf-cd-widget
 bindkey -s "^t" "lfcd^Mclear^M"
 bindkey -s "^v" 'v $(fzf)^Mclear^M'
 bindkey '^[[Z' reverse-menu-complete
+
+bindkey '^J' history-search-forward
+bindkey '^K' history-search-backward
+bindkey '^[J' history-substring-search-up
+bindkey '^[K' history-substring-search-down
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
 
 # ------ PROMPT ------
 __git_files () { 
