@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=VIA
-Exec=env DESKTOPINTEGRATION=false /usr/bin/via --no-sandbox --enable-features=UseOzonePlatform --ozone-platform=wayland %U
+Exec=env DESKTOPINTEGRATION=false /usr/bin/via --no-sandbox --enable-features=UseOzonePlatform --ozone-platform-hint=auto %U
 Terminal=false
 Type=Application
 Icon=via-nativia
