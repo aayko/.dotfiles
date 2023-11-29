@@ -77,10 +77,12 @@ map r rename
 map t toggle
 map <space> :toggle; down
 map v invert
+map s invert-below
 map u unselect
 map y copy
 map p paste
 map R :source /home/ayko/.config/lf/lfrc; reload
+map b &foot nvim /home/ayko/.config/lf/lfrc
 map C clear
 map x cut
 map \$ push :$
@@ -99,7 +101,7 @@ map ms mark-save
 map "'" mark-load
 map '"' mark-remove
 
-map se $sudoedit "$f"
+map i $sudoedit "$f"
 map e $$EDITOR "$f"
 map c $codium --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland "$f"
 
@@ -108,6 +110,7 @@ map ad unarchive-delete
 map zz zip
 map zt tar
 
+map sd trash
 map dd trash
 map dr restore_trash
 
@@ -118,6 +121,7 @@ map P ${{
 
 map <enter> &mimeo "$f"
 map o $mimeopen --ask "$f"
+map O &dragon-drop "$f"
 map md push :%mkdir<space>
 map mf push :%touch<space>
 map me push :&foot<space>nvim<space>
