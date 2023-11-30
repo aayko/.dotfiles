@@ -51,7 +51,7 @@ bindkey '^[[Z' reverse-menu-complete
 bindkey '^H' backward-char
 bindkey '^J' history-search-forward
 bindkey '^K' history-search-backward
-bindkey '^L' forward-char
+bindkey '^I' forward-char
 
 # arrow keys
 bindkey '^[[A' history-substring-search-up
