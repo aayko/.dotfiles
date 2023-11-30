@@ -45,13 +45,15 @@ bindkey "^x" insert-last-command-output
 bindkey "^o" fzf-cd-widget
 bindkey -s "^t" "lfcd^Mclear^M"
 bindkey -s "^v" 'v $(fzf)^Mclear^M'
+# shift-tab in completion
 bindkey '^[[Z' reverse-menu-complete
 
-# ctrl h,j,k,l
-bindkey '^H' backward-char
+# ctrl j,k
 bindkey '^J' history-search-forward
 bindkey '^K' history-search-backward
-bindkey '^I' forward-char
+
+# ctrl h for accepting suggestion
+bindkey '^H' forward-char
 
 # arrow keys
 bindkey '^[[A' history-substring-search-up
