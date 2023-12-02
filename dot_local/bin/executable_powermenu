@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
-shutdown="shutdown"
-reboot="reboot"
 lock="lock"
 hibernate="hibernate"
+shutdown="shutdown"
+reboot="reboot"
+windows="windows"
 
-options="$lock\n$hibernate\n$shutdown\n$reboot"
+options="$lock\n$hibernate\n$shutdown\n$reboot\n$windows"
 
 chosen="$(echo -e "$options" | tofi)"
 case $chosen in
@@ -21,5 +22,8 @@ case $chosen in
         ;;
     "$reboot")
         systemctl reboot
+        ;;
+    "$windows")
+        systemctl reboot --boot-loader-entry=auto-windows --boot-loader-menu=0
         ;;
 esac
