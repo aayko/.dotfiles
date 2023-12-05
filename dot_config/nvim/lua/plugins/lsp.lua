@@ -65,9 +65,10 @@ return {
 
         local lspkind = require('lspkind')
         local cmp = require('cmp')
-        local cmp_select = { behavior = cmp.SelectBehavior.Select }
         local cmp_mappings = lsp.defaults.cmp_mappings({
             ['<CR>'] = cmp.mapping.confirm({ select = true }),
+            ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+            ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
         })
 
         cmp.setup({
