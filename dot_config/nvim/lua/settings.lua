@@ -91,38 +91,21 @@ vim.opt.shada = "!,'300,<50,s10,h"
 
 vim.cmd("set viminfofile=")
 
-require("noirbuddy").setup{
-    preset = 'minimal',
-    colors = {
-        primary = '#d2b92d',
-        secondary = '#689d6a',
-        background = '#080808',
-        diagnostic_error = '#ffffff',
-        diagnostic_warning = '#ffffff',
-        diagnostic_info = '#ffffff',
-        diagnostic_hint = '#ffffff',
-    }
-}
-
-vim.cmd([[
-    set termguicolors
-    hi Cursor guifg=#aaaaaa guibg=#aaaaaa
-    hi Cursor2 guifg=#aaaaaa guibg=#aaaaaa
-    set guicursor=n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor20,o:hor50
-]])
-
 vim.cmd([[
     " completion border color
     hi IndentBlanklineChar guifg=#222222
 
-    hi @ibl.indent.char.1 guifg=#222222
-    hi @ibl.scope.char.1 guifg=#ffffff
+    " hi @ibl.indent.char.1 guifg=#222222
+    " hi @ibl.scope.char.1 guifg=#ffffff
 
     hi WinSeparator guibg=#080808 guifg=#333333
-    hi IncSearch guibg=#68a659
+    " hi IncSearch guibg=#68a659
+    hi IncSearch guibg=#FE8019
 
     augroup highlight_yank
         autocmd!
         au TextYankPost * silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=150})
     augroup END
 ]])
+
+vim.cmd("colorscheme gruvbox")

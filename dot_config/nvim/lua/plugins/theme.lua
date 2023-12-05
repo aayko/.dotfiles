@@ -1,11 +1,15 @@
 return {
     {
-        "jesseleite/nvim-noirbuddy",
+        "ellisonleao/gruvbox.nvim",
         lazy = false,
         priority = 1000,
-        dependencies = {
-            "tjdevries/colorbuddy.nvim",
-            branch = "dev",
+        config = true,
+        opts = {
+            palette_overrides = {
+                -- dark0 = "#080808",
+                -- dark1 = "#080808",
+            },
+            transparent_mode = true,
         },
     }
 }
