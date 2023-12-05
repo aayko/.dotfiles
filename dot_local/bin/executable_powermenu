@@ -24,6 +24,6 @@ case $chosen in
         systemctl reboot
         ;;
     "$windows")
-        systemctl reboot --boot-loader-entry=auto-windows --boot-loader-menu=0
+        systemctl reboot --boot-loader-entry=auto-windows
         ;;
 esac
