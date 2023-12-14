@@ -70,3 +70,6 @@ keymap.set("t", "<esc>", "<C-\\><C-n><C-w>h",{ silent = true })
 
 -- Fugitive
 keymap.set("n", "<leader>g", "<CMD>tab G<CR>")
+
+-- Alternate file
+keymap.set("n","<C-=>", "<CMD>b#<CR>")
