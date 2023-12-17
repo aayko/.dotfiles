@@ -109,3 +109,4 @@ vim.cmd([[
 ]])
 
 vim.cmd("colorscheme gruvbox")
+vim.opt.guicursor = ""
