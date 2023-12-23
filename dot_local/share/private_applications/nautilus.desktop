@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=Nautilus
-GenericName=File Manager
-Exec=nautilus %U
-Terminal=false
-Type=Application
-Keywords=File;Manager;
-Icon=nautilus

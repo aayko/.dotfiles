@@ -58,7 +58,7 @@
     "window.zoomLevel": 2,
     "workbench.startupEditor": "none",
     "editor.matchBrackets": "never",
-    "editor.occurrencesHighlight": false,
+    "editor.occurrencesHighlight": "off",
     "editor.renderLineHighlight": "none",
     "workbench.editor.showTabs": "none",
     "editor.fontSize": 16,

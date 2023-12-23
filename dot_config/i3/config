@@ -9,7 +9,9 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod4
+set $term st
+set $alt Mod1
+set $win Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -19,21 +21,18 @@ font pango:monospace 8
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
 
-exec --no-startup-id feh --bg-max ~/Pictures/mountains.jpeg
+exec --no-startup-id xset r rate 200 30
+exec --no-startup-id feh --no-fehbg --bg-max ~/Pictures/mountains.jpeg
 exec --no-startup-id picom
 exec --no-startup-id xrandr --output DP-2 --primary --mode 1920x1080 --rate 240 
 exec --no-startup-id xrandr --output HDMI-1 --mode 1920x1080 --rate 120 --left-of DP-2
-exec --no-startup-id autotiling
+
+exec_always --no-startup-id autotiling
 exec --no-startup-id polybar
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id dunst
 exec --no-startup-id udiskie &
 exec --no-startup-id playerctld daemon
-exec --no-startup-id setxkbmap -option compose:ralt,altwin:swap_alt_win,grp:alt_shift_toggle -layout pwerty,us
-
-# Start XDG autostart .desktop files using dex. See also
-# https://wiki.archlinux.org/index.php/XDG_Autostart
-exec --no-startup-id dex --autostart --environment i3
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -42,61 +41,60 @@ exec --no-startup-id dex --autostart --environment i3
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
+# Use Mouse+$win to drag floating windows to their wanted position
+floating_modifier $win
 
 # move tiling windows via drag & drop by left-clicking into the title bar,
 # or left-clicking anywhere into the window while holding the floating modifier.
 tiling_drag modifier titlebar
 
-# start a terminal
-bindsym $mod+t exec --no-startup-id st
+# -- Binds --
+bindsym $win+q kill
 
-bindsym $mod+i exec --no-startup-id polybar-msg cmd toggle
+bindsym $win+t exec --no-startup-id $term
+bindsym $win+e exec --no-startup-id $term lfub
+bindsym $win+Shift+e exec --no-startup-id $term sudo lfub
+bindsym $win+v exec --no-startup-id $term nvim
+bindsym $win+c exec --no-startup-id $term nvim ~/.config/i3/config
+bindsym $win+n exec --no-startup-id $term nmtui
+bindsym $win+b exec --no-startup-id $term bluetuith
 
-# kill focused window
-bindsym $mod+q kill
+bindsym $win+i exec --no-startup-id polybar-msg cmd toggle
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-# A more modern dmenu replacement is rofi:
-# bindcode $mod+40 exec "rofi -modi drun,run -show drun"
-# There also is i3-dmenu-desktop which only displays applications shipping a
-# .desktop file. It is a wrapper around dmenu, so you need that installed.
-# bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
+bindsym $win+p exec --no-startup-id powermenu
+bindsym $win+w exec --no-startup-id chromium
+bindsym $win+d exec --no-startup-id j4-dmenu-desktop
 
-# change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+bindsym $win+Space exec --no-startup-id dunstctl history-pop
 
-# move focused window
-bindsym $mod+Ctrl+h move left
-bindsym $mod+Ctrl+j move down
-bindsym $mod+Ctrl+k move up
-bindsym $mod+Ctrl+l move right
+bindsym Print exec --no-startup-id screenshot region
+bindsym $alt+Sys_Req exec --no-startup-id screenshot window
+bindsym Shift+Print exec --no-startup-id screenshot monitor
 
-# enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+bindsym --release $win+Shift+c exec colorpicker
 
-bindsym $mod+w exec --no-startup-id chromium
+bindsym $win+Shift+r restart
+bindsym $win+Shift+x exec i3-msg exit
 
-# toggle tiling / floating
-bindsym $mod+y floating toggle
+bindsym $win+h focus left
+bindsym $win+j focus down
+bindsym $win+k focus up
+bindsym $win+l focus right
 
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
+bindsym $win+Ctrl+h move left
+bindsym $win+Ctrl+j move down
+bindsym $win+Ctrl+k move up
+bindsym $win+Ctrl+l move right
+
+bindsym $win+f fullscreen toggle
+bindsym $win+y floating toggle
+
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
 
 workspace $ws1 output DP-2
 workspace $ws2 output DP-2
@@ -104,72 +102,70 @@ workspace $ws3 output DP-2
 workspace $ws4 output DP-2
 workspace $ws5 output HDMI-A-2
 
-# switch to workspace
-bindsym $mod+1 workspace number $ws1
-bindsym $mod+2 workspace number $ws2
-bindsym $mod+3 workspace number $ws3
-bindsym $mod+4 workspace number $ws4
-bindsym $mod+5 workspace number $ws5
-bindsym $mod+6 workspace number $ws6
-bindsym $mod+7 workspace number $ws7
-bindsym $mod+8 workspace number $ws8
-bindsym $mod+9 workspace number $ws9
-bindsym $mod+0 workspace number $ws10
+bindsym $win+1 workspace number $ws1
+bindsym $win+2 workspace number $ws2
+bindsym $win+3 workspace number $ws3
+bindsym $win+4 workspace number $ws4
+bindsym $win+5 workspace number $ws5
 
-# move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace number $ws1
-bindsym $mod+Shift+2 move container to workspace number $ws2
-bindsym $mod+Shift+3 move container to workspace number $ws3
-bindsym $mod+Shift+4 move container to workspace number $ws4
-bindsym $mod+Shift+5 move container to workspace number $ws5
-bindsym $mod+Shift+6 move container to workspace number $ws6
-bindsym $mod+Shift+7 move container to workspace number $ws7
-bindsym $mod+Shift+8 move container to workspace number $ws8
-bindsym $mod+Shift+9 move container to workspace number $ws9
-bindsym $mod+Shift+0 move container to workspace number $ws10
+bindsym $win+plus        workspace number $ws1
+bindsym $win+bracketleft workspace number $ws2
+bindsym $win+braceleft   workspace number $ws3
+bindsym $win+parenleft   workspace number $ws4
+bindsym $win+ampersand   workspace number $ws5
 
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+x exec i3-msg exit
+bindsym $alt+1 move container to workspace number $ws1
+bindsym $alt+2 move container to workspace number $ws2
+bindsym $alt+3 move container to workspace number $ws3
+bindsym $alt+4 move container to workspace number $ws4
+bindsym $alt+5 move container to workspace number $ws5
 
-# resize window (you can also use the mouse for that)
+bindsym $alt+plus         move container to workspace number $ws1
+bindsym $alt+bracketleft  move container to workspace number $ws2
+bindsym $alt+braceleft    move container to workspace number $ws3
+bindsym $alt+parenleft    move container to workspace number $ws4
+bindsym $alt+ampersand    move container to workspace number $ws5
+
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
         bindsym l resize shrink width 10 px or 10 ppt
         bindsym j resize grow height 10 px or 10 ppt
         bindsym k resize shrink height 10 px or 10 ppt
         bindsym h resize grow width 10 px or 10 ppt
 
-        # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
         bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
 }
 
-bindsym $mod+r mode "resize"
+bindsym $win+r mode "resize"
 
 smart_borders on
 
 for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] split toggle
 
-client.focused          #cccccc #cccccc #cccccc #cccccc   #cccccc
-client.unfocused        #080808 #080808 #080808 #080808   #080808
-client.focused_inactive #080808 #080808 #080808 #080808   #080808
-client.urgent           #080808 #080808 #080808 #080808   #080808
-client.placeholder      #080808 #080808 #080808 #080808   #080808
+client.focused          #ebdbb2 #ebdbb2 #080808 #ebdbb2   #ebdbb2
+client.unfocused        #080808 #ebdbb2 #080808 #080808   #080808
+client.focused_inactive #080808 #ebdbb2 #080808 #080808   #080808
+client.urgent           #080808 #ebdbb2 #080808 #080808   #080808
+client.placeholder      #080808 #ebdbb2 #080808 #080808   #080808
 
-bindsym XF86AudioRaiseVolume exec changevolume up
-bindsym XF86AudioLowerVolume exec changevolume down 
-bindsym XF86AudioMute exec changevolume mute 
+for_window [window_role="About"] floating enable
+for_window [window_role="Organizer"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="page-info"] floating enable
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="toolbox"] floating enable
+for_window [window_role="webconsole"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
 
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
-bindsym XF86AudioPlay exec playerctl play-pause
+for_window [title="^imv"] floating enable
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id changevolume up
+bindsym XF86AudioLowerVolume exec --no-startup-id changevolume down 
+bindsym XF86AudioMute exec --no-startup-id changevolume mute 
+
+bindsym XF86AudioNext exec --no-startup-idplayerctl next
+bindsym XF86AudioPrev exec --no-startup-idplayerctl previous
+bindsym XF86AudioPlay exec --no-startup-idplayerctl play-pause

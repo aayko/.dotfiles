@@ -21,3 +21,6 @@ export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 export GTK_THEME="Colloid-Grey-Dark:dark"
 export GTK_CSD=0
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
+export ANDROID_HOME="$XDG_DATA_HOME"/android
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export IPYTHONDIR="$XDG_CONFIG_HOME"/ipython

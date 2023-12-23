@@ -1,18 +1,42 @@
 #!/usr/bin/bash
 
-file="Screenshot-$(date +%s).png"
-folder="$(xdg-user-dir SCREENSHOTS)"
+time=$(date -u "+%s" | cut -c 7-)
+file="Screenshot-$(date -u +%d-%m-%Y-$time).png"
+folder="$(xdg-user-dir SCREENSHOTS)/"
+image="~/.local/share/icons/image.png"
 
-function region(){
-    hyprshot -o "$folder" -f "$file" -m region -s
+function copy_image() {
+    xclip -sel clipboard -target image/png < "$folder$file"
+}
+
+function send_notification() {
+    notify-send --icon $image "Screenshot saved to clipboard"
+}
+
+function region() {
+    if [[ $XDG_SESSION_TYPE == "x11" ]]; then
+        maim --select -u "$folder$file" && copy_image
+    else
+        hyprshot -o "$folder" -f "$file" -m region -s
+    fi
 }
 
 function window() {
-    hyprshot -o "$folder" -f "$file" -m window -sc
+    if [[ $XDG_SESSION_TYPE == "x11" ]]; then
+        maim -u --window $(xdotool getactivewindow) "$folder$file" && copy_image
+    else
+        hyprshot -o "$folder" -f "$file" -m window -sc
+    fi
+    send_notification
 }
 
-function monitor(){
-    hyprshot -o "$folder" -f "$file" -m output -sc
+function monitor() {
+    if [[ $XDG_SESSION_TYPE == "x11" ]]; then
+        maim -g 1920x1080+1920+0 -u "$folder$file" && copy_image
+    else
+        hyprshot -o "$folder" -f "$file" -m output -sc
+    fi
+    send_notification
 }
 
 doc() {
@@ -20,9 +44,9 @@ doc() {
     screenshot [Options]
 
     Options:
-        region       Screenshots the selected area
-        window     Screenshots the focussed window
-        monitor     Screenshots the focussed screen"
+    region       Screenshots the selected area
+    window     Screenshots the focussed window
+    monitor     Screenshots the focussed display"
 }
 
 case $1 in 

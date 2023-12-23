@@ -19,7 +19,7 @@ stty ixany
 
 function lfcd () {
     tmp="$(mktemp)"
-    command lf -last-dir-path="$tmp" "$@"
+    command lfub -last-dir-path="$tmp" "$@"
     if [ -f "$tmp" ]; then
         dir="$(cat "$tmp")"
         \rm -f "$tmp"
@@ -34,16 +34,9 @@ function lfcd () {
 # Paste last command output
 zmodload -i zsh/parameter
 
-insert-last-command-output() {
-  LBUFFER+="$(eval $history[$((HISTCMD-1))])"
-}
-zle -N insert-last-command-output
-
 # ------ BINDS ------
 bindkey -e
-bindkey "^x" insert-last-command-output
 bindkey "^o" fzf-cd-widget
-bindkey -s "^t" "lfcd^Mclear^M"
 bindkey -s "^v" 'v $(fzf)^Mclear^M'
 # shift-tab in completion
 bindkey '^[[Z' reverse-menu-complete

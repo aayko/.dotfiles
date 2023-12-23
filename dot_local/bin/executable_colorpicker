@@ -1,0 +1,9 @@
+#!/bin/bash
+
+image="~/.local/share/icons/paste.png"
+
+if [[ $XDG_SESSION_TYPE == "x11" ]]; then
+    xcolor -s primary && notify-send --icon $image "Copied $(xclip -o) to clipboard"
+else
+    hyprpicker -ra && notify-send --icon $image "Copied $(wl-paste) to clipboard"
+fi

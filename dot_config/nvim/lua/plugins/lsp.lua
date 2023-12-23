@@ -87,7 +87,7 @@ return {
         })
 
         -- `/` cmdline setup.
-        cmp.setup.cmdline('/', {
+        cmp.setup.cmdline({ '/', '?' }, {
             mapping = cmp.mapping.preset.cmdline(),
             sources = {
                 { name = 'buffer' }
@@ -147,6 +147,19 @@ return {
             underline = false,
             update_in_insert = false,
         })
+
+        vim.api.nvim_create_user_command(
+            'DiagnosticsToggleVirtualText',
+            function()
+                local current_value = vim.diagnostic.config().virtual_text
+                if current_value then
+                    vim.diagnostic.config({virtual_text = false})
+                else
+                    vim.diagnostic.config({virtual_text = true})
+                end
+            end,
+            {}
+        )
 
     end,
 }

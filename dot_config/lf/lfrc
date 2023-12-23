@@ -1,5 +1,5 @@
-set previewer ~/.config/lf/preview
-set sixel true
+set previewer '~/.config/lf/scope'
+set cleaner '~/.config/lf/cleaner'
 
 # Settings
 set ratios 1:1
@@ -73,19 +73,27 @@ map N search-prev
 
 map . set hidden!
 map ` !true
-map r rename
+
+map A :rename; cmd-end
+map c push A<c-u>
+map I :rename; cmd-home
+map a :rename
+
+map D trash
+map r restore_trash
+map y copy
+map p paste
+map C clear
+map x cut
+map \$ push :$
+
 map t toggle
 map <space> :toggle; down
 map v invert
 map s invert-below
 map u unselect
-map y copy
-map p paste
+
 map R :source /home/ayko/.config/lf/lfrc; reload
-map b &foot nvim /home/ayko/.config/lf/lfrc
-map C clear
-map x cut
-map \$ push :$
 
 map j down
 map k up
@@ -101,30 +109,26 @@ map ms mark-save
 map "'" mark-load
 map '"' mark-remove
 
-map i $sudoedit "$f"
 map e $$EDITOR "$f"
-map c $codium --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland "$f"
+map E $sudoedit "$f"
 
 map au unarchive
 map ad unarchive-delete
 map zz zip
 map zt tar
 
-map sd trash
-map dd trash
-map dr restore_trash
-
 map P ${{
-    wl-copy "$f"
+    echo "$f" | xclip -sel clip
     lf -remote 'send echo "File path copied to clipboard"'
 }}
 
 map <enter> &mimeo "$f"
 map o $mimeopen --ask "$f"
 map O &dragon-drop "$f"
+
 map md push :%mkdir<space>
 map mf push :%touch<space>
-map me push :&foot<space>nvim<space>
+map me push :&gtk-launch<space>nvim.desktop<space>
 
 map = ${{
     [[ -x "$f" ]] && chmod -x "$f" || chmod +x "$f"
@@ -155,3 +159,4 @@ map gb cd /home/ayko/.local/bin
 map gf cd /home/ayko/.mozilla/firefox/profile.ayko/chrome
 map gs cd /home/ayko/Sync
 map gt cd /home/ayko/.local/share/Trash/files
+map gz cd /home/ayko/.local/share/chezmoi

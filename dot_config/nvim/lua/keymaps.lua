@@ -7,19 +7,12 @@ keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left
 keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true })
 keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
--- Save file
-keymap.set({ "i", "v", "n", "s" }, "<C-s>", "<CMD>update<CR><ESC>")
-
 -- Don't leave visual after indent
 keymap.set("v", "<", "<gv")
 keymap.set("v", ">", ">gv")
 
 -- Unbind command history
-keymap.set("n", "Q", "<nop>")
 keymap.set("n", "q:", "<nop>")
-
--- Repeat w macro
-keymap.set('n', ',', '@w')
 
 -- Remap U to redo
 keymap.set("n", "<S-u>", "<C-r>")
@@ -31,6 +24,9 @@ keymap.set("n", "!", ":!", { silent = false })
 keymap.set({ 'n', 'v' }, '<space>', '<nop>')
 
 keymap.set({ "n", "v" }, "s", "V")
+
+keymap.set({ "n", "v" }, "H", "^")
+keymap.set({ "n", "v" }, "L", "$")
 
 -- Center on movement
 keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true })
@@ -62,6 +58,9 @@ keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 -- Paste without losing clipboard
 keymap.set("x", "<leader>p", "\"_dP")
 
+keymap.set("n", "c", "\"_c")
+keymap.set("n", "C", "\"_C")
+
 -- Makes the file executable
 keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
@@ -72,4 +71,11 @@ keymap.set("t", "<esc>", "<C-\\><C-n><C-w>h",{ silent = true })
 keymap.set("n", "<leader>g", "<CMD>tab G<CR>")
 
 -- Alternate file
-keymap.set("n","<C-=>", "<CMD>b#<CR>")
+keymap.set("n","<BS>", "<CMD>b#<CR>")
+
+-- Toggle virtual text
+keymap.set("n","<leader>d", "<CMD>DiagnosticsToggleVirtualText<CR>")
+
+-- Swap semicolon colon
+keymap.set({ "n", "v" },";", ":")
+keymap.set({ "n", "v" },":", ";")

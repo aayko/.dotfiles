@@ -6,9 +6,15 @@ shutdown="shutdown"
 reboot="reboot"
 windows="windows"
 
-options="$lock\n$hibernate\n$shutdown\n$reboot\n$windows"
+chassis=$(< /sys/class/dmi/id/chassis_type)
 
-chosen="$(echo -e "$options" | tofi)"
+if [[ chassis -eq 3 ]]; then
+    options="$lock\n$hibernate\n$shutdown\n$reboot\n$windows"
+else
+    options="$lock\n$hibernate\n$shutdown\n$reboot"
+fi
+
+chosen="$(echo -e "$options" | dmenu)"
 case $chosen in
     "$lock")
         lock
