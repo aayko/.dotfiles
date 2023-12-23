@@ -37,7 +37,6 @@ zmodload -i zsh/parameter
 # ------ BINDS ------
 bindkey -e
 bindkey "^o" fzf-cd-widget
-bindkey -s "^v" 'v $(fzf)^Mclear^M'
 # shift-tab in completion
 bindkey '^[[Z' reverse-menu-complete
 
