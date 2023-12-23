@@ -71,7 +71,7 @@ keymap.set("t", "<esc>", "<C-\\><C-n><C-w>h",{ silent = true })
 keymap.set("n", "<leader>g", "<CMD>tab G<CR>")
 
 -- Alternate file
-keymap.set("n","<BS>", "<CMD>b#<CR>")
+keymap.set("n","<Tab>", "<CMD>b#<CR>")
 
 -- Toggle virtual text
 keymap.set("n","<leader>d", "<CMD>DiagnosticsToggleVirtualText<CR>")
