@@ -21,6 +21,7 @@ font pango:monospace 8
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
 
+exec --no-startup-id autotiling
 exec --no-startup-id xset r rate 200
 exec --no-startup-id feh --no-fehbg --bg-max ~/Pictures/mountains.jpeg
 exec --no-startup-id picom
@@ -33,6 +34,8 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id dunst
 exec --no-startup-id udiskie &
 exec --no-startup-id playerctld daemon
+exec --no-startup-id ~/.local/bin/inverse-scroll.sh
+exec --no-startup-id ~/.local/bin/tap-to-click.sh
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -140,7 +143,6 @@ bindsym $win+r mode "resize"
 smart_borders on
 
 for_window [class="^.*"] border pixel 2
-for_window [class="^.*"] split toggle
 
 client.focused          #ebdbb2 #ebdbb2 #080808 #ebdbb2   #ebdbb2
 client.unfocused        #080808 #ebdbb2 #080808 #080808   #080808
