@@ -27,8 +27,6 @@ exec --no-startup-id feh --no-fehbg --bg-max ~/Pictures/mountains.jpeg
 exec --no-startup-id picom
 exec --no-startup-id xrandr --output DP-2 --primary --mode 1920x1080 --rate 240 
 exec --no-startup-id xrandr --output HDMI-1 --mode 1920x1080 --rate 120 --left-of DP-2
-
-exec_always --no-startup-id autotiling
 exec --no-startup-id polybar
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id dunst
