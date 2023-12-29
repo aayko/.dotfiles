@@ -35,7 +35,7 @@ Set enabled to False in /etc/xdg/user-dirs.conf
 ./install.sh -d ~/.local/share/themes -t grey -c dark -l --tweaks rimless black
 ```
 
-5. Beep ?
+# Beep ?
 https://wiki.archlinux.org/title/PC_speaker#Globally
 
 Dotfiles managed using chezmoi
