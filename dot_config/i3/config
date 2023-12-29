@@ -21,7 +21,7 @@ font pango:monospace 8
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
 
-exec --no-startup-id autotiling
+exec_always --no-startup-id autotiling
 exec --no-startup-id xset r rate 200
 exec --no-startup-id feh --no-fehbg --bg-max ~/Pictures/mountains.jpeg
 exec --no-startup-id picom
@@ -166,6 +166,9 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id changevolume up
 bindsym XF86AudioLowerVolume exec --no-startup-id changevolume down 
 bindsym XF86AudioMute exec --no-startup-id changevolume mute 
 
-bindsym XF86AudioNext exec --no-startup-idplayerctl next
-bindsym XF86AudioPrev exec --no-startup-idplayerctl previous
-bindsym XF86AudioPlay exec --no-startup-idplayerctl play-pause
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+
+bindsym XF86MonBrightnessDown exec --no-startup-id changebrightness down
+bindsym XF86MonBrightnessUp exec --no-startup-id changebrightness up
