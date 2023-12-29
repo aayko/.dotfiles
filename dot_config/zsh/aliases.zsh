@@ -22,9 +22,6 @@ alias cat="bat"
 alias ka="killall"
 
 alias p="sudo pacman"
-alias py="clear; python3"
-alias javac="clear; javac"
-alias java="clear; java"
 alias so="clear; exec zsh"
 
 alias btui="bluetuith"
