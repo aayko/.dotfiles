@@ -1,5 +1,5 @@
 # Warning
-Make sure to copy the xkb folder or to remove the pwerty layout from input:kb_layout in hyprland config otherwise hyprland will crash
+Make sure to remove the pwerty layout from input:kb_layout in hyprland config otherwise hyprland will crash
 
 # Install packages
 ```
