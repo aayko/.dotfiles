@@ -2,7 +2,6 @@ alias dot="chezmoi"
 alias lf="lfcd"
 
 alias v="nvim"
-alias less="nvim -M"
 alias c="codium --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland"
 alias se="sudoedit"
 
