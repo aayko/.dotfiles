@@ -15,8 +15,8 @@ xkb_symbols "basic" {
     key <AE07> {[ parenright, 7 ]};
     key <AE08> {[ braceright, 8 ]};
     key <AE09> {[ bracketright, 9 ]};
-    key <AE10> {[ asterisk, 0 ]};
-    key <AE11> {[ asciitilde, percent ]};
+    key <AE10> {[ percent, 0 ]};
+    key <AE11> {[ asciitilde, asterisk ]};
     key <AE12> {[ dollar, at ]};
 
     key <AD01>	{[ q, Q	]};
