@@ -2,7 +2,7 @@ return {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v2.x',
     dependencies = {
-        { 'neovim/nvim-lspconfig' },
+        'neovim/nvim-lspconfig',
         {
             'williamboman/mason.nvim',
             config = function()
@@ -24,9 +24,8 @@ return {
         { 'hrsh7th/cmp-path' },
         { 'hrsh7th/cmp-cmdline' },
         { 'hrsh7th/cmp-nvim-lsp' },
-
+        { 'dmitmel/cmp-cmdline-history' },
         { 'onsails/lspkind.nvim' },
-
         {
             'L3MON4D3/LuaSnip',
             dependencies = { "rafamadriz/friendly-snippets" },
@@ -42,14 +41,12 @@ return {
         lsp.ensure_installed({
             'bashls',
             'lua_ls',
-            'cmake',
             'cssls',
             'clangd',
             'jdtls',
             'html',
             'emmet_language_server',
             'vimls',
-            'pyright',
         })
 
         -- Fix Undefined global 'vim'
@@ -66,10 +63,14 @@ return {
         local lspkind = require('lspkind')
         local cmp = require('cmp')
         local cmp_mappings = lsp.defaults.cmp_mappings({
-            ['<CR>'] = cmp.mapping.confirm({ select = true }),
+            ['<C-y>'] = cmp.mapping.confirm({ select = true }),
             ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
             ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+            ["<C-Space>"] = cmp.mapping.complete(),
         })
+
+        cmp_mappings['<Tab>'] = nil
+        cmp_mappings['<S-Tab>'] = nil
 
         cmp.setup({
             window = {
@@ -90,30 +91,32 @@ return {
         cmp.setup.cmdline({ '/', '?' }, {
             mapping = cmp.mapping.preset.cmdline(),
             sources = {
-                { name = 'buffer' }
+                { name = 'buffer' },
             }
         })
 
         -- `:` cmdline setup.
         cmp.setup.cmdline(':', {
             mapping = cmp.mapping.preset.cmdline(),
-            sources = cmp.config.sources({ { name = 'path' } }, { { name = 'cmdline' } })
+            sources = cmp.config.sources {
+                { name = 'path' },
+                { name = 'cmdline' },
+                { name = 'cmdline_history' },
+            },
         })
 
         lsp.setup_nvim_cmp {
             formatting = {
                 format = lspkind.cmp_format({
-                    maxwidth = 50,
+                    maxwidth = 10,
                     ellipsis_char = '...',
                 })
             },
             mapping = cmp_mappings,
         }
 
-        vim.cmd([[
-            highlight! link CmpPmenu         Pmenu
-            highlight! link CmpPmenuBorder   Pmenu
-            ]])
+        vim.api.nvim_set_hl(0, "CmpPmenu", { link = "Pmenu" })
+        vim.api.nvim_set_hl(0, "CmpPmenuBorder", { link = "Pmenu" })
 
         lsp.set_preferences({
             suggest_lsp_servers = true,
@@ -132,15 +135,16 @@ return {
             vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
             vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, opts)
             vim.keymap.set("n", "<leader>=", vim.lsp.buf.format, opts)
+            vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
         end)
 
         lsp.setup()
 
-        -- local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-        -- for type, icon in pairs(signs) do
-        --     local hl = "DiagnosticSign" .. type
-        --     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-        -- end
+        local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+        for type, icon in pairs(signs) do
+            local hl = "DiagnosticSign" .. type
+            vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+        end
 
         vim.diagnostic.config({
             virtual_text = false,
@@ -153,13 +157,12 @@ return {
             function()
                 local current_value = vim.diagnostic.config().virtual_text
                 if current_value then
-                    vim.diagnostic.config({virtual_text = false})
+                    vim.diagnostic.config({ virtual_text = false })
                 else
-                    vim.diagnostic.config({virtual_text = true})
+                    vim.diagnostic.config({ virtual_text = true })
                 end
             end,
             {}
         )
-
     end,
 }

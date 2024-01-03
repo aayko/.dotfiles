@@ -45,8 +45,8 @@ keymap.set("n", "<C-i>", "<C-i>zz", { noremap = true })
 -- Center on first search
 vim.cmd("cnoremap <silent><expr> <enter> index(['/', '?'], getcmdtype()) >= 0 ? '<enter>zz' : '<enter>'")
 
--- NvimTree
-keymap.set('n', '<leader>e', vim.cmd.NvimTreeToggle)
+-- File explorer
+keymap.set('n', '<leader>e', vim.cmd.Oil)
 
 -- UndoTree
 keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
@@ -79,3 +79,7 @@ keymap.set("n","<leader>d", "<CMD>DiagnosticsToggleVirtualText<CR>")
 -- Swap semicolon colon
 keymap.set({ "n", "v" },";", ":")
 keymap.set({ "n", "v" },":", ";")
+
+-- Indent on paste
+keymap.set("n", "=p", "<Plug>(YankyPutAfterFilter)")
+keymap.set("n", "=P", "<Plug>(YankyPutBeforeFilter)")

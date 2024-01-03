@@ -19,6 +19,9 @@ require("lazy").setup("plugins", {
 	change_detection = {
 		notify = false,
 	},
+	ui = {
+		border = "single",
+    },
 })
 require("autocmds")
 require("settings")

@@ -4,7 +4,7 @@ vim.opt.relativenumber = true
 vim.opt.showmode = false
 
 vim.opt.ignorecase = true -- ignore case in search patterns
-vim.opt.smartcase = true -- smart case
+vim.opt.smartcase = true  -- smart case
 
 vim.opt.numberwidth = 2
 vim.opt.tabstop = 4
@@ -37,8 +37,6 @@ vim.opt.wrap = true
 vim.opt.breakindent = true
 vim.opt.linebreak = true
 
-vim.opt.cursorline = false
-
 vim.opt.background = "dark"
 
 -- split windows
@@ -57,6 +55,9 @@ vim.opt.foldmethod = "indent"
 
 vim.g.showmatch = true
 
+vim.opt.cursorline = true
+vim.opt.cursorlineopt = "number"
+
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
@@ -65,13 +66,6 @@ vim.g.lsp_preview_max_width = 8
 
 vim.opt.timeout = false
 vim.opt.ttimeout = false
-
-vim.cmd([[
-    set laststatus=0
-    hi! link StatusLine Comment
-    hi! link StatusLineNC Comment
-    set statusline=%{repeat('─',winwidth('.'))}
-]])
 
 vim.cmd([[
     function! g:DisableMatchParen ()
@@ -91,22 +85,23 @@ vim.opt.shada = "!,'300,<50,s10,h"
 
 vim.cmd("set viminfofile=")
 
-vim.cmd([[
-    " completion border color
-    hi IndentBlanklineChar guifg=#222222
+-- Hide status bar
+vim.opt.laststatus = 0
+vim.cmd("set statusline=%{repeat('─',winwidth('.'))}")
 
-    " hi @ibl.indent.char.1 guifg=#222222
-    " hi @ibl.scope.char.1 guifg=#ffffff
-
-    hi WinSeparator guibg=#080808 guifg=#333333
-    " hi IncSearch guibg=#68a659
-    hi IncSearch guibg=#FE8019
-
-    augroup highlight_yank
-        autocmd!
-        au TextYankPost * silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=150})
-    augroup END
-]])
+vim.opt.guicursor = ""
 
 vim.cmd("colorscheme gruvbox")
-vim.opt.guicursor = ""
+
+-- completion border color
+vim.api.nvim_set_hl(0, "IndentBlanklineChar", { fg = "#222222" })
+
+-- cleaner window separator
+vim.api.nvim_set_hl(0, "WinSeparator", { link = "@ibl.whitespace.char.1" })
+vim.api.nvim_set_hl(0, "StatusLine", { link = "WinSeparator" })
+vim.api.nvim_set_hl(0, "StatusLineNC", { link = "WinSeparator" })
+
+vim.api.nvim_set_hl(0, "IncSearch", { fg = "#080808", bg = "#FE8019" })
+vim.api.nvim_set_hl(0, "YankyYanked", { link = "IncSearch" })
+
+vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#83a598", bg = "#080808" })

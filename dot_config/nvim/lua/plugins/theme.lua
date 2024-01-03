@@ -5,9 +5,12 @@ return {
         priority = 1000,
         config = true,
         opts = {
-            palette_overrides = {
-                -- dark0 = "#080808",
-                -- dark1 = "#080808",
+            italic = {
+                strings = false,
+                emphasis = false,
+                comments = false,
+                operators = false,
+                folds = false,
             },
             transparent_mode = true,
         },
