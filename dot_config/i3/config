@@ -22,7 +22,7 @@ font pango:monospace 8
 #font pango:DejaVu Sans Mono 8
 
 exec_always --no-startup-id autotiling
-exec --no-startup-id xset r rate 200
+exec_always --no-startup-id xset r rate 200
 exec --no-startup-id feh --no-fehbg --bg-max ~/Pictures/mountains.jpeg
 exec --no-startup-id picom
 exec --no-startup-id xrandr --output DP-2 --primary --mode 1920x1080 --rate 240 

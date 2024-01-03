@@ -112,8 +112,8 @@ map '"' mark-remove
 map e $$EDITOR "$f"
 map E $sudoedit "$f"
 
-map au unarchive
-map ad unarchive-delete
+map zu unarchive
+map zd unarchive-delete
 map zz zip
 map zt tar
 
