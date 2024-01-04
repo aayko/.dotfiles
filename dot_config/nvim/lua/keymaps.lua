@@ -7,9 +7,11 @@ keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left
 keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true })
 keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
+keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+
 -- Don't leave visual after indent
-keymap.set("v", "<", "<gv")
-keymap.set("v", ">", ">gv")
+keymap.set("x", "<", "<gv")
+keymap.set("x", ">", ">gv")
 
 -- Unbind command history
 keymap.set("n", "q:", "<nop>")
@@ -23,10 +25,10 @@ keymap.set("n", "!", ":!", { silent = false })
 -- Unbind space outside of insert
 keymap.set({ 'n', 'v' }, '<space>', '<nop>')
 
-keymap.set({ "n", "v" }, "s", "V")
+keymap.set({ "n", "x" }, "s", "V")
 
-keymap.set({ "n", "v" }, "H", "^")
-keymap.set({ "n", "v" }, "L", "$")
+keymap.set({ "n", "x" }, "H", "^")
+keymap.set({ "n", "x" }, "L", "$")
 
 -- Center on movement
 keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true })
@@ -46,10 +48,13 @@ keymap.set("n", "<C-i>", "<C-i>zz", { noremap = true })
 vim.cmd("cnoremap <silent><expr> <enter> index(['/', '?'], getcmdtype()) >= 0 ? '<enter>zz' : '<enter>'")
 
 -- File explorer
-keymap.set('n', '<leader>e', vim.cmd.Oil)
-
--- UndoTree
-keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
+keymap.set('n', '-', function ()
+    if vim.o.filetype == 'oil' then
+        require('oil').close()
+    else
+        require('oil').open(vim.fn.getcwd())
+    end
+end)
 
 -- Move lines
 keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
@@ -77,9 +82,15 @@ keymap.set("n","<Tab>", "<CMD>b#<CR>")
 keymap.set("n","<leader>d", "<CMD>DiagnosticsToggleVirtualText<CR>")
 
 -- Swap semicolon colon
-keymap.set({ "n", "v" },";", ":")
-keymap.set({ "n", "v" },":", ";")
+keymap.set({ "n", "x" },";", ":")
+keymap.set({ "n", "x" },":", ";")
 
 -- Indent on paste
 keymap.set("n", "=p", "<Plug>(YankyPutAfterFilter)")
 keymap.set("n", "=P", "<Plug>(YankyPutBeforeFilter)")
+
+-- Indent whole file
+keymap.set("n", "<leader>=", "mzgg=G`zzz")
+
+-- Replace current line with buffer
+keymap.set("n", "R", "grr")

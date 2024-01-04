@@ -1,4 +1,28 @@
 return {
+    {
+        'echasnovski/mini.nvim',
+        version = false,
+        config = function()
+            require("mini.sessions").setup()
+            local starter = require("mini.starter")
+
+            starter.setup({
+                items = {
+                    -- starter.sections.sessions(5, true),
+                    starter.sections.recent_files(5, false, false),
+                    starter.sections.builtin_actions(),
+                },
+                footer = "",
+                header = "Neovim",
+            })
+
+        end
+    },
+    {
+        "folke/persistence.nvim",
+        event = "BufReadPre", -- this will only start session saving when an actual file was opened
+    },
+    { "vim-scripts/ReplaceWithRegister" },
     { 'tpope/vim-fugitive' },
     {
         -- auto rename and closing tags for html
@@ -24,7 +48,7 @@ return {
     },
     {
         'Wansmer/treesj',
-        keys = { '<space>m', '<space>j', '<space>s' },
+        keys = { '<space>m' },
         dependencies = { 'nvim-treesitter/nvim-treesitter' },
         opts = {},
     },

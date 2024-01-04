@@ -56,7 +56,7 @@ vim.opt.foldmethod = "indent"
 vim.g.showmatch = true
 
 vim.opt.cursorline = true
-vim.opt.cursorlineopt = "number"
+vim.opt.cursorlineopt = "line"
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -66,6 +66,10 @@ vim.g.lsp_preview_max_width = 8
 
 vim.opt.timeout = false
 vim.opt.ttimeout = false
+
+-- Use ripgrep for grepping.
+vim.o.grepprg = 'rg --vimgrep'
+vim.o.grepformat = '%f:%l:%c:%m'
 
 vim.cmd([[
     function! g:DisableMatchParen ()
@@ -81,7 +85,7 @@ vim.cmd([[
 ]])
 
 -- Number of recent files
-vim.opt.shada = "!,'300,<50,s10,h"
+vim.opt.shada = "!,'300,<300,s10,h"
 
 vim.cmd("set viminfofile=")
 
@@ -93,15 +97,15 @@ vim.opt.guicursor = ""
 
 vim.cmd("colorscheme gruvbox")
 
--- completion border color
-vim.api.nvim_set_hl(0, "IndentBlanklineChar", { fg = "#222222" })
+vim.api.nvim_set_hl(0, "@ibl.scope.char.1", { fg = "#fe8019" })
+
+vim.api.nvim_set_hl(0, "Visual", { bg = "#3c3836" })
 
 -- cleaner window separator
 vim.api.nvim_set_hl(0, "WinSeparator", { link = "@ibl.whitespace.char.1" })
 vim.api.nvim_set_hl(0, "StatusLine", { link = "WinSeparator" })
 vim.api.nvim_set_hl(0, "StatusLineNC", { link = "WinSeparator" })
 
-vim.api.nvim_set_hl(0, "IncSearch", { fg = "#080808", bg = "#FE8019" })
 vim.api.nvim_set_hl(0, "YankyYanked", { link = "IncSearch" })
 
-vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#83a598", bg = "#080808" })
+vim.api.nvim_set_hl(0, "FzfLuaBorder", { link = "@ibl.whitespace.char.1" })

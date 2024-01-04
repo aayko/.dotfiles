@@ -13,7 +13,7 @@ return {
             })
 
             vim.keymap.set("n", "<leader>a", function()
-                harpoon.list():append()
+                harpoon:list():append()
                 vim.cmd('echo "' .. vim.fn.fnamemodify(vim.fn.expand('%'), ':t') .. ' added to harpoon"')
             end)
             vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
@@ -43,6 +43,25 @@ return {
     {
         'stevearc/oil.nvim',
         config = true,
-        opts = {},
+        opts = {
+            delete_to_trash = true,
+            view_options = {
+                show_hidden = true,
+            },
+            keymaps = {
+                ["g?"] = "actions.show_help",
+                ["<CR>"] = "actions.select",
+                ["<C-p>"] = "actions.preview",
+                ["<C-c>"] = "actions.close",
+                ["<C-l>"] = "actions.refresh",
+                ["_"] = "actions.open_cwd",
+                ["~"] =  "actions.tcd",
+                ["gs"] = "actions.change_sort",
+                ["gx"] = "actions.open_external",
+                ["g."] = "actions.toggle_hidden",
+                ["g\\"] = "actions.toggle_trash",
+            },
+            use_default_keymaps = false,
+        },
     }
 }

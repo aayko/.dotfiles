@@ -1,150 +1,155 @@
 return {
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'v2.x',
+    "neovim/nvim-lspconfig",
     dependencies = {
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
         'neovim/nvim-lspconfig',
-        {
-            'williamboman/mason.nvim',
-            config = function()
-                require("mason").setup({
-                    ui = {
-                        border = "single"
-                    }
-                })
-            end,
-            build = function()
-                pcall(vim.api.nvim_command, 'MasonUpdate')
-            end,
-        },
-        { 'williamboman/mason-lspconfig.nvim' },
-
         -- Autocompletion
-        { 'hrsh7th/nvim-cmp' },
-        { 'hrsh7th/cmp-buffer' },
-        { 'hrsh7th/cmp-path' },
-        { 'hrsh7th/cmp-cmdline' },
-        { 'hrsh7th/cmp-nvim-lsp' },
-        { 'dmitmel/cmp-cmdline-history' },
-        { 'onsails/lspkind.nvim' },
+        'hrsh7th/cmp-nvim-lsp',
+        'hrsh7th/cmp-buffer',
+        'hrsh7th/cmp-path',
+        'hrsh7th/cmp-cmdline',
+        'dmitmel/cmp-cmdline-history',
+        'hrsh7th/nvim-cmp',
         {
             'L3MON4D3/LuaSnip',
             dependencies = { "rafamadriz/friendly-snippets" },
         },
+        'saadparwaiz1/cmp_luasnip',
     },
     config = function()
         require("luasnip.loaders.from_vscode").lazy_load()
 
-        local lsp = require("lsp-zero")
+        -- Snippets select mode mappings
+        local ls = require("luasnip")
+        vim.keymap.set({ "i" }, "<C-j>", function()
+            if ls.expand_or_jumpable() then
+                ls.expand_or_jump()
+            end
+        end, { silent = true })
+        vim.keymap.set({ "s" }, "<C-j>", function() ls.jump(1) end, { silent = true })
+        vim.keymap.set({ "i", "s" }, "<C-k>", function() ls.jump(-1) end, { silent = true })
+        vim.keymap.set({ "i", "s" }, "<C-e>", function()
+            if ls.choice_active() then
+                ls.change_choice(1)
+            end
+        end, { silent = true })
 
-        lsp.preset("recommended")
-
-        lsp.ensure_installed({
-            'bashls',
-            'lua_ls',
-            'cssls',
-            'clangd',
-            'jdtls',
-            'html',
-            'emmet_language_server',
-            'vimls',
-        })
-
-        -- Fix Undefined global 'vim'
-        lsp.configure('lua_ls', {
-            settings = {
-                Lua = {
-                    diagnostics = {
-                        globals = { 'vim' }
-                    }
-                }
-            }
-        })
-
-        local lspkind = require('lspkind')
-        local cmp = require('cmp')
-        local cmp_mappings = lsp.defaults.cmp_mappings({
-            ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-            ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-            ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-            ["<C-Space>"] = cmp.mapping.complete(),
-        })
-
-        cmp_mappings['<Tab>'] = nil
-        cmp_mappings['<S-Tab>'] = nil
-
+        local cmp = require 'cmp'
         cmp.setup({
+            snippet = {
+                expand = function(args)
+                    -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+                    require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+                    -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+                    -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+                end,
+            },
+
+            formatting = {
+                fields = { "abbr", "kind" },
+                format = function(entry, vim_item)
+                    vim_item.abbr = vim_item.abbr:match("[^(]+")
+                    vim_item.menu = nil
+
+                    return vim_item
+                end
+            },
             window = {
                 completion = cmp.config.window.bordered({
                     border = "single",
-                    winhighlight = 'Normal:None,FloatBorder:IndentBlanklineChar,CursorLine:PmenuSel,Search:None',
                     scrollbar = false,
                 }),
                 documentation = cmp.config.window.bordered({
                     border = "single",
-                    winhighlight = 'Normal:None,FloatBorder:IndentBlanklineChar,CursorLine:PmenuSel,Search:None',
                     scrollbar = false,
                 }),
             },
+            mapping = cmp.mapping.preset.insert({
+                ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+                ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+                ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+                ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+                ['<C-f>'] = cmp.mapping.scroll_docs(4),
+                ['<C-Space>'] = cmp.mapping.complete(),
+                ['<C-e>'] = cmp.mapping.abort(),
+            }),
+            sources = cmp.config.sources({
+                { name = 'nvim_lsp' },
+                -- { name = 'vsnip' }, -- For vsnip users.
+                { name = 'luasnip' }, -- For luasnip users.
+                -- { name = 'ultisnips' }, -- For ultisnips users.
+                -- { name = 'snippy' }, -- For snippy users.
+            }, {
+                    { name = 'buffer' },
+                })
         })
 
-        -- `/` cmdline setup.
+        -- Use buffer source for `/` and `?`
         cmp.setup.cmdline({ '/', '?' }, {
             mapping = cmp.mapping.preset.cmdline(),
             sources = {
-                { name = 'buffer' },
+                { name = 'buffer' }
             }
         })
 
-        -- `:` cmdline setup.
+        -- Use cmdline & path source for ':'
         cmp.setup.cmdline(':', {
             mapping = cmp.mapping.preset.cmdline(),
-            sources = cmp.config.sources {
+            sources = cmp.config.sources({
                 { name = 'path' },
                 { name = 'cmdline' },
                 { name = 'cmdline_history' },
+            }),
+        })
+
+        require("mason").setup({
+            ui = {
+                border = "single",
+                icons = {
+                    package_installed = "●",
+                    package_pending = "○",
+                    package_uninstalled = "○"
+                }
+            }
+        })
+
+        require("mason-lspconfig").setup({
+            ensure_installed = {
+                'bashls',
+                'lua_ls',
+                'cssls',
+                'clangd',
+                'jdtls',
+                'html',
+                'emmet_language_server',
+                'vimls',
             },
         })
 
-        lsp.setup_nvim_cmp {
-            formatting = {
-                format = lspkind.cmp_format({
-                    maxwidth = 10,
-                    ellipsis_char = '...',
-                })
-            },
-            mapping = cmp_mappings,
+        -- Set up lspconfig.
+        local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+        require("mason-lspconfig").setup_handlers {
+            function(server_name) -- default handler (optional)
+                require("lspconfig")[server_name].setup {
+                    capabilities = capabilities,
+                }
+            end,
+
+            ["lua_ls"] = function()
+                local lspconfig = require("lspconfig")
+                lspconfig.lua_ls.setup {
+                    settings = {
+                        Lua = {
+                            diagnostics = {
+                                globals = { "vim" }
+                            }
+                        }
+                    }
+                }
+            end,
         }
-
-        vim.api.nvim_set_hl(0, "CmpPmenu", { link = "Pmenu" })
-        vim.api.nvim_set_hl(0, "CmpPmenuBorder", { link = "Pmenu" })
-
-        lsp.set_preferences({
-            suggest_lsp_servers = true,
-        })
-
-        lsp.on_attach(function(client, bufnr)
-            local opts = { buffer = bufnr, remap = false }
-
-            vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-            vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-            vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-            vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-            vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
-            vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-            vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-            vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-            vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, opts)
-            vim.keymap.set("n", "<leader>=", vim.lsp.buf.format, opts)
-            vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
-        end)
-
-        lsp.setup()
-
-        local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-        for type, icon in pairs(signs) do
-            local hl = "DiagnosticSign" .. type
-            vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-        end
 
         vim.diagnostic.config({
             virtual_text = false,
@@ -164,5 +169,44 @@ return {
             end,
             {}
         )
-    end,
+
+        local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+        function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+            opts = opts or {}
+            opts.border = opts.border or 'single'
+            opts.max_width = opts.max_width or 60
+            return orig_util_open_floating_preview(contents, syntax, opts, ...)
+        end
+
+        -- Global mappings.
+        -- See `:help vim.diagnostic.*` for documentation on any of the below functions
+        vim.keymap.set('n', 'gl', vim.diagnostic.open_float)
+        vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+        vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+        vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
+
+        -- Use LspAttach autocommand to only map the following keys
+        -- after the language server attaches to the current buffer
+        vim.api.nvim_create_autocmd('LspAttach', {
+            group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+            callback = function(ev)
+                -- Enable completion triggered by <c-x><c-o>
+                vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+
+                -- Buffer local mappings.
+                -- See `:help vim.lsp.*` for documentation on any of the below functions
+                local opts = { buffer = ev.buf }
+                vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+                vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+                vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+                vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+                vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+                vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, opts)
+                vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+                vim.keymap.set('n', '<space>f', function()
+                    vim.lsp.buf.format { async = true }
+                end, opts)
+            end,
+        })
+    end
 }
