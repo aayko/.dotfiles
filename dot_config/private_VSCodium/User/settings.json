@@ -67,11 +67,11 @@
     "files.autoSave": "afterDelay",
     "editor.renderWhitespace": "none",
     "window.menuBarVisibility": "toggle",
-    "workbench.statusBar.visible": false,
     "security.workspace.trust.startupPrompt": "never",
     "security.workspace.trust.enabled": false,
     "workbench.colorTheme": "Gruvbox Dark Hard",
     "workbench.activityBar.location": "hidden",
     "terminal.external.linuxExec": "foot",
     "explorer.confirmDelete": false,
+    "redhat.telemetry.enabled": false,
 }

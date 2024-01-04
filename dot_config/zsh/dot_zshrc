@@ -37,19 +37,20 @@ zmodload -i zsh/parameter
 # ------ BINDS ------
 bindkey -e
 bindkey "^o" fzf-cd-widget
+bindkey "^f" fzf-cd-projects-widget
+bindkey "^t" fzf-cd-config-widget
 # shift-tab in completion
 bindkey '^[[Z' reverse-menu-complete
 
 # ctrl j,k
-bindkey '^J' history-search-forward
-bindkey '^K' history-search-backward
+# bindkey '^J' history-search-forward
+# bindkey '^K' history-search-backward
 
-# ctrl h for accepting suggestion
-bindkey '^H' forward-char
+# ctrl y to accept suggestion
+bindkey '^Y' forward-char
 
-# arrow keys
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+bindkey '^P' history-substring-search-up
+bindkey '^N' history-substring-search-down
 HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
 
 # delete key

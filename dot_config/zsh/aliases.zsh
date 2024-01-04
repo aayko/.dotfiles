@@ -2,7 +2,6 @@ alias dot="chezmoi"
 alias lf="lfcd"
 
 alias v="nvim"
-alias c="codium --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland"
 alias se="sudoedit"
 
 alias mkdir="mkdir -vp"
@@ -17,11 +16,7 @@ alias grep='grep --color=always'
 alias ls="ls --color --group-directories-first"
 alias ll="ls -lh --color --group-directories-first"
 alias tree="tree -L 4"
-alias cat="bat"
 alias ka="killall"
-
-alias p="sudo pacman"
 alias so="clear; exec zsh"
 
-alias btui="bluetuith"
 source $XDG_CONFIG_HOME/zsh/.ssh-web
