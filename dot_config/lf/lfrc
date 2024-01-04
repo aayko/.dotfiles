@@ -1,5 +1,5 @@
-set previewer '~/.config/lf/scope'
-set cleaner '~/.config/lf/cleaner'
+set previewer ~/.config/lf/scope
+set cleaner ~/.config/lf/cleaner
 
 # Settings
 set ratios 1:1
@@ -7,7 +7,7 @@ set info size:time
 
 set hidden      true
 set ignorecase  true
-set icons       true
+set icons       false
 set scrolloff   8
 set tabstop     4
 
@@ -118,8 +118,8 @@ map zz zip
 map zt tar
 
 map P ${{
-    echo "$f" | xclip -sel clip
-    lf -remote 'send echo "File path copied to clipboard"'
+    echo "$f" | xsel -ib
+    lf -remote 'send echo "Path copied to clipboard"'
 }}
 
 map <enter> &mimeo "$f"
@@ -144,19 +144,16 @@ map w ${{
 map g/ cd /
 map gh cd /home/ayko/
 
+map gd cd /home/ayko/documents
+map gD cd /home/ayko/downloads
+map gp cd /home/ayko/perso
+map gu cd /home/ayko/uni
+map gP cd /home/ayko/pictures
+map gv cd /home/ayko/pictures/videos
 map gc cd /home/ayko/.config
-map gd cd /home/ayko/Documents
-map gD cd /home/ayko/Downloads
-map gr cd /home/ayko/Repos
-map gu cd /home/ayko/Uni
-map gw cd /home/ayko/Web
-map ga cd /usr/share/applications
-map gm cd /run/media/ayko
-map gp cd /home/ayko/Pictures
-map gv cd /home/ayko/Pictures/videos
 map gl cd /home/ayko/.local
 map gb cd /home/ayko/.local/bin
-map gf cd /home/ayko/.mozilla/firefox/profile.ayko/chrome
-map gs cd /home/ayko/Sync
 map gt cd /home/ayko/.local/share/Trash/files
 map gz cd /home/ayko/.local/share/chezmoi
+map ga cd /usr/share/applications
+map gm cd /run/media/ayko
