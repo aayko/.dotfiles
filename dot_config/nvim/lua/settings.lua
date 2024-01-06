@@ -21,7 +21,7 @@ vim.opt.expandtab = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
-vim.opt.scrolloff = 4
+vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
@@ -89,10 +89,14 @@ vim.opt.shada = "!,'300,<300,s10,h"
 
 vim.cmd("set viminfofile=")
 
--- Hide status bar
-vim.opt.laststatus = 0
+-- Hide status bar (toggle with <C-g>)
+vim.o.laststatus = 0
 vim.cmd("set statusline=%{repeat('─',winwidth('.'))}")
 
+-- Hide command line
+vim.o.cmdheight = 0
+
+-- Block in insert mode
 vim.opt.guicursor = ""
 
 vim.cmd("colorscheme gruvbox")

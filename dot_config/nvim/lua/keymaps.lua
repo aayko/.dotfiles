@@ -94,3 +94,13 @@ keymap.set("n", "<leader>=", "mzgg=G`zzz")
 
 -- Replace current line with buffer
 keymap.set("n", "R", "grr")
+
+keymap.set("n", "<C-g>", function()
+    if vim.o.laststatus == 0 then
+        vim.o.laststatus = 2 
+        vim.cmd('set statusline="%F %m%=%l,%c"')
+    else
+        vim.o.laststatus = 0
+        vim.cmd("set statusline=%{repeat('─',winwidth('.'))}")
+    end  
+end)
