@@ -16,6 +16,7 @@ cmd unarchive ${{
         *.zip) unzip "$f" ;;
         *.tar.gz) tar -xzvf "$f" ;;
         *.tar.bz2) tar -xjvf "$f" ;;
+        *.tar.xz) tar -xJvf "$f" ;;
         *.tar) tar -xvf "$f" ;;
         *.rar) unrar -x "$f" ;;
         *.7z) 7z -x "$f";;
@@ -29,6 +30,7 @@ cmd unarchive-delete ${{
         *.zip) unzip "$f" && trash "$f" ;;
         *.tar.gz) tar -xzvf "$f" && trash "$f" ;;
         *.tar.bz2) tar -xjvf "$f" && trash "$f" ;;
+        *.tar.xz) tar -xJvf "$f" && trash "$f" ;;
         *.tar) tar -xvf "$f" && trash "$f" ;;
         *.rar) unrar -x "$f" && trash "$f" ;;
         *.7z) 7z -x "$f" && trash "$f" ;;
