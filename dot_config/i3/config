@@ -139,8 +139,9 @@ mode "resize" {
 bindsym $win+r mode "resize"
 
 smart_borders on
+for_window [floating] border pixel 0
 
-for_window [class="^.*"] border pixel 2
+default_border pixel 2
 
 client.focused          #ebdbb2 #ebdbb2 #080808 #ebdbb2   #ebdbb2
 client.unfocused        #080808 #ebdbb2 #080808 #080808   #080808
