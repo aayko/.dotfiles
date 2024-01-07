@@ -19,4 +19,4 @@ alias tree="tree -L 4"
 alias ka="killall"
 alias so="clear; exec zsh"
 
-source $XDG_CONFIG_HOME/zsh/.ssh-web
+source $XDG_CONFIG_HOME/zsh/.ssh-web 2>/dev/null
