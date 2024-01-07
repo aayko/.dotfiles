@@ -57,7 +57,7 @@ return {
                 ["<C-c>"] = "actions.close",
                 ["<C-l>"] = "actions.refresh",
                 ["_"] = "actions.open_cwd",
-                ["~"] =  "actions.tcd",
+                ["%"] =  "actions.tcd",
                 ["gs"] = "actions.change_sort",
                 ["gx"] = "actions.open_external",
                 ["g."] = "actions.toggle_hidden",
