@@ -112,8 +112,12 @@ j4-dmenu-desktop
 maim
 xdotool
 xclip
+xsel
 feh
 polybar
+xss-lock
+i3-wm
+i3lock-color
 
 hyprshot
 hyprpicker
