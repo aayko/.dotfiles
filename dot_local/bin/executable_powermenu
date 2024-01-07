@@ -8,8 +8,9 @@ windows="windows"
 
 chassis=$(< /sys/class/dmi/id/chassis_type)
 
+# test if on a desktop
 if [[ chassis -eq 3 ]]; then
-    options="$lock\n$hibernate\n$shutdown\n$reboot\n$windows"
+    options="$shutdown\n$reboot\n$windows"
 else
     options="$lock\n$hibernate\n$shutdown\n$reboot"
 fi
