@@ -12,32 +12,32 @@ fade-in=0.3
 effect-blur=7x5
 image=/home/ayko/Pictures/mountains.jpeg
 
-separator-color=aaaaaa
+separator-color=ebdbb2
 
 indicator-thickness=19
 indicator-radius=150
 
-inside-color=080808
-ring-color=111111
-text-color=aaaaaa
+inside-color=0f0f0f
+ring-color=1d2021
+text-color=ebdbb2
 
-key-hl-color=aaaaaa
-bs-hl-color=aaaaaa
+key-hl-color=ebdbb2
+bs-hl-color=ebdbb2
 
 # WRONG
 
-inside-wrong-color=080808
-ring-wrong-color=111111
-text-wrong-color=aaaaaa
+inside-wrong-color=0f0f0f
+ring-wrong-color=1d2021
+text-wrong-color=ebdbb2
 
 # VER
 
-inside-ver-color=080808
-ring-ver-color=111111
-text-ver-color=aaaaaa
+inside-ver-color=0f0f0f
+ring-ver-color=1d2021
+text-ver-color=ebdbb2
 
 # CLEAR
 
-inside-clear-color=080808
-ring-clear-color=111111
-text-clear-color=aaaaaa
+inside-clear-color=0f0f0f
+ring-clear-color=1d2021
+text-clear-color=ebdbb2

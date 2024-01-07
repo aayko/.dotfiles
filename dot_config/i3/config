@@ -23,7 +23,12 @@ font pango:monospace 8
 
 exec_always --no-startup-id autotiling
 exec_always --no-startup-id xset r rate 200
-exec --no-startup-id feh --no-fehbg --bg-max ~/Pictures/mountains.jpeg
+exec_always --no-startup-id setxkbmap -layout pwerty,us -option altwin:swap_alt_win,compose:ralt,grp:win_space_toggle
+exec_always --no-startup-id ~/.local/bin/inverse-scroll.sh
+exec_always --no-startup-id ~/.local/bin/tap-to-click.sh
+
+exec --no-startup-id feh --no-fehbg --bg-fill ~/pictures/wallpapers/ghibli/5m5kLI9.png
+
 exec --no-startup-id picom
 exec --no-startup-id xrandr --output DP-2 --primary --mode 1920x1080 --rate 240 
 exec --no-startup-id xrandr --output HDMI-1 --mode 1920x1080 --rate 120 --left-of DP-2
@@ -32,15 +37,11 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id dunst
 exec --no-startup-id udiskie &
 exec --no-startup-id playerctld daemon
-exec_always --no-startup-id ~/.local/bin/inverse-scroll.sh
-exec_always --no-startup-id ~/.local/bin/tap-to-click.sh
-
-# The combination of xss-lock, nm-applet and pactl is a popular choice, so
-# they are included here as an example. Modify as you see fit.
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork --color=0f0f0f -e --indicator --radius 150 --ring-width 19 --line-uses-inside --separator-color=edbdd2 --inside-color=0F0F0F --ring-color=1d2021 --keyhl-color=ebdbb2 --bshl-color=ebdbb2 --insidewrong-color=0f0f0f --ringwrong-color=1d2021 --wrong-color=ebdbb2 --insidever-color=0f0f0f --ringver-color=1d2021 --verif-color=ebdbb2
+
 
 # Use Mouse+$win to drag floating windows to their wanted position
 floating_modifier $win
@@ -143,11 +144,11 @@ for_window [floating] border pixel 0
 
 default_border pixel 2
 
-client.focused          #ebdbb2 #ebdbb2 #080808 #ebdbb2   #ebdbb2
-client.unfocused        #080808 #ebdbb2 #080808 #080808   #080808
-client.focused_inactive #080808 #ebdbb2 #080808 #080808   #080808
-client.urgent           #080808 #ebdbb2 #080808 #080808   #080808
-client.placeholder      #080808 #ebdbb2 #080808 #080808   #080808
+client.focused          #ebdbb2 #ebdbb2 #0f0f0f #ebdbb2   #ebdbb2
+client.unfocused        #0f0f0f #ebdbb2 #0f0f0f #0f0f0f   #0f0f0f
+client.focused_inactive #0f0f0f #ebdbb2 #0f0f0f #0f0f0f   #0f0f0f
+client.urgent           #0f0f0f #ebdbb2 #0f0f0f #0f0f0f   #0f0f0f
+client.placeholder      #0f0f0f #ebdbb2 #0f0f0f #0f0f0f   #0f0f0f
 
 for_window [window_role="About"] floating enable
 for_window [window_role="Organizer"] floating enable
