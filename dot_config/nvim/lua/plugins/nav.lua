@@ -52,6 +52,8 @@ return {
                 ["g?"] = "actions.show_help",
                 ["<CR>"] = "actions.select",
                 ["<C-p>"] = "actions.preview",
+                ["<C-v>"] = "actions.select_vsplit",
+                ["<C-s>"] = "actions.select_split",
                 ["<C-c>"] = "actions.close",
                 ["<C-l>"] = "actions.refresh",
                 ["_"] = "actions.open_cwd",

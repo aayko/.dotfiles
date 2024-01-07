@@ -76,7 +76,7 @@ keymap.set("t", "<esc>", "<C-\\><C-n><C-w>h",{ silent = true })
 keymap.set("n", "<leader>g", "<CMD>tab G<CR>")
 
 -- Alternate file
-keymap.set("n","<Tab>", "<CMD>b#<CR>")
+keymap.set({ "n", "x" },"<Tab>", "<CMD>b#<CR>zz")
 
 -- Toggle virtual text
 keymap.set("n","<leader>d", "<CMD>DiagnosticsToggleVirtualText<CR>")
@@ -95,6 +95,7 @@ keymap.set("n", "<leader>=", "mzgg=G`zzz")
 -- Replace current line with buffer
 keymap.set("n", "R", "grr")
 
+-- Toggle statusline
 keymap.set("n", "<C-g>", function()
     if vim.o.laststatus == 0 then
         vim.o.laststatus = 2 
@@ -104,3 +105,6 @@ keymap.set("n", "<C-g>", function()
         vim.cmd("set statusline=%{repeat('─',winwidth('.'))}")
     end  
 end)
+
+-- Toggle dapui
+keymap.set("n", "<leader>dt", function() require("dapui").toggle() end)
