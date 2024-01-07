@@ -24,4 +24,3 @@ export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
 export ANDROID_HOME="$XDG_DATA_HOME"/android
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export IPYTHONDIR="$XDG_CONFIG_HOME"/ipython
-export SUDO_PROMPT="$(tput setaf 4 bold)Password:$(tput sgr0) "

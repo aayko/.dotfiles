@@ -5,6 +5,7 @@ plug "zap-zsh/supercharge"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "zsh-users/zsh-history-substring-search"
 
+export SUDO_PROMPT="$(tput setaf 4 bold)Password:$(tput sgr0) "
 source $ZDOTDIR/aliases.zsh
 
 # VIA caps lock remap
