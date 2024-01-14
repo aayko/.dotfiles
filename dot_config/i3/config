@@ -22,21 +22,17 @@ font pango:monospace 8
 #font pango:DejaVu Sans Mono 8
 
 exec_always --no-startup-id autotiling
-exec_always --no-startup-id xset r rate 200
-exec_always --no-startup-id setxkbmap -layout pwerty,us -option altwin:swap_alt_win,compose:ralt,grp:win_space_toggle
 exec_always --no-startup-id ~/.local/bin/inverse-scroll.sh
 exec_always --no-startup-id ~/.local/bin/tap-to-click.sh
 
-exec --no-startup-id feh --no-fehbg --bg-fill ~/pictures/wallpapers/ghibli/5m5kLI9.png
-
 exec --no-startup-id picom
-exec --no-startup-id xrandr --output DP-2 --primary --mode 1920x1080 --rate 240 
-exec --no-startup-id xrandr --output HDMI-1 --mode 1920x1080 --rate 120 --left-of DP-2
 exec --no-startup-id polybar
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id dunst
 exec --no-startup-id udiskie &
 exec --no-startup-id playerctld daemon
+
+exec --no-startup-id feh --no-fehbg --bg-fill ~/pictures/wallpapers/ghibli/5m5kLI9.png
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
@@ -96,13 +92,12 @@ set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
-set $ws6 "6"
 
-workspace $ws1 output DP-2
-workspace $ws2 output DP-2
-workspace $ws3 output DP-2
-workspace $ws4 output DP-2
-workspace $ws5 output HDMI-A-2
+workspace $ws1 output DP-0
+workspace $ws2 output DP-0
+workspace $ws3 output DP-0
+workspace $ws4 output DP-0
+workspace $ws5 output HDMI-1
 
 bindsym $win+1 workspace number $ws1
 bindsym $win+2 workspace number $ws2

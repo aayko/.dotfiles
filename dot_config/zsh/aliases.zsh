@@ -9,14 +9,16 @@ alias rm="rm -v"
 alias cp="cp -v"
 alias mv="mv -v"
 
-alias df='df -h'
-alias free='free -m'
+alias df="df -h"
+alias free="free -m"
 
-alias grep='grep --color=always'
+alias grep="grep --color=always"
 alias ls="ls --color --group-directories-first"
 alias ll="ls -lh --color --group-directories-first"
 alias tree="tree -L 4"
 alias ka="killall"
 alias so="clear; exec zsh"
+
+alias n="nix-env"
 
 source $XDG_CONFIG_HOME/zsh/.ssh-web 2>/dev/null

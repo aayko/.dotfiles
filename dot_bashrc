@@ -2,18 +2,12 @@
 # ~/.bashrc
 #
 
-export VISUAL="nvim"
-export EDITOR="nvim"
-export TERMINAL="foot"
-export BROWSER="chromium"
-
 mkdir -p "$XDG_STATE_HOME"/bash 
 export HISTFILE="$XDG_STATE_HOME"/bash/history 
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
+source $ZDOTDIR/aliases.zsh 2>/dev/null
 
 PS1='\W \$ '

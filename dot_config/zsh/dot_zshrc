@@ -5,11 +5,7 @@ plug "zap-zsh/supercharge"
 plug "zdharma-continuum/fast-syntax-highlighting"
 plug "zsh-users/zsh-history-substring-search"
 
-export SUDO_PROMPT="$(tput setaf 4 bold)Password:$(tput sgr0) "
 source $ZDOTDIR/aliases.zsh 2>/dev/null
-
-# VIA caps lock remap
-# MT(MOD_LCTL,KC_ESC)
 
 #don't add failed command to ~/.zsh_history
 zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
@@ -42,10 +38,6 @@ bindkey "^f" fzf-cd-projects-widget
 bindkey "^t" fzf-cd-config-widget
 # shift-tab in completion
 bindkey '^[[Z' reverse-menu-complete
-
-# ctrl j,k
-# bindkey '^J' history-search-forward
-# bindkey '^K' history-search-backward
 
 # ctrl y to accept suggestion
 bindkey '^Y' forward-char
