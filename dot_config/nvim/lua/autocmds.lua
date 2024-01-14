@@ -25,3 +25,5 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     end
   end,
 })
+
+vim.cmd([[ autocmd FileType tex autocmd BufWritePost <buffer> silent make ]])
