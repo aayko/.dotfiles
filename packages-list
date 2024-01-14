@@ -5,7 +5,7 @@ bat
 colordiff
 ffmpeg
 ffmpegthumbnailer
-fontimage
+fontforge
 jq
 mdcat
 transmission-cli
@@ -34,7 +34,6 @@ gnome-themes-extra
 grep
 gtk-engine-murrine
 man-db
-mandb
 man-pages
 mimeo
 neovim
