@@ -113,6 +113,7 @@ maim
 polybar
 xclip
 xdotool
+xorg-xinput
 xsel
 xss-lock
 
@@ -130,3 +131,9 @@ wl-clip-persist-git
 wlr-randr
 xdg-desktop-portal-hyprland-git
 xwaylandvideobridge-git
+
+jdk-openjdk
+texlive-latexextra
+texlive-langfrench
+texlive-bibtexextra
+texlive-mathscience
