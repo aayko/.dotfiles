@@ -30,9 +30,6 @@ EndSection' | sudo tee /etc/X11/xorg.conf.d/50-mouse-accelaration.conf > /dev/nu
 cp /home/ayko/.config/xkb/pwerty /usr/share/X11/xkb/symbols/pwerty
 localectl --no-convert set-x11-keymap pwerty,us grp:win_space_toggle,compose:ralt,altwin:swap_alt_win
 
-# Disable default user directories
-sudo sed -i 's/enabled=True/enabled=False/g' /etc/xdg/user-dirs.conf
-
 # Disable pc speaker
 echo 'blacklist pcspkr
 blacklist snd_pcsp' | sudo tee /etc/modprobe.d/nobeep.conf > /dev/null
