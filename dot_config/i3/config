@@ -50,8 +50,8 @@ tiling_drag modifier titlebar
 bindsym $win+q kill
 
 bindsym $win+t exec --no-startup-id $term
-bindsym $win+e exec --no-startup-id $term lfub
-bindsym $win+Shift+e exec --no-startup-id $term sudo lfub
+bindsym $win+e exec --no-startup-id $term lf
+bindsym $win+Shift+e exec --no-startup-id $term sudo lf
 bindsym $win+v exec --no-startup-id $term nvim
 bindsym $win+c exec --no-startup-id $term nvim ~/.config/i3/config
 bindsym $win+n exec --no-startup-id $term nmtui
