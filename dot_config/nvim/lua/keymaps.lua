@@ -79,7 +79,7 @@ keymap.set("n", "<leader>g", "<CMD>tab G<CR>")
 keymap.set({ "n", "x" },"<Tab>", "<CMD>b#<CR>zz")
 
 -- Toggle virtual text
-keymap.set("n","<leader>d", "<CMD>DiagnosticsToggleVirtualText<CR>")
+keymap.set("n","<leader>d", vim.cmd.DiagnosticsToggleVirtualText)
 
 -- Swap semicolon colon
 keymap.set({ "n", "x" },";", ":")
