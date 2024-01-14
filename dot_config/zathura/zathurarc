@@ -2,6 +2,8 @@ set statusbar-h-padding 0
 set statusbar-v-padding 0
 set selection-clipboard clipboard
 set guioptions none
+map p scroll full-up
+map n scroll full-down
 map u scroll half-up
 map d scroll half-down
 map D toggle_page_mode
@@ -10,7 +12,7 @@ map R rotate
 map K zoom in
 map J zoom out
 map i recolor
-map p print
+map <C-p> print
 
 set default-bg "#080808" #00
 set default-fg "#aaaaaa" #01
