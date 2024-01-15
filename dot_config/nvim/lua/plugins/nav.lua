@@ -25,22 +25,6 @@ return {
         end
     },
     {
-        "nvim-tree/nvim-tree.lua",
-        enabled = false,
-        opts = {
-            sync_root_with_cwd = true,
-            hijack_directories = {
-                enable = true,
-                auto_open = true,
-            },
-            actions = {
-                open_file = {
-                    quit_on_open = true,
-                },
-            },
-        },
-    },
-    {
         'stevearc/oil.nvim',
         config = true,
         opts = {
