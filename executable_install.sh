@@ -34,6 +34,16 @@ echo -e "setxkbmap -layout pwerty,us -option compose:ralt,altwin:swap_alt_win,gr
 echo 'blacklist pcspkr
 blacklist snd_pcsp' | sudo tee /etc/modprobe.d/nobeep.conf > /dev/null
 
+curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+ln -s /home/ayko/.ghcup/bin/* /usr/local/bin/
+
+zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --keep --branch release-v1
+
+chezmoi init https://github.com/aayko/.dotfiles
+chezmoi update
+
+chsh -s /usr/bin/zsh ayko
+
 # Test if on a desktop
 if [[ chassis -eq 3 ]]; then
     # Load desktop monitor config
