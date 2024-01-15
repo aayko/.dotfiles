@@ -28,7 +28,7 @@ EndSection' | sudo tee /etc/X11/xorg.conf.d/50-mouse-accelaration.conf > /dev/nu
 
 # Set custom keyboard layout
 cp /home/ayko/.config/xkb/pwerty /usr/share/X11/xkb/symbols/pwerty
-localectl --no-convert set-x11-keymap pwerty,us grp:win_space_toggle,compose:ralt,altwin:swap_alt_win
+echo -e "setxkbmap -layout pwerty,us -option compose:ralt,altwin:swap_alt_win,grp:win_space_toggle" >> /etc/profile
 
 # Disable pc speaker
 echo 'blacklist pcspkr
@@ -36,16 +36,8 @@ blacklist snd_pcsp' | sudo tee /etc/modprobe.d/nobeep.conf > /dev/null
 
 # Test if on a desktop
 if [[ chassis -eq 3 ]]; then
-    # Turn off second monitor
-    echo -e "\nxrandr --output HDMI-1 --off" >> /usr/share/sddm/scripts/Xsetup
-
     # Load desktop monitor config
     echo -e "\nautorandr --load desktop" >> /etc/profile
-
-    # Disable screen turning off
-    echo 'Section "Monitor"
-        Option "DPMS" "true"
-EndSection' | sudo tee /etc/X11/xorg.conf.d/50-dpms.conf > /dev/null
 else
     # Maps caps lock to escape and ctrl on hold
     yay -S interception-caps2esc  
