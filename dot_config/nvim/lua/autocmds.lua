@@ -27,3 +27,4 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 })
 
 vim.cmd([[ autocmd FileType tex autocmd BufWritePost <buffer> silent make ]])
+vim.cmd([[ autocmd FileType php hi! link @Variable GruvboxBlue ]])
