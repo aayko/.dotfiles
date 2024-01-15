@@ -1,7 +1,10 @@
 return {
     'nvim-treesitter/nvim-treesitter',
     build = ":TSUpdate",
-    dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' },   
+    dependencies = {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        "nvim-treesitter/playground",
+    },
     config = function()
         require("nvim-treesitter.parsers")
         local configs = require("nvim-treesitter.configs")
@@ -21,9 +24,13 @@ return {
                 "json",
                 "markdown",
                 "regex",
+                "java",
+                "php",
+                "haskell",
+                "latex",
             },
             highlight = { enable = true },
-            indent = { enable = true },  
+            indent = { enable = true },
             incremental_selection = {
                 enable = true,
                 keymaps = {
@@ -76,7 +83,7 @@ return {
                         ['<leader>I'] = '@parameter.inner',
                     },
                 },
-            },        
+            },
         })
     end
 }
