@@ -85,7 +85,7 @@ vim.cmd([[
 ]])
 
 -- Number of recent files
-vim.opt.shada = "!,'300,<300,s10,h"
+vim.opt.shada = "!,'300,<50,s10,h"
 
 vim.cmd("set viminfofile=")
 
