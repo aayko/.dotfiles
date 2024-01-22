@@ -91,6 +91,9 @@ return {
     },
     { "mbbill/undotree" },
     { "mechatroner/rainbow_csv" },
-    { "github/copilot.vim" },
+    {
+        "github/copilot.vim",
+        enabled = false,
+    },
 }
 

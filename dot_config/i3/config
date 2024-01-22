@@ -36,7 +36,7 @@ exec --no-startup-id feh --no-fehbg --bg-fill ~/pictures/wallpapers/ghibli/5m5kL
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork --color=0f0f0f -e --indicator --radius 150 --ring-width 19 --line-uses-inside --separator-color=edbdd2 --inside-color=0F0F0F --ring-color=1d2021 --keyhl-color=ebdbb2 --bshl-color=ebdbb2 --insidewrong-color=0f0f0f --ringwrong-color=1d2021 --wrong-color=ebdbb2 --insidever-color=0f0f0f --ringver-color=1d2021 --verif-color=ebdbb2
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork --color=0f0f0f -e --indicator --radius 150 --ring-width 19 --line-uses-inside --separator-color=edbdd2 --inside-color=0F0F0F --ring-color=504945 --keyhl-color=ebdbb2 --bshl-color=ebdbb2 --insidewrong-color=0f0f0f --ringwrong-color=504945 --wrong-color=ebdbb2 --insidever-color=0f0f0f --ringver-color=504945 --verif-color=ebdbb2
 
 
 # Use Mouse+$win to drag floating windows to their wanted position
@@ -135,15 +135,15 @@ mode "resize" {
 bindsym $win+r mode "resize"
 
 smart_borders on
-for_window [floating] border pixel 0
 
+for_window [floating] border pixel 2
 default_border pixel 2
 
-client.focused          #ebdbb2 #ebdbb2 #0f0f0f #ebdbb2   #ebdbb2
-client.unfocused        #0f0f0f #ebdbb2 #0f0f0f #0f0f0f   #0f0f0f
-client.focused_inactive #0f0f0f #ebdbb2 #0f0f0f #0f0f0f   #0f0f0f
-client.urgent           #0f0f0f #ebdbb2 #0f0f0f #0f0f0f   #0f0f0f
-client.placeholder      #0f0f0f #ebdbb2 #0f0f0f #0f0f0f   #0f0f0f
+client.focused          #504945 #504945 #0f0f0f #504945   #504945
+client.unfocused        #0f0f0f #504945 #0f0f0f #0f0f0f   #0f0f0f
+client.focused_inactive #0f0f0f #504945 #0f0f0f #0f0f0f   #0f0f0f
+client.urgent           #0f0f0f #504945 #0f0f0f #0f0f0f   #0f0f0f
+client.placeholder      #0f0f0f #504945 #0f0f0f #0f0f0f   #0f0f0f
 
 for_window [window_role="About"] floating enable
 for_window [window_role="Organizer"] floating enable
