@@ -8,7 +8,7 @@ export XDG_STATE_HOME="$HOME/.local/state"
 export EDITOR="nvim"
 export VISUAL="nvim"
 export TERMINAL="st"
-export BROWSER="chromium"
+export BROWSER="librewolf"
 export MANPAGER="nvim +Man!"
 
 export ZDOTDIR="$XDG_CONFIG_HOME"/zsh

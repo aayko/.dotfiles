@@ -10,6 +10,7 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $term st
+set $browser librewolf
 set $alt Mod1
 set $win Mod4
 
@@ -60,7 +61,7 @@ bindsym $win+b exec --no-startup-id $term bluetuith
 bindsym $win+i exec --no-startup-id polybar-msg cmd toggle
 
 bindsym $win+p exec --no-startup-id powermenu
-bindsym $win+w exec --no-startup-id chromium
+bindsym $win+w exec --no-startup-id $browser
 bindsym $win+d exec --no-startup-id j4-dmenu-desktop
 
 bindsym $win+Space exec --no-startup-id dunstctl history-pop
