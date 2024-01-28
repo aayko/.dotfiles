@@ -4,8 +4,8 @@ local keymap = vim.keymap
 keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { silent = false })
 
 -- Easier movement on wrapped lines
-keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true })
-keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true })
+keymap.set({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true })
+keymap.set({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
 keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 
@@ -54,6 +54,22 @@ keymap.set('n', '-', function ()
     else
         require('oil').open(vim.fn.getcwd())
     end
+end)
+
+-- Open pdf file under cursor in zathura while in oil.nvim
+keymap.set('n', '<C-p>', function()
+    if vim.o.filetype ~= 'oil' then return end
+    local file_name = vim.fn.getline('.'):match('%s+(.+)$')
+
+    if not file_name:match("%.pdf$") then return end
+    
+    local current_dir = require("oil").get_current_dir()
+    local file_path = current_dir .. file_name
+    local escaped_file_path = vim.fn.shellescape(file_path)
+    
+    local job_id = vim.fn.jobstart('zathura ' .. escaped_file_path, {
+        detach = true,
+    })
 end)
 
 -- Move lines
