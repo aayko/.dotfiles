@@ -10,7 +10,7 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $term st
-set $browser librewolf
+set $browser firefox
 set $alt Mod1
 set $win Mod4
 
@@ -145,6 +145,8 @@ client.unfocused        #0f0f0f #504945 #0f0f0f #0f0f0f   #0f0f0f
 client.focused_inactive #0f0f0f #504945 #0f0f0f #0f0f0f   #0f0f0f
 client.urgent           #0f0f0f #504945 #0f0f0f #0f0f0f   #0f0f0f
 client.placeholder      #0f0f0f #504945 #0f0f0f #0f0f0f   #0f0f0f
+
+for_window [window_role="Popup"] border pixel 0
 
 for_window [window_role="About"] floating enable
 for_window [window_role="Organizer"] floating enable
