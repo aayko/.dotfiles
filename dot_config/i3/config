@@ -94,10 +94,10 @@ set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
 
-workspace $ws1 output DP-0
-workspace $ws2 output DP-0
-workspace $ws3 output DP-0
-workspace $ws4 output DP-0
+workspace $ws1 output HDMI-0
+workspace $ws2 output HDMI-0
+workspace $ws3 output HDMI-0
+workspace $ws4 output HDMI-0
 workspace $ws5 output HDMI-1
 
 bindsym $win+1 workspace number $ws1
