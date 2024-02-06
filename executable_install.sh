@@ -33,9 +33,7 @@ ask "Source .profile in /etc/profile?" && {
 
 ask "Set custom keyboard layout?" && {
     sudo cp /home/$USER/.config/xkb/pwerty /usr/share/X11/xkb/symbols/pwerty &&
-    sudo tee -a /etc/profile > /dev/null <<- EOF
-    setxkbmap -layout pwerty,us -option compose:ralt,altwin:swap_alt_win,grp:win_space_toggle
-    EOF
+    localectl set-x11-keymap pwerty "" "" compose:ralt,altwin:swap_lalt_lwin
 }
 
 ask "Faster key repeat rate?" && {
