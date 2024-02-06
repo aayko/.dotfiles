@@ -90,7 +90,10 @@ return {
         end
     },
     { "mbbill/undotree" },
-    { "mechatroner/rainbow_csv" },
+    {
+        "cameron-wags/rainbow_csv.nvim",
+        config = true,
+    },
     {
         "github/copilot.vim",
         enabled = false,
