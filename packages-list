@@ -12,6 +12,7 @@ transmission-cli
 ueberzugpp
 
 blueberry
+bluetuith-bin
 bluez
 bluez-libs
 bluez-tools
@@ -19,7 +20,6 @@ bluez-utils-compat
 
 acpi
 bc
-bluetuith-bin
 brillo
 btop
 chezmoi
@@ -85,10 +85,8 @@ swaylock-effects
 
 1password-beta
 celluloid
-discord
 dragon-drop
 firefox
-speech-dispatcher
 gnome-calculator
 gnome-disk-utility
 gthumb
@@ -101,8 +99,10 @@ obs-studio
 qbittorrent
 scrcpy
 seahorse
+speech-dispatcher
 spotify
 ungoogled-chromium-bin
+vesktop-bin
 zathura
 
 autorandr
