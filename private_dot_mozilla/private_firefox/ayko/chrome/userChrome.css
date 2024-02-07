@@ -174,3 +174,9 @@ fill: currentColor !important; -moz-context-properties: fill !important; list-st
 
 /* Hide search tabs button */
 #alltabs-button { display: none !important; }
+
+/* Hide windows window button */
+toolbarbutton.titlebar-button.titlebar-min { display: none !important; }
+toolbarbutton.titlebar-button.titlebar-max { display: none !important; }
+toolbarbutton.titlebar-button.titlebar-close { display: none !important; }
+toolbarbutton.titlebar-button.titlebar-restore { display: none !important; }
