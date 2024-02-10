@@ -1,0 +1,37 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/bin/bash
+
+install_packages() {
+  for package in "${@}"; do
+    yay -S --needed --noconfirm --sudoloop "${package}"
+  done
+}
+
+# Define the list of packages for each category
+bluetooth_packages={{ range .packages.linux.bluetooth -}}{{ . | quote }} {{ end }}
+basic_packages={{ range .packages.linux.basic -}}{{ . | quote }} {{ end }}
+font_packages={{ range .packages.linux.fonts -}}{{ . | quote }} {{ end }}
+audio_packages={{ range .packages.linux.audio -}}{{ . | quote }} {{ end }}
+sddm_packages={{ range .packages.linux.sddm -}}{{ . | quote }} {{ end }}
+gui_packages={{ range .packages.linux.gui -}}{{ . | quote }} {{ end }}
+wayland_packages={{ range .packages.linux.wayland -}}{{ . | quote }} {{ end }}
+x11_packages={{ range .packages.linux.x11 -}}{{ . | quote }} {{ end }}
+development_packages={{ range .packages.linux.development -}}{{ . | quote }} {{ end }}
+
+# Install the packages for each category
+install_packages ${bluetooth_packages}
+install_packages ${basic_packages}
+install_packages ${font_packages}
+install_packages ${audio_packages}
+install_packages ${sddm_packages}
+install_packages ${gui_packages}
+
+# Check if the display server is Wayland or X11 and install the appropriate packages
+if [[ $XDG_SESSION_TYPE == "wayland" ]]; then
+  install_packages ${wayland_packages}
+elif [[ $XDG_SESSION_TYPE == "x11" ]]; then
+  install_packages ${x11_packages}
+fi
+
+install_packages ${development_packages}
+{{ end -}}
