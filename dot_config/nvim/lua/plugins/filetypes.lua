@@ -1,7 +1,10 @@
 return {
-    'fladson/vim-kitty',
     'VebbNix/lf-vim',
-    'theRealCarneiro/hyprland-vim-syntax',
-    'elkowar/yuck.vim',
-    'Fymyte/rasi.vim',
+    {
+        'alker0/chezmoi.vim',
+        lazy = false,
+        init = function()
+            vim.g['chezmoi#use_tmp_buffer'] = true
+        end,
+    }
 }
