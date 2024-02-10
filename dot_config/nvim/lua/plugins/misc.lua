@@ -57,6 +57,7 @@ return {
         opts = {
             direction = "tab",
             shade_terminals = false,
+            open_mapping = [[<c-\>]],
         },
     },
     {

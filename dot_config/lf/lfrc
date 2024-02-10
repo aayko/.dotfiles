@@ -152,6 +152,7 @@ map gd cd /home/ayko/documents
 map gD cd /home/ayko/downloads
 map gp cd /home/ayko/perso
 map gu cd /home/ayko/uni
+map gr cd /home/ayko/repos
 map gP cd /home/ayko/pictures
 map gv cd /home/ayko/pictures/videos
 map gc cd /home/ayko/.config

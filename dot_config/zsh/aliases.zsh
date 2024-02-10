@@ -4,10 +4,14 @@ alias lf="lfcd"
 alias v="nvim"
 alias se="sudoedit"
 
+alias s="sudo"
+alias please='sudo $(fc -ln -1)'
+
 alias mkdir="mkdir -vp"
 alias rm="rm -v"
 alias cp="cp -v"
 alias mv="mv -v"
+alias diff="colordiff"
 
 alias df="df -h"
 alias free="free -m"
@@ -21,4 +25,4 @@ alias so="clear; exec zsh"
 
 alias n="nix-env"
 
-source $XDG_CONFIG_HOME/zsh/.ssh-web 2>/dev/null
+alias ssh-web="sshfs -o gid=1000,uid=1000,noauto,_netdev,reconnect,allow_other web:/www-dev/ ~/uni/web"

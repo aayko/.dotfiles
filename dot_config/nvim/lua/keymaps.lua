@@ -126,4 +126,4 @@ end)
 keymap.set("n", "<leader>dt", function() require("dapui").toggle() end)
 
 -- Toggle terminal
-keymap.set({ "n", "t" }, "`", vim.cmd.ToggleTerm)
+-- keymap.set({ "n", "t" }, "`", vim.cmd.ToggleTerm)
