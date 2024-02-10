@@ -1,1 +1,19 @@
 README.md
+{{- if (and (eq .chezmoi.os "linux") (not .i3wm)) }}
+.config/polybar/
+.config/i3/
+.config/picom/
+.config/autorandr/
+{{- end }}
+{{- if (and (eq .chezmoi.os "linux") (not .hyprlandwm)) }}
+.config/foot/
+.config/hypr/
+.config/swaylock/
+.config/tofi/
+.config/waybar/
+{{- end }}
+{{- if .headless }}
+.mozilla/
+.config/dunst/
+.config/zathura/
+{{- end }}
