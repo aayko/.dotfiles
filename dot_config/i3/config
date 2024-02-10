@@ -161,6 +161,7 @@ for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
 
 for_window [title="^imv"] floating enable
+for_window [class="Main"] floating enable
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id changevolume up
 bindsym XF86AudioLowerVolume exec --no-startup-id changevolume down 
