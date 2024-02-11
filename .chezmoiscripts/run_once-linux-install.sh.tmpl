@@ -1,3 +1,6 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/bin/bash
+
 if [ ! $(command -v yay) ]; then
 {{-   if ne .chezmoi.username "root" }}
   sudo pacman -S --needed --noconfirm git base-devel
@@ -8,3 +11,5 @@ if [ ! $(command -v yay) ]; then
   rm -rf /tmp/yay
   echo "yay installed"
 fi
+
+{{ end -}}
