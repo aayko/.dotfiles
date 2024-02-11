@@ -18,7 +18,7 @@ if [ ! -f /tmp/dotfiles.lock ]; then
     sudo tee -a /etc/profile > /dev/null <<- EOF
 
     source /home/$USER/.profile 
-{{ if .desktop }}
+{{ if not .desktop }}
     autorandr --load destop
 {{ end }}
     EOF
