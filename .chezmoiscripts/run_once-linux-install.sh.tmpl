@@ -4,12 +4,26 @@
 if [ ! $(command -v yay) ]; then
 {{-   if ne .chezmoi.username "root" }}
   sudo pacman -S --needed --noconfirm git base-devel
+{{-   else }}
+  pacman -S --needed --noconfirm git base-devel
 {{-   end }}
   git clone https://aur.archlinux.org/yay.git /tmp/yay
   cd /tmp/yay
   makepkg -si --noconfirm
   rm -rf /tmp/yay
   echo "yay installed"
+fi
+
+if [ ! -f /tmp/dotfiles.lock ]; then
+    sudo tee -a /etc/profile > /dev/null <<- EOF
+
+    source /home/$USER/.profile 
+{{ if .desktop }}
+    autorandr --load destop
+{{ end }}
+    EOF
+    echo "Sourced .profile in /etc/profile"
+    touch /tmp/dotfiles.lock
 fi
 
 {{ end -}}

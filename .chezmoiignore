@@ -12,7 +12,7 @@ README.md
 .config/tofi/
 .config/waybar/
 {{- end }}
-{{- if .headless }}
+{{- if not .gui }}
 .mozilla/
 .config/dunst/
 .config/zathura/
