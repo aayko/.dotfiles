@@ -23,8 +23,8 @@ font pango:monospace 8
 #font pango:DejaVu Sans Mono 8
 
 exec_always --no-startup-id autotiling
-exec_always --no-startup-id ~/.local/bin/inverse-scroll.sh
-exec_always --no-startup-id ~/.local/bin/tap-to-click.sh
+exec_always --no-startup-id ~/.local/bin/inverse-scroll
+exec_always --no-startup-id ~/.local/bin/tap-to-click
 
 exec --no-startup-id picom
 exec --no-startup-id polybar
@@ -37,9 +37,7 @@ exec --no-startup-id feh --no-fehbg --bg-fill ~/pictures/wallpapers/ghibli/5m5kL
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork --color=0f0f0f -e --indicator --radius 150 --ring-width 19 --line-uses-inside --separator-color=edbdd2 --inside-color=0F0F0F --ring-color=504945 --keyhl-color=ebdbb2 --bshl-color=ebdbb2 --insidewrong-color=0f0f0f --ringwrong-color=504945 --wrong-color=ebdbb2 --insidever-color=0f0f0f --ringver-color=504945 --verif-color=ebdbb2
-
-
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock $(< ~/.config/i3/lock_args)
 # Use Mouse+$win to drag floating windows to their wanted position
 floating_modifier $win
 
@@ -59,6 +57,8 @@ bindsym $win+n exec --no-startup-id $term -e zsh -c 'TERM=xterm-old && nmtui'
 bindsym $win+b exec --no-startup-id $term bluetuith
 
 bindsym $win+i exec --no-startup-id polybar-msg cmd toggle
+
+bindsym $win+m exec --no-startup-id toggle-mute
 
 bindsym $win+p exec --no-startup-id powermenu
 bindsym $win+w exec --no-startup-id $browser
