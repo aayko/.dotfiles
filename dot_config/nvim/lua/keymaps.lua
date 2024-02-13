@@ -3,18 +3,11 @@ local keymap = vim.keymap
 -- Search/Replace pattern for word below cursor
 keymap.set("n", "<leader>r", [[:%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>]], { silent = false })
 
--- Easier movement on wrapped lines
-keymap.set({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true })
-keymap.set({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true })
-
 keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 
 -- Don't leave visual after indent
 keymap.set("x", "<", "<gv")
 keymap.set("x", ">", ">gv")
-
--- Unbind command history
-keymap.set("n", "q:", "<nop>")
 
 -- Remap U to redo
 keymap.set("n", "<S-u>", "<C-r>")
@@ -62,11 +55,11 @@ keymap.set('n', '<C-p>', function()
     local file_name = vim.fn.getline('.'):match('%s+(.+)$')
 
     if not file_name:match("%.pdf$") then return end
-    
+
     local current_dir = require("oil").get_current_dir()
     local file_path = current_dir .. file_name
     local escaped_file_path = vim.fn.shellescape(file_path)
-    
+
     local job_id = vim.fn.jobstart('zathura ' .. escaped_file_path, {
         detach = true,
     })
@@ -100,6 +93,7 @@ keymap.set("n","<leader>d", vim.cmd.DiagnosticsToggleVirtualText)
 -- Swap semicolon colon
 keymap.set({ "n", "x" },";", ":")
 keymap.set({ "n", "x" },":", ";")
+keymap.set("n", "q;", "q:")
 
 -- Indent on paste
 keymap.set("n", "=p", "<Plug>(YankyPutAfterFilter)")
@@ -114,16 +108,10 @@ keymap.set("n", "R", "grr")
 -- Toggle statusline
 keymap.set("n", "<C-g>", function()
     if vim.o.laststatus == 0 then
-        vim.o.laststatus = 2 
+        vim.o.laststatus = 2
         vim.cmd('set statusline="%F %m%=%l,%c"')
     else
         vim.o.laststatus = 0
         vim.cmd("set statusline=%{repeat('─',winwidth('.'))}")
-    end  
+    end
 end)
-
--- Toggle dapui
-keymap.set("n", "<leader>dt", function() require("dapui").toggle() end)
-
--- Toggle terminal
--- keymap.set({ "n", "t" }, "`", vim.cmd.ToggleTerm)
