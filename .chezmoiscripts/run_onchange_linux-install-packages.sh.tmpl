@@ -19,7 +19,7 @@ install {{ range .packages.linux.bluetooth -}}{{ . | quote }} {{ end }}
 {{ if .fonts }}
 install {{ range .packages.linux.fonts -}}{{ . | quote }} {{ end }}
 {{ end }}
-{{ if .gui }}
+{{ if not .server }}
 install {{ range .packages.linux.sddm -}}{{ . | quote }} {{ end }}
 install {{ range .packages.linux.gui -}}{{ . | quote }} {{ end }}
 {{ end }}
@@ -27,9 +27,9 @@ install {{ range .packages.linux.gui -}}{{ . | quote }} {{ end }}
 install {{ range .packages.linux.development -}}{{ . | quote }} {{ end }}
 {{ end }}
 
-{{ if .i3wm }}
+{{ if .x11 }}
     install {{ range .packages.linux.x11 -}}{{ . | quote }} {{ end }}
-{{ else }}
+{{ else if .wayland }}
     install {{ range .packages.linux.wayland -}}{{ . | quote }} {{ end }}
 {{ end }}
 

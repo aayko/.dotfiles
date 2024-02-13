@@ -1,12 +1,8 @@
-{{ if eq .chezmoi.os "linux" -}}
+{{ if eq .chezmoi.os "linux" }}
 #!/bin/bash
 
 if [ ! $(command -v yay) ]; then
-{{-   if ne .chezmoi.username "root" }}
     sudo pacman -S --needed --noconfirm git base-devel
-{{-   else }}
-    pacman -S --needed --noconfirm git base-devel
-{{-   end }}
     git clone https://aur.archlinux.org/yay.git /tmp/yay
     cd /tmp/yay
     makepkg -si --noconfirm
@@ -17,16 +13,22 @@ fi
 if [ ! -f /tmp/dotfiles.lock ]; then
     sudo tee -a /etc/profile > /dev/null <<- EOF
 
-    source /home/$USER/.profile{{ if .desktop }}
-    autorandr --load desktop{{ end }}
+    source /home/$USER/.profile
+    {{- if .desktop }}
+    autorandr --load desktop
+    {{- end }}
     EOF
     echo "Sourced .profile in /etc/profile"
     touch /tmp/dotfiles.lock
 fi
 
-sudo cp /home/"$USER"/.config/xkb/pwerty /usr/share/X11/xkb/symbols/ &&
-localectl set-x11-keymap pwerty "" "" compose:ralt,altwin:swap_lalt_lwin &&
-echo "Keyboard layout set to pwerty"
+layout=$(localectl | grep 'X11 Layout' | awk '{print $3}')
+
+if [[ $layout != "pwerty" ]]; then
+    sudo cp /home/"$USER"/.config/xkb/pwerty /usr/share/X11/xkb/symbols/ &&
+    localectl set-x11-keymap pwerty "" "" compose:ralt,altwin:swap_lalt_lwin &&
+    echo "Keyboard layout set to pwerty"
+fi
 
 {{ if .desktop }}
 sudo tee /etc/X11/xorg.conf.d/10-monitor.conf > /dev/null <<- EOF
@@ -46,16 +48,18 @@ EndSection
 EOF
 echo "Faster key repeat rate set"
 
-sudo tee /etc/X11/xorg.conf.d/50-mouse-accelaration.conf > /dev/null <<- EOF
-Section "InputClass"
-        Identifier "My Mouse"
-        MatchIsPointer "yes"
-        Option "AccelerationProfile" "-1"
-        Option "AccelerationScheme" "none"
-        Option "AccelSpeed" "-1"
-EndSection
-EOF
-echo "Mouse acceleration disabled"
+if [ ! -f /etc/X11/xorg.conf.d/50-mouse-accelaration.conf ]; then
+	sudo tee /etc/X11/xorg.conf.d/50-mouse-accelaration.conf > /dev/null <<- EOF
+	Section "InputClass"
+	        Identifier "My Mouse"
+	        MatchIsPointer "yes"
+	        Option "AccelerationProfile" "-1"
+	        Option "AccelerationScheme" "none"
+	        Option "AccelSpeed" "-1"
+	EndSection
+	EOF
+	echo "Mouse acceleration disabled"
+fi
 
 {{ if .laptop }}
 sudo tee /etc/modprobe.d/nobeep.conf > /dev/null <<- EOF
@@ -94,8 +98,10 @@ sudo ln -s /home/"$USER"/.ghcup/bin/* /usr/local/bin/ &&
 echo "Ghcup installed"
 {{ end }}
 
-zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --keep --branch release-v1 &&
-echo "Zap installed"
-chsh -s /usr/bin/zsh "$USER"
+if [ ! $(command -v zap) ]; then
+    zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --keep --branch release-v1 &&
+    echo "Zap installed"
+    chsh -s /usr/bin/zsh "$USER"
+fi
 
-{{ end -}}
+{{- end }}
