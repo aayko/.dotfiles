@@ -25,4 +25,6 @@ alias so="clear; exec zsh"
 
 alias n="nix-env"
 
+alias todo="nvim ~/.todo/"
+
 alias ssh-web="sshfs -o gid=1000,uid=1000,noauto,_netdev,reconnect,allow_other,auto_cache,ServerAliveInterval=5,ServerAliveCountMax=3 web:/www-dev/ ~/uni/web"
