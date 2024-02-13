@@ -58,6 +58,11 @@ cmd restore_trash ${{
     trash-restore
 }}
 
+cmd su ${{
+    lf -remote "send $id quit" &&
+    su -c "lf"
+}}
+
 cmd zip push :$zip<space>-r
 cmd tar push :$tar<space>cvf<space>.tar<left><left><left><left>
 
@@ -95,6 +100,7 @@ map t toggle
 map <space> :toggle; down
 map v invert
 map s invert-below
+map S su
 map u unselect
 
 map R :source /home/ayko/.config/lf/lfrc; reload
