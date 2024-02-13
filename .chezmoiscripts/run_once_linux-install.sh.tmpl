@@ -1,0 +1,133 @@
+{{- if eq .chezmoi.os "linux" -}}
+#!/usr/bin/bash
+set -eo pipefail
+
+if ! command -v yay > /dev/null; then
+    sudo pacman -S --needed --noconfirm git base-devel
+    git clone https://aur.archlinux.org/yay.git /tmp/yay
+    cd /tmp/yay
+    makepkg -si --noconfirm
+    rm -rf /tmp/yay
+    echo "yay installed"
+fi
+
+./linux-install-packages.sh
+
+if [ ! -f /tmp/dotfiles.lock ]; then
+	sudo tee -a /etc/profile > /dev/null <<- EOF
+
+	source /home/$USER/.profile
+	{{- if .desktop }}
+	autorandr --load desktop
+	{{- end }}
+	EOF
+	echo "Sourced .profile in /etc/profile"
+	touch /tmp/dotfiles.lock
+fi
+
+keyboard_layout=$(localectl | grep 'X11 Layout' | awk '{print $3}')
+if [[ $keyboard_layout != "pwerty" ]]; then
+    mkdir -p /home/"$USER"/.config/xkb/
+    sudo cp /home/"$USER"/.config/xkb/pwerty /usr/share/X11/xkb/symbols/
+    localectl set-x11-keymap pwerty "" "" compose:ralt,altwin:swap_lalt_lwin
+    echo "Keyboard layout set to pwerty"
+fi
+
+sudo mkdir -p /etc/X11/xorg.conf.d/
+{{ if .desktop -}}
+if [ ! -f /etc/X11/xorg.conf.d/10-monitor.conf ]; then
+	sudo tee /etc/X11/xorg.conf.d/10-monitor.conf > /dev/null <<- EOF
+	Section "Extensions"
+	    Option "DPMS" "Disable"
+	EndSection
+	EOF
+	echo "Disabled DPMS"
+fi
+{{- end }}
+
+if [ ! -f /etc/X11/xorg.conf.d/50-key-repeat.conf ]; then
+	sudo tee /etc/X11/xorg.conf.d/50-key-repeat.conf > /dev/null <<- EOF
+	Section "InputClass"
+	        Identifier "system-keyboard"
+	        MatchIsKeyboard "on"
+	        Option "AutoRepeat" "200 30"
+	EndSection
+	EOF
+	echo "Faster key repeat rate set"
+fi
+
+if [ ! -f /etc/X11/xorg.conf.d/50-mouse-acceleration.conf ]; then
+	sudo tee /etc/X11/xorg.conf.d/50-mouse-acceleration.conf > /dev/null <<- EOF
+	Section "InputClass"
+	        Identifier "My Mouse"
+	        MatchIsPointer "yes"
+	        Option "AccelerationProfile" "-1"
+	        Option "AccelerationScheme" "none"
+	        Option "AccelSpeed" "-1"
+	EndSection
+	EOF
+	echo "Mouse acceleration disabled"
+fi
+
+{{ if .laptop -}}
+if [ ! -f /etc/modprobe.d/nobeep.conf ]; then
+	sudo tee /etc/modprobe.d/nobeep.conf > /dev/null <<- EOF
+	blacklist pcspkr
+	blacklist snd_pcspsudo
+	EOF
+	echo "Laptop speaker disabled"
+fi
+
+if [[ ! $(yay -Q $package &> /dev/null) ]]; then
+    yay -S i3lock-color --noconfirm --sudoloop
+fi
+
+if [[ ! $(yay -Q $package &> /dev/null) ]]; then
+    yay -S interception-caps2esc --noconfirm --sudoloop
+fi
+if [ ! -f /etc/udevmon.yaml ]; then
+	sudo tee /etc/udevmon.yaml > /dev/null <<- EOF
+	- JOB: "intercept -g $DEVNODE | caps2esc | uinput -d $DEVNODE"
+	  DEVICE:
+	    EVENTS:
+	      EV_KEY: [KEY_CAPSLOCK, KEY_ESC]
+	EOF
+fi
+if [ ! -f /etc/systemd/system/udevmon.service ]; then
+	sudo tee /etc/systemd/system/udevmon.service > /dev/null <<- EOF
+	[Unit]
+	Description=udevmon
+	Wants=systemd-udev-settle.service
+	After=systemd-udev-settle.service
+
+	[Service]
+	ExecStart=/usr/bin/nice -n -20 /usr/local/bin/udevmon -c /etc/udevmon.yaml
+
+	[Install]
+	WantedBy=multi-user.target
+	EOF
+	systemctl enable udevmon.service --now
+	echo "caps2esc installed and enabled"
+fi
+{{- end }}
+
+{{ if .development -}}
+if [[ $(rustup default 2>&1) == *"no default"* ]]; then
+    rustup default stable
+    echo "Default rust toolchain set to stable"
+fi
+
+if ! command -v ghcup > /dev/null; then
+    curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+    sudo ln -s /home/"$USER"/.ghcup/bin/* /usr/local/bin/
+    echo "Ghcup installed"
+fi
+{{- end }}
+
+if [[ ! -d /home/$USER/.local/share/zap ]]; then
+    zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --keep --branch release-v1
+    echo "Zap installed"
+    chsh -s /usr/bin/zsh "$USER"
+fi
+
+{{- end }}

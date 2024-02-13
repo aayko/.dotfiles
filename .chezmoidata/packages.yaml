@@ -111,7 +111,6 @@ packages:
       - 'autorandr'
       - 'autotiling'
       - 'feh'
-      - 'i3lock-color'
       - 'i3-wm'
       - 'j4-dmenu-desktop'
       - 'maim'
