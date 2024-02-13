@@ -5,9 +5,9 @@ encryption = "age"
     audio = true
     bluetooth = true
     development = true
-    desktop = false
-    laptop = true
-    server = false
+    desktop = {{ if eq .chezmoi.hostname "archpc" }}true{{ else }}false{{ end }}
+    laptop = {{ if eq .chezmoi.hostname "archlaptop" }}true{{ else }}false{{ end }}
+    server = {{ if eq .chezmoi.hostname "debian" }}true{{ else }}false{{ end }}
     fonts = true
 [age]
     identity = "/home/ayko/.age/key"
