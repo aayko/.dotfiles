@@ -74,4 +74,5 @@
     "terminal.external.linuxExec": "foot",
     "explorer.confirmDelete": false,
     "redhat.telemetry.enabled": false,
+    "editor.autoClosingBrackets": "never",
 }
