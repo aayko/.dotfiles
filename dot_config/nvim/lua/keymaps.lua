@@ -1,7 +1,7 @@
 local keymap = vim.keymap
 
 -- Search/Replace pattern for word below cursor
-keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { silent = false })
+keymap.set("n", "<leader>r", [[:%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>]], { silent = false })
 
 -- Easier movement on wrapped lines
 keymap.set({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true })
@@ -77,7 +77,7 @@ keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
 -- Paste without losing clipboard
-keymap.set("x", "<leader>p", "\"_dP")
+keymap.set("x", "<leader>c", "\"_dP")
 
 keymap.set("n", "c", "\"_c")
 keymap.set("n", "C", "\"_C")
