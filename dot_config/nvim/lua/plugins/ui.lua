@@ -1,5 +1,4 @@
 return {
-    "nvim-treesitter/nvim-treesitter-context",
     {
         'norcalli/nvim-colorizer.lua',
         config = function()
@@ -34,12 +33,19 @@ return {
                 changedelete = { text = '~' },
             },
             on_attach = function(bufnr)
-                vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk,
-                    { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
-                vim.keymap.set('n', '<leader>gn', require('gitsigns').next_hunk,
-                    { buffer = bufnr, desc = '[G]o to [N]ext Hunk' })
-                vim.keymap.set('n', '<leader>ph', require('gitsigns').preview_hunk,
-                    { buffer = bufnr, desc = '[P]review [H]unk' })
+                local gitsigns = require("gitsigns");
+
+                vim.keymap.set('n', '[h', function()
+                    gitsigns.prev_hunk({ buffer = bufnr })
+                    gitsigns.preview_hunk({ buffer = bufnr })
+                end, { buffer = bufnr })
+
+                vim.keymap.set('n', ']h', function()
+                    gitsigns.next_hunk({ buffer = bufnr })
+                    gitsigns.preview_hunk({ buffer = bufnr })
+                end, { buffer = bufnr })
+
+                vim.keymap.set('n', 'gh', gitsigns.preview_hunk, { buffer = bufnr })
             end,
         },
     },

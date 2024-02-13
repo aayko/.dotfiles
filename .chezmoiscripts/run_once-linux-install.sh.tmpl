@@ -39,14 +39,16 @@ EOF
 echo "Disabled DPMS"
 {{ end }}
 
-sudo tee /etc/X11/xorg.conf.d/50-key-repeat.conf > /dev/null <<- EOF
-Section "InputClass"
-        Identifier "system-keyboard"
-        MatchIsKeyboard "on"
-        Option "AutoRepeat" "200 30"
-EndSection
-EOF
-echo "Faster key repeat rate set"
+if [ ! -f /etc/X11/xorg.conf.d/50-key-repeat.conf ]; then
+    sudo tee /etc/X11/xorg.conf.d/50-key-repeat.conf > /dev/null <<- EOF
+    Section "InputClass"
+            Identifier "system-keyboard"
+            MatchIsKeyboard "on"
+            Option "AutoRepeat" "200 30"
+    EndSection
+    EOF
+    echo "Faster key repeat rate set"
+fi
 
 if [ ! -f /etc/X11/xorg.conf.d/50-mouse-accelaration.conf ]; then
 	sudo tee /etc/X11/xorg.conf.d/50-mouse-accelaration.conf > /dev/null <<- EOF
