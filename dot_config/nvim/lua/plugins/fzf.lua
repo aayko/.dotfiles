@@ -3,7 +3,7 @@ return {
     enabled = true,
     cmd = 'FzfLua',
     keys = {
-        { '<leader>p<', '<CMD>FzfLua resume<CR>',                    desc = 'Resume last command' },
+        { '<leader>pp', '<CMD>FzfLua resume<CR>',                    desc = 'Resume last command' },
         {
             '<leader>pb',
             function()
