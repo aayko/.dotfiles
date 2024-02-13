@@ -28,4 +28,4 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 
 vim.cmd([[ autocmd FileType tex autocmd BufWritePost <buffer> silent make ]])
 vim.cmd([[ autocmd FileType php hi! link @Variable GruvboxBlue ]])
-vim.cmd([[ autocmd VimEnter * if luaeval('require("oil").get_current_dir()') == '/home/ayko/.todo/' | call luaeval('require("oil").toggle_hidden()') | endif ]])
+vim.cmd([[ autocmd VimEnter * if luaeval('require("oil").get_current_dir()') == '/home/ayko/notes/' | call luaeval('require("oil").toggle_hidden()') | endif ]])

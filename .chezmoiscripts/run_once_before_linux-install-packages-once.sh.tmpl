@@ -1,0 +1,36 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/bin/bash
+
+install() {
+  for package in "${@}"; do
+    if ! yay -Q "$package" &> /dev/null; then
+      yay -S --noconfirm --sudoloop "$package"
+    fi
+  done
+}
+
+install {{ range .packages.linux.basic -}}{{ . | quote }} {{ end }}
+{{ if .bluetooth }}
+install {{ range .packages.linux.bluetooth -}}{{ . | quote }} {{ end }}
+{{ end }}
+{{ if .audio }}
+    install {{ range .packages.linux.audio -}}{{ . | quote }} {{ end }}
+{{ end }}
+{{ if .fonts }}
+install {{ range .packages.linux.fonts -}}{{ . | quote }} {{ end }}
+{{ end }}
+{{ if not .server }}
+install {{ range .packages.linux.sddm -}}{{ . | quote }} {{ end }}
+install {{ range .packages.linux.gui -}}{{ . | quote }} {{ end }}
+{{ end }}
+{{ if .development }}
+install {{ range .packages.linux.development -}}{{ . | quote }} {{ end }}
+{{ end }}
+
+{{ if .x11 }}
+    install {{ range .packages.linux.x11 -}}{{ . | quote }} {{ end }}
+{{ else if .wayland }}
+    install {{ range .packages.linux.wayland -}}{{ . | quote }} {{ end }}
+{{ end }}
+
+{{ end -}}
