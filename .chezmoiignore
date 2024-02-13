@@ -17,7 +17,7 @@ README.md
 .config/waybar/
 {{ end }}
 
-{{ if not .server }}
+{{ if .server }}
 .mozilla/
 .config/dunst/
 .config/zathura/
