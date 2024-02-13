@@ -62,25 +62,6 @@ cmd su ${{
     su -c "lf"
 }}
 
-cmd load_hidden ${{
-    if [ -f /tmp/lf_hidden ]; then
-        lf -remote 'send set hidden'
-    else
-        lf -remote 'send set nohidden'
-    fi
-}}
-load_hidden
-
-cmd toggle_hidden ${{
-    if [ -f /tmp/lf_hidden ]; then
-        rm -f /tmp/lf_hidden
-        lf -remote 'send set nohidden'
-    else
-        touch /tmp/lf_hidden
-        lf -remote 'send set hidden'
-    fi
-}}
-
 cmd zip push :$zip<space>-r
 cmd tar push :$tar<space>cvf<space>.tar<left><left><left><left>
 
@@ -98,7 +79,7 @@ map ? search-back
 map n search-next
 map N search-prev
 
-map . toggle_hidden
+map . set hidden!
 map ` !true
 
 map A :rename; cmd-end
