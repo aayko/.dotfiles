@@ -3,9 +3,9 @@
 send_notification() {
 	volume=$(pamixer --get-volume)
 
-    if [ "$volume" -gt 70 ]; then
+    if [[ $volume -gt 70 ]]; then
         icon="high"
-    elif [ "$volume" -gt 40 ]; then
+    elif [[ $volume -gt 40 ]]; then
         icon="medium"
     else
         icon="low"
@@ -26,7 +26,7 @@ up)
 	;;
 down)
     pamixer -d 5
-    if [ "$(pamixer --get-volume)" -lt 6 ]; then
+    if [[ $(pamixer --get-volume) -lt 6 ]]; then
         pamixer -m
         send_muted
     else
