@@ -67,7 +67,11 @@ function set_prompt {
         git_info="%F{green}$branch_name$dirty_status "
     fi
 
-    PS1="%~ $git_info%f> "
+    if [ -n "$VIMRUNTIME" ]; then
+        PS1="%~ $git_info%f%% "
+    else
+        PS1="%~ $git_info%f> "
+    fi
 }
 
 precmd() {

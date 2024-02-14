@@ -32,7 +32,7 @@ return {
     {
         'akinsho/toggleterm.nvim',
         opts = {
-            direction = "float",
+            direction = "tab",
             shade_terminals = false,
             open_mapping = [[<c-\>]],
         },
