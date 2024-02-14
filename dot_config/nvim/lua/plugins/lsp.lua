@@ -51,6 +51,11 @@ return {
                     vim_item.abbr = vim_item.abbr:match("[^(]+")
                     vim_item.menu = nil
 
+                    local source = entry.source.name
+                    if source == "luasnip" or source == "nvim_lsp" then
+                        vim_item.dup = 0
+                    end
+
                     return vim_item
                 end
             },
