@@ -1,0 +1,18 @@
+--nofork
+--color=0f0f0f
+-e
+--indicator
+--radius 150
+--ring-width 19
+--line-uses-inside
+--separator-color=edbdd2
+--inside-color=0F0F0F
+--ring-color=504945
+--keyhl-color=ebdbb2
+--bshl-color=ebdbb2
+--insidewrong-color=0f0f0f
+--ringwrong-color=504945
+--wrong-color=ebdbb2
+--insidever-color=0f0f0f
+--ringver-color=504945
+--verif-color=ebdbb2
