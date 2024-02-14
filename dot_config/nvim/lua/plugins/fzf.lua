@@ -69,14 +69,14 @@ return {
                 },
             },
             winopts = {
-                height = 0.7,
-                width = 0.55,
+                height = 0.9,
+                width = 0.75,
                 preview = {
                     scrollbar = false,
                     layout = 'vertical',
-                    vertical = 'up:40%',
+                    vertical = 'up:50%',
                 },
-                border = { '┌', '─', '┐', '│', '┘', '─', '└', '│' },
+                border = "single",
             },
             global_git_icons = false,
             -- Configuration for specific commands.
