@@ -54,6 +54,7 @@ bindsym $win+Shift+e exec --no-startup-id $term sudo lf
 bindsym $win+v exec --no-startup-id $term nvim
 bindsym $win+c exec --no-startup-id $term nvim ~/.config/i3/config
 bindsym $win+n exec --no-startup-id $term -e zsh -c 'TERM=xterm-old && nmtui'
+bindsym $win+s exec --no-startup-id $term ncspot
 bindsym $win+b exec --no-startup-id $term bluetuith
 
 bindsym $win+i exec --no-startup-id polybar-msg cmd toggle
@@ -94,11 +95,11 @@ set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
 
-workspace $ws1 output HDMI-0
-workspace $ws2 output HDMI-0
-workspace $ws3 output HDMI-0
-workspace $ws4 output HDMI-0
-workspace $ws5 output HDMI-1
+workspace $ws1 output {{ if .desktop -}}HDMI-1{{- else -}}eDP-1{{- end }}
+workspace $ws2 output {{ if .desktop -}}HDMI-1{{- else -}}eDP-1{{- end }}
+workspace $ws3 output {{ if .desktop -}}HDMI-1{{- else -}}eDP-1{{- end }}
+workspace $ws4 output {{ if .desktop -}}HDMI-1{{- else -}}eDP-1{{- end }}
+workspace $ws5 output {{ if .desktop -}}HDMI-0{{- else -}}eDP-1{{- end }}
 
 bindsym $win+1 workspace number $ws1
 bindsym $win+2 workspace number $ws2

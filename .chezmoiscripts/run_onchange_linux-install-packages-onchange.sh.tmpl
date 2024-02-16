@@ -20,7 +20,6 @@ install {{ range .packages.linux.bluetooth -}}{{ . | quote }} {{ end }}
 install {{ range .packages.linux.fonts -}}{{ . | quote }} {{ end }}
 {{ end }}
 {{ if not .server }}
-install {{ range .packages.linux.sddm -}}{{ . | quote }} {{ end }}
 install {{ range .packages.linux.gui -}}{{ . | quote }} {{ end }}
 {{ end }}
 {{ if .development }}

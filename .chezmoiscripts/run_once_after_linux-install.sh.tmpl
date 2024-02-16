@@ -17,11 +17,25 @@ if [[ ! -f /etc/zsh/zshenv ]]; then
     EOF
 fi
 
-if [ ! -L /etc/ly/config.ini ]; then
+if [ ! -L /etc/ly/config.ini ] && [ -f /etc/ly/config.ini ]; then
     [ -f /etc/ly/xsetup.sh ] && sudo rm -f /etc/ly/xsetup.sh
     [ -f /etc/ly/config.ini ] && sudo rm -f /etc/ly/config.ini
     sudo ln -s /home/"$USER"/.config/ly/xsetup.sh /etc/ly/xsetup.sh
     sudo ln -s /home/"$USER"/.config/ly/config.ini /etc/ly/config.ini
+    sudo tee /etc/pam.d/ly > /dev/null <<- EOF
+    #%PAM-1.0
+
+    auth       include      login
+    auth       optional     pam_gnome_keyring.so
+    account    include      login
+    password   include      login
+    session    include      login
+    session    optional     pam_gnome_keyring.so auto_start
+    EOF
+    if ! systemctl is-enabled --quiet ly.service; then
+        systemctl enable ly.service
+    fi
+    echo "Ly setup and enabled"
 fi
 
 keyboard_layout=$(localectl | grep 'X11 Layout' | awk '{print $3}')
@@ -34,6 +48,13 @@ fi
 
 sudo mkdir -p /etc/X11/xorg.conf.d/
 {{ if .desktop -}}
+if [ ! -f /etc/modprobe.d/disable-bluetooth.conf ]; then
+	sudo tee /etc/modprobe.d/disable-bluetooth.conf > /dev/null <<- EOF
+	blacklist btusb
+	EOF
+	echo "Bluetooth module disabled"
+fi
+
 if [ ! -f /etc/X11/xorg.conf.d/10-monitor.conf ]; then
 	sudo tee /etc/X11/xorg.conf.d/10-monitor.conf > /dev/null <<- EOF
 	Section "Extensions"
