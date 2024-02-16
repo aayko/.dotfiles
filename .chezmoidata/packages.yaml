@@ -60,13 +60,6 @@ packages:
       - 'pipewire-pulse'
       - 'playerctl'
       - 'wireplumber'
-    sddm:
-      - 'qt5-graphicaleffects'
-      - 'qt5-quickcontrols'
-      - 'qt5-quickcontrols2'
-      - 'qt6-declarative'
-      - 'sddm'
-      - 'snappy'
     gui:
       - '1password'
       - 'atool'
@@ -86,6 +79,7 @@ packages:
       - 'gthumb'
       - 'gtk-engine-murrine'
       - 'imv'
+      - 'ly'
       - 'mdcat'
       - 'melonds-bin'
       - 'mimeo'

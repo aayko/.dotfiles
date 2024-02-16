@@ -11,7 +11,6 @@ export TERMINAL="st"
 export BROWSER="librewolf"
 export MANPAGER="nvim +Man!"
 
-export ZDOTDIR="$XDG_CONFIG_HOME"/zsh
 export GTK_THEME="Colloid-Grey-Dark:dark"
 export GTK_CSD=0
 

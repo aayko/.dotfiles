@@ -11,6 +11,19 @@ if ! command -v yay > /dev/null; then
     echo "yay installed"
 fi
 
+if [[ ! -f /etc/zsh/zshenv ]]; then
+    sudo tee /etc/zsh/zshenv > /dev/null <<- EOF
+    export ZDOTDIR="/home/$USER/.config/zsh"
+    EOF
+fi
+
+if [ ! -L /etc/ly/config.ini ]; then
+    [ -f /etc/ly/xsetup.sh ] && sudo rm -f /etc/ly/xsetup.sh
+    [ -f /etc/ly/config.ini ] && sudo rm -f /etc/ly/config.ini
+    sudo ln -s /home/"$USER"/.config/ly/xsetup.sh /etc/ly/xsetup.sh
+    sudo ln -s /home/"$USER"/.config/ly/config.ini /etc/ly/config.ini
+fi
+
 keyboard_layout=$(localectl | grep 'X11 Layout' | awk '{print $3}')
 if [[ $keyboard_layout != "pwerty" ]]; then
     mkdir -p /home/"$USER"/.config/xkb/
