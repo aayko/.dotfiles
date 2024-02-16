@@ -1,0 +1,25 @@
+repeat = "playlist"
+shuffle = true
+volnorm = true
+[keybindings]
+    playpause = "XF86AudioPlay"
+    previous = "XF86AudioPrev"
+    next = "XF86AudioNext"
+[theme]
+    background = "#0F0F0F"
+    primary = "light white"
+    secondary = "light #0F0F0F"
+    title = "green"
+    playing = "green"
+    playing_selected = "light green"
+    playing_bg = "#0F0F0F"
+    highlight = "light white"
+    highlight_bg = "#484848"
+    error = "light white"
+    error_bg = "red"
+    statusbar = "#0F0F0F"
+    statusbar_progress = "green"
+    statusbar_bg = "green"
+    cmdline = "light white"
+    cmdline_bg = "#0F0F0F"
+    search_match = "light red"
