@@ -12,33 +12,33 @@ if ! command -v yay > /dev/null; then
 fi
 
 if [[ ! -f /etc/zsh/zshenv ]]; then
-    sudo tee /etc/zsh/zshenv > /dev/null <<- EOF
-    export ZDOTDIR="/home/$USER/.config/zsh"
-    EOF
+	sudo tee /etc/zsh/zshenv > /dev/null <<- EOF
+	export ZDOTDIR="/home/$USER/.config/zsh"
+	EOF
 fi
 
 if [ ! -L /etc/ly/config.ini ] && [ -f /etc/ly/config.ini ]; then
-    [ -f /etc/ly/xsetup.sh ] && sudo rm -f /etc/ly/xsetup.sh
-    [ -f /etc/ly/config.ini ] && sudo rm -f /etc/ly/config.ini
-    sudo ln -s /home/"$USER"/.config/ly/xsetup.sh /etc/ly/xsetup.sh
-    sudo ln -s /home/"$USER"/.config/ly/config.ini /etc/ly/config.ini
-    sudo tee /etc/pam.d/ly > /dev/null <<- EOF
-    #%PAM-1.0
+	[ -f /etc/ly/xsetup.sh ] && sudo rm -f /etc/ly/xsetup.sh
+	[ -f /etc/ly/config.ini ] && sudo rm -f /etc/ly/config.ini
+	sudo ln -s /home/"$USER"/.config/ly/xsetup.sh /etc/ly/xsetup.sh
+	sudo ln -s /home/"$USER"/.config/ly/config.ini /etc/ly/config.ini
+	sudo tee /etc/pam.d/ly > /dev/null <<- EOF
+	#%PAM-1.0
 
-    auth       include      login
-    auth       optional     pam_gnome_keyring.so
-    account    include      login
-    password   include      login
-    session    include      login
-    session    optional     pam_gnome_keyring.so auto_start
-    EOF
-    if ! systemctl is-enabled --quiet ly.service; then
-        systemctl enable ly.service
-    fi
-    echo "Ly setup and enabled"
+	auth       include      login
+	auth       optional     pam_gnome_keyring.so
+	account    include      login
+	password   include      login
+	session    include      login
+	session    optional     pam_gnome_keyring.so auto_start
+	EOF
+	if ! systemctl is-enabled --quiet ly.service; then
+	    systemctl enable ly.service
+	fi
+	echo "Ly setup and enabled"
 fi
 
-keyboard_layout=$(localectl | grep 'X11 Layout' | awk '{print $3}')
+keyboard_layout=$(setxkbmap -query | grep layout | awk '{print $2}')
 if [[ $keyboard_layout != "pwerty" ]]; then
     mkdir -p /home/"$USER"/.config/xkb/
     sudo cp /home/"$USER"/.config/xkb/pwerty /usr/share/X11/xkb/symbols/
@@ -98,11 +98,11 @@ if [ ! -f /etc/modprobe.d/nobeep.conf ]; then
 	echo "Laptop speaker disabled"
 fi
 
-if [[ ! $(yay -Q $package &> /dev/null) ]]; then
+if [[ ! $(yay -Q i3lock-color &> /dev/null) ]]; then
     yay -S i3lock-color --noconfirm --sudoloop
 fi
 
-if [[ ! $(yay -Q $package &> /dev/null) ]]; then
+if [[ ! $(yay -Q interception-caps2esc &> /dev/null) ]]; then
     yay -S interception-caps2esc --noconfirm --sudoloop
 fi
 if [ ! -f /etc/udevmon.yaml ]; then
