@@ -98,13 +98,15 @@ if [ ! -f /etc/modprobe.d/nobeep.conf ]; then
 	echo "Laptop speaker disabled"
 fi
 
-if [[ ! $(yay -Q i3lock-color &> /dev/null) ]]; then
-    yay -S i3lock-color --noconfirm --sudoloop
+
+if ! yay -Q i3lock-color &> /dev/null; then
+    yay -S --noconfirm --sudoloop i3lock-color
 fi
 
-if [[ ! $(yay -Q interception-caps2esc &> /dev/null) ]]; then
-    yay -S interception-caps2esc --noconfirm --sudoloop
+if ! yay -Q interception-caps2esc &> /dev/null; then
+    yay -S --noconfirm --sudoloop interception-caps2esc
 fi
+
 if [ ! -f /etc/udevmon.yaml ]; then
 	sudo tee /etc/udevmon.yaml > /dev/null <<- EOF
 	- JOB: "intercept -g $DEVNODE | caps2esc | uinput -d $DEVNODE"
