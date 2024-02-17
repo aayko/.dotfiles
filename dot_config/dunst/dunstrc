@@ -43,7 +43,7 @@
     sort = yes
 
     ### Text ###
-    font = Cartograph CF 16
+    font = Cartograph CF 15
 
     line_height = 6
 
