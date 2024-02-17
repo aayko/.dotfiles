@@ -104,6 +104,7 @@ packages:
     x11:
       - 'autorandr'
       - 'autotiling'
+      - 'betterlockscreen'
       - 'feh'
       - 'i3-wm'
       - 'j4-dmenu-desktop'
@@ -147,3 +148,4 @@ packages:
     laptop:
       - 'acpi'
       - 'brillo'
+      - 'interception-caps2esc'

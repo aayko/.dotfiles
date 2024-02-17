@@ -37,7 +37,9 @@ exec --no-startup-id feh --no-fehbg --bg-fill ~/pictures/wallpapers/ghibli/5m5kL
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock $(< ~/.config/i3/lock_args)
+{{ if .laptop -}}
+exec --no-startup-id xss-lock --transfer-sleep-lock -- betterlockscreen -l
+{{- end }}
 # Use Mouse+$win to drag floating windows to their wanted position
 floating_modifier $win
 
