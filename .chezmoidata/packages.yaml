@@ -141,8 +141,6 @@ packages:
       - 'dia-git'
       - 'nodejs'
       - 'valgrind'
-      - 'gdb'
-      - 'valgrind'
       - 'jdk-openjdk'
       - 'php'
       - 'texlive-bibtexextra'
