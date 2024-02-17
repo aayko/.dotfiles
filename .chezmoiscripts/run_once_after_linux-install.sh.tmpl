@@ -2,19 +2,26 @@
 #!/usr/bin/bash
 set -eo pipefail
 
-if ! command -v yay > /dev/null; then
-    sudo pacman -S --needed --noconfirm git base-devel
-    git clone https://aur.archlinux.org/yay.git /tmp/yay
-    cd /tmp/yay
-    makepkg -si --noconfirm
-    rm -rf /tmp/yay
-    echo "yay installed"
-fi
-
 if [[ ! -f /etc/zsh/zshenv ]]; then
 	sudo tee /etc/zsh/zshenv > /dev/null <<- EOF
 	export ZDOTDIR="/home/$USER/.config/zsh"
 	EOF
+fi
+
+if [ ! -f /usr/local/bin/st ]; then
+    git clone https://github.com/aayko/st /tmp/st
+    cd /tmp/st
+    sudo make install
+    rm -rf /tmp/st
+    echo "st installed"
+fi
+
+if [ ! -f /usr/local/bin/dmenu ]; then
+    git clone https://github.com/aayko/dmenu /tmp/dmenu
+    cd /tmp/dmenu
+    sudo make install
+    rm -rf /tmp/dmenu
+    echo "dmenu installed"
 fi
 
 if [ ! -L /etc/ly/config.ini ] && [ -f /etc/ly/config.ini ]; then
@@ -90,6 +97,10 @@ if [ ! -f /etc/X11/xorg.conf.d/50-mouse-acceleration.conf ]; then
 fi
 
 {{ if .laptop -}}
+if ! systemctl is-enabled --quiet auto-cpufreq.service; then
+    systemctl enable --now auto-cpufreq.service
+fi
+
 if [ ! -f /etc/modprobe.d/nobeep.conf ]; then
 	sudo tee /etc/modprobe.d/nobeep.conf > /dev/null <<- EOF
 	blacklist pcspkr

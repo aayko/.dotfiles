@@ -1,6 +1,15 @@
 {{ if eq .chezmoi.os "linux" -}}
 #!/bin/bash
 
+if ! command -v yay > /dev/null; then
+    sudo pacman -S --needed --noconfirm git base-devel
+    git clone https://aur.archlinux.org/yay.git /tmp/yay
+    cd /tmp/yay
+    makepkg -si --noconfirm
+    rm -rf /tmp/yay
+    echo "yay installed"
+fi
+
 install() {
   for package in "${@}"; do
     if ! yay -Q "$package" &> /dev/null; then

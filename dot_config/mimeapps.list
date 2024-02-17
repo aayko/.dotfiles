@@ -1,23 +1,23 @@
 [Default Applications]
-application/pdf=org.pwmt.zathura.desktop;
-application/x-ipynb+json=codium.desktop;
-image/apng=imv.desktop;
-image/vnd.microsoft.icon=imv.desktop;
-image/jpeg=imv.desktop;
-image/webp=imv.desktop;
-video/mp4=io.github.celluloid_player.Celluloid.desktop;
-video/x-matroska=io.github.celluloid_player.Celluloid.desktop;
-text/plain=nvim.desktop;
-inode/directory=lf.desktop;
-application/x-directory=lf.desktop;
-application/x-shellscript=nvim.desktop;
+application/pdf=org.pwmt.zathura.desktop
+application/x-ipynb+json=codium.desktop
+image/apng=imv.desktop
+image/vnd.microsoft.icon=imv.desktop
+image/jpeg=imv.desktop
+image/webp=imv.desktop
+video/mp4=io.github.celluloid_player.Celluloid.desktop
+video/x-matroska=io.github.celluloid_player.Celluloid.desktop
+text/plain=nvim.desktop
+inode/directory=lf.desktop
+application/x-directory=lf.desktop
+application/x-shellscript=nvim.desktop
 x-scheme-handler/http=firefox.desktop
 x-scheme-handler/https=firefox.desktop
 x-scheme-handler/chrome=firefox.desktop
 x-scheme-handler/mailto=firefox.desktop
 
 [Added Associations]
-x-scheme-handler/http=firefox.desktop;
-x-scheme-handler/https=firefox.desktop;
-x-scheme-handler/chrome=firefox.desktop;
-image/png=imv-dir.desktop;
+x-scheme-handler/http=firefox.desktop
+x-scheme-handler/https=firefox.desktop
+x-scheme-handler/chrome=firefox.desktop
+image/png=imv-dir.desktop
