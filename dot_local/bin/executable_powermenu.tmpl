@@ -6,14 +6,11 @@ shutdown="shutdown"
 reboot="reboot"
 windows="windows"
 
-chassis=$(< /sys/class/dmi/id/chassis_type)
-
-# test if on a desktop
-if [[ chassis -eq 3 ]]; then
-    options="$shutdown\n$reboot\n$windows"
-else
-    options="$lock\n$hibernate\n$shutdown\n$reboot"
-fi
+{{ if .desktop -}}
+options="$shutdown\n$reboot\n$windows"
+{{ else -}}
+options="$lock\n$hibernate\n$shutdown\n$reboot"
+{{- end -}}
 
 chosen="$(echo -e "$options" | dmenu)"
 case $chosen in
