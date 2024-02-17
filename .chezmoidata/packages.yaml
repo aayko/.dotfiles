@@ -74,7 +74,7 @@ packages:
       - 'ffmpeg'
       - 'ffmpegthumbnailer'
       - 'ncspot'
-      - 'spotifd'
+      - 'spotifyd'
       - 'firefox'
       - 'fontforge'
       - 'gnome-calculator'
@@ -139,7 +139,6 @@ packages:
       - 'xwaylandvideobridge-git'
     development:
       - 'dia-git'
-      - 'gdb'
       - 'nodejs'
       - 'valgrind'
       - 'gdb'
