@@ -13,6 +13,7 @@ if [ ! -f /usr/local/bin/st ]; then
     cd /tmp/st
     sudo make install
     rm -rf /tmp/st
+    cd
     echo "st installed"
 fi
 
@@ -21,6 +22,7 @@ if [ ! -f /usr/local/bin/dmenu ]; then
     cd /tmp/dmenu
     sudo make install
     rm -rf /tmp/dmenu
+    cd
     echo "dmenu installed"
 fi
 

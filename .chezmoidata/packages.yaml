@@ -116,7 +116,9 @@ packages:
       - 'xclip'
       - 'xcolor'
       - 'xdotool'
+      - 'xorg-server'
       - 'xorg-xinput'
+      - 'xorg-setxkbmap'
       - 'xsel'
       - 'xss-lock'
     wayland:
