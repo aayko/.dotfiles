@@ -15,6 +15,13 @@ if ! command -v yay > /dev/null; then
     echo "yay installed"
 fi
 
+if [ -t 0 ]; then
+    if ! yay -Q terminus-font &> /dev/null; then
+        yay -S --noconfirm --sudoloop terminus-font
+    fi
+    setfont ter-132b
+fi
+
 install() {
   for package in "${@}"; do
     if ! yay -Q "$package" &> /dev/null; then
@@ -38,6 +45,9 @@ install {{ range .packages.linux.gui -}}{{ . | quote }} {{ end }}
 {{ end }}
 {{ if .development }}
 install {{ range .packages.linux.development -}}{{ . | quote }} {{ end }}
+{{ end }}
+{{ if .laptop }}
+install {{ range .packages.linux.laptop -}}{{ . | quote }} {{ end }}
 {{ end }}
 
 {{ if .x11 }}

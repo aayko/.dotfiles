@@ -25,6 +25,9 @@ install {{ range .packages.linux.gui -}}{{ . | quote }} {{ end }}
 {{ if .development }}
 install {{ range .packages.linux.development -}}{{ . | quote }} {{ end }}
 {{ end }}
+{{ if .laptop }}
+install {{ range .packages.linux.laptop -}}{{ . | quote }} {{ end }}
+{{ end }}
 
 {{ if .x11 }}
     install {{ range .packages.linux.x11 -}}{{ . | quote }} {{ end }}

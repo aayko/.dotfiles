@@ -1,4 +1,7 @@
 alias dot="chezmoi"
+dotg() {
+    cd "$(chezmoi source-path)" && nvim -c 'tab G'
+}
 alias lf="lfcd"
 
 alias v="nvim"
