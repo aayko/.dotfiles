@@ -112,6 +112,7 @@ packages:
       - 'i3-wm'
       - 'j4-dmenu-desktop'
       - 'maim'
+      - 'picom'
       - 'polybar'
       - 'xclip'
       - 'xcolor'
