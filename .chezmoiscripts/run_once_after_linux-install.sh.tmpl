@@ -59,6 +59,9 @@ if [ -f /etc/ly/config.ini ] && grep -q "#hide_f1_commands" < /etc/ly/config.ini
 	if ! systemctl is-enabled --quiet ly.service; then
 	    systemctl enable ly.service
 	fi
+    sudo sed -i '/ExecStart=/a StandardOutput=null' /usr/lib/systemd/system/ly.service
+    sudo sed -i '/ExecStart=/a StandardError=null' /usr/lib/systemd/system/ly.service
+    sudo systemctl daemon-reload
 	echo "Ly setup and enabled"
 fi
 
