@@ -11,7 +11,6 @@ options="$shutdown\n$reboot\n$windows"
 {{ else -}}
 options="$lock\n$hibernate\n$shutdown\n$reboot"
 {{- end }}
-
 chosen="$(echo -e "$options" | dmenu)"
 case $chosen in
     "$lock")

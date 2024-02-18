@@ -1,6 +1,9 @@
 {{ if eq .chezmoi.os "linux" -}}
 #!/bin/bash
 
+sudo sed -i 's/#Color/Color/gI' /etc/pacman.conf
+sudo sed -i 's/#ParallelDownloads/ParallelDownloads/gI' /etc/pacman.conf
+
 if ! command -v yay > /dev/null; then
     sudo pacman -S --needed --noconfirm git base-devel
     git clone https://aur.archlinux.org/yay.git /tmp/yay

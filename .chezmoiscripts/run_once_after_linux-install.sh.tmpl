@@ -26,11 +26,20 @@ if [ ! -f /usr/local/bin/dmenu ]; then
     echo "dmenu installed"
 fi
 
-if [ ! -L /etc/ly/config.ini ] && [ -f /etc/ly/config.ini ]; then
-	[ -f /etc/ly/xsetup.sh ] && sudo rm -f /etc/ly/xsetup.sh
-	[ -f /etc/ly/config.ini ] && sudo rm -f /etc/ly/config.ini
-	sudo ln -s /home/"$USER"/.config/ly/xsetup.sh /etc/ly/xsetup.sh
-	sudo ln -s /home/"$USER"/.config/ly/config.ini /etc/ly/config.ini
+if [ -f /etc/ly/config.ini ]; then
+    sudo sed -i 's/#blank_password = false/blank_password = true/gI' /etc/ly/config.ini
+    sudo sed -i 's/#hide_key_hints = false/hide_key_hints = true/gI' /etc/ly/config.ini
+    sudo sed -i 's/#hide_key_hints = false/hide_key_hints = true/gI' /etc/ly/config.ini
+    {{ if .desktop -}}
+	if [ ! -f /etc/X11/xinit/xinitrc.d/desktop-xrandr.sh ]; then
+	    sudo tee /etc/X11/xinit/xinitrc.d/desktop-xrandr.sh > /dev/null <<- EOF
+	    #!/bin/sh
+
+	    xrandr --output HDMI-1 --mode 1920x1080 --rate 239.96 --primary --output HDMI-0 --mode 1920x1080 --rate 119.98 --left-of HDMI-1
+	    EOF
+	    sudo chmod +x /etc/X11/xinit/xinitrc.d/desktop-xrandr.sh
+	fi
+    {{- end }}
 	sudo tee /etc/pam.d/ly > /dev/null <<- EOF
 	#%PAM-1.0
 
@@ -45,14 +54,6 @@ if [ ! -L /etc/ly/config.ini ] && [ -f /etc/ly/config.ini ]; then
 	    systemctl enable ly.service
 	fi
 	echo "Ly setup and enabled"
-fi
-
-keyboard_layout=$(setxkbmap -query | grep layout | awk '{print $2}')
-if [[ $keyboard_layout != "pwerty" ]]; then
-    mkdir -p /home/"$USER"/.config/xkb/
-    sudo cp /home/"$USER"/.config/xkb/pwerty /usr/share/X11/xkb/symbols/
-    localectl set-x11-keymap pwerty "" "" compose:ralt,altwin:swap_lalt_lwin
-    echo "Keyboard layout set to pwerty"
 fi
 
 sudo mkdir -p /etc/X11/xorg.conf.d/
@@ -154,6 +155,14 @@ if [[ ! -d /home/$USER/.local/share/zap ]]; then
     zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --keep --branch release-v1
     echo "Zap installed"
     chsh -s /usr/bin/zsh "$USER"
+fi
+
+keyboard_layout=$(setxkbmap -query | grep layout | awk '{print $2}')
+if [[ $keyboard_layout != "pwerty" ]]; then
+    mkdir -p /home/"$USER"/.config/xkb/
+    sudo cp /home/"$USER"/.config/xkb/pwerty /usr/share/X11/xkb/symbols/
+    localectl set-x11-keymap pwerty "" "" compose:ralt,altwin:swap_lalt_lwin
+    echo "Keyboard layout set to pwerty"
 fi
 
 {{- end }}
