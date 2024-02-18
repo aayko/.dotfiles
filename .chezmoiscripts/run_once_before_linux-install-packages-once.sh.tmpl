@@ -15,7 +15,7 @@ if ! command -v yay > /dev/null; then
     echo "yay installed"
 fi
 
-if [ -t 0 ]; then
+if who am i | grep -q "tty"; then
     if ! yay -Q terminus-font &> /dev/null; then
         yay -S --noconfirm --sudoloop terminus-font
     fi
