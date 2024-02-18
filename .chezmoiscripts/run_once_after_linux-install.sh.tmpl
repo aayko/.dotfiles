@@ -144,6 +144,10 @@ if [ ! -f /etc/systemd/system/udevmon.service ]; then
 	systemctl enable udevmon.service --now
 	echo "caps2esc installed and enabled"
 fi
+
+if ! systemctl is-enabled --quiet bluetooth.service; then
+    systemctl enable --now bluetooth.service
+fi
 {{- end }}
 
 {{ if .development -}}
@@ -163,6 +167,10 @@ if [[ ! -d /home/$USER/.local/share/zap ]]; then
     zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --keep --branch release-v1
     echo "Zap installed"
     chsh -s /usr/bin/zsh "$USER"
+fi
+
+if ! systemctl is-active --quiet ly.service; then
+    systemctl start ly.service
 fi
 
 keyboard_layout=$(setxkbmap -query | grep layout | awk '{print $2}')
