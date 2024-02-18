@@ -36,7 +36,7 @@ if [ ! -f /etc/X11/xinit/xinitrc.d/autorandr.sh ]; then
 	sudo chmod +x /etc/X11/xinit/xinitrc.d/autorandr.sh
 fi
 
-if [ grep -q "timeout 3" < /boot/loader/loader.conf; then
+if grep -q "timeout 3" < /boot/loader/loader.conf; then
     sudo sed -i 's/timeout 3/timeout 0/gI' /boot/loader/loader.conf
 fi
 
