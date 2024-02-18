@@ -1,6 +1,8 @@
 {{ if eq .chezmoi.os "linux" -}}
 #!/bin/bash
 
+set -eo pipefail
+
 sudo sed -i 's/#Color/Color/gI' /etc/pacman.conf
 sudo sed -i 's/#ParallelDownloads/ParallelDownloads/gI' /etc/pacman.conf
 

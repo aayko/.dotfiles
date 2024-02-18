@@ -1,5 +1,6 @@
 {{- if eq .chezmoi.os "linux" -}}
 #!/usr/bin/bash
+
 set -eo pipefail
 
 if [[ ! -f /etc/zsh/zshenv ]]; then
@@ -26,18 +27,17 @@ if [ ! -f /usr/local/bin/dmenu ]; then
     echo "dmenu installed"
 fi
 
-if [ -f /etc/ly/config.ini ]; then
+if [ -f /etc/ly/config.ini ] && grep -q "#hide_f1_commands" < /etc/ly/config.ini; then
     sudo sed -i 's/#blank_password = false/blank_password = true/gI' /etc/ly/config.ini
-    sudo sed -i 's/#hide_key_hints = false/hide_key_hints = true/gI' /etc/ly/config.ini
-    sudo sed -i 's/#hide_key_hints = false/hide_key_hints = true/gI' /etc/ly/config.ini
+    sudo sed -i 's/#hide_f1_commands = false/hide_f1_commands = true/gI' /etc/ly/config.ini
     {{ if .desktop -}}
 	if [ ! -f /etc/X11/xinit/xinitrc.d/desktop-xrandr.sh ]; then
-	    sudo tee /etc/X11/xinit/xinitrc.d/desktop-xrandr.sh > /dev/null <<- EOF
-	    #!/bin/sh
+		sudo tee /etc/X11/xinit/xinitrc.d/desktop-xrandr.sh > /dev/null <<- EOF
+		#!/bin/sh
 
-	    xrandr --output HDMI-1 --mode 1920x1080 --rate 239.96 --primary --output HDMI-0 --mode 1920x1080 --rate 119.98 --left-of HDMI-1
-	    EOF
-	    sudo chmod +x /etc/X11/xinit/xinitrc.d/desktop-xrandr.sh
+		xrandr --output HDMI-1 --mode 1920x1080 --rate 239.96 --primary --output HDMI-0 --mode 1920x1080 --rate 119.98 --left-of HDMI-1
+		EOF
+		sudo chmod +x /etc/X11/xinit/xinitrc.d/desktop-xrandr.sh
 	fi
     {{- end }}
 	sudo tee /etc/pam.d/ly > /dev/null <<- EOF
