@@ -68,7 +68,8 @@ if [ ! -f /etc/modprobe.d/disable-bluetooth.conf ]; then
 	sudo tee /etc/modprobe.d/disable-bluetooth.conf > /dev/null <<- EOF
 	blacklist btusb
 	EOF
-	echo "Bluetooth module disabled"
+    sudo rmmod btusb
+	echo "Bluetooth module blacklisted"
 fi
 
 if [ ! -f /etc/X11/xorg.conf.d/10-monitor.conf ]; then
@@ -115,6 +116,7 @@ if [ ! -f /etc/modprobe.d/nobeep.conf ]; then
 	blacklist pcspkr
 	blacklist snd_pcspsudo
 	EOF
+    sudo rmmod pcspkr
 	echo "Laptop speaker disabled"
 fi
 
