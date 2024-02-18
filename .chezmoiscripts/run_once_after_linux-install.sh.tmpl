@@ -28,12 +28,12 @@ if [ ! -f /usr/local/bin/dmenu ]; then
 fi
 
 if [ ! -f /etc/X11/xinit/xinitrc.d/autorandr.sh ]; then
-    sudo tee /etc/X11/xinit/xinitrc.d/autorandr.sh > /dev/null <<- EOF
-    #!/bin/sh
+	sudo tee /etc/X11/xinit/xinitrc.d/autorandr.sh > /dev/null <<- EOF
+	#!/bin/sh
 
-    autorandr --change
-    EOF
-    sudo chmod +x /etc/X11/xinit/xinitrc.d/autorandr.sh
+	autorandr --change
+	EOF
+	sudo chmod +x /etc/X11/xinit/xinitrc.d/autorandr.sh
 fi
 
 if [ grep -q "timeout 3" < /boot/loader/loader.conf; then
