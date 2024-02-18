@@ -23,8 +23,8 @@ font pango:monospace 8
 #font pango:DejaVu Sans Mono 8
 
 exec_always --no-startup-id autotiling
-exec_always --no-startup-id ~/.local/bin/inverse-scroll
-exec_always --no-startup-id ~/.local/bin/tap-to-click
+exec_always --no-startup-id ~/.local/bin/inverse-scroll.sh
+exec_always --no-startup-id ~/.local/bin/tap-to-click.sh
 
 exec --no-startup-id picom
 exec --no-startup-id polybar
@@ -61,19 +61,19 @@ bindsym $win+b exec --no-startup-id $term bluetuith
 
 bindsym $win+i exec --no-startup-id polybar-msg cmd toggle
 
-bindsym $win+m exec --no-startup-id toggle-mute
+bindsym $win+m exec --no-startup-id toggle-mute.sh
 
-bindsym $win+p exec --no-startup-id powermenu
+bindsym $win+p exec --no-startup-id powermenu.sh
 bindsym $win+w exec --no-startup-id $browser
 bindsym $win+d exec --no-startup-id j4-dmenu-desktop
 
 bindsym $win+Space exec --no-startup-id dunstctl history-pop
 
-bindsym Print exec --no-startup-id screenshot region
-bindsym $alt+Sys_Req exec --no-startup-id screenshot window
-bindsym Shift+Print exec --no-startup-id screenshot monitor
+bindsym Print exec --no-startup-id screenshot.sh region
+bindsym $alt+Sys_Req exec --no-startup-id screenshot.sh window
+bindsym Shift+Print exec --no-startup-id screenshot.sh monitor
 
-bindsym --release $win+Shift+c exec colorpicker
+bindsym --release $win+Shift+c exec colorpicker.sh
 
 bindsym $win+Shift+r restart
 bindsym $win+Shift+x exec i3-msg exit
@@ -168,13 +168,13 @@ for_window [class="Main"] floating enable, move position center
 for_window [class="ConvertisseurDevises"] floating enable, move position center
 for_window [class="1Password"] floating enable, move position center
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id changevolume up
-bindsym XF86AudioLowerVolume exec --no-startup-id changevolume down 
-bindsym XF86AudioMute exec --no-startup-id changevolume mute 
+bindsym XF86AudioRaiseVolume exec --no-startup-id changevolume.sh up
+bindsym XF86AudioLowerVolume exec --no-startup-id changevolume.sh down 
+bindsym XF86AudioMute exec --no-startup-id changevolume.sh mute 
 
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 
-bindsym XF86MonBrightnessDown exec --no-startup-id changebrightness down
-bindsym XF86MonBrightnessUp exec --no-startup-id changebrightness up
+bindsym XF86MonBrightnessDown exec --no-startup-id changebrightness.sh down
+bindsym XF86MonBrightnessUp exec --no-startup-id changebrightness.sh up
