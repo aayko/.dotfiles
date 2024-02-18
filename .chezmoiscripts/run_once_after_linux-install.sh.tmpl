@@ -110,6 +110,17 @@ if [ ! -f /etc/X11/xorg.conf.d/50-mouse-acceleration.conf ]; then
 fi
 
 {{ if .laptop -}}
+if ! crontab -l | grep -q "batterynotify"; then
+    (crontab -l 2>/dev/null; echo "*/5 * * * * /home/$USER/.local/bin/batterynotify.sh") | crontab -
+fi
+
+if [ ! -f /etc/udev/rules.d/power.rules ]; then
+	sudo tee /etc/udev/rules.d/power.rules > /dev/null <<- EOF
+	ACTION=="change", SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="0", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/$USER/.Xauthority" RUN+="/usr/bin/su $USER -c '/home/$USER/.local/bin/chargingnotify.sh 0'"
+	ACTION=="change", SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="1", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/$USER/.Xauthority" RUN+="/usr/bin/su $USER -c '/home/$USER/.local/bin/chargingnotify.sh 1'"
+	EOF
+fi
+
 if ! systemctl is-enabled --quiet auto-cpufreq.service; then
     systemctl enable --now auto-cpufreq.service
 fi
