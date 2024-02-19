@@ -2501,6 +2501,7 @@ StEntry StLabel.hint-text, .popup-menu .search-entry StLabel.hint-text {
 }
 
 #panel Gjs_status_keyboard_InputSourceIndicator.panel-button,
+#panel Gjs_appindicatorsupport_rgcjonas_gmail_com_indicatorStatusIcon_IndicatorStatusIcon.panel-button,
 #panel Gjs_appindicatorsupport_rgcjonas_gmail_com_indicatorStatusIcon_AppIndicatorsIndicatorStatusIcon.panel-button {
   -natural-hpadding: 18px !important;
   -minimum-hpadding: 18px !important;
