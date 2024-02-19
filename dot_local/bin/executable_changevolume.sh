@@ -38,6 +38,7 @@ mute)
     if [[ $(pamixer --get-mute) == "true" ]]; then
         send_muted
     else
+        pamixer --set-volume 5
         send_notification
     fi
 	;;
