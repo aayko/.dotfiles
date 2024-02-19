@@ -142,6 +142,7 @@ packages:
       - 'xwaylandvideobridge-git'
     development:
       - 'dia-git'
+      - 'ghcup-hs-bin'
       - 'jdk-openjdk'
       - 'nodejs'
       - 'php'
