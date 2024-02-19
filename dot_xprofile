@@ -15,3 +15,27 @@ export GTK_THEME="Colloid-Grey-Dark:dark"
 export GTK_CSD=0
 
 export __GL_SHADER_DISK_CACHE_SKIP_CLEANUP=1
+
+export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
+export ANDROID_USER_HOME="$XDG_DATA_HOME"/android
+alias adb='HOME="$XDG_DATA_HOME"/android adb'
+export ANSIBLE_HOME="$XDG_DATA_HOME"/ansible
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
+export GHCUP_USE_XDG_DIRS=true
+export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
+export XCOMPOSEFILE="$XDG_CONFIG_HOME"/xcompose
+export NIMBLE_DIR="$XDG_DATA_HOME/nimble"
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
+export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+export STACK_ROOT="$XDG_DATA_HOME"/stack
+export STACK_XDG=1
+alias svn="svn --config-dir $XDG_CONFIG_HOME/subversion"
+export TEXMFVAR="$XDG_CACHE_HOME"/texlive/texmf-var
+alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
+export WINEPREFIX="$XDG_DATA_HOME"/wine
+export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+export CABAL_DIR="$XDG_DATA_HOME"/cabel
+export CABAL_CONFIG="$XDG_CONFIG_HOME"/cabal/config
