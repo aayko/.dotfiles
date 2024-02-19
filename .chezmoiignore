@@ -23,4 +23,12 @@ README.md
 .config/zathura/
 {{ end }}
 
+{{ if not .laptop }}
+.local/bin/batterynotify.sh
+.local/bin/changebrightness.sh
+.local/bin/chargingnotify.sh
+.local/bin/eduroam-linux.py
+.local/bin/inverse-scroll.sh
+.local/bin/tap-to-click.sh
+.local/bin/wayland-lock.sh
 {{ end }}
