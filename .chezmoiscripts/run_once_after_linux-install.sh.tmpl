@@ -65,6 +65,10 @@ if [ -f /etc/ly/config.ini ] && grep -q "#hide_f1_commands" < /etc/ly/config.ini
 	echo "Ly setup and enabled"
 fi
 
+if ! systemctl is-enabled --quit syncthing@"$USER".service; then
+    systemctl enable --now syncthing@"$USER".service
+fi
+
 sudo mkdir -p /etc/X11/xorg.conf.d/
 {{ if .desktop -}}
 if [ ! -f /etc/modprobe.d/disable-bluetooth.conf ]; then
@@ -186,6 +190,13 @@ fi
 
 if ! systemctl is-active --quiet ly.service; then
     systemctl start ly.service
+fi
+
+if gsettings get org.gtk.Settings.FileChooser startup-mode | grep -q "recent"; then
+    gsettings set org.gnome.desktop.interface gtk-theme Colloid-Grey-Dark
+    gsettings set org.gtk.Settings.FileChooser startup-mode cwd
+    gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+    gsettings set org.gnome.desktop.interface gtk-key-theme "Emacs"
 fi
 
 keyboard_layout=$(setxkbmap -query | grep layout | awk '{print $2}')
