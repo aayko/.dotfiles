@@ -9,6 +9,7 @@ packages:
       - 'colordiff'
       - 'cronie'
       - 'dictd'
+      - 'exfat-utils'
       - 'fd'
       - 'fzf'
       - 'git'
