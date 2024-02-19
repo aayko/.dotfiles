@@ -65,7 +65,7 @@ if [ -f /etc/ly/config.ini ] && grep -q "#hide_f1_commands" < /etc/ly/config.ini
 	echo "Ly setup and enabled"
 fi
 
-if ! systemctl is-enabled --quit syncthing@"$USER".service; then
+if ! systemctl is-enabled --quiet syncthing@"$USER".service; then
     systemctl enable --now syncthing@"$USER".service
 fi
 
