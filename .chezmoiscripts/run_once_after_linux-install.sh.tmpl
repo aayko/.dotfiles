@@ -114,6 +114,10 @@ if [ ! -f /etc/X11/xorg.conf.d/50-mouse-acceleration.conf ]; then
 fi
 
 {{ if .laptop -}}
+if ! groups "$USER" | grep -q "video"; then
+    sudo usermod -a -G video "$USER"
+fi
+
 if ! crontab -l | grep -q "batterynotify"; then
     (crontab -l 2>/dev/null; echo "*/5 * * * * /home/$USER/.local/bin/batterynotify.sh") | crontab -
 fi
