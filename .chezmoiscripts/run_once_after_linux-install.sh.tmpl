@@ -176,7 +176,7 @@ if [[ $(rustup default 2>&1) == *"no default"* ]]; then
 fi
 
 if ! command -v ghcup > /dev/null; then
-    curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+    printf 'NYY\n' | curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
     sudo ln -s /home/"$USER"/.ghcup/bin/* /usr/local/bin/
     echo "Ghcup installed"
 fi
