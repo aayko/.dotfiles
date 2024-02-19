@@ -32,3 +32,11 @@ README.md
 .local/bin/tap-to-click.sh
 .local/bin/wayland-lock.sh
 {{ end }}
+
+{{ if not .desktop -}}
+.local/bin/inject.cpp
+.local/bin/inject.exe
+.local/bin/bakkesinject.sh
+{{- end }}
+
+{{ end }}
