@@ -79,6 +79,7 @@ packages:
       - 'gnome-disk-utility'
       - 'gnome-keyring'
       - 'gnome-themes-extra'
+      - 'colloid-icon-theme-git'
       - 'gthumb'
       - 'gtk-engine-murrine'
       - 'imv'
