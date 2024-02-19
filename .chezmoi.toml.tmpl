@@ -5,8 +5,8 @@ encryption = "age"
     audio = true
     bluetooth = true
     development = true
-    desktop = {{ if eq .chezmoi.hostname "archpc" }}true{{ else }}false{{ end }}
-    laptop = {{ if eq .chezmoi.hostname "archlaptop" }}true{{ else }}false{{ end }}
+    desktop = {{ if eq .chezmoi.hostname "archpc" or eq .chezmoi.hostname "nixpc" }}true{{ else }}false{{ end }}
+    laptop = {{ if eq .chezmoi.hostname "archlaptop" eq .chezmoi.hostname "nixlaptop" }}true{{ else }}false{{ end }}
     server = {{ if eq .chezmoi.hostname "debian" }}true{{ else }}false{{ end }}
     fonts = true
 [age]
