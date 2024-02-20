@@ -12,7 +12,7 @@ export DISPLAY=:0
 export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus"
 
 BATTERY_CHARGING=$1
-BATTERY_LEVEL=$(acpi -b | grep -E "remaining|charged|zero" | grep -P -o '[0-9]+(?=%)')
+BATTERY_LEVEL=`acpi -b | grep -E "remaining|charged|zero|charging" | grep -P -o '[0-9]+(?=%)'`
 
 # Send notifications
 if [[ $BATTERY_CHARGING -eq 1 ]]; then
