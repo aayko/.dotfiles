@@ -14,14 +14,14 @@ options="$lock\n$hibernate\n$shutdown\n$reboot"
 chosen="$(echo -e "$options" | dmenu)"
 case $chosen in
     "$lock")
-        lock
+        lock.sh
         ;;
     "$shutdown")
         systemctl poweroff
         ;;
     "$hibernate")
         systemctl hibernate
-        lock
+        lock.sh
         ;;
     "$reboot")
         systemctl reboot
