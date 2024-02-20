@@ -1,0 +1,13 @@
+#!/usr/bin/bash
+
+{{ if .x11 -}}
+systemctl suspend
+{{- else if .wayland }}
+swayidle -w \
+    timeout 5 "hyprctl dispatch dpms off" \
+    resume 'hyprctl dispatch dpms on' &
+
+swaylock
+
+kill %%
+{{- end }}
