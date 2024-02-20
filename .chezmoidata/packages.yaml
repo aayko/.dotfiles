@@ -80,6 +80,8 @@ packages:
       - 'gnome-disk-utility'
       - 'gnome-keyring'
       - 'gnome-themes-extra'
+      - 'nautilus'
+      - 'sushi'
       - 'colloid-icon-theme-git'
       - 'gthumb'
       - 'gtk-engine-murrine'
