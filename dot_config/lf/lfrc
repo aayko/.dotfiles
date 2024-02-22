@@ -58,8 +58,8 @@ cmd restore_trash ${{
 }}
 
 cmd su ${{
-    lf -remote "send $id quit" &&
-    sudo -i lf
+    lf -remote "send $id quit"
+    sudo lf
 }}
 
 cmd zip push :$zip<space>-r
