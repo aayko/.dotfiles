@@ -9,6 +9,10 @@ README.md
 .config/autorandr/
 {{ end }}
 
+{{ if not .nix }}
+.config/nixos
+{{ end }}
+
 {{ if not .wayland }}
 .config/foot/
 .config/hypr/
