@@ -167,3 +167,4 @@ map gt cd /home/ayko/.local/share/Trash/files
 map gz cd /home/ayko/.local/share/chezmoi
 map ga cd /usr/share/applications
 map gm cd /run/media/ayko
+map gn cd /run/current-system/
