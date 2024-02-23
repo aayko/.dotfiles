@@ -14,12 +14,22 @@ let
 in
 {
     imports =
-        [ # Include the results of the hardware scan.
-            ./hardware-configuration.nix
+    {{- if .laptop }}
+        [
+            ./laptop-hardware-configuration.nix
+            ./resolved.nix
+            ./boot.nix
+            ./i3.nix
+            ./capsLockRemap.nix
+        ];
+    {{- else if eq .desktop }}
+        [
+            ./desktop-hardware-configuration.nix
             ./resolved.nix
             ./boot.nix
             ./i3.nix
         ];
+    {{- end }}
 
     nix.nixPath = [
         "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
