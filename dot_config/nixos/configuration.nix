@@ -4,12 +4,21 @@
 
 { config, lib, pkgs, ... }:
 
+let
+  myDmenu = pkgs.dmenu.overrideAttrs (oldAttrs: {
+    src = pkgs.fetchurl {
+      url = "https://github.com/aayko/dmenu/archive/main.tar.gz";
+      sha256 = "1rg4m4pg3irkbnn40vmab2wqcalr96499lfkjb36w2p38crkarci";
+    };
+  });
+in
 {
     imports =
         [ # Include the results of the hardware scan.
             ./hardware-configuration.nix
             ./resolved.nix
             ./boot.nix
+            ./i3.nix
         ];
 
     nix.nixPath = [
@@ -77,35 +86,6 @@
             ${pkgs.dunst}/bin/dunst &
             ${pkgs.feh}/bin/feh --no-fehbg --bg-fill ~/pictures/wallpapers/ghibli/5m5kLI9.png &
         '';
-        windowManager.i3 = {
-            enable = true;
-            extraPackages = with pkgs; [
-                polybar
-                betterlockscreen
-                autotiling
-                feh
-                maim
-                xclip
-                xcolor
-                xclip
-                xdotool
-                xss-lock
-                xsel
-                (st.overrideAttrs (oldAttrs: {
-                    src = fetchurl {
-                      url = "https://github.com/aayko/st/archive/main.tar.gz";
-                      sha256 = "00wqqvxvjy8c8hiyf0qpznmdczglb7ac8ql28q7vik837s3gpiby";
-                    };
-                }))
-                j4-dmenu-desktop
-                (dmenu.overrideAttrs (oldAttrs: {
-                    src = fetchurl {
-                      url = "https://github.com/aayko/dmenu/archive/main.tar.gz";
-                      sha256 = "1rg4m4pg3irkbnn40vmab2wqcalr96499lfkjb36w2p38crkarci";
-                    };
-                }))
-            ];
-        };
         xkb.layout = "pwerty";
         xkb.options = "compose:ralt,altwin:swap_lalt_lwin";
         autoRepeatDelay = 300;
@@ -246,6 +226,9 @@
                 unstable = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") {};
                 polybar = pkgs.polybar.override {
                   i3Support = true;
+                };
+                j4-dmenu-desktop = pkgs.j4-dmenu-desktop.override {
+                    dmenu = myDmenu;
                 };
             };
         };
