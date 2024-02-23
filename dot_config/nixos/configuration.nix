@@ -11,17 +11,23 @@
             ./resolved.nix
         ];
 
-    system.activationScripts.cleanupBootEntries = {
+    nix.nixPath = [
+        "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
+        "nixos-config=/home/ayko/.config/nixos/configuration.nix"
+        "/nix/var/nix/profiles/per-user/root/channels"
+    ];
+
+    system.activationScripts.removeBootEntryVersion = {
         text = ''
-            ${pkgs.findutils}/bin/find /boot/loader/entries/ -name 'nixos-generation-*' -exec ${pkgs.gnused}/bin/sed -i '/version/d' {} \;
+        ${pkgs.findutils}/bin/find /boot/loader/entries/ -name 'nixos-generation-*' -exec ${pkgs.gnused}/bin/sed -i 's/version Generation \([0-9]*\).*/version \1/' {} \;
         '';
     };
     boot.kernelParams = [ "quiet" ];
     boot.supportedFilesystems = [ "ntfs" ];
     boot.loader.systemd-boot.enable = true;
     boot.loader.systemd-boot.editor = false;
-    boot.loader.systemd-boot.configurationLimit = 1;
-    boot.loader.extraEntries = {
+    boot.loader.systemd-boot.configurationLimit = 3;
+    boot.loader.systemd-boot.extraEntries = {
         "arch.conf" = ''
             title   Arch Linux
             linux   /EFI/arch/vmlinuz-linux
@@ -32,13 +38,14 @@
     };
     boot.loader.timeout = 0;
     boot.loader.efi.canTouchEfiVariables = true;
+    boot.plymouth.enable = false;
 
     nix = {
         settings = {
             experimental-features = "nix-command flakes";
             auto-optimise-store = true;
         };
-        gc.automatic = true;
+        gc.automatic = false;
         gc.dates = "19:00";
     };
 
