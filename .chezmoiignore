@@ -35,12 +35,15 @@ README.md
 .local/bin/inverse-scroll.sh
 .local/bin/tap-to-click.sh
 .local/bin/wayland-lock.sh
+.config/nixos/laptop-hardware-configuration.nix
+.config/nixos/capsLockRemap.nix
 {{ end }}
 
 {{ if not .desktop -}}
 .local/bin/inject.cpp
 .local/bin/inject.exe
 .local/bin/bakkesinject.sh
+.config/nixos/desktop-hardware-configuration.nix
 {{- end }}
 
 {{ end }}
