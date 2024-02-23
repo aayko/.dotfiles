@@ -9,6 +9,7 @@
         [ # Include the results of the hardware scan.
             ./hardware-configuration.nix
             ./resolved.nix
+            ./boot.nix
         ];
 
     nix.nixPath = [
@@ -16,29 +17,6 @@
         "nixos-config=/home/ayko/.config/nixos/configuration.nix"
         "/nix/var/nix/profiles/per-user/root/channels"
     ];
-
-    system.activationScripts.removeBootEntryVersion = {
-        text = ''
-        ${pkgs.findutils}/bin/find /boot/loader/entries/ -name 'nixos-generation-*' -exec ${pkgs.gnused}/bin/sed -i 's/version Generation \([0-9]*\).*/version \1/' {} \;
-        '';
-    };
-    boot.kernelParams = [ "quiet" ];
-    boot.supportedFilesystems = [ "ntfs" ];
-    boot.loader.systemd-boot.enable = true;
-    boot.loader.systemd-boot.editor = false;
-    boot.loader.systemd-boot.configurationLimit = 3;
-    boot.loader.systemd-boot.extraEntries = {
-        "arch.conf" = ''
-            title   Arch Linux
-            linux   /EFI/arch/vmlinuz-linux
-            initrd  /EFI/arch/intel-ucode.img
-            initrd  /EFI/arch/initramfs-linux.img
-            options root=/dev/disk/by-label/ARCHROOT zswap.enabled=0 rw rootfstype=ext4 quiet
-        '';
-    };
-    boot.loader.timeout = 0;
-    boot.loader.efi.canTouchEfiVariables = true;
-    boot.plymouth.enable = false;
 
     nix = {
         settings = {
@@ -184,11 +162,11 @@
     environment.shellAliases = {
         dot = "${pkgs.chezmoi}/bin/chezmoi";
         se = "sudoedit";
-        ne = "v /etc/nixos/configuration.nix";
+        ne = "v ${config.environment.variables.XDG_CONFIG_HOME}/nixos/configuration.nix";
         ns = "sudo nixos-rebuild switch";
         v = "${pkgs.neovim}/bin/nvim";
-        svn = "svn --config-dir $HOME/.config/subversion";
-        wget = "wget --hsts-file=$HOME/.local/share/wget-hsts";
+        svn = "svn --config-dir ${config.environment.variables.XDG_CONFIG_HOME}/subversion";
+        wget = "wget --hsts-file=${config.environment.variables.XDG_DATA_HOME}/wget-hsts";
         adb = "HOME=${config.environment.variables.ANDROID_USER_HOME} adb";
     };
 
@@ -426,6 +404,7 @@
         bluetuith
         ntfs3g
         gparted
+        localsend
         # end
     ];
 
@@ -447,7 +426,7 @@
     # Copy the NixOS configuration file and link it from the resulting system
     # (/run/current-system/configuration.nix). This is useful in case you
     # accidentally delete configuration.nix.
-    # system.copySystemConfiguration = true;
+    system.copySystemConfiguration = true;
 
     # do not change   
     # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
