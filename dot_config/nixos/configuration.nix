@@ -4,9 +4,6 @@
 
 { config, lib, pkgs, ... }:
 
-# let
-#     ly = import /home/ayko/nix/ly.nix;
-# in
 {
     imports =
         [ # Include the results of the hardware scan.
@@ -14,19 +11,25 @@
             ./resolved.nix
         ];
 
-    # Use the systemd-boot EFI boot loader.
+    system.activationScripts.cleanupBootEntries = {
+        text = ''
+            ${pkgs.findutils}/bin/find /boot/loader/entries/ -name 'nixos-generation-*' -exec ${pkgs.gnused}/bin/sed -i '/version/d' {} \;
+        '';
+    };
+    boot.kernelParams = [ "quiet" ];
     boot.supportedFilesystems = [ "ntfs" ];
     boot.loader.systemd-boot.enable = true;
     boot.loader.systemd-boot.editor = false;
-    boot.loader.systemd-boot.configurationLimit = 3;
-    boot.loader.extraEntries = [
-        {
-            title = "Arch Linux";
-            device = "/dev/disk/by-label/ARCHROOT";
-            efiSysMountPoint = "/boot";
-            kernelParams = [ "root=/dev/disk/by-label/ARCHROOT" "rw" "initrd=/intel-ucode.img" "initrd=/initramfs-linux.img" "zswap.enabled=0" "rootfstype=ext4" ];
-        }
-    ];
+    boot.loader.systemd-boot.configurationLimit = 1;
+    boot.loader.extraEntries = {
+        "arch.conf" = ''
+            title   Arch Linux
+            linux   /EFI/arch/vmlinuz-linux
+            initrd  /EFI/arch/intel-ucode.img
+            initrd  /EFI/arch/initramfs-linux.img
+            options root=/dev/disk/by-label/ARCHROOT zswap.enabled=0 rw rootfstype=ext4 quiet
+        '';
+    };
     boot.loader.timeout = 0;
     boot.loader.efi.canTouchEfiVariables = true;
 
@@ -55,7 +58,7 @@
     # i18n.defaultLocale = "en_US.UTF-8";
     console = {
         packages = with pkgs; [ terminus_font ];
-        font = "${pkgs.terminus_font}/share/consolefonts/ter-i22b.psf.gz";
+        font = "${pkgs.terminus_font}/share/consolefonts/ter-132b.psf.gz";
         useXkbConfig = true; # use xkb.options in tty.
     };
 
@@ -200,35 +203,35 @@
 
     programs.zsh = {
         enable = true;
-        autosuggestions.enable = true;
-        enableCompletion = true;
-        enableGlobalCompInit = true;
-        histFile = "${config.environment.variables.ZDOTDIR}/history";
-        histSize = 50000;
-        setOptions = [
-            "autocd"
-            "globdots"
-            "nobeep"
-            "nomatch"
-            "menucomplete"
-            "extendedglob"
-            "interactivecomments"
-            "appendhistory"
-            "histignorespace"
-            "histignoredups"
-            "banghist"
-            "extendedhistory"
-            # "incappendhistory"
-            # "sharehistory"
-            "histexpiredupsfirst"
-            "histignoredups"
-            "histignorealldups"
-            "histfindnodups"
-            "histignorespace"
-            "histsavenodups"
-            "histreduceblanks"
-            "histverify"
-        ];
+        # autosuggestions.enable = true;
+        # enableCompletion = true;
+        # enableGlobalCompInit = true;
+        # histFile = "${config.environment.variables.ZDOTDIR}/history";
+        # histSize = 50000;
+        # setOptions = [
+        #     "autocd"
+        #     "globdots"
+        #     "nobeep"
+        #     "nomatch"
+        #     "menucomplete"
+        #     "extendedglob"
+        #     "interactivecomments"
+        #     "appendhistory"
+        #     "histignorespace"
+        #     "histignoredups"
+        #     "banghist"
+        #     "extendedhistory"
+        #     # "incappendhistory"
+        #     # "sharehistory"
+        #     "histexpiredupsfirst"
+        #     "histignoredups"
+        #     "histignorealldups"
+        #     "histfindnodups"
+        #     "histignorespace"
+        #     "histsavenodups"
+        #     "histreduceblanks"
+        #     "histverify"
+        # ];
     };
 
     programs._1password.enable = true;
@@ -415,6 +418,7 @@
         # blueberry
         bluetuith
         ntfs3g
+        gparted
         # end
     ];
 
