@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 image="$HOME/.local/share/icons/paste.png"
 

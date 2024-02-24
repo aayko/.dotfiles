@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 icons_path="$HOME/.local/share/icons/"
 # Get mute state

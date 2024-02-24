@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Get id of touchpad and the id of the field corresponding to
 # tapping to click
