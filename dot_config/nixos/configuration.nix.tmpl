@@ -46,7 +46,7 @@ in
         gc.dates = "19:00";
     };
 
-    networking.hostName = "nixpc"; # Define your hostname.
+    networking.hostName = "nixlaptop"; # Define your hostname.
     # Pick only one of the below networking options.
     # networking.wireless.enable = true;    # Enables wireless support via wpa_supplicant.
     networking.networkmanager.enable = true;    # Easiest to use and most distros use this by default.
@@ -88,12 +88,7 @@ in
             enable = true;
             theme = "where_is_my_sddm_theme";
         };
-        displayManager.setupCommands = ''
-            ${pkgs.xorg.xrandr}/bin/xrandr --output HDMI-0 --off
-        '';
         displayManager.sessionCommands = ''
-            ${pkgs.xorg.xset}/bin/xset s off -dpms
-            ${pkgs.autorandr}/bin/autorandr --load desktop-default
             ${pkgs.playerctl}/bin/playerctld daemon &
             ${pkgs.dunst}/bin/dunst &
             ${pkgs.feh}/bin/feh --no-fehbg --bg-fill ~/pictures/wallpapers/ghibli/5m5kLI9.png &
@@ -374,14 +369,10 @@ in
             ];
         })
         pamixer
-        # sddm
-        # libsForQt5.qt5.qtgraphicaleffects
-        # libsForQt5.qt5.qtquickcontrols
-        # libsForQt5.qt5.qtquickcontrols2
-        # qt6.qtdeclarative
-        # snappy
-        # swayidle
-        # swaylock-effects
+        libsForQt5.qt5.qtgraphicaleffects
+        libsForQt5.qt5.qtquickcontrols
+        libsForQt5.qt5.qtquickcontrols2
+        qt6.qtdeclarative
         pinentry-gnome
         gpgme
         libgcrypt
@@ -395,7 +386,6 @@ in
         playerctl
         home-manager
         killall
-        # blueberry
         bluetuith
         ntfs3g
         gparted
