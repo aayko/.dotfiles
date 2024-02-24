@@ -26,7 +26,12 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   end,
 })
 
-vim.cmd([[ autocmd FileType nix autocmd VimEnter * TSContextDisable ]])
+vim.cmd([[
+  autocmd FileType * setlocal tabstop=4 softtabstop=4 shiftwidth=4
+  autocmd FileType nix setlocal tabstop=2 softtabstop=2 shiftwidth=2 
+]])
+vim.cmd([[ autocmd BufWritePre *.nix lua vim.lsp.buf.format() ]])
+vim.cmd([[ autocmd FileType nix TSContextDisable ]])
 vim.cmd([[ autocmd FileType tex autocmd BufWritePost <buffer> silent make ]])
 vim.cmd([[ autocmd FileType php hi! link @Variable GruvboxBlue ]])
 vim.cmd([[ autocmd VimEnter * if luaeval('require("oil").get_current_dir()') == '/home/ayko/notes/' | call luaeval('require("oil").toggle_hidden()') | endif ]])

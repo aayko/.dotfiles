@@ -3,7 +3,6 @@ return {
     dependencies = {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
-        'neovim/nvim-lspconfig',
         -- Autocompletion
         'hrsh7th/cmp-nvim-lsp',
         'hrsh7th/cmp-buffer',
@@ -18,6 +17,7 @@ return {
     },
     config = function()
         require("luasnip.loaders.from_vscode").lazy_load()
+        require('lspconfig.ui.windows').default_options.border = 'single'
 
         -- Snippets select mode mappings
         local ls = require("luasnip")
@@ -194,6 +194,7 @@ return {
                 -- Enable completion triggered by <c-x><c-o>
                 vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
+
                 -- Buffer local mappings.
                 -- See `:help vim.lsp.*` for documentation on any of the below functions
                 local opts = { buffer = ev.buf }
@@ -204,7 +205,7 @@ return {
                 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
                 vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, opts)
                 vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
-                vim.keymap.set('n', '<space>f', function()
+                vim.keymap.set('n', '<leader>f', function()
                     vim.lsp.buf.format { async = true }
                 end, opts)
             end,
