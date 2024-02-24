@@ -46,7 +46,7 @@ in
         gc.dates = "19:00";
     };
 
-    networking.hostName = "nixlaptop"; # Define your hostname.
+    networking.hostName = "{{- if .laptop -}}nixlaptop{{- else -}}nixpc{{- end -}}"; # Define your hostname.
     # Pick only one of the below networking options.
     # networking.wireless.enable = true;    # Enables wireless support via wpa_supplicant.
     networking.networkmanager.enable = true;    # Easiest to use and most distros use this by default.
