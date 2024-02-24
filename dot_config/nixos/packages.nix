@@ -8,7 +8,7 @@ let
   change-brightness = import scripts/change-brightness.nix { inherit pkgs; };
   change-volume = import scripts/change-volume.nix { inherit pkgs; };
   color-picker = import scripts/color-picker.nix { inherit pkgs; };
-  color-picker = import scripts/color-picker.nix { inherit pkgs; };
+  battery-notify = import scripts/battery-notify.nix { inherit pkgs; };
 in
 {
   nixpkgs = {
@@ -77,6 +77,7 @@ in
     bluetuith
 
     # cli
+    nix-index
     gtk-engine-murrine
     ueberzugpp
     xdg-user-dirs
@@ -122,6 +123,7 @@ in
     killall
     xdg-ninja
     ntfs3g
+    gcc
 
     # lf
     mdcat
@@ -140,6 +142,16 @@ in
     change-brightness
     change-volume
     color-picker
+    battery-notify
   ];
+
+  services.cron = {
+    enable = laptop;
+    systemCronJobs =
+      if laptop then [
+        "*/5 * * * * ${battery-notify}"
+      ] else [ ];
+  };
+
 }
 
