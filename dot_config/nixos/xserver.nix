@@ -4,7 +4,7 @@ let
   hostname = builtins.readFile "/etc/hostname";
   desktop = hostname == "nixpc";
   laptop = hostname == "nixlaptop";
-  commonCommands = '';
+  setupCommands = '';
       ${pkgs.playerctl}/bin/playerctld daemon &
       ${pkgs.dunst}/bin/dunst &
       ${pkgs.polybar}/bin/polybar &
@@ -44,10 +44,10 @@ in
         ${pkgs.xorg.xrandr}/bin/xrandr --output HDMI-0 --off
       '' else "";
     displayManager.sessionCommands =
-      if desktop then commandCommands ++ ''
+      if desktop then setupCommands ++ ''
         ${pkgs.xorg.xset}/bin/xset s off -dpms
         ${pkgs.autorandr}/bin/autorandr --load desktop-default
-      '' else commandCommands;
+      '' else setupCommands;
     xkb.layout = "pwerty";
     xkb.options = "compose:ralt,altwin:swap_lalt_lwin";
     autoRepeatDelay = 300;
