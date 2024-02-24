@@ -1,6 +1,16 @@
 { config, pkgs, laptop, desktop, ... }:
 
 let
+  hostname = builtins.readFile "/etc/hostname";
+  desktop = hostname == "nixpc";
+  laptop = hostname == "nixlaptop";
+  commonCommands = '';
+      ${pkgs.playerctl}/bin/playerctld daemon &
+      ${pkgs.dunst}/bin/dunst &
+      ${pkgs.polybar}/bin/polybar &
+      ${pkgs.feh}/bin/feh --no-fehbg --bg-fill ~/pictures/wallpapers/ghibli/5m5kLI9.png &
+    '';
+
   myDmenu = pkgs.dmenu.overrideAttrs (oldAttrs: {
     src = pkgs.fetchurl {
       url = "https://github.com/aayko/dmenu/archive/main.tar.gz";
@@ -29,6 +39,15 @@ in
       enable = true;
       theme = "where_is_my_sddm_theme";
     };
+    displayManager.setupCommands =
+      if desktop then ''
+        ${pkgs.xorg.xrandr}/bin/xrandr --output HDMI-0 --off
+      '' else "";
+    displayManager.sessionCommands =
+      if desktop then commandCommands ++ ''
+        ${pkgs.xorg.xset}/bin/xset s off -dpms
+        ${pkgs.autorandr}/bin/autorandr --load desktop-default
+      '' else commandCommands;
     xkb.layout = "pwerty";
     xkb.options = "compose:ralt,altwin:swap_lalt_lwin";
     autoRepeatDelay = 300;
@@ -73,3 +92,4 @@ in
     };
   };
 }
+

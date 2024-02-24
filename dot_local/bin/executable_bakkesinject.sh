@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 echo "" > ~/steam-252950.log
 
 eval 'PROTON_LOG=1 "$@"' &

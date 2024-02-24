@@ -4,17 +4,18 @@ set $alt Mod1
 set $win Mod4
 
 exec_always --no-startup-id autotiling
+{{- if not .nix }} 
 exec_always --no-startup-id ~/.local/bin/inverse-scroll.sh
 exec_always --no-startup-id ~/.local/bin/tap-to-click.sh
-
 exec --no-startup-id picom
 exec --no-startup-id polybar
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id dunst
 exec --no-startup-id udiskie &
 exec --no-startup-id playerctld daemon
-
 exec --no-startup-id feh --no-fehbg --bg-fill ~/pictures/wallpapers/ghibli/5m5kLI9.png
+{{- end }}
+
+# exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 {{ if .laptop -}}
 exec --no-startup-id xss-lock --transfer-sleep-lock -- betterlockscreen -l
@@ -48,35 +49,29 @@ bindsym $win+n exec --no-startup-id $term -e zsh -c 'TERM=xterm-old && nmtui'
 bindsym $win+s exec --no-startup-id $term ncspot
 bindsym $win+b exec --no-startup-id $term bluetuith
 
-bindsym $win+i exec --no-startup-id polybar-msg cmd toggle
-
-bindsym $win+m exec --no-startup-id toggle-mute.sh
-
-bindsym $win+p exec --no-startup-id powermenu.sh
 bindsym $win+w exec --no-startup-id $browser
 bindsym $win+d exec --no-startup-id j4-dmenu-desktop
-
+bindsym $win+i exec --no-startup-id polybar-msg cmd toggle
 bindsym $win+Space exec --no-startup-id dunstctl history-pop
 
-bindsym Print exec --no-startup-id screenshot.sh region
-bindsym $alt+Sys_Req exec --no-startup-id screenshot.sh window
-bindsym Shift+Print exec --no-startup-id screenshot.sh monitor
-
-bindsym --release $win+Shift+c exec colorpicker.sh
-
-bindsym $win+Shift+r restart
-bindsym $win+Shift+x exec i3-msg exit
-
-bindsym XF86AudioRaiseVolume exec --no-startup-id changevolume.sh up
-bindsym XF86AudioLowerVolume exec --no-startup-id changevolume.sh down 
-bindsym XF86AudioMute exec --no-startup-id changevolume.sh mute 
+bindsym $win+m exec --no-startup-id toggle-mute
+bindsym $win+p exec --no-startup-id power-menu
+bindsym Print exec --no-startup-id screenshot region
+bindsym $alt+Sys_Req exec --no-startup-id screenshot window
+bindsym Shift+Print exec --no-startup-id screenshot monitor
+bindsym --release $win+Shift+c exec color-picker
+bindsym XF86AudioRaiseVolume exec --no-startup-id change-volume up
+bindsym XF86AudioLowerVolume exec --no-startup-id change-volume down 
+bindsym XF86AudioMute exec --no-startup-id change-volume mute 
+bindsym XF86MonBrightnessDown exec --no-startup-id change-brightness down
+bindsym XF86MonBrightnessUp exec --no-startup-id change-brightness up
 
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 
-bindsym XF86MonBrightnessDown exec --no-startup-id changebrightness.sh down
-bindsym XF86MonBrightnessUp exec --no-startup-id changebrightness.sh up
+bindsym $win+Shift+r restart
+bindsym $win+Shift+x exec i3-msg exit
 
 bindsym $win+h focus left
 bindsym $win+j focus down

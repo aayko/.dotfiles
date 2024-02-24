@@ -13,6 +13,11 @@ README.md
 .config/nixos
 {{ end }}
 
+{{ if .nix }}
+.local/bin/*
+!.local/bin/*.py
+{{ end }}
+
 {{ if not .wayland }}
 .config/foot/
 .config/hypr/

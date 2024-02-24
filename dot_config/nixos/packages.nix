@@ -1,8 +1,13 @@
 { config, pkgs, laptop, desktop, ... }:
 
 let
+  hostname = builtins.readFile "/etc/hostname";
+  desktop = hostname == "nixpc";
+  laptop = hostname == "nixlaptop";
+
   change-brightness = import scripts/change-brightness.nix { inherit pkgs; };
   change-volume = import scripts/change-volume.nix { inherit pkgs; };
+  color-picker = import scripts/color-picker.nix { inherit pkgs; };
   color-picker = import scripts/color-picker.nix { inherit pkgs; };
 in
 {
@@ -19,84 +24,29 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    neovim
-    fzf
-    ly
-    wget
-    chezmoi
-    git
-    rustup
-    nodejs
-    gcc
-    lf
-    dunst
-    libnotify
-    unzip
-    age
-    ansible
-    jq
-    gzip
-    bc
-    btop
-    colordiff
-    cron
-    dict
-    gnumake
-    plocate
-    ripgrep
-    sassc
-    socat
-    sshfs-fuse
-    gnutar
-    transmission
-    udiskie
-    tree
-    zip
-    autorandr
-    spotifyd
-    ncspot
-    ueberzugpp
-    zathura
-    xdg-user-dirs
-    vesktop
-    ungoogled-chromium
-    speechd
-    gnome.seahorse
-    scrcpy
-    qbittorrent
-    polkit
-    polkit_gnome
-    obs-studio
-    mimeo
-    mpv
-    unstable.melonDS
-    mdcat
-    imv
-    gtk-engine-murrine
+    # gui
     gthumb
-    colloid-icon-theme
-    gnome-themes-extra
-    libgnome-keyring
+    unstable.xdg-terminal-exec
+    celluloid
     gnome.gnome-disk-utility
     gnome.gnome-calculator
-    fontforge
-    ffmpeg
-    ffmpegthumbnailer
-    ctpv
-    celluloid
-    bat
-    atool
+    obs-studio
+    scrcpy
+    vesktop
+    ungoogled-chromium
+    gnome.seahorse
+    qbittorrent
+    unstable.melonDS
+    mpv
+    imv
+    zathura
     _1password-gui
-    unstable.xdg-terminal-exec
-    trash-cli
-    nim
-    nimPackages.nimble
-    (where-is-my-sddm-theme.override {
-      themeConfig.General = {
-        cursorColor = "#ffffff";
-        passwordCharacter = "*";
-      };
-    })
+    dunst
+    gnome.gnome-weather
+    gnome.nautilus
+    gparted
+    localsend
+    pavucontrol
     (vscode-with-extensions.override {
       vscodeExtensions = with vscode-extensions; [
         bbenoist.nix
@@ -106,29 +56,85 @@ in
         github.copilot-chat
       ];
     })
-    pamixer
+
+    # sddm
+    (where-is-my-sddm-theme.override {
+      themeConfig.General = {
+        cursorColor = "#ffffff";
+        passwordCharacter = "*";
+      };
+    })
     libsForQt5.qt5.qtgraphicaleffects
     libsForQt5.qt5.qtquickcontrols
     libsForQt5.qt5.qtquickcontrols2
     qt6.qtdeclarative
-    pinentry-gnome
-    gpgme
-    libgcrypt
-    libassuan
-    tldr
+
     # haskellPackages.ghcup
-    xdg-ninja
-    gnome.gnome-weather
-    gnome.nautilus
+
+    # tui
+    neovim
+    ncspot
+    bluetuith
+
+    # cli
+    gtk-engine-murrine
+    ueberzugpp
+    xdg-user-dirs
+    speechd
+    mimeo
+    colloid-icon-theme
+    gnome-themes-extra
+    tree
+    zip
+    autorandr
+    spotifyd
+    unzip
+    age
+    ansible
+    jq
+    gzip
+    bc
+    btop
+    cron
+    dict
+    gnumake
+    plocate
+    ripgrep
+    sassc
+    socat
+    sshfs-fuse
+    gnutar
+    libnotify
+    chezmoi
+    git
+    rustup
+    nodejs
+    gcc
+    fzf
+    ly
+    wget
+    pamixer
+    tldr
+    neofetch
     nitch
     playerctl
     home-manager
     killall
-    bluetuith
+    xdg-ninja
     ntfs3g
-    gparted
-    localsend
-    pavucontrol
+
+    # lf
+    mdcat
+    transmission
+    colordiff
+    fontforge
+    ffmpeg
+    ffmpegthumbnailer
+    ctpv
+    bat
+    atool
+    trash-cli
+    lf
 
     # scripts
     change-brightness

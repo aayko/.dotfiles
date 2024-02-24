@@ -7,11 +7,9 @@ let
   commonImports = [
     ./resolved.nix
     ./boot.nix
-    { inherit laptop desktop; }
     ./xserver.nix
-    { inherit laptop desktop; }
     ./packages.nix
-    { inherit laptop desktop; }
+    ./environment.nix
     ./fonts.nix
   ];
 in
@@ -67,10 +65,11 @@ in
 
   services.openssh.enable = true;
   services.dbus.enable = true;
-  services.picom.enable = true;
   services.sshd.enable = true;
-  services.udisks2.enable = true;
   services.printing.enable = true;
+
+  services.picom.enable = true;
+  services.udisks2.enable = true;
 
   programs.zsh = {
     enable = true;
@@ -94,6 +93,11 @@ in
     home = "/home/ayko";
     shell = pkgs.zsh;
     extraGroups = [ "wheel" "networkmanager" "video" ];
+  };
+
+  security.pam.services.kwallet = {
+    name = "kwallet";
+    enableKwallet = true;
   };
 
   # xdg.portal = {
