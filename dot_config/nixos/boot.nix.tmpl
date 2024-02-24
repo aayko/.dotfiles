@@ -21,7 +21,7 @@
         "arch.conf" = ''
             title   Arch Linux
             linux   /EFI/arch/vmlinuz-linux
-            initrd  /EFI/arch/intel-ucode.img
+            initrd  /EFI/arch/{{- if .desktop -}}intel{{- else -}}amd{{- end -}}-ucode.img
             initrd  /EFI/arch/initramfs-linux.img
             options root=/dev/disk/by-label/ARCHROOT zswap.enabled=0 rw rootfstype=ext4 quiet
         '';
