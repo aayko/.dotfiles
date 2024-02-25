@@ -53,6 +53,7 @@ packages:
       - 'ttf-firacode-nerd'
       - 'ttf-mononoki-nerd'
       - 'ttf-ubuntu-nerd'
+      - 'ttf-dejavu'
     audio:
       - 'alsa-utils'
       - 'pamixer'

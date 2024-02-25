@@ -7,7 +7,6 @@ alias lf="lfcd"
 alias v="nvim"
 alias se="sudoedit"
 
-alias s="sudo"
 alias please='sudo $(fc -ln -1)'
 
 alias mkdir="mkdir -vp"
@@ -25,8 +24,6 @@ alias ll="ls -lh --color --group-directories-first"
 alias tree="tree -L 4"
 alias ka="killall"
 alias so="clear; exec zsh"
-
-alias n="nix-env"
 
 alias note="nvim ~/notes/"
 

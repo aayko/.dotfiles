@@ -1,11 +1,14 @@
-source $ZDOTDIR/fzf.zsh 2>/dev/null
-[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
-plug "zsh-users/zsh-autosuggestions"
-plug "zap-zsh/supercharge"
-plug "zdharma-continuum/fast-syntax-highlighting"
-plug "zsh-users/zsh-history-substring-search"
+source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+source $ZDOTDIR/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source $ZDOTDIR/plugins/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
 
-source $ZDOTDIR/aliases.zsh 2>/dev/null
+source $ZDOTDIR/fzf.zsh
+source $ZDOTDIR/completion.zsh
+source $ZDOTDIR/aliases.zsh
+
+HISTFILE="${ZDOTDIR:-$HOME}/history"
+HISTSIZE=50000
+SAVEHIST=50000
 
 #don't add failed command to ~/.zsh_history
 zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
@@ -43,6 +46,15 @@ bindkey '^P' history-substring-search-up
 bindkey '^N' history-substring-search-down
 HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
 
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
+# bindings
+bindkey -M menuselect '?' history-incremental-search-forward
+bindkey -M menuselect '/' history-incremental-search-backward
+
 # ------ PROMPT ------
 __git_files () { 
     _wanted files expl 'local files' _files     
@@ -74,6 +86,3 @@ precmd() {
 }
 
 eval "$(dircolors)"
-
-autoload -Uz compinit
-compinit

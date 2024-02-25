@@ -9,6 +9,15 @@ README.md
 .config/autorandr/
 {{ end }}
 
+{{ if not .nix }}
+.config/nixos
+{{ end }}
+
+{{ if .nix }}
+.local/bin/*
+!.local/bin/*.py
+{{ end }}
+
 {{ if not .wayland }}
 .config/foot/
 .config/hypr/
@@ -31,12 +40,15 @@ README.md
 .local/bin/inverse-scroll.sh
 .local/bin/tap-to-click.sh
 .local/bin/wayland-lock.sh
+.config/nixos/laptop-hardware-configuration.nix
+.config/nixos/capsLockRemap.nix
 {{ end }}
 
 {{ if not .desktop -}}
 .local/bin/inject.cpp
 .local/bin/inject.exe
 .local/bin/bakkesinject.sh
+.config/nixos/desktop-hardware-configuration.nix
 {{- end }}
 
 {{ end }}

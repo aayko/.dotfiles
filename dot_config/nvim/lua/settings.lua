@@ -113,3 +113,4 @@ vim.api.nvim_set_hl(0, "StatusLineNC", { link = "WinSeparator" })
 vim.api.nvim_set_hl(0, "YankyYanked", { link = "IncSearch" })
 
 vim.api.nvim_set_hl(0, "FzfLuaBorder", { link = "@ibl.whitespace.char.1" })
+vim.api.nvim_set_hl(0, "LspInfoBorder", { link = "@ibl.whitespace.char.1" })

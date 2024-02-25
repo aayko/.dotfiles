@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+lock="lock"
+hibernate="hibernate"
+shutdown="shutdown"
+reboot="reboot"
+windows="windows"
+arch="arch"
+
+{{ if .desktop -}}
+options="$shutdown\n$reboot\n$windows\n$arch"
+{{ else -}}
+options="$lock\n$hibernate\n$shutdown\n$reboot\n$arch"
+{{- end }}
+chosen="$(echo -e "$options" | dmenu)"
+case $chosen in
+    "$lock")
+        lock.sh
+        ;;
+    "$shutdown")
+        systemctl poweroff
+        ;;
+    "$hibernate")
+        systemctl hibernate
+        lock.sh
+        ;;
+    "$reboot")
+        systemctl --no-wall reboot
+        ;;
+    "$windows")
+        systemctl --no-wall reboot --boot-loader-entry=auto-windows
+        ;;
+    "$arch")
+        systemctl --no-wall reboot --boot-loader-entry=arch.conf
+        ;;
+esac

@@ -58,8 +58,8 @@ cmd restore_trash ${{
 }}
 
 cmd su ${{
-    lf -remote "send $id quit" &&
-    su -c "lf"
+    lf -remote "send $id quit"
+    sudo lf
 }}
 
 cmd zip push :$zip<space>-r
@@ -167,3 +167,5 @@ map gt cd /home/ayko/.local/share/Trash/files
 map gz cd /home/ayko/.local/share/chezmoi
 map ga cd /usr/share/applications
 map gm cd /run/media/ayko
+map gn cd /run/current-system/
+map ge cd /home/ayko/.config/nixos

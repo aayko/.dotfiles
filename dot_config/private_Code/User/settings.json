@@ -1,0 +1,78 @@
+{
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["u"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "undo",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["<S-u>"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "redo",
+                    "args": []
+                }
+            ]
+        },
+    ],
+    "vim.normalModeKeyBindings": [
+        {
+            "before": ["s"],
+            "after": ["V"]
+        }
+    ],
+    "vim.visualModeKeyBindings": [
+        {
+            "before": ["s"],
+            "after": ["V"]
+        }
+    ],
+    "vim.cursorStylePerMode.visualline": "block",
+    "vim.highlightedyank.enable": true,
+    "vim.replaceWithRegister": true,
+    "vim.leader": "space",
+    "vim.useSystemClipboard": true,
+    "editor.lineNumbers": "relative",
+    "editor.selectionClipboard": false,
+    "notebook.compactView": false,
+    "notebook.consolidatedRunButton": true,
+    "notebook.dragAndDropEnabled": false,
+    "breadcrumbs.enabled": false,
+    "security.workspace.trust.banner": "never",
+    "notebook.undoRedoPerCell": false,
+    "editor.fontFamily": "'FiraCode Nerd Font', 'monospace', monospace",
+    "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?_",
+    "editor.minimap.enabled": false,
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "hidden"
+    },
+    "editor.scrollbar.horizontal": "hidden",
+    "editor.scrollbar.vertical": "hidden",
+    "window.zoomLevel": 2,
+    "workbench.startupEditor": "none",
+    "editor.matchBrackets": "never",
+    "editor.occurrencesHighlight": "off",
+    "editor.renderLineHighlight": "none",
+    "workbench.editor.showTabs": "none",
+    "editor.fontSize": 16,
+    "editor.padding.top": 10,
+    "editor.folding": false,
+    "files.autoSave": "afterDelay",
+    "editor.renderWhitespace": "none",
+    "window.menuBarVisibility": "toggle",
+    "security.workspace.trust.startupPrompt": "never",
+    "security.workspace.trust.enabled": false,
+    "workbench.colorTheme": "Gruvbox Dark Hard",
+    "workbench.activityBar.location": "hidden",
+    "terminal.external.linuxExec": "foot",
+    "explorer.confirmDelete": false,
+    "redhat.telemetry.enabled": false,
+    "editor.autoClosingBrackets": "never",
+}

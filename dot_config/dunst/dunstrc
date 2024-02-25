@@ -112,8 +112,12 @@
 [experimental]
     per_monitor_dpi = false
 
-[dis/charging]
+[charging]
     appname = "charging"
+    history_ignore = true
+
+[volume]
+    appname = "volume"
     history_ignore = true
 
 [brightness]
