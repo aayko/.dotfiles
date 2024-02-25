@@ -52,17 +52,23 @@ bindsym $win+b exec --no-startup-id $term bluetuith
 bindsym $win+w exec --no-startup-id $browser
 bindsym $win+d exec --no-startup-id j4-dmenu-desktop
 bindsym $win+i exec --no-startup-id polybar-msg cmd toggle
-bindsym $win+Space exec --no-startup-id dunstctl history-pop
+
+bindsym $win+space exec --no-startup-id dunstctl close-all
+bindsym $win+r exec --no-startup-id dunstctl history-pop
 
 bindsym $win+m exec --no-startup-id toggle-mute
+
 bindsym $win+p exec --no-startup-id power-menu
+
 bindsym Print exec --no-startup-id screenshot region
 bindsym $alt+Sys_Req exec --no-startup-id screenshot window
 bindsym Shift+Print exec --no-startup-id screenshot monitor
+
 bindsym --release $win+Shift+c exec color-picker
 bindsym XF86AudioRaiseVolume exec --no-startup-id change-volume up
 bindsym XF86AudioLowerVolume exec --no-startup-id change-volume down 
 bindsym XF86AudioMute exec --no-startup-id change-volume mute 
+
 bindsym XF86MonBrightnessDown exec --no-startup-id change-brightness down
 bindsym XF86MonBrightnessUp exec --no-startup-id change-brightness up
 
@@ -110,16 +116,10 @@ bindsym $alt+braceleft    move container to workspace number $ws3
 bindsym $alt+parenleft    move container to workspace number $ws4
 bindsym $alt+ampersand    move container to workspace number $ws5
 
-mode "resize" {
-        bindsym l resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym h resize grow width 10 px or 10 ppt
-
-        bindsym Escape mode "default"
-}
-
-bindsym $win+r mode "resize"
+bindsym $win+Shift+h  resize shrink width 10 px or 10 ppt
+bindsym $win+Shift+j  resize grow height 10 px or 10 ppt
+bindsym $win+Shift+k  resize shrink height 10 px or 10 ppt
+bindsym $win+Shift+l  resize grow width 10 px or 10 ppt
 
 # -- Rules --
 smart_borders on
