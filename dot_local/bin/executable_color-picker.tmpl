@@ -3,8 +3,8 @@
 image="$HOME/.local/share/icons/paste.png"
 
 {{- if .x11 }}
-    xcolor -s clipboard && notify-send --icon "$image" "Copied $(xsel -ob) to clipboard"
+xcolor -s clipboard && notify-send --icon "$image" "Copied $(xsel -ob) to clipboard"
 {{- else if .wayland }}
-    hyprpicker -ra && notify-send --icon "$image" "Copied $(wl-paste) to clipboard"
+hyprpicker -ra && notify-send --icon "$image" "Copied $(wl-paste) to clipboard"
 fi
 {{- end }}
