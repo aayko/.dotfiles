@@ -1,5 +1,3 @@
-README.md
-
 {{ if eq .chezmoi.os "linux" }}
 
 {{ if not .x11 }}
@@ -33,22 +31,21 @@ README.md
 {{ end }}
 
 {{ if not .laptop }}
-.local/bin/batterynotify.sh
-.local/bin/changebrightness.sh
-.local/bin/chargingnotify.sh
+.local/bin/battery-notify
+.local/bin/change-brightness
+.local/bin/charging-notify
 .local/bin/eduroam-linux.py
-.local/bin/inverse-scroll.sh
-.local/bin/tap-to-click.sh
-.local/bin/wayland-lock.sh
-.config/nixos/laptop-hardware-configuration.nix
-.config/nixos/capsLockRemap.nix
+.local/bin/inverse-scroll
+.local/bin/tap-to-click
+.local/bin/lock
+.config/nixos/laptop
 {{ end }}
 
 {{ if not .desktop -}}
 .local/bin/inject.cpp
 .local/bin/inject.exe
-.local/bin/bakkesinject.sh
-.config/nixos/desktop-hardware-configuration.nix
+.local/bin/bakkes-inject
+.config/nixos/desktop
 {{- end }}
 
 {{ end }}
