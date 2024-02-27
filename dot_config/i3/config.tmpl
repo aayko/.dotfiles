@@ -5,17 +5,17 @@ set $win Mod4
 
 exec_always --no-startup-id autotiling
 exec --no-startup-id polybar
-{{- if not .nix }} 
-exec_always --no-startup-id ~/.local/bin/inverse-scroll.sh
-exec_always --no-startup-id ~/.local/bin/tap-to-click.sh
-exec --no-startup-id picom
-exec --no-startup-id dunst
 exec --no-startup-id udiskie &
+{{- if not .nix }} 
+exec_always --no-startup-id ~/.local/bin/inverse-scroll
+exec_always --no-startup-id ~/.local/bin/tap-to-click
+exec --no-startup-id dunst
+exec --no-startup-id picom
 exec --no-startup-id playerctld daemon
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id feh --no-fehbg --bg-fill ~/pictures/wallpapers/ghibli/5m5kLI9.png
 {{- end }}
 
-# exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 {{ if .laptop -}}
 exec --no-startup-id xss-lock --transfer-sleep-lock -- betterlockscreen -l

@@ -104,6 +104,14 @@
     foreground = "#cc3333"
     timeout = 0
 
+[udiskie]
+    summary = "*evice*"
+    new_icon = "disk"
+
+[udiskie-mounted]
+    summary = "*mounted*"
+    skip_display = true
+
 [charged]
     appname = "charged"
     frame_color = "#669b59"
@@ -118,11 +126,6 @@
 
 [volume]
     appname = "volume"
-    history_ignore = true
-
-[brightness]
-    appname = "brightness"
-    highlight = "#aaaaaa"
     history_ignore = true
 
 [spotify]
