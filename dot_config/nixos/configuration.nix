@@ -11,14 +11,15 @@ let
     ./packages.nix
     ./environment.nix
     ./fonts.nix
+    ./modules/ly.nix
   ];
 in
 {
   imports =
     if desktop then
-      commonImports ++ [ ./desktop/hardware-configuration.nix ]
+      commonImports ++ [ ./host/desktop/hardware-configuration.nix ]
     else
-      commonImports ++ [ ./laptop/hardware-configuration.nix ./laptop/capsLockRemap.nix ];
+      commonImports ++ [ ./host/laptop/hardware-configuration.nix ./host/laptop/capsLockRemap.nix ];
 
   nix.nixPath = [
     "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
@@ -67,14 +68,14 @@ in
     enable = true;
   };
 
+  programs.firefox = {
+    enable = true;
+  };
+
   programs._1password.enable = true;
   programs._1password-gui = {
     enable = true;
     polkitPolicyOwners = [ "ayko" ];
-  };
-
-  programs.firefox = {
-    enable = true;
   };
 
   users.groups.plocate = { };
@@ -94,6 +95,7 @@ in
   # };
 
   security.polkit.enable = true;
+  services.gnome.gnome-keyring.enable = true;
 
   systemd = {
     user.services.polkit-gnome-authentication-agent-1 = {
@@ -114,11 +116,11 @@ in
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    pinentryFlavor = "gnome3";
-    enableSSHSupport = true;
-  };
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   pinentryFlavor = "gnome3";
+  #   enableSSHSupport = true;
+  # };
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
