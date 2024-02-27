@@ -1,9 +1,9 @@
-{ config, pkgs, laptop, desktop, ... }:
+{ config, pkgs, ... }:
 
 let
   hostname = builtins.readFile "/etc/hostname";
-  desktop = hostname == "nixpc";
-  laptop = hostname == "nixlaptop";
+  desktop = hostname == "nixpc\n";
+  laptop = hostname == "nixlaptop\n";
 in
 {
   system.activationScripts.removeBootEntryVersion = {
