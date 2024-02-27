@@ -2,12 +2,12 @@
 
 let
   hostname = builtins.readFile "/etc/hostname";
-  desktop = hostname == "nixpc";
-  laptop = hostname == "nixlaptop";
+  desktop = hostname == "nixpc\n";
+  laptop = hostname == "nixlaptop\n";
   commonImports = [
     ./resolved.nix
     ./boot.nix
-    ./xserver.nix
+    ./services.nix
     ./packages.nix
     ./environment.nix
     ./fonts.nix
@@ -63,20 +63,6 @@ in
   hardware.brillo.enable = laptop;
   hardware.bluetooth.enable = true;
 
-  services.openssh.enable = true;
-  services.dbus.enable = true;
-  services.sshd.enable = true;
-  services.printing.enable = true;
-
-  services.picom.enable = true;
-  services.udisks2.enable = true;
-
-  services.udev.extraRules = ''
-    SUBSYSTEM=="backlight", ACTION=="add", KERNEL=="amdgpu_bl0", RUN+="${pkgs.coreutils}/bin/chgrp video /sys/class/backlight/%k/brightness", RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/backlight/%k/brightness"
-    ACTION=="change", SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="0", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/ayko/.Xauthority" RUN+="${pkgs.su}/bin/su ayko -c '/home/ayko/.local/bin/charging-notify 0'"
-    ACTION=="change", SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="1", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/ayko/.Xauthority" RUN+="${pkgs.su}/bin/su ayko -c '/home/ayko/.local/bin/charging-notify 1'"
-  '';
-
   programs.zsh = {
     enable = true;
   };
@@ -101,43 +87,38 @@ in
     extraGroups = [ "wheel" "networkmanager" "video" ];
   };
 
-  security.pam.services.kwallet = {
-    name = "kwallet";
-    enableKwallet = true;
-  };
-
   # xdg.portal = {
   #   enable = true;
   #   config.common.default = "*";
   #   extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   # };
 
-  # security.polkit.enable = true;
+  security.polkit.enable = true;
 
-  # systemd = {
-  #   user.services.polkit-gnome-authentication-agent-1 = {
-  #     description = "polkit-gnome-authentication-agent-1";
-  #     wantedBy = [ "graphical-session.target" ];
-  #     wants = [ "graphical-session.target" ];
-  #     after = [ "graphical-session.target" ];
-  #     serviceConfig = {
-  #       Type = "simple";
-  #       ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-  #       Restart = "on-failure";
-  #       RestartSec = 1;
-  #       TimeoutStopSec = 10;
-  #     };
-  #   };
-  # };
+  systemd = {
+    user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+    };
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   pinentryFlavor = "gnome3";
-  #   enableSSHSupport = true;
-  # };
+  programs.gnupg.agent = {
+    enable = true;
+    pinentryFlavor = "gnome3";
+    enableSSHSupport = true;
+  };
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you

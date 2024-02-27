@@ -1,14 +1,17 @@
-{ config, pkgs, laptop, desktop, ... }:
+{ config, pkgs, ... }:
 
 let
-  hostname = builtins.readFile "/etc/hostname";
-  desktop = hostname == "nixpc";
-  laptop = hostname == "nixlaptop";
-
   change-brightness = import scripts/change-brightness.nix { inherit pkgs; };
   change-volume = import scripts/change-volume.nix { inherit pkgs; };
   color-picker = import scripts/color-picker.nix { inherit pkgs; };
   battery-notify = import scripts/battery-notify.nix { inherit pkgs; };
+
+  myDmenu = pkgs.dmenu.overrideAttrs (oldAttrs: {
+    src = pkgs.fetchurl {
+      url = "https://github.com/aayko/dmenu/archive/main.tar.gz";
+      sha256 = "1rg4m4pg3irkbnn40vmab2wqcalr96499lfkjb36w2p38crkarci";
+    };
+  });
 in
 {
   nixpkgs = {
@@ -19,6 +22,12 @@ in
           (fetchTarball
             "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz")
           { };
+        polybar = pkgs.polybar.override {
+          i3Support = true;
+        };
+        j4-dmenu-desktop = pkgs.j4-dmenu-desktop.override {
+          dmenu = myDmenu;
+        };
       };
     };
   };
@@ -75,6 +84,15 @@ in
     neovim
     ncspot
     bluetuith
+
+    # keyring ?
+    pinentry-gnome
+    libgcrypt
+    libassuan
+    polkit_gnome
+    libgnome-keyring
+    polkit
+    gpgme
 
     # cli
     nix-index
@@ -143,15 +161,26 @@ in
     change-volume
     color-picker
     battery-notify
+
+    # xorg
+    autotiling
+    polybar
+    betterlockscreen
+    feh
+    maim
+    xclip
+    xcolor
+    xclip
+    xdotool
+    xss-lock
+    xsel
+    j4-dmenu-desktop
+    myDmenu
+    (st.overrideAttrs (oldAttrs: {
+      src = fetchurl {
+        url = "https://github.com/aayko/st/archive/main.tar.gz";
+        sha256 = "00wqqvxvjy8c8hiyf0qpznmdczglb7ac8ql28q7vik837s3gpiby";
+      };
+    }))
   ];
-
-  services.cron = {
-    enable = laptop;
-    systemCronJobs =
-      if laptop then [
-        "*/5 * * * * ${battery-notify}"
-      ] else [ ];
-  };
-
 }
-
