@@ -64,7 +64,7 @@ in
   services.dbus.enable = true;
   services.sshd.enable = true;
   services.printing.enable = true;
-  services.auto-cpufreq.enable = true;
+  services.auto-cpufreq.enable = laptop;
 
   services.picom.enable = true;
 
