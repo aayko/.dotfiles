@@ -12,6 +12,8 @@ let
       sha256 = "1rg4m4pg3irkbnn40vmab2wqcalr96499lfkjb36w2p38crkarci";
     };
   });
+
+  ctpv = import ./packages/ctpv.nix { inherit (pkgs) lib stdenv fetchFromGitHub makeWrapper file openssl atool bat chafa delta ffmpeg ffmpegthumbnailer fontforge glow imagemagick jq ueberzugpp; };
 in
 {
   nixpkgs = {
@@ -34,6 +36,8 @@ in
 
   environment.systemPackages = with pkgs; [
     # gui
+    blueberry
+    gimp
     gthumb
     unstable.xdg-terminal-exec
     celluloid
@@ -85,19 +89,11 @@ in
     ncspot
     bluetuith
 
-    # keyring ?
-    pinentry-gnome
-    libgcrypt
-    libassuan
-    polkit_gnome
-    libgnome-keyring
-    polkit
-    gpgme
-
     # cli
+    udiskie
+    polkit_gnome
     nix-index
     gtk-engine-murrine
-    ueberzugpp
     xdg-user-dirs
     speechd
     mimeo
@@ -137,24 +133,14 @@ in
     neofetch
     nitch
     playerctl
-    home-manager
     killall
     xdg-ninja
     ntfs3g
     gcc
 
-    # lf
-    mdcat
-    transmission
-    colordiff
-    fontforge
-    ffmpeg
-    ffmpegthumbnailer
-    ctpv
-    bat
-    atool
-    trash-cli
     lf
+    ctpv
+    trash-cli
 
     # scripts
     change-brightness
@@ -166,7 +152,6 @@ in
     autotiling
     polybar
     betterlockscreen
-    feh
     maim
     xclip
     xcolor
