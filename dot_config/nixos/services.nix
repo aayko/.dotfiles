@@ -4,32 +4,28 @@ let
   hostname = builtins.readFile "/etc/hostname";
   desktop = hostname == "nixpc\n";
   laptop = hostname == "nixlaptop\n";
-  commonCommands = '';
-      ${pkgs.playerctl}/bin/playerctld daemon &
-      ${pkgs.dunst}/bin/dunst &
-      ${pkgs.polybar}/bin/polybar &
-      ${pkgs.feh}/bin/feh --no-fehbg --bg-fill ~/pictures/wallpapers/ghibli/5m5kLI9.png &
-    '';
+  commonCommands = ''
+    ${pkgs.playerctl}/bin/playerctld daemon &
+    ${pkgs.dunst}/bin/dunst &
+    ${pkgs.feh}/bin/feh --no-fehbg --bg-fill ~/pictures/wallpapers/ghibli/5m5kLI9.png &
+  '';
 in
 {
-
   services.xserver = {
     enable = true;
     displayManager.sddm = {
       enable = true;
       theme = "where_is_my_sddm_theme";
-      # theme = "chili";
     };
-    displayManager.lightdm.enable = false;
-    # displayManager.setupCommands =
-    #   if desktop then ''
-    #     ${pkgs.xorg.xrandr}/bin/xrandr --output HDMI-0 --off
-    #   '' else '''';
-    # displayManager.sessionCommands =
-    #   if desktop then commonCommands ++ ''
-    #     ${pkgs.xorg.xset}/bin/xset s off -dpms
-    #     ${pkgs.autorandr}/bin/autorandr --load desktop-default
-    #   '' else commonCommands;
+    displayManager.setupCommands =
+      if desktop then ''
+        ${pkgs.xorg.xrandr}/bin/xrandr --output HDMI-0 --off
+      '' else '''';
+    displayManager.sessionCommands =
+      if desktop then commonCommands ++ ''
+        ${pkgs.xorg.xset}/bin/xset s off -dpms
+        ${pkgs.autorandr}/bin/autorandr --load desktop-default
+      '' else commonCommands;
     xkb.layout = "pwerty";
     xkb.variant = "";
     xkb.model = "";
