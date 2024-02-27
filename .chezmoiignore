@@ -12,6 +12,7 @@
 {{ end }}
 
 {{ if .nix }}
+.xprofile
 .local/bin/*
 !.local/bin/*.py
 {{ end }}
