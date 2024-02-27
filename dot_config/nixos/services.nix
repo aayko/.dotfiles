@@ -13,6 +13,10 @@ in
 {
   services.xserver = {
     enable = true;
+    displayManager.ly = {
+      enable = false;
+      defaultUser = "ayko";
+    };
     displayManager.sddm = {
       enable = true;
       theme = "where_is_my_sddm_theme";
@@ -52,6 +56,7 @@ in
     touchpad = {
       naturalScrolling = laptop;
       tapping = laptop;
+      tappingDragLock = false;
     };
   };
 
@@ -62,6 +67,7 @@ in
   services.auto-cpufreq.enable = true;
 
   services.picom.enable = true;
+
   services.udisks2.enable = true;
 
   services.udev.extraRules =
