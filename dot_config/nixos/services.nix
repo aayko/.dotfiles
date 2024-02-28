@@ -57,6 +57,7 @@ in
       naturalScrolling = laptop;
       tapping = laptop;
       tappingDragLock = false;
+      disableWhileTyping = true;
     };
   };
 
@@ -65,8 +66,6 @@ in
   services.sshd.enable = true;
   services.printing.enable = true;
   services.auto-cpufreq.enable = laptop;
-
-  services.picom.enable = true;
 
   services.udisks2.enable = true;
 
