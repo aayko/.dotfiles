@@ -43,7 +43,6 @@
     NPM_CONFIG_USERCONFIG = "${XDG_CONFIG_HOME}/npm/npmrc";
     RUSTUP_HOME = "${XDG_DATA_HOME}/rustup";
     WORDCHARS = "";
-    SUDO_PROMPT = "Password for %p: ";
   };
 
   environment.shellAliases = {
