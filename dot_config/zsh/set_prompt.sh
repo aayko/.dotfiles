@@ -19,11 +19,11 @@ function set_prompt {
         prompt_final_symbol="##"
     elif [ -n "$VIMRUNTIME" ]; then
         prompt_final_symbol="%%"
-    elif [ "$SHELL" = bash ]; then
+    elif [ $0 = bash ]; then
         prompt_final_symbol="$"
     fi
 
-    if [ "$SHELL" = bash ]; then
+    if [ $0 = bash ]; then
         PS1="\w $bash_green$git_info$bash_color_reset$prompt_final_symbol "
     else 
         PS1="%~ %F{green}$git_info%f$prompt_final_symbol "
