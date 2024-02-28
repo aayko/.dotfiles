@@ -1,13 +1,27 @@
-#
-# ~/.bashrc
-#
-
-mkdir -p "$XDG_STATE_HOME"/bash 
+mkdir -p "$XDG_STATE_HOME"/bash  > /dev/null
 export HISTFILE="$XDG_STATE_HOME"/bash/history 
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-source $ZDOTDIR/aliases.zsh 2>/dev/null
-
 PS1='\W \$ '
+
+source $ZDOTDIR/aliases.sh
+source $ZDOTDIR/set_prompt.sh
+
+shopt -s autocd
+shopt -s dotglob
+shopt -s failglob
+shopt -s extglob
+shopt -s interactive_comments
+shopt -s histappend
+shopt -s histverify
+
+bind 'TAB:menu-complete'
+bind 'set completion-ignore-case on'
+
+HISTCONTROL=ignorespace
+HISTCONTROL=ignoredups
+HISTCONTROL=erasedups
+
+PROMPT_COMMAND=set_prompt
