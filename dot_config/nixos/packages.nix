@@ -6,10 +6,12 @@ let
   color-picker = import scripts/color-picker.nix { inherit pkgs; };
   battery-notify = import scripts/battery-notify.nix { inherit pkgs; };
 
-  myDmenu = pkgs.dmenu.overrideAttrs (oldAttrs: {
-    src = pkgs.fetchurl {
-      url = "https://github.com/aayko/dmenu/archive/main.tar.gz";
-      sha256 = "1rg4m4pg3irkbnn40vmab2wqcalr96499lfkjb36w2p38crkarci";
+  dmenu = pkgs.dmenu.overrideAttrs (oldAttrs: {
+    src = pkgs.fetchFromGitHub {
+      owner = "aayko";
+      repo = "dmenu";
+      rev = "main";
+      hash = "sha256-WOZvw3Pb5JX0osIgqcyw6SANfxBYAQAhy6L/XHiQXoU=";
     };
   });
 
@@ -28,7 +30,7 @@ in
           i3Support = true;
         };
         j4-dmenu-desktop = pkgs.j4-dmenu-desktop.override {
-          dmenu = myDmenu;
+          dmenu = dmenu;
         };
       };
     };
@@ -151,6 +153,7 @@ in
     # xorg
     autotiling
     polybar
+    picom
     betterlockscreen
     maim
     xclip
@@ -160,11 +163,13 @@ in
     xss-lock
     xsel
     j4-dmenu-desktop
-    myDmenu
+    dmenu
     (st.overrideAttrs (oldAttrs: {
-      src = fetchurl {
-        url = "https://github.com/aayko/st/archive/main.tar.gz";
-        sha256 = "00wqqvxvjy8c8hiyf0qpznmdczglb7ac8ql28q7vik837s3gpiby";
+      src = pkgs.fetchFromGitHub {
+        owner = "aayko";
+        repo = "st";
+        rev = "main";
+        hash = "sha256-ce3oi76JlFxsMccZqjVQ98vCMPsTBcH6v1F0UZGfJgM=";
       };
     }))
   ];
