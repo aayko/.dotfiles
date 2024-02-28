@@ -43,17 +43,20 @@
     NPM_CONFIG_USERCONFIG = "${XDG_CONFIG_HOME}/npm/npmrc";
     RUSTUP_HOME = "${XDG_DATA_HOME}/rustup";
     WORDCHARS = "";
+    SUDO_PROMPT = "Password for %p: ";
   };
 
   environment.shellAliases = {
-    dot = "${pkgs.chezmoi}/bin/chezmoi";
-    se = "sudoedit";
     ne = "v ${config.environment.variables.XDG_CONFIG_HOME}/nixos/configuration.nix";
     ns = "sudo nixos-rebuild switch";
-    v = "${pkgs.neovim}/bin/nvim";
     svn = "svn --config-dir ${config.environment.variables.XDG_CONFIG_HOME}/subversion";
     wget = "wget --hsts-file=${config.environment.variables.XDG_DATA_HOME}/wget-hsts";
     adb = "HOME=${config.environment.variables.ANDROID_USER_HOME} adb";
   };
 
+  environment.shellInit = ''
+    nl() {
+      nix-locate /bin/"$1" | grep -v "(.*)" | awk -F '.out' '{ print $1 }'
+    }
+  '';
 }
