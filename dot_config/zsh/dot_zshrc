@@ -4,14 +4,16 @@ source $ZDOTDIR/plugins/zsh-history-substring-search/zsh-history-substring-searc
 
 source $ZDOTDIR/fzf.zsh
 source $ZDOTDIR/completion.zsh
-source $ZDOTDIR/aliases.zsh
 source $ZDOTDIR/opts.zsh
+source $ZDOTDIR/aliases.sh
+source $ZDOTDIR/set_prompt.sh
 
-HISTFILE="${ZDOTDIR:-$HOME}/history"
+mkdir -p "$XDG_STATE_HOME"/zsh > /dev/null
+export HISTFILE="$XDG_STATE_HOME"/zsh/history 
 HISTSIZE=50000
 SAVEHIST=50000
 
-#don't add failed command to ~/.zsh_history
+#don't add failed command to history
 zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
 
 zle_highlight=('paste:none')
@@ -51,38 +53,12 @@ autoload -U down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 
-# bindings
 bindkey -M menuselect '?' history-incremental-search-forward
 bindkey -M menuselect '/' history-incremental-search-backward
 
-# ------ PROMPT ------
-__git_files () { 
-    _wanted files expl 'local files' _files     
-}
-
-function is_dirty {
-    [[ $(git diff --shortstat 2> /dev/null | tail -n1) != "" ]] && echo "*"
-}
-
-function set_prompt {
-    local branch_name=$(git symbolic-ref --short HEAD 2>/dev/null)
-    local dirty_status="$(is_dirty)"
-
-    local git_info=""
-    if [ -n "$branch_name" ]; then
-        git_info="%F{green}$branch_name$dirty_status "
-    fi
-
-    if [ -n "$VIMRUNTIME" ]; then
-        PS1="%~ $git_info%f%% "
-    else
-        PS1="%~ $git_info%f> "
-    fi
-}
-
 precmd() {
     set_prompt
-    print -Pn "\e]133;A\e\\"
+    # print -Pn "\e]133;A\e\\"
 }
 
 eval "$(dircolors)"
