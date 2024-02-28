@@ -40,3 +40,4 @@ export CABAL_DIR="$XDG_DATA_HOME"/cabel
 export CABAL_CONFIG="$XDG_CONFIG_HOME"/cabal/config
 
 export WORDCHARS=""
+export SUDO_PROMPT="Password for %p: "
