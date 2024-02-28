@@ -4,6 +4,9 @@ let
   change-brightness = import scripts/change-brightness.nix { inherit pkgs; };
   change-volume = import scripts/change-volume.nix { inherit pkgs; };
   color-picker = import scripts/color-picker.nix { inherit pkgs; };
+  powermenu = import scripts/powermenu.nix { inherit pkgs; };
+  lock = import scripts/lock.nix { inherit pkgs; };
+  screenshot = import scripts/screenshot.nix { inherit pkgs; };
 
   dmenu = pkgs.dmenu.overrideAttrs (oldAttrs: {
     src = pkgs.fetchFromGitHub {
@@ -148,6 +151,8 @@ in
     change-brightness
     change-volume
     color-picker
+    powermenu
+    screenshot
 
     # xorg
     autotiling
