@@ -4,11 +4,14 @@ let
   hostname = builtins.readFile "/etc/hostname";
   desktop = hostname == "nixpc\n";
   laptop = hostname == "nixlaptop\n";
+
   commonCommands = ''
     ${pkgs.playerctl}/bin/playerctld daemon &
     ${pkgs.dunst}/bin/dunst &
     ${pkgs.feh}/bin/feh --no-fehbg --bg-fill ~/pictures/wallpapers/ghibli/5m5kLI9.png &
   '';
+
+  charging-notify = import scripts/charging-notify.nix { inherit pkgs; };
 in
 {
   services.xserver = {
@@ -73,15 +76,9 @@ in
     if laptop then
       ''
         SUBSYSTEM=="backlight", ACTION=="add", KERNEL=="amdgpu_bl0", RUN+="${pkgs.coreutils}/bin/chgrp video /sys/class/backlight/%k/brightness", RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/backlight/%k/brightness"
-        ACTION=="change", SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="0", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/ayko/.Xauthority" RUN+="${pkgs.su}/bin/su ayko -c '/home/ayko/.local/bin/charging-notify 0'"
-        ACTION=="change", SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="1", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/ayko/.Xauthority" RUN+="${pkgs.su}/bin/su ayko -c '/home/ayko/.local/bin/charging-notify 1'"
+        ACTION=="change", SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="0", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/ayko/.Xauthority" RUN+="${pkgs.su}/bin/su ayko -c '${charging-notify}/bin/charging-notify 0'"
+        ACTION=="change", SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="1", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/ayko/.Xauthority" RUN+="${pkgs.su}/bin/su ayko -c '${charging-notify}/bin/charging-notify 1'"
       '' else "";
 
-  services.cron = {
-    enable = laptop;
-    systemCronJobs =
-      if laptop then [
-        "*/5 * * * * battery-notify"
-      ] else [ ];
-  };
+  services.logind.lidSwitch = "ignore";
 }

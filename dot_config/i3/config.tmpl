@@ -15,6 +15,7 @@ exec --no-startup-id feh --no-fehbg --bg-fill ~/pictures/wallpapers/ghibli/5m5kL
 exec --no-startup-id picom
 exec --no-startup-id polybar
 exec --no-startup-id udiskie &
+exec --no-startup-id battery-notify &
 
 {{- if .laptop }}
 exec --no-startup-id xss-lock --transfer-sleep-lock -- betterlockscreen -l

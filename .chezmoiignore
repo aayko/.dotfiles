@@ -14,6 +14,7 @@
 {{ if .nix }}
 .xprofile
 .local/bin/*
+!.local/bin/battery-notify
 !.local/bin/*.py
 {{ end }}
 

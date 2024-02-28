@@ -4,7 +4,6 @@ let
   change-brightness = import scripts/change-brightness.nix { inherit pkgs; };
   change-volume = import scripts/change-volume.nix { inherit pkgs; };
   color-picker = import scripts/color-picker.nix { inherit pkgs; };
-  battery-notify = import scripts/battery-notify.nix { inherit pkgs; };
 
   dmenu = pkgs.dmenu.overrideAttrs (oldAttrs: {
     src = pkgs.fetchFromGitHub {
@@ -92,6 +91,7 @@ in
     bluetuith
 
     # cli
+    acpi
     udiskie
     polkit_gnome
     nix-index
@@ -148,7 +148,6 @@ in
     change-brightness
     change-volume
     color-picker
-    battery-notify
 
     # xorg
     autotiling
