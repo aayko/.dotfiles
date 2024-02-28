@@ -5,6 +5,7 @@ source $ZDOTDIR/plugins/zsh-history-substring-search/zsh-history-substring-searc
 source $ZDOTDIR/fzf.zsh
 source $ZDOTDIR/completion.zsh
 source $ZDOTDIR/aliases.zsh
+source $ZDOTDIR/opts.zsh
 
 HISTFILE="${ZDOTDIR:-$HOME}/history"
 HISTSIZE=50000
@@ -14,7 +15,6 @@ SAVEHIST=50000
 zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
 
 zle_highlight=('paste:none')
-unsetopt BEEP
 stty ixany
 
 function lfcd () {
