@@ -13,9 +13,6 @@ while true; do
     BATTERY_DISCHARGING=$(acpi -b | grep -E "remaining|charged|zero" | grep -c "Discharging")
     BATTERY_LEVEL=$(acpi -b | grep -E "remaining|charged|zero" | grep -P -o '[0-9]+(?=%)')
 
-    echo "Battery discharging: $BATTERY_DISCHARGING"
-    echo "Battery level: $BATTERY_LEVEL"
-
     # Reset notifications if the computer is charging/discharging
     if [ "$BATTERY_DISCHARGING" -eq 1 ] && [ -f $FULL_FILE ]; then
         rm $FULL_FILE
@@ -25,7 +22,7 @@ while true; do
 
     # If the battery is charging and is full (and has not shown notification yet)
     if [ "$BATTERY_LEVEL" -ge $FULL_LEVEL ] && [ "$BATTERY_DISCHARGING" -eq 0 ] && [ ! -f $FULL_FILE ]; then
-        notify-send "Battery Charged" "Battery is fully charged."
+        notify-send "Battery Charged" "Battery is fully charged." -i "battery-full" -a "charged" -r 9991
         touch $FULL_FILE
     # If the battery is low and is not charging (and has not shown notification yet)
     elif [ "$BATTERY_LEVEL" -le $WARNING_LEVEL ] && [ "$BATTERY_DISCHARGING" -eq 1 ] && [ ! -f $EMPTY_FILE ]; then
@@ -33,5 +30,5 @@ while true; do
         touch $EMPTY_FILE
     fi
 
-    sleep 15
+    sleep 300
 done
