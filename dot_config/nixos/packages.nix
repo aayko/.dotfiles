@@ -102,7 +102,6 @@ in
     xdg-user-dirs
     speechd
     mimeo
-    colloid-icon-theme
     gnome-themes-extra
     tree
     zip

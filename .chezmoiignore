@@ -15,6 +15,7 @@
 .xprofile
 .local/bin/*
 !.local/bin/battery-notify
+!.local/bin/firefox-restore
 !.local/bin/*.py
 {{ end }}
 

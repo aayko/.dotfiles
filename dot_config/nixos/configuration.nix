@@ -64,6 +64,8 @@ in
   hardware.brillo.enable = laptop;
   hardware.bluetooth.enable = true;
 
+  programs.dconf.enable = true;
+
   programs.zsh = {
     enable = true;
   };
@@ -97,6 +99,17 @@ in
   security.polkit.enable = true;
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.sddm.enableGnomeKeyring = true;
+
+  security.pam.services.sddm = {
+    text = ''
+      auth      substack      login
+      auth      optional      pam_gnome_keyring.so
+      account   include       login
+      password  substack      login
+      session   include       login
+      session   optional      pam_gnome_keyring.so auto_start
+    '';
+  };
 
   systemd = {
     user.services.polkit-gnome-authentication-agent-1 = {
