@@ -50,4 +50,6 @@
 .config/nixos/desktop
 {{- end }}
 
+.mozilla
+
 {{ end }}

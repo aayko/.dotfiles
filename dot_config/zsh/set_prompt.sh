@@ -19,6 +19,8 @@ function set_prompt {
         prompt_final_symbol="##"
     elif [ -n "$VIMRUNTIME" ]; then
         prompt_final_symbol="%%"
+    elif [ -n "$IN_NIX_SHELL" ]; then
+        prompt_final_symbol="!"
     elif [ $0 = bash ]; then
         prompt_final_symbol="$"
     fi
