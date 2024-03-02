@@ -1,4 +1,4 @@
-set $term xdg-terminal-exec
+set $term st -e tmux new-session
 set $browser firefox
 set $alt Mod1
 set $win Mod4
@@ -45,7 +45,7 @@ bindsym $win+e exec --no-startup-id $term lf
 bindsym $win+Shift+e exec --no-startup-id $term sudo lf
 bindsym $win+v exec --no-startup-id $term nvim
 bindsym $win+c exec --no-startup-id $term nvim ~/.config/i3/config
-bindsym $win+n exec --no-startup-id $term -e zsh -c 'TERM=xterm-old && nmtui'
+bindsym $win+n exec --no-startup-id $term zsh -c 'TERM=xterm-old && nmtui'
 bindsym $win+s exec --no-startup-id $term ncspot
 bindsym $win+b exec --no-startup-id $term bluetuith
 
