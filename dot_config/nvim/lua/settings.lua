@@ -100,8 +100,8 @@ vim.o.cmdheight = 0
 vim.opt.guicursor = ""
 
 -- Use synchronous formatting when quitting and saving
-vim.cmd("cabbrev wq execute 'Format sync' <bar> wq")
-vim.cmd("cabbrev x execute 'Format sync' <bar> x")
+vim.cmd [[cabbrev wq execute "Format sync" <bar> wq]]
+vim.cmd [[cabbrev x execute "Format sync" <bar> x]]
 
 vim.cmd("colorscheme gruvbox")
 
