@@ -39,88 +39,42 @@ fi
 
 {
 
-# CTRL-T - Paste the selected file path(s) into the command line
-__fsel() {
-  local cmd="${FZF_CTRL_T_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
-    -o -type f -print \
-    -o -type d -print \
-    -o -type l -print 2> /dev/null | cut -b3-"}"
-  setopt localoptions pipefail no_aliases 2> /dev/null
-  local item
-  eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --scheme=path --bind=ctrl-z:ignore ${FZF_DEFAULT_OPTS-} ${FZF_CTRL_T_OPTS-}" $(__fzfcmd) -m "$@" | while read item; do
-    echo -n "${(q)item} "
-  done
-  local ret=$?
-  echo
-  return $ret
-}
-
 __fzfcmd() {
   [ -n "${TMUX_PANE-}" ] && { [ "${FZF_TMUX:-0}" != 0 ] || [ -n "${FZF_TMUX_OPTS-}" ]; } &&
     echo "fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}} -- " || echo "fzf"
 }
 
-fzf-cd-config-widget() {
-    setopt localoptions pipefail no_aliases 2> /dev/null
-    local dir="$(eval "find ~/.config -maxdepth 1 -type d" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --scheme=path --bind=ctrl-z:ignore ${FZF_DEFAULT_OPTS-} ${FZF_ALT_C_OPTS-}" $(__fzfcmd) +m)"
-    if [[ -z "$dir" ]]; then
-        zle redisplay
-        return 0
-    fi
-    zle push-line # Clear buffer. Auto-restored on next prompt.
-    BUFFER="cd ${(q)dir}; clear"
-    zle accept-line
-    local ret=$?
-    unset dir # ensure this doesn't end up appearing in prompt expansion
-    zle reset-prompt
-    return $ret
-}
-zle     -N             fzf-cd-config-widget
-bindkey -M emacs '\ec' fzf-cd-config-widget
-bindkey -M vicmd '\ec' fzf-cd-config-widget
-bindkey -M viins '\ec' fzf-cd-config-widget
-
-fzf-cd-projects-widget() {
-    setopt localoptions pipefail no_aliases 2> /dev/null
-    local dir="$(eval "find ~/perso ~/uni -maxdepth 1 -type d" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --scheme=path --bind=ctrl-z:ignore ${FZF_DEFAULT_OPTS-} ${FZF_ALT_C_OPTS-}" $(__fzfcmd) +m)"
-    if [[ -z "$dir" ]]; then
-        zle redisplay
-        return 0
-    fi
-    zle push-line # Clear buffer. Auto-restored on next prompt.
-    BUFFER="cd ${(q)dir}; clear"
-    zle accept-line
-    local ret=$?
-    unset dir # ensure this doesn't end up appearing in prompt expansion
-    zle reset-prompt
-    return $ret
-}
-zle     -N             fzf-cd-projects-widget
-bindkey -M emacs '\ec' fzf-cd-projects-widget
-bindkey -M vicmd '\ec' fzf-cd-projects-widget
-bindkey -M viins '\ec' fzf-cd-projects-widget
-
 fzf-cd-widget() {
-  local cmd="${FZF_ALT_C_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
-    -o -type d -print 2> /dev/null | cut -b3-"}"
-  setopt localoptions pipefail no_aliases 2> /dev/null
-  local dir="$(eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --scheme=path --bind=ctrl-z:ignore ${FZF_DEFAULT_OPTS-} ${FZF_ALT_C_OPTS-}" $(__fzfcmd) +m)"
-  if [[ -z "$dir" ]]; then
-    zle redisplay
-    return 0
-  fi
-  zle push-line # Clear buffer. Auto-restored on next prompt.
-  BUFFER="cd ${(q)dir}; clear"
-  zle accept-line
-  local ret=$?
-  unset dir # ensure this doesn't end up appearing in prompt expansion
-  zle reset-prompt
-  return $ret
+    setopt localoptions pipefail no_aliases 2> /dev/null
+    local cmd="find $1 -maxdepth 1 -type d"
+    local dir="$(eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --scheme=path --bind=ctrl-z:ignore ${FZF_DEFAULT_OPTS-} ${FZF_ALT_C_OPTS-}" $(__fzfcmd) +m)"
+    if [[ -z "$dir" ]]; then
+        zle redisplay
+        return 0
+    fi
+    zle push-line # Clear buffer. Auto-restored on next prompt.
+    BUFFER="cd ${(q)dir}; clear"
+    zle accept-line
+    local ret=$?
+    unset dir # ensure this doesn't end up appearing in prompt expansion
+    zle reset-prompt
+    return $ret
 }
-# zle     -N             fzf-cd-widget
-# bindkey -M emacs '\ec' fzf-cd-widget
-# bindkey -M vicmd '\ec' fzf-cd-widget
-# bindkey -M viins '\ec' fzf-cd-widget
+
+function fzf-cd-current() {
+    fzf-cd-widget "."
+}
+zle -N fzf-cd-current
+
+function fzf-cd-projects() {
+    fzf-cd-widget "$HOME/projects $HOME/uni"
+}
+zle -N fzf-cd-projects
+
+function fzf-cd-config() {
+    fzf-cd-widget "$HOME/.config"
+}
+zle -N fzf-cd-config
 
 # CTRL-R - Paste the selected command from history into the command line
 fzf-history-widget() {
@@ -138,10 +92,7 @@ fzf-history-widget() {
   zle reset-prompt
   return $ret
 }
-zle     -N            fzf-history-widget
-bindkey -M emacs '^R' fzf-history-widget
-bindkey -M vicmd '^R' fzf-history-widget
-bindkey -M viins '^R' fzf-history-widget
+zle -N fzf-history-widget
 
 } always {
   eval $__fzf_key_bindings_options
@@ -171,7 +122,6 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"\
 " --color=bg+:$color01,bg:$color00,spinner:$color0C,hl:$color0D"\
 " --color=fg:$color04,header:$color0D,info:$color0A,pointer:$color0C"\
 " --color=marker:$color0C,fg+:$color06,prompt:$color0A,hl+:$color0D,gutter:$color00,scrollbar:$color00"
-
 }
 
 _gen_fzf_default_opts

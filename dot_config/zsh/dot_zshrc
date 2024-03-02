@@ -13,11 +13,13 @@ export HISTFILE="$XDG_STATE_HOME"/zsh/history
 HISTSIZE=50000
 SAVEHIST=50000
 
-#don't add failed command to history
+# don't add failed command to history
 zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
 
 zle_highlight=('paste:none')
 stty ixany
+
+# ------ WIDGETS ------
 
 function lfcd () {
     tmp="$(mktemp)"
@@ -28,37 +30,56 @@ function lfcd () {
         if [ -d "$dir" ]; then
             if [ "$dir" != "$(pwd)" ]; then
                 cd "$dir"
+                set_prompt
             fi
         fi
     fi
+    [[ $WIDGET == lfcd ]] && zle reset-prompt
 }
+zle -N lfcd
 
-# Paste last command output
+function prepend-sudo {
+    if [[ $BUFFER != "sudo "* ]]; then
+        BUFFER="sudo $BUFFER"; CURSOR+=5
+    fi
+}
+zle -N prepend-sudo
+
+autoload -U edit-command-line
+zle -N edit-command-line
+
 zmodload -i zsh/parameter
+insert-last-command-output() {
+    LBUFFER+="$(eval $history[$((HISTCMD-1))])"
+}
+zle -N insert-last-command-output
 
 # ------ BINDS ------
 bindkey -e
-bindkey "^o" fzf-cd-widget
-bindkey "^j" fzf-cd-projects-widget
-bindkey "^t" fzf-cd-config-widget
-# shift-tab in completion
-bindkey '^[[Z' reverse-menu-complete
+
+bindkey '\ev' edit-command-line
+bindkey '\es' prepend-sudo
+
+bindkey '\ec' fzf-cd-current
+bindkey '^R' fzf-history-widget
+bindkey '^T' fzf-cd-config
+bindkey '^J' fzf-cd-projects
+
+bindkey "^x" insert-last-command-output
+bindkey "^o" lfcd
 
 bindkey '^P' history-substring-search-up
 bindkey '^N' history-substring-search-down
 HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
 
-autoload -U up-line-or-beginning-search
-autoload -U down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
 
 bindkey -M menuselect '?' history-incremental-search-forward
 bindkey -M menuselect '/' history-incremental-search-backward
 
 precmd() {
     set_prompt
-    # print -Pn "\e]133;A\e\\"
 }
-
-eval "$(dircolors)"
