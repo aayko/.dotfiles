@@ -17,6 +17,7 @@ return {
                         "stylua",
                         "shellcheck",
                         "clang-format",
+                        "pretty-php",
                     }
                 })
             end
@@ -155,10 +156,14 @@ return {
         lspformat.setup {}
 
         -- Language servers
-        lspconfig.hls.setup {}
+        lspconfig.hls.setup {
+            on_attach = lspformat.on_attach,
+        }
+
         lspconfig.clangd.setup {
             on_attach = lspformat.on_attach,
         }
+
         lspconfig.lua_ls.setup {
             on_attach = lspformat.on_attach,
             settings = {
@@ -169,10 +174,13 @@ return {
                 }
             }
         }
-        lspconfig.texlab.setup {}
-        lspconfig.rnix.setup {
-            -- on_attach = lspformat.on_attach
+
+        lspconfig.intelephense.setup {
+            on_attach = lspformat.on_attach
         }
+
+        lspconfig.texlab.setup {}
+        lspconfig.rnix.setup {}
 
         require("mason-lspconfig").setup_handlers {
             function(server_name) -- default handler (optional)
