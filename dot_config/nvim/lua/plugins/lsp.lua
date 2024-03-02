@@ -3,6 +3,24 @@ return {
     dependencies = {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
+        {
+            "jay-babu/mason-null-ls.nvim",
+            event = { "BufReadPre", "BufNewFile" },
+            dependencies = {
+                "williamboman/mason.nvim",
+                "nvimtools/none-ls.nvim",
+                "lukas-reineke/lsp-format.nvim",
+            },
+            config = function()
+                require("mason-null-ls").setup({
+                    ensure_installed = {
+                        "stylua",
+                        "shellcheck",
+                        "clang-format",
+                    }
+                })
+            end
+        },
         -- Autocompletion
         'hrsh7th/cmp-nvim-lsp',
         'hrsh7th/cmp-buffer',
@@ -118,38 +136,63 @@ return {
         require("mason-lspconfig").setup({
             ensure_installed = {
                 'bashls',
-                'lua_ls',
-                'cssls',
-                'clangd',
+                -- 'clangd',
                 'jdtls',
                 'html',
                 'emmet_language_server',
+                'cssls',
+                -- 'lua_ls',
                 'vimls',
+                -- 'rnix',
             },
         })
 
         -- Set up lspconfig.
         local capabilities = require('cmp_nvim_lsp').default_capabilities()
+        local lspconfig = require("lspconfig")
+        local lspformat = require("lsp-format")
+
+        lspformat.setup {}
+
+        -- Language servers
+        lspconfig.hls.setup {}
+        lspconfig.clangd.setup {
+            on_attach = lspformat.on_attach,
+        }
+        lspconfig.lua_ls.setup {
+            on_attach = lspformat.on_attach,
+            settings = {
+                Lua = {
+                    diagnostics = {
+                        globals = { "vim" },
+                    }
+                }
+            }
+        }
+        lspconfig.texlab.setup {}
+        lspconfig.rnix.setup {
+            -- on_attach = lspformat.on_attach
+        }
 
         require("mason-lspconfig").setup_handlers {
             function(server_name) -- default handler (optional)
-                require("lspconfig")[server_name].setup {
+                lspconfig[server_name].setup {
                     capabilities = capabilities,
                 }
             end,
 
-            ["lua_ls"] = function()
-                local lspconfig = require("lspconfig")
-                lspconfig.lua_ls.setup {
-                    settings = {
-                        Lua = {
-                            diagnostics = {
-                                globals = { "vim" }
-                            }
-                        }
-                    }
-                }
-            end,
+            -- ["lua_ls"] = function()
+            --     lspconfig.lua_ls.setup {
+            --             -- cmd = { "/run/current-system/sw/bin/lua-language-server" },
+            --         settings = {
+            --             Lua = {
+            --                 diagnostics = {
+            --                     globals = { "vim" }
+            --                 }
+            --             }
+            --         }
+            --     }
+            -- end,
         }
 
         vim.diagnostic.config({

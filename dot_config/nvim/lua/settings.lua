@@ -99,6 +99,10 @@ vim.o.cmdheight = 0
 -- Block in insert mode
 vim.opt.guicursor = ""
 
+-- Use synchronous formatting when quitting and saving
+vim.cmd("cabbrev wq execute 'Format sync' <bar> wq")
+vim.cmd("cabbrev x execute 'Format sync' <bar> x")
+
 vim.cmd("colorscheme gruvbox")
 
 vim.api.nvim_set_hl(0, "@ibl.scope.char.1", { fg = "#fe8019" })
