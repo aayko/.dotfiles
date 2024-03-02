@@ -15,7 +15,8 @@
     VISUAL = "nvim";
     MANPAGER = "nvim +Man!";
     BROWSER = "firefox";
-    TERMINAL = "xdg-terminal-exec";
+    TERM = "st-256color";
+    TERMINAL = "st";
     GTK_THEME = "Colloid-Grey-Dark:dark";
 
     GTK_CSD = "0";
@@ -24,7 +25,7 @@
     __GL_SHADER_DISK_CACHE_SKIP_CLEANUP = "1";
 
     GTK2_RC_FILES = "${XDG_CONFIG_HOME}/gtk-2.0/gtkrc";
-    ANDROID_USER_HOME = "${XDG_DATA_HOME}/android";
+    ANDROID_HOME = "${XDG_DATA_HOME}/android";
     ANSIBLE_HOME = "${XDG_DATA_HOME}/ansible";
     CARGO_HOME = "${XDG_DATA_HOME}/cargo";
     CUDA_CACHE_PATH = "${XDG_CACHE_HOME}/nv";
@@ -43,6 +44,7 @@
     NPM_CONFIG_USERCONFIG = "${XDG_CONFIG_HOME}/npm/npmrc";
     RUSTUP_HOME = "${XDG_DATA_HOME}/rustup";
     WORDCHARS = "";
+    ERRFILE = "${XDG_CACHE_HOME}/X11/xsession-errors";
   };
 
   environment.shellAliases = {
@@ -50,7 +52,7 @@
     ns = "sudo nixos-rebuild switch";
     svn = "svn --config-dir ${config.environment.variables.XDG_CONFIG_HOME}/subversion";
     wget = "wget --hsts-file=${config.environment.variables.XDG_DATA_HOME}/wget-hsts";
-    adb = "HOME=${config.environment.variables.ANDROID_USER_HOME} adb";
+    adb = "HOME=${config.environment.variables.ANDROID_HOME} adb";
   };
 
   environment.shellInit = ''

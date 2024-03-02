@@ -1,9 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  hostname = builtins.readFile "/etc/hostname";
-  desktop = hostname == "nixpc\n";
-  laptop = hostname == "nixlaptop\n";
+  laptop = builtins.readFile "/etc/hostname" == "nixlaptop\n";
 
   commonCommands = ''
     ${pkgs.playerctl}/bin/playerctld daemon &
@@ -25,11 +23,11 @@ in
       theme = "where_is_my_sddm_theme";
     };
     displayManager.setupCommands =
-      if desktop then ''
+      if ! laptop then ''
         ${pkgs.xorg.xrandr}/bin/xrandr --output HDMI-0 --off
       '' else '''';
     displayManager.sessionCommands =
-      if desktop then commonCommands ++ ''
+      if ! laptop then commonCommands ++ ''
         ${pkgs.xorg.xset}/bin/xset s off -dpms
         ${pkgs.autorandr}/bin/autorandr --load desktop-default
       '' else commonCommands;

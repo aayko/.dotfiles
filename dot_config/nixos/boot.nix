@@ -1,14 +1,13 @@
 { config, pkgs, ... }:
 
 let
-  hostname = builtins.readFile "/etc/hostname";
-  desktop = hostname == "nixpc\n";
-  laptop = hostname == "nixlaptop\n";
+  laptop = builtins.readFile "/etc/hostname" == "nixlaptop\n";
 in
 {
   system.activationScripts.removeBootEntryVersion = {
     text = ''
-      ${pkgs.findutils}/bin/find /boot/loader/entries/ -name 'nixos-generation-*' -exec ${pkgs.gnused}/bin/sed -i 's/version Generation \([0-9]*\).*/version \1/' {} \;
+      ${pkgs.findutils}/bin/find /boot/loader/entries/ -name 'nixos-generation-*' -exec ${pkgs.gnused}/bin/sed -i 's/version Generation \([0-9]*\).*/title NixOS - Generation \1/' {} \;
+      ${pkgs.findutils}/bin/find /boot/loader/entries/ -name 'nixos-generation-*' -exec ${pkgs.gnused}/bin/sed -i '1d' {} \;
     '';
   };
 
@@ -26,18 +25,18 @@ in
   boot.loader.systemd-boot.configurationLimit = 3;
   boot.loader.systemd-boot.extraEntries = {
     "arch.conf" =
-      if desktop then ''
-        title   Arch Linux
-        linux   /EFI/arch/vmlinuz-linux
-        initrd  /EFI/arch/intel-ucode.img
-        initrd  /EFI/arch/initramfs-linux.img
-        options root=/dev/disk/by-label/ARCHROOT zswap.enabled=0 rw rootfstype=ext4 quiet
-      '' else ''
+      if laptop then ''
         title   Arch Linux
         linux   /EFI/arch/vmlinuz-linux
         initrd  /EFI/arch/amd-ucode.img
         initrd  /EFI/arch/initramfs-linux.img
         options root=/dev/disk/by-label/ARCHROOT rw rootfstype=ext4 quiet
+      '' else ''
+        title   Arch Linux
+        linux   /EFI/arch/vmlinuz-linux
+        initrd  /EFI/arch/intel-ucode.img
+        initrd  /EFI/arch/initramfs-linux.img
+        options root=/dev/disk/by-label/ARCHROOT zswap.enabled=0 rw rootfstype=ext4 quiet
       '';
   };
   boot.loader.timeout = 0;

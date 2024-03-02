@@ -1,9 +1,7 @@
 { config, lib, pkgs, ... }:
 
 let
-  hostname = builtins.readFile "/etc/hostname";
-  desktop = hostname == "nixpc\n";
-  laptop = hostname == "nixlaptop\n";
+  laptop = builtins.readFile "/etc/hostname" == "nixlaptop\n";
   commonImports = [
     ./resolved.nix
     ./boot.nix
@@ -16,10 +14,10 @@ let
 in
 {
   imports =
-    if desktop then
-      commonImports ++ [ ./host/desktop/hardware-configuration.nix ]
+    if laptop then
+      commonImports ++ [ ./host/laptop/hardware-configuration.nix ./host/laptop/capsLockRemap.nix ]
     else
-      commonImports ++ [ ./host/laptop/hardware-configuration.nix ./host/laptop/capsLockRemap.nix ];
+      commonImports ++ [ ./host/desktop/hardware-configuration.nix ];
 
   nix.nixPath = [
     "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
@@ -39,7 +37,7 @@ in
   # Set your time zone.
   time.timeZone = "Europe/Paris";
 
-  networking.hostName = if desktop then "nixpc" else "nixlaptop"; # Define your hostname.
+  networking.hostName = if laptop then "nixlaptop" else "nixlaptop"; # Define your hostname.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -90,24 +88,16 @@ in
     extraGroups = [ "wheel" "networkmanager" "video" ];
   };
 
-  # xdg.portal = {
-  #   enable = true;
-  #   config.common.default = "*";
-  #   extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  # };
-
   security.polkit.enable = true;
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.sddm.enableGnomeKeyring = true;
 
-  security.pam.services.sddm = {
+  security.pam.services.gnome_keyring = {
     text = ''
-      auth      substack      login
-      auth      optional      pam_gnome_keyring.so
-      account   include       login
-      password  substack      login
-      session   include       login
-      session   optional      pam_gnome_keyring.so auto_start
+      auth     optional    ${pkgs.gnome.gnome-keyring}/lib/security/pam_gnome_keyring.so
+      session  optional    ${pkgs.gnome.gnome-keyring}/lib/security/pam_gnome_keyring.so auto_start
+
+      password  optional    ${pkgs.gnome.gnome-keyring}/lib/security/pam_gnome_keyring.so
     '';
   };
 

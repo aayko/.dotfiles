@@ -16,8 +16,6 @@ let
       hash = "sha256-WOZvw3Pb5JX0osIgqcyw6SANfxBYAQAhy6L/XHiQXoU=";
     };
   });
-
-  ctpv = import ./packages/ctpv.nix { inherit (pkgs) lib stdenv fetchFromGitHub makeWrapper file openssl atool bat chafa delta ffmpeg ffmpegthumbnailer fontforge glow imagemagick jq ueberzugpp; };
 in
 {
   nixpkgs = {
@@ -28,12 +26,6 @@ in
           (fetchTarball
             "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz")
           { };
-        polybar = pkgs.polybar.override {
-          i3Support = true;
-        };
-        j4-dmenu-desktop = pkgs.j4-dmenu-desktop.override {
-          dmenu = dmenu;
-        };
       };
     };
   };
@@ -74,6 +66,16 @@ in
       ];
     })
     gimp
+    (colloid-gtk-theme.override {
+      themeVariants = [ "grey" ];
+      colorVariants = [ "dark" ];
+      sizeVariants = [ "standard" ];
+      tweaks = [ "black" ];
+    })
+    (colloid-icon-theme.override {
+      schemeVariants = [ "default" ];
+      colorVariants = [ "grey" ];
+    })
 
     # sddm
     (where-is-my-sddm-theme.override {
@@ -87,8 +89,6 @@ in
     libsForQt5.qt5.qtquickcontrols2
     qt6.qtdeclarative
 
-    # haskellPackages.ghcup
-
     # tui
     ncdu
     neovim
@@ -101,11 +101,9 @@ in
     udiskie
     polkit_gnome
     nix-index
-    gtk-engine-murrine
     xdg-user-dirs
     speechd
     mimeo
-    gnome-themes-extra
     tree
     zip
     autorandr
@@ -146,8 +144,12 @@ in
     gcc
 
     lf
-    ctpv
+    poppler_utils
+    (ctpv.override {
+      ueberzug = ueberzugpp;
+    })
     trash-cli
+    ueberzugpp
 
     # scripts
     change-brightness
@@ -158,7 +160,9 @@ in
 
     # xorg
     autotiling
-    polybar
+    (polybar.override {
+      i3Support = true;
+    })
     picom
     betterlockscreen
     maim
@@ -168,7 +172,9 @@ in
     xdotool
     xss-lock
     xsel
-    j4-dmenu-desktop
+    (j4-dmenu-desktop.override {
+      dmenu = dmenu;
+    })
     dmenu
     (st.overrideAttrs (oldAttrs: {
       src = pkgs.fetchFromGitHub {
@@ -178,5 +184,22 @@ in
         hash = "sha256-ce3oi76JlFxsMccZqjVQ98vCMPsTBcH6v1F0UZGfJgM=";
       };
     }))
+
+    # dev
+    ghc
+    python3
+    tree-sitter
+    texliveMedium
+    # language servers
+    lua-language-server
+    haskellPackages.haskell-language-server
+    texlab
+    zulu
+    rnix-lsp
+    clang-tools
+    tmux
+    # (tmux.overrideAttrs (oldAttrs: {
+    #   configureFlags = oldAttrs.configureFlags ++ [ "--enable-sixel" ];
+    # }))
   ];
 }
