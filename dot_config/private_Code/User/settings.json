@@ -46,7 +46,7 @@
     "breadcrumbs.enabled": false,
     "security.workspace.trust.banner": "never",
     "notebook.undoRedoPerCell": false,
-    "editor.fontFamily": "'FiraCode Nerd Font', 'monospace', monospace",
+    "editor.fontFamily": "'Inconsolota Nerd Font', 'monospace', monospace",
     "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?_",
     "editor.minimap.enabled": false,
     "notebook.cellToolbarLocation": {
@@ -75,4 +75,5 @@
     "explorer.confirmDelete": false,
     "redhat.telemetry.enabled": false,
     "editor.autoClosingBrackets": "never",
+    "editor.cursorStyle": "block",
 }

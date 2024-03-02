@@ -73,6 +73,7 @@ in
         github.copilot-chat
       ];
     })
+    gimp
 
     # sddm
     (where-is-my-sddm-theme.override {
@@ -89,11 +90,13 @@ in
     # haskellPackages.ghcup
 
     # tui
+    ncdu
     neovim
     ncspot
     bluetuith
 
     # cli
+    wine
     acpi
     udiskie
     polkit_gnome
