@@ -41,7 +41,14 @@ in
     gnome.gnome-calculator
     obs-studio
     scrcpy
-    vesktop
+    (vesktop.overrideAttrs (oldAttrs: {
+      nativeBuildInputs = [
+        copyDesktopItems
+        nodePackages.pnpm
+        nodejs_21
+        makeWrapper
+      ];
+    }))
     ungoogled-chromium
     gnome.seahorse
     qbittorrent
@@ -144,7 +151,6 @@ in
     gcc
 
     lf
-    poppler_utils
     (ctpv.override {
       ueberzug = ueberzugpp;
     })
@@ -181,7 +187,7 @@ in
         owner = "aayko";
         repo = "st";
         rev = "main";
-        hash = "sha256-ce3oi76JlFxsMccZqjVQ98vCMPsTBcH6v1F0UZGfJgM=";
+        hash = "sha256-kjefKnnAX4rpmt81fmqZRjJrsUdz0NU6ngWh4G+iWfA=";
       };
     }))
 
@@ -190,7 +196,9 @@ in
     python3
     tree-sitter
     texliveMedium
+    php
     # language servers
+    nodePackages_latest.intelephense
     lua-language-server
     haskellPackages.haskell-language-server
     texlab

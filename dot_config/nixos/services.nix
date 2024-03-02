@@ -6,6 +6,7 @@ let
   commonCommands = ''
     ${pkgs.playerctl}/bin/playerctld daemon &
     ${pkgs.dunst}/bin/dunst &
+    ${pkgs.xbanish}/bin/xbanish &
     ${pkgs.feh}/bin/feh --no-fehbg --bg-fill ~/pictures/wallpapers/ghibli/5m5kLI9.png &
   '';
 
