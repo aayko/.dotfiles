@@ -76,5 +76,5 @@ return {
         "github/copilot.vim",
         enabled = true,
     },
-    "chaoren/vim-wordmotion"
+    "chaoren/vim-wordmotion",
 }

@@ -4,8 +4,8 @@ let
   change-brightness = import scripts/change-brightness.nix { inherit pkgs; };
   change-volume = import scripts/change-volume.nix { inherit pkgs; };
   color-picker = import scripts/color-picker.nix { inherit pkgs; };
-  powermenu = import scripts/powermenu.nix { inherit pkgs; };
   lock = import scripts/lock.nix { inherit pkgs; };
+  powermenu = import scripts/powermenu.nix { inherit pkgs; };
   screenshot = import scripts/screenshot.nix { inherit pkgs; };
 
   dmenu = pkgs.dmenu.overrideAttrs (oldAttrs: {
@@ -32,14 +32,24 @@ in
 
   environment.systemPackages = with pkgs; [
     # gui
+    _1password-gui
     blueberry
-    gimp
-    gthumb
-    unstable.xdg-terminal-exec
     celluloid
-    gnome.gnome-disk-utility
+    dunst
+    gimp
     gnome.gnome-calculator
+    gnome.gnome-disk-utility
+    gnome.gnome-weather
+    gnome.nautilus
+    gnome.seahorse
+    gparted
+    gthumb
+    imv
+    localsend
+    mpv
     obs-studio
+    pavucontrol
+    qbittorrent
     scrcpy
     (vesktop.overrideAttrs (oldAttrs: {
       nativeBuildInputs = [
@@ -49,20 +59,6 @@ in
         makeWrapper
       ];
     }))
-    ungoogled-chromium
-    gnome.seahorse
-    qbittorrent
-    unstable.melonDS
-    mpv
-    imv
-    zathura
-    _1password-gui
-    dunst
-    gnome.gnome-weather
-    gnome.nautilus
-    gparted
-    localsend
-    pavucontrol
     (vscode-with-extensions.override {
       vscodeExtensions = with vscode-extensions; [
         bbenoist.nix
@@ -72,7 +68,11 @@ in
         github.copilot-chat
       ];
     })
-    gimp
+    ungoogled-chromium
+    unstable.melonDS
+    zathura
+
+    # gtk
     (colloid-gtk-theme.override {
       themeVariants = [ "grey" ];
       colorVariants = [ "dark" ];
@@ -91,71 +91,68 @@ in
         passwordCharacter = "*";
       };
     })
-    libsForQt5.qt5.qtgraphicaleffects
-    libsForQt5.qt5.qtquickcontrols
-    libsForQt5.qt5.qtquickcontrols2
-    qt6.qtdeclarative
 
     # tui
-    ncdu
-    neovim
-    ncspot
     bluetuith
+    ncdu
+    ncspot
+    neovim
+    tmux
 
     # cli
-    wine
     acpi
-    udiskie
-    polkit_gnome
-    nix-index
-    xdg-user-dirs
-    speechd
-    mimeo
-    tree
-    zip
-    autorandr
-    spotifyd
-    unzip
     age
     ansible
-    jq
-    gzip
+    autorandr
     bc
     btop
+    chezmoi
     cron
     dict
-    gnumake
-    plocate
-    ripgrep
-    sassc
-    socat
-    sshfs-fuse
-    gnutar
-    libnotify
-    chezmoi
-    git
-    rustup
-    nodejs
-    gcc
     fzf
+    gcc
+    gcc
+    git
+    gnumake
+    gnutar
+    gtk3
+    gzip
+    jq
+    libnotify
     ly
-    wget
-    pamixer
-    tldr
+    mimeo
     neofetch
     nitch
-    playerctl
-    killall
-    xdg-ninja
+    nix-index
+    nodejs
     ntfs3g
-    gcc
+    pamixer
+    playerctl
+    plocate
+    polkit_gnome
+    ripgrep
+    rustup
+    sassc
+    socat
+    speechd
+    spotifyd
+    sshfs-fuse
+    tldr
+    tree
+    udiskie
+    unzip
+    wget
+    wine
+    xdg-ninja
+    xdg-user-dirs
+    zip
 
     lf
     (ctpv.override {
-      ueberzug = ueberzugpp;
+      ueberzug = unstable.ueberzugpp;
     })
     trash-cli
-    ueberzugpp
+    xdragon
 
     # scripts
     change-brightness
@@ -166,22 +163,16 @@ in
 
     # xorg
     autotiling
-    (polybar.override {
-      i3Support = true;
-    })
-    picom
     betterlockscreen
-    maim
-    xclip
-    xcolor
-    xclip
-    xdotool
-    xss-lock
-    xsel
+    dmenu
     (j4-dmenu-desktop.override {
       dmenu = dmenu;
     })
-    dmenu
+    maim
+    picom
+    (polybar.override {
+      i3Support = true;
+    })
     (st.overrideAttrs (oldAttrs: {
       src = pkgs.fetchFromGitHub {
         owner = "aayko";
@@ -190,24 +181,28 @@ in
         hash = "sha256-kjefKnnAX4rpmt81fmqZRjJrsUdz0NU6ngWh4G+iWfA=";
       };
     }))
+    xclip
+    xclip
+    xcolor
+    xdotool
+    xsel
+    xss-lock
 
     # dev
     ghc
-    python3
-    tree-sitter
-    texliveMedium
-    php
-    # language servers
-    nodePackages_latest.intelephense
-    lua-language-server
     haskellPackages.haskell-language-server
+
+    php
+    nodePackages_latest.intelephense
+
+    python3
+    texliveMedium
+    tree-sitter
+
+    clang-tools
+    lua-language-server
+    rnix-lsp
     texlab
     zulu
-    rnix-lsp
-    clang-tools
-    tmux
-    # (tmux.overrideAttrs (oldAttrs: {
-    #   configureFlags = oldAttrs.configureFlags ++ [ "--enable-sixel" ];
-    # }))
   ];
 }

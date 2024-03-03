@@ -17,7 +17,7 @@
     BROWSER = "firefox";
     TERM = "st-256color";
     TERMINAL = "st";
-    GTK_THEME = "Colloid-Grey-Dark:dark";
+    GTK_THEME = "Colloid-Grey-Dark";
 
     GTK_CSD = "0";
     GHCUP_USE_XDG_DIRS = "true";
