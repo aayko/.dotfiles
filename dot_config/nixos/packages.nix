@@ -151,6 +151,7 @@ in
     (ctpv.override {
       ueberzug = unstable.ueberzugpp;
     })
+    unstable.ueberzugpp
     trash-cli
     xdragon
 

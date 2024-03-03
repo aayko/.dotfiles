@@ -15,6 +15,7 @@ in
 {
   services.xserver = {
     enable = true;
+    videoDrivers = if laptop then [ ] else [ "nvidia" ];
     displayManager.ly = {
       enable = false;
       defaultUser = "ayko";
@@ -28,10 +29,19 @@ in
         ${pkgs.xorg.xrandr}/bin/xrandr --output HDMI-0 --off
       '' else '''';
     displayManager.sessionCommands =
-      if ! laptop then commonCommands ++ ''
+      if ! laptop then ''
         ${pkgs.xorg.xset}/bin/xset s off -dpms
         ${pkgs.autorandr}/bin/autorandr --load desktop-default
-      '' else commonCommands;
+        ${pkgs.playerctl}/bin/playerctld daemon &
+        ${pkgs.dunst}/bin/dunst &
+        ${pkgs.xbanish}/bin/xbanish &
+        ${pkgs.feh}/bin/feh --no-fehbg --bg-fill ~/pictures/wallpapers/ghibli/5m5kLI9.png &
+      '' else ''
+        ${pkgs.playerctl}/bin/playerctld daemon &
+        ${pkgs.dunst}/bin/dunst &
+        ${pkgs.xbanish}/bin/xbanish &
+        ${pkgs.feh}/bin/feh --no-fehbg --bg-fill ~/pictures/wallpapers/ghibli/5m5kLI9.png &
+      '';
     xkb.layout = "pwerty";
     xkb.variant = "";
     xkb.model = "";
@@ -77,7 +87,7 @@ in
         SUBSYSTEM=="backlight", ACTION=="add", KERNEL=="amdgpu_bl0", RUN+="${pkgs.coreutils}/bin/chgrp video /sys/class/backlight/%k/brightness", RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/backlight/%k/brightness"
         ACTION=="change", SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="0", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/ayko/.Xauthority" RUN+="${pkgs.su}/bin/su ayko -c '${charging-notify}/bin/charging-notify 0'"
         ACTION=="change", SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="1", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/ayko/.Xauthority" RUN+="${pkgs.su}/bin/su ayko -c '${charging-notify}/bin/charging-notify 1'"
-      '' else "";
+      '' else '''';
 
   services.logind.lidSwitch = "ignore";
 }
