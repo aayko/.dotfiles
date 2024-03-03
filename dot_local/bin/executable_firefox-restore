@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+
+set -eu
+
+# Set the profile name and directory
+new_profile_name="$USER"
+new_profile_directory=""
+firefox_directory="$HOME/.mozilla/firefox"
+
+if [ $# -ne 1 ]; then
+    echo "Usage: $(basename "$0") path/to/new/profile/firectory"
+    exit 1
+fi
+
+if [ ! -d "$1" ]; then
+    echo "The provided argument '$1' is not a valid directory"
+    exit 1
+fi
+
+new_profile_directory=$1
+
+if ! command -v firefox &> /dev/null; then
+    echo "Firefox command could not be found."
+    exit 1
+fi
+
+if [ ! -d "$firefox_directory" ]; then
+    mkdir -p "$firefox_directory"
+	tee "$firefox_directory"/profiles.ini > /dev/null <<- EOF
+	[Profile0]
+	Name=$new_profile_name
+	IsRelative=1
+	Path=$new_profile_name
+	Default=1
+
+	[General]
+	StartWithLastProfile=1
+	Version=2
+	EOF
+    cp -r "$new_profile_directory" "$firefox_directory/$new_profile_name"
+    echo "Firefox directory created and profile installed"
+    exit 0
+fi
+
+if [ -n "$new_profile_name" ] && [ -d "$firefox_directory"/"$new_profile_name" ]; then
+    [ -d "$firefox_directory/$new_profile_name.bak" ] && rm -rf "$firefox_directory/$new_profile_name.bak" 
+    mv "$firefox_directory/$new_profile_name" "$firefox_directory/$new_profile_name.bak"
+    cp -r "$new_profile_directory" "$firefox_directory/$new_profile_name"
+    echo "Old profile replaced and backed up"
+    exit 0
+fi
+
+cp -r "$new_profile_directory" "$firefox_directory/$new_profile_name"
+
+firefox --no-remote -CreateProfile "$new_profile_name"
+
+# Get the internal name of the profile with the line number (e.g., n:Path=xxxxxxxx.user)
+profile_path_line=$(grep -nE "^Path=.*\.$new_profile_name$" "$firefox_directory"/profiles.ini)
+
+# Get the line number of the Path
+profile_path_line_number=$(echo "$profile_path_line" | cut -d ':' -f1)
+
+# Keep the user name
+profile_path=$(echo "$profile_path_line" | cut -d '=' -f2)
+
+# Remove the automatically created directory
+[ -d "$firefox_directory/${profile_path:?}" ] && rm -rf "$firefox_directory/${profile_path:?}"
+
+# Replace the Path line with the new Path
+sed -i "${profile_path_line_number}s|.*|Path=$new_profile_name|" "$firefox_directory"/profiles.ini
+
+# Remove the line with Default=1
+sed -i '/^Default=1/d' "$firefox_directory"/profiles.ini
+
+# Add a line below the line number with Default=1
+sed -i "${profile_path_line_number}a Default=1" "$firefox_directory"/profiles.ini
+echo "Firefox profile installed"
