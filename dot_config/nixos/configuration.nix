@@ -27,7 +27,7 @@ in
 
   nix = {
     settings = {
-      experimental-features = "nix-command flakes";
+      experimental-features = [ "nix-command flakes" ];
       auto-optimise-store = true;
     };
     gc.automatic = false;
@@ -37,7 +37,7 @@ in
   # Set your time zone.
   time.timeZone = "Europe/Paris";
 
-  networking.hostName = if laptop then "nixlaptop" else "nixlaptop"; # Define your hostname.
+  networking.hostName = if laptop then "nixlaptop" else "nixpc"; # Define your hostname.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
