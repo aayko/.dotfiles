@@ -133,7 +133,7 @@ map P ${{
 
 map <enter> &mimeo "$f"
 map o $mimeopen --ask "$f"
-map O &dragon-drop "$f"
+map O &dragon "$f"
 
 map md push :%mkdir<space>
 map mf push :%touch<space>
