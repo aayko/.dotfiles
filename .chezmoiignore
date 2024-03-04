@@ -13,6 +13,7 @@
 
 {{ if .nix }}
 .xprofile
+.config/xkb
 .local/bin/*
 !.local/bin/battery-notify
 !.local/bin/firefox-restore
