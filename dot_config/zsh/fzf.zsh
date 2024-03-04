@@ -67,7 +67,7 @@ function fzf-cd-current() {
 zle -N fzf-cd-current
 
 function fzf-cd-projects() {
-    fzf-cd-widget "$HOME/projects $HOME/uni"
+    fzf-cd-widget "$HOME/perso $HOME/uni"
 }
 zle -N fzf-cd-projects
 

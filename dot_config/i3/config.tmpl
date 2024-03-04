@@ -10,12 +10,12 @@ exec_always --no-startup-id ~/.local/bin/tap-to-click
 exec --no-startup-id dunst
 exec --no-startup-id playerctld daemon
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id feh --no-fehbg --bg-fill ~/pictures/wallpapers/ghibli/5m5kLI9.png
 {{- end }}
 exec --no-startup-id picom
 exec --no-startup-id polybar &; sleep 0.1; polybar-msg cmd hide
 exec --no-startup-id udiskie &
 exec --no-startup-id battery-notify &
+exec --no-startup-id feh --no-fehbg --bg-fill ~/.config/i3/wallpaper.jpeg
 
 {{- if .laptop }}
 exec --no-startup-id xss-lock --transfer-sleep-lock -- betterlockscreen -l

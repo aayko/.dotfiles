@@ -13,7 +13,6 @@ in
 {
   nixpkgs = {
     config = {
-      allowUnfree = true;
       packageOverrides = pkgs: {
         unstable = import
           (fetchTarball
@@ -33,17 +32,10 @@ in
     enable = true;
   };
 
-  programs._1password.enable = true;
-  programs._1password-gui = {
-    enable = true;
-    polkitPolicyOwners = [ "ayko" ];
-  };
-
   environment.systemPackages = with pkgs; [
     unstable.nix-output-monitor
 
     # gui
-    _1password-gui
     blueberry
     celluloid
     dunst
@@ -120,6 +112,7 @@ in
     chezmoi
     cron
     dict
+    efibootmgr
     fzf
     gcc
     gcc

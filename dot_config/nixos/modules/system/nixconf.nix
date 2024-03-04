@@ -7,4 +7,6 @@
     gc.automatic = false;
     gc.dates = "19:00";
   };
+
+  nixpkgs.config.allowUnfree = true;
 }

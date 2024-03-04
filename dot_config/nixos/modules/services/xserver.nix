@@ -20,7 +20,6 @@
       ${pkgs.playerctl}/bin/playerctld daemon &
       ${pkgs.dunst}/bin/dunst &
       ${pkgs.xbanish}/bin/xbanish &
-      ${pkgs.feh}/bin/feh --no-fehbg --bg-fill ~/.config/nixos/assets/wallpaper.jpeg &
     '';
 
     xkb = {
