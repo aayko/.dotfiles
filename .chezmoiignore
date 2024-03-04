@@ -41,14 +41,12 @@
 .local/bin/inverse-scroll
 .local/bin/tap-to-click
 .local/bin/lock
-.config/nixos/laptop
 {{ end }}
 
 {{ if not .desktop -}}
 .local/bin/inject.cpp
 .local/bin/inject.exe
 .local/bin/bakkes-inject
-.config/nixos/desktop
 {{- end }}
 
 .mozilla
