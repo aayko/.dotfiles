@@ -41,7 +41,7 @@ keymap.set("n", "<C-i>", "<C-i>zz", { noremap = true })
 vim.cmd("cnoremap <silent><expr> <enter> index(['/', '?'], getcmdtype()) >= 0 ? '<enter>zz' : '<enter>'")
 
 -- File explorer
-keymap.set('n', '-', function ()
+keymap.set('n', '<C-y>', function()
     if vim.o.filetype == 'oil' then
         require('oil').close()
     else
@@ -79,20 +79,20 @@ keymap.set("n", "C", "\"_C")
 keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 -- Escape vim terminal
-keymap.set("t", "<esc>", "<C-\\><C-n><C-w>h",{ silent = true })
+keymap.set("t", "<esc>", "<C-\\><C-n><C-w>h", { silent = true })
 
 -- Fugitive
 keymap.set("n", "<leader>g", "<CMD>tab G<CR>")
 
 -- Alternate file
-keymap.set({ "n", "x" },"<Tab>", "<CMD>b#<CR>zz")
+keymap.set({ "n", "x" }, "<Tab>", "<CMD>b#<CR>zz")
 
 -- Toggle virtual text
-keymap.set("n","<leader>d", vim.cmd.DiagnosticsToggleVirtualText)
+keymap.set("n", "<leader>d", vim.cmd.DiagnosticsToggleVirtualText)
 
 -- Swap semicolon colon
-keymap.set({ "n", "x" },";", ":")
-keymap.set({ "n", "x" },":", ";")
+keymap.set({ "n", "x" }, ";", ":")
+keymap.set({ "n", "x" }, ":", ";")
 keymap.set("n", "q;", "q:")
 
 -- Indent on paste
