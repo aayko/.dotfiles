@@ -7,6 +7,13 @@ alias lf="lfcd"
 alias v="nvim"
 alias se="sudoedit"
 
+if [ -d "/sys/class/power_supply/BAT0" ]; then
+    machine="laptop"
+else
+    machine="desktop"
+fi
+alias ns="sudo nixos-rebuild switch --flake $HOME/.config/nix\#$machine"
+
 alias please='sudo $(fc -ln -1)'
 
 alias mkdir="mkdir -vp"
