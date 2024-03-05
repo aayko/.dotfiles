@@ -168,4 +168,4 @@ map gz cd /home/ayko/.local/share/chezmoi
 map ga cd /usr/share/applications
 map gm cd /run/media/ayko
 map gn cd /run/current-system/
-map ge cd /home/ayko/.config/nixos
+map ge cd /home/ayko/.config/nix
