@@ -112,6 +112,10 @@
     summary = "*mounted*"
     skip_display = true
 
+[network]
+    body = "*network*"
+    new_icon = "wifi"
+
 [charged]
     appname = "charged"
     frame_color = "#669b59"
