@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "sshAgent.sshAuthorizatonModel": "application",
+  "security.authenticatedUnlock.enabled": true,
+  "keybinds.autoFill": "CommandOrControl+Shift+[l]L",
+  "keybinds.lock": "",
+  "privacy.checkHibp": true,
+  "sidebar.showCategories": true,
+  "sidebar.showTags": false,
+  "app.keepInTray": true,
+  "app.formatSecureNotesUsingMarkdown": false,
+}
