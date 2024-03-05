@@ -21,6 +21,8 @@ in
     enable = true;
   };
 
+  programs.nm-applet.enable = true;
+
   environment.systemPackages = with pkgs; [
     # gui
     blueberry
@@ -115,7 +117,6 @@ in
     neofetch
     nitch
     nix-index
-    networkmanagerapplet
     nodejs
     ntfs3g
     pamixer
