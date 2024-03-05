@@ -11,13 +11,14 @@ let
   mk_save = cfg.defaultUser != null;
   tty = "tty${toString xcfg.tty}";
 
-  save_file = if !mk_save then
-    ""
-  else
-    pkgs.writeText "ly-prefs" ''
-      ${cfg.defaultUser}
-      ${toString cfg.defaultSessionIndex}
-    '';
+  save_file =
+    if !mk_save then
+      ""
+    else
+      pkgs.writeText "ly-prefs" ''
+        ${cfg.defaultUser}
+        ${toString cfg.defaultSessionIndex}
+      '';
 
   lyconfig = ''
     # As these settings cannot be patched, we will set them as default
@@ -44,7 +45,8 @@ let
     '') (attrNames xEnv)}
     exec ${dmcfg.xserverBin} ${toString dmcfg.xserverArgs} "$@"
   '';
-in {
+in
+{
   meta.maintainers = with maintainers; [ wolfangaukang ];
 
   options = {

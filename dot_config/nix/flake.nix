@@ -16,12 +16,21 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in
     {
-      nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
-        modules = [
-          (if builtins.pathExists "/sys/class/power_supply/BAT0" then ./hosts/laptop/configuration.nix else ./hosts/desktop/configuration.nix)
-          # inputs.home-manager.nixosModules.default
-        ];
+      nixosConfigurations = {
+        desktop = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/desktop/configuration.nix
+            # inputs.home-manager.nixosModules.default
+          ];
+        };
+        laptop = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/laptop/configuration.nix
+            # inputs.home-manager.nixosModules.default
+          ];
+        };
       };
     };
 }
