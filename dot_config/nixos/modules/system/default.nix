@@ -11,7 +11,7 @@
   services.autorandr = {
     enable = true;
     hooks.postswitch = {
-      "set-wallpaper" = "${pkgs.feh}/bin/feh --no-fehbg --bg-fill ~/.config/i3/wallpaper.jpeg";
+      "set-wallpaper" = "${pkgs.feh}/bin/feh --no-fehbg --bg-fill ~/.config/i3/wallpaper.png";
     };
   };
 
