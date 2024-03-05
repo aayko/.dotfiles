@@ -136,7 +136,7 @@ return {
 
         require("mason-lspconfig").setup({
             ensure_installed = {
-                'bashls',
+                -- 'bashls',
                 -- 'clangd',
                 'jdtls',
                 'html',
@@ -156,6 +156,8 @@ return {
         lspformat.setup {}
 
         -- Language servers
+        lspconfig.bashls.setup {}
+
         lspconfig.hls.setup {
             on_attach = lspformat.on_attach,
         }
