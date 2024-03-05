@@ -16,13 +16,13 @@
 
   fileSystems."/" =
     {
-      device = "/dev/disk/by-label/NIXMAINROOT";
+      device = "/dev/disk/by-label/NIXROOT";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
     {
-      device = "/dev/disk/by-label/NIXMAINBOOT";
+      device = "/dev/disk/by-label/NIXBOOT";
       fsType = "vfat";
     };
 
