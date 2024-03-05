@@ -11,7 +11,7 @@ in
     ../../modules/extra/suspendAndHibernate.nix
   ];
 
-  networking.hostName = "nixlaptop";
+  networking.hostName = "ryusei";
   hardware.brillo.enable = true;
 
   boot.blacklistedKernelModules = [ "pcspkr" ];

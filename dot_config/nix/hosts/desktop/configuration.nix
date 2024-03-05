@@ -6,7 +6,7 @@
     ./hardware-configuration.nix
   ];
 
-  networking.hostName = "nixpc";
+  networking.hostName = "yugen";
   networking.networkmanager.unmanaged = [ "wlo1" ];
 
   boot.supportedFilesystems = [ "ntfs" ];
