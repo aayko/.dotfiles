@@ -22,8 +22,6 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    nix-output-monitor
-
     # gui
     blueberry
     celluloid
@@ -117,6 +115,7 @@ in
     neofetch
     nitch
     nix-index
+    networkmanagerapplet
     nodejs
     ntfs3g
     pamixer
