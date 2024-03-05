@@ -7,11 +7,7 @@
   ];
 
   networking.hostName = "nixpc";
-  networking.wireless.interfaces = {
-    wlan0 = {
-      enable = false;
-    };
-  };
+  networking.networkmanager.unmanaged = [ "wlo1" ];
 
   boot.supportedFilesystems = [ "ntfs" ];
 
