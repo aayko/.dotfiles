@@ -14,10 +14,10 @@ pkgs.writeShellApplication {
     windows="windows"
     arch="arch"
 
-    if true; then
-      options="$shutdown\n$reboot\n$windows\n$arch"
-    else
+    if [[ -d /sys/class/power_supply/BAT0 ]]; then
       options="$lock\n$hibernate\n$shutdown\n$reboot\n$arch"
+    else
+      options="$shutdown\n$reboot\n$windows"
     fi
     chosen="$(echo -e "$options" | dmenu)"
     case $chosen in

@@ -4,7 +4,7 @@
   fonts.fontconfig = {
     enable = true;
     defaultFonts = {
-      monospace = [ "Inconsolata Nerd Font" "FiraCode Nerd Font" "Mononoki Nerd Font" ];
+      monospace = [ "Inconsolata Nerd Font" ];
       sansSerif = [ "Ubuntu Nerd Font" ];
     };
   };

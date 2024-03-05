@@ -11,17 +11,6 @@ let
   });
 in
 {
-  nixpkgs = {
-    config = {
-      packageOverrides = pkgs: {
-        unstable = import
-          (fetchTarball
-            "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz")
-          { };
-      };
-    };
-  };
-
   programs.dconf.enable = true;
 
   programs.zsh = {
@@ -33,7 +22,7 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    unstable.nix-output-monitor
+    nix-output-monitor
 
     # gui
     blueberry
@@ -72,7 +61,7 @@ in
       ];
     })
     ungoogled-chromium
-    unstable.melonDS
+    melonDS
     zathura
 
     # gtk
@@ -153,9 +142,9 @@ in
 
     lf
     (ctpv.override {
-      ueberzug = unstable.ueberzugpp;
+      ueberzug = ueberzugpp;
     })
-    unstable.ueberzugpp
+    ueberzugpp
     trash-cli
     xdragon
 
@@ -179,6 +168,7 @@ in
     (polybar.override {
       i3Support = true;
     })
+    xdo
     (st.overrideAttrs (oldAttrs: {
       src = pkgs.fetchFromGitHub {
         owner = "aayko";
@@ -205,6 +195,7 @@ in
     texliveMedium
     tree-sitter
 
+    nodePackages.bash-language-server
     clang-tools
     lua-language-server
     rnix-lsp
