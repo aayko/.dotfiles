@@ -2,14 +2,10 @@ encryption = "age"
 [data]
     x11 = true
     wayland = false
-    audio = true
-    bluetooth = true
-    development = true
-    desktop = {{ if or (eq .chezmoi.hostname "archpc") (eq .chezmoi.hostname "nixpc") }}true{{ else }}false{{ end }}
-    laptop = {{ if or (eq .chezmoi.hostname "archlaptop") (eq .chezmoi.hostname "nixlaptop") }}true{{ else }}false{{ end }}
-    server = {{ if eq .chezmoi.hostname "debian" }}true{{ else }}false{{ end }}
-    nix = {{ if or (eq .chezmoi.hostname "nixlaptop") (eq .chezmoi.hostname "nixpc") }}true{{ else }}false{{ end }}
-    fonts = true
+    desktop = {{ if ne (stat "/sys/class/power_supply/BAT0") nil }}false{{ else }}true{{ end }}
+    laptop = {{ if ne (stat "/sys/class/power_supply/BAT0") nil }}true{{ else }}false{{ end }}
+    nix = {{ if eq .chezmoi.osRelease.id "nixos" }}true{{ else }}false{{ end }}
+    server = {{ if eq .chezmoi.osRelease.id "debian" }}true{{ else }}false{{ end }}
 [age]
     identity = "/home/ayko/.age/key"
     symmetric = true

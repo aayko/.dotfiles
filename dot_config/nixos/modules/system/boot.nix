@@ -1,11 +1,20 @@
 { pkgs, ... }:
 
 {
-  system.activationScripts.removeBootEntryVersion = {
-    text = ''
-      ${pkgs.findutils}/bin/find /boot/loader/entries/ -name 'nixos-generation-*' -exec ${pkgs.gnused}/bin/sed -i 's/version Generation \([0-9]*\).*/title NixOS - Generation \1/' {} \;
-      ${pkgs.findutils}/bin/find /boot/loader/entries/ -name 'nixos-generation-*' -exec ${pkgs.gnused}/bin/sed -i '1d' {} \;
-    '';
+  system.activationScripts = {
+    removeBootEntryVersion = {
+      text = ''
+        ${pkgs.findutils}/bin/find /boot/loader/entries/ -name 'nixos-generation-*' -exec ${pkgs.gnused}/bin/sed -i 's/version Generation \([0-9]*\).*/title NixOS - Generation \1/' {} \;
+        ${pkgs.findutils}/bin/find /boot/loader/entries/ -name 'nixos-generation-*' -exec ${pkgs.gnused}/bin/sed -i '1d' {} \;
+      '';
+    };
+    symlinkRootConfig = {
+      text = ''
+        if [ ! -L /root/.config ]; then
+          ln -s /home/ayko/.config /root/.config
+        fi
+      '';
+    };
   };
 
   boot.kernelParams = [ "quiet" "rd.systemd.show_status=false" "rd.udev.log_level=3" "udev.log_priority=3" ];
