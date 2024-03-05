@@ -72,6 +72,9 @@ bindkey '^P' history-substring-search-up
 bindkey '^N' history-substring-search-down
 HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
 
+# shift-tab in completion
+bindkey '^[[Z' reverse-menu-complete
+
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'k' vi-up-line-or-history
