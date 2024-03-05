@@ -8,6 +8,13 @@
     ./nixconf.nix
   ];
 
+  services.autorandr = {
+    enable = true;
+    hooks.postswitch = {
+      "set-wallpaper" = "${pkgs.feh}/bin/feh --no-fehbg --bg-fill ~/.config/i3/wallpaper.jpeg";
+    };
+  };
+
   # Set your time zone.
   time.timeZone = "Europe/Paris";
 
