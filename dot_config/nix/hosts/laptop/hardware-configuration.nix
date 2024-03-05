@@ -14,6 +14,7 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
+  boot.resumeDevice = "/dev/disk/by-label/NIXSWAP";
 
   fileSystems."/" =
     {

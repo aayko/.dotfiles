@@ -8,13 +8,14 @@ pkgs.writeShellApplication {
   runtimeInputs = with pkgs; [ dmenu lock ];
   text = ''
     lock="lock"
+    suspend="suspend"
     hibernate="hibernate"
     shutdown="shutdown"
     reboot="reboot"
     windows="windows"
 
     if [[ -d /sys/class/power_supply/BAT0 ]]; then
-      options="$lock\n$hibernate\n$shutdown\n$reboot"
+      options="$lock\n$suspend\n$hibernate\n$shutdown\n$reboot"
     else
       options="$shutdown\n$reboot\n$windows"
     fi
@@ -23,12 +24,16 @@ pkgs.writeShellApplication {
         "$lock")
             lock
             ;;
-        "$shutdown")
-            systemctl poweroff
+        "$suspend")
+            systemctl suspend
+            lock
             ;;
         "$hibernate")
             systemctl hibernate
             lock
+            ;;
+        "$shutdown")
+            systemctl poweroff
             ;;
         "$reboot")
             systemctl --no-wall reboot

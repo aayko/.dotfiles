@@ -8,6 +8,7 @@ in
     ./hardware-configuration.nix
     ../../modules
     ../../modules/extra/capsLockRemap.nix
+    ../../modules/extra/suspendAndHibernate.nix
   ];
 
   networking.hostName = "nixlaptop";
