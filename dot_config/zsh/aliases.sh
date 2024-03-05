@@ -32,6 +32,6 @@ alias tree="tree -L 4"
 alias ka="killall"
 alias so="clear; exec $SHELL"
 
-alias note="nvim ~/notes/"
+alias note="cd ~/notes; nvim ."
 
 alias ssh-web="sshfs -o gid=1000,uid=1000,noauto,_netdev,reconnect,allow_other,auto_cache,ServerAliveInterval=5,ServerAliveCountMax=3 web:/www-dev/ ~/uni/web"
