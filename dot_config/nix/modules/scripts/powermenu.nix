@@ -12,10 +12,9 @@ pkgs.writeShellApplication {
     shutdown="shutdown"
     reboot="reboot"
     windows="windows"
-    arch="arch"
 
     if [[ -d /sys/class/power_supply/BAT0 ]]; then
-      options="$lock\n$hibernate\n$shutdown\n$reboot\n$arch"
+      options="$lock\n$hibernate\n$shutdown\n$reboot"
     else
       options="$shutdown\n$reboot\n$windows"
     fi
@@ -36,9 +35,6 @@ pkgs.writeShellApplication {
             ;;
         "$windows")
             systemctl --no-wall reboot --boot-loader-entry=auto-windows
-            ;;
-        "$arch")
-            systemctl --no-wall reboot --boot-loader-entry=arch.conf
             ;;
     esac
   '';
