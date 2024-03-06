@@ -132,8 +132,4 @@
     appname = "volume"
     history_ignore = true
 
-[spotify]
-    appname = "Spotify"
-    skip_display = true
-
 # vim: ft=cfg
