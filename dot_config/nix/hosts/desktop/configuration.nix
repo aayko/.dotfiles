@@ -7,7 +7,8 @@
   ];
 
   networking.hostName = "yugen";
-  networking.networkmanager.unmanaged = [ "wlo1" ];
+  systemd.network.netdevs.wlo1.enable = false;
+  networking.interfaces.wlo1.useDHCP = false;
 
   boot.supportedFilesystems = [ "ntfs" ];
 
