@@ -43,5 +43,25 @@
     RUSTUP_HOME = "${XDG_DATA_HOME}/rustup";
     WORDCHARS = "";
     ERRFILE = "${XDG_CACHE_HOME}/X11/xsession-errors";
+    BEMENU_OPTS = "--tb '#242424'\
+   --tf '#FFFFFF'\
+   --fb '#242424'\
+   --ff '#FFFFFF'\
+   --nb '#242424'\
+   --nf '#FFFFFF'\
+   --hb '#FFFFFF'\
+   --hf '#242424'\
+   --sb '#E1FAFF'\
+   --cb '#E1FAFF'\
+   --cf '#FFFFFF'\
+   --sf '#FFFFFF'\
+   --sb '#E1FAFF'\
+   --ab '#242424'\
+   --af '#FFFFFF'\
+   --scb '#242424'\
+   --bdr '#242424'\
+   --scf '#FFFFFF'\
+   --hp 10\
+   -B 6'";
   };
 }

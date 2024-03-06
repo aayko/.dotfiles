@@ -77,4 +77,42 @@ return {
         enabled = true,
     },
     "chaoren/vim-wordmotion",
+    {
+        'goolord/alpha-nvim',
+        config = function()
+            local alpha = require("alpha")
+            local dashboard = require("alpha.themes.dashboard")
+            -- from https://github.com/geryzhydrox/Dotfiles
+            dashboard.section.header.val = {
+                "          ▗▄▄▄       ▗▄▄▄▄    ▄▄▄▖          ",
+                "          ▜███▙       ▜███▙  ▟███▛          ",
+                "           ▜███▙       ▜███▙▟███▛           ",
+                "            ▜███▙       ▜██████▛            ",
+                "     ▟█████████████████▙ ▜████▛     ▟▙      ",
+                "    ▟███████████████████▙ ▜███▙    ▟██▙     ",
+                "           ▄▄▄▄▖           ▜███▙  ▟███▛     ",
+                "          ▟███▛             ▜██▛ ▟███▛      ",
+                "         ▟███▛               ▜▛ ▟███▛       ",
+                "▟███████████▛                  ▟██████████▙ ",
+                "▜██████████▛                  ▟███████████▛ ",
+                "      ▟███▛ ▟▙               ▟███▛          ",
+                "     ▟███▛ ▟██▙             ▟███▛           ",
+                "    ▟███▛  ▜███▙           ▝▀▀▀▀            ",
+                "    ▜██▛    ▜███▙ ▜██████████████████▛      ",
+                "     ▜▛     ▟████▙ ▜████████████████▛       ",
+                "           ▟██████▙       ▜███▙             ",
+                "          ▟███▛▜███▙       ▜███▙            ",
+                "         ▟███▛  ▜███▙       ▜███▙           ",
+                "         ▝▀▀▀    ▀▀▀▀▘       ▀▀▀▘           ",
+            }
+            dashboard.section.header.opts.hl = "Comment"
+            dashboard.section.buttons.val = {
+                dashboard.button("e", "New file", ":ene <BAR> startinsert <CR>"),
+                dashboard.button("r", "Recent", ":FzfLua oldfiles<CR>"),
+                dashboard.button("n", "Nix", ":e $HOME/.config/nix/flake.nix<CR>"),
+                dashboard.button("q", "Quit", ":qa!<CR>"),
+            }
+            alpha.setup(dashboard.opts)
+        end
+    },
 }

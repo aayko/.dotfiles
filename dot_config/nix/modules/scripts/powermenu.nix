@@ -1,11 +1,11 @@
-{ pkgs, dmenu, ... }:
+{ pkgs, ... }:
 
 let
   lock = import ./lock.nix { inherit pkgs; };
 in
 pkgs.writeShellApplication {
   name = "powermenu";
-  runtimeInputs = with pkgs; [ dmenu lock ];
+  runtimeInputs = with pkgs; [ lock bemenu ];
   text = ''
     lock="lock"
     suspend="suspend"
@@ -19,7 +19,7 @@ pkgs.writeShellApplication {
     else
       options="$shutdown\n$reboot\n$windows"
     fi
-    chosen="$(echo -e "$options" | dmenu)"
+    chosen="$(echo -e "$options" | bemenu -p 'POWER')"
     case $chosen in
         "$lock")
             lock

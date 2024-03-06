@@ -1,15 +1,5 @@
 { pkgs, ... }:
 
-let
-  dmenu = pkgs.dmenu.overrideAttrs (oldAttrs: {
-    src = pkgs.fetchFromGitHub {
-      owner = "aayko";
-      repo = "dmenu";
-      rev = "main";
-      hash = "sha256-WOZvw3Pb5JX0osIgqcyw6SANfxBYAQAhy6L/XHiQXoU=";
-    };
-  });
-in
 {
   programs.dconf.enable = true;
 
@@ -32,6 +22,7 @@ in
     gnome.gnome-calculator
     gnome.gnome-disk-utility
     gnome.gnome-weather
+    gnome.gnome-keyring
     gnome.nautilus
     gnome.seahorse
     gparted
@@ -69,7 +60,7 @@ in
       themeVariants = [ "grey" ];
       colorVariants = [ "dark" ];
       sizeVariants = [ "standard" ];
-      tweaks = [ "black" ];
+      tweaks = [ "black" "rimless" ];
     })
     (colloid-icon-theme.override {
       schemeVariants = [ "default" ];
@@ -145,6 +136,8 @@ in
       ueberzug = ueberzugpp;
     })
     ueberzugpp
+    poppler_utils
+    libreoffice
     trash-cli
     xdragon
 
@@ -153,15 +146,14 @@ in
     (import ./scripts/change-volume.nix { inherit pkgs; })
     (import ./scripts/color-picker.nix { inherit pkgs; })
     (import ./scripts/lock.nix { inherit pkgs; })
-    (import ./scripts/powermenu.nix { inherit pkgs dmenu; })
+    (import ./scripts/powermenu.nix { inherit pkgs; })
     (import ./scripts/screenshot.nix { inherit pkgs; })
 
     # xorg
     autotiling
     betterlockscreen
-    dmenu
     (j4-dmenu-desktop.override {
-      dmenu = dmenu;
+      dmenu = bemenu;
     })
     maim
     picom
