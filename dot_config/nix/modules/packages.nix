@@ -155,6 +155,7 @@
     (j4-dmenu-desktop.override {
       dmenu = bemenu;
     })
+    bemenu
     maim
     picom
     (polybar.override {
