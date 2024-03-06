@@ -62,6 +62,8 @@
    --bdr '#0f0f0f'\
    --scf '#ebdbb2'\
    --hp 10\
-   -B 6";
+   -B 6\
+   -fn 'Monoki Nerd Font'\
+   -i";
   };
 }
