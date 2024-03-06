@@ -107,7 +107,7 @@ return {
             }
             dashboard.section.header.opts.hl = "Comment"
             dashboard.section.buttons.val = {
-                dashboard.button("e", "New file", ":ene <BAR> startinsert <CR>"),
+                dashboard.button("e", "New file", ":ene<CR>"),
                 dashboard.button("r", "Recent", ":FzfLua oldfiles<CR>"),
                 dashboard.button("n", "Nix", ":e $HOME/.config/nix/flake.nix<CR>"),
                 dashboard.button("q", "Quit", ":qa!<CR>"),
