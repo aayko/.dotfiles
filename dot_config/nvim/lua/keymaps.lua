@@ -1,47 +1,47 @@
-local keymap = vim.keymap
+local map = vim.keymap.set
 
 -- Search/Replace pattern for word below cursor
-keymap.set("n", "<leader>r", [[:%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>]], { silent = false })
+map("n", "<leader>r", [[:%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>]], { silent = false })
 
-keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+map("n", "<leader>u", vim.cmd.UndotreeToggle)
 
 -- Don't leave visual after indent
-keymap.set("x", "<", "<gv")
-keymap.set("x", ">", ">gv")
+map("x", "<", "<gv")
+map("x", ">", ">gv")
 
 -- Remap U to redo
-keymap.set("n", "<S-u>", "<C-r>")
+map("n", "<S-u>", "<C-r>")
 
 -- ! for shell command
-keymap.set("n", "!", ":!", { silent = false })
+map("n", "!", ":!", { silent = false })
 
 -- Unbind space outside of insert
-keymap.set({ 'n', 'v' }, '<space>', '<nop>')
+map({ 'n', 'v' }, '<space>', '<nop>')
 
-keymap.set({ "n", "x" }, "s", "V")
+map({ "n", "x" }, "s", "V")
 
-keymap.set({ "n", "x" }, "H", "^")
-keymap.set({ "n", "x" }, "L", "$")
+map({ "n", "x" }, "H", "^")
+map({ "n", "x" }, "L", "$")
 
 -- Center on movement
-keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true })
-keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true })
-keymap.set("n", "<C-b>", "<C-b>zz", { noremap = true })
-keymap.set("n", "<C-f>", "<C-f>zz", { noremap = true })
-keymap.set("n", "*", "*zz", { noremap = true })
-keymap.set("n", "#", "#zz", { noremap = true })
-keymap.set("n", "n", "nzz", { noremap = true })
-keymap.set("n", "N", "Nzz", { noremap = true })
-keymap.set("n", "G", "Gzz", { noremap = true })
-keymap.set("n", "}", "}zz", { noremap = true })
-keymap.set("n", "{", "{zz", { noremap = true })
-keymap.set("n", "<C-o>", "<C-o>zz", { noremap = true })
-keymap.set("n", "<C-i>", "<C-i>zz", { noremap = true })
+map("n", "<C-d>", "<C-d>zz", { noremap = true })
+map("n", "<C-u>", "<C-u>zz", { noremap = true })
+map("n", "<C-b>", "<C-b>zz", { noremap = true })
+map("n", "<C-f>", "<C-f>zz", { noremap = true })
+map("n", "*", "*zz", { noremap = true })
+map("n", "#", "#zz", { noremap = true })
+map("n", "n", "nzz", { noremap = true })
+map("n", "N", "Nzz", { noremap = true })
+map("n", "G", "Gzz", { noremap = true })
+map("n", "}", "}zz", { noremap = true })
+map("n", "{", "{zz", { noremap = true })
+map("n", "<C-o>", "<C-o>zz", { noremap = true })
+map("n", "<C-i>", "<C-i>zz", { noremap = true })
 -- Center on first search
 vim.cmd("cnoremap <silent><expr> <enter> index(['/', '?'], getcmdtype()) >= 0 ? '<enter>zz' : '<enter>'")
 
 -- File explorer
-keymap.set('n', '<C-y>', function()
+map('n', '<C-y>', function()
     if vim.o.filetype == 'oil' then
         require('oil').close()
     else
@@ -50,7 +50,7 @@ keymap.set('n', '<C-y>', function()
 end)
 
 -- Open pdf file under cursor in zathura while in oil.nvim
-keymap.set('n', '<C-p>', function()
+map('n', '<C-p>', function()
     if vim.o.filetype ~= 'oil' then return end
     local file_name = vim.fn.getline('.'):match('%s+(.+)$')
 
@@ -66,47 +66,41 @@ keymap.set('n', '<C-p>', function()
 end)
 
 -- Move lines
-keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
-keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+map('v', 'J', ":m '>+1<CR>gv=gv")
+map('v', 'K', ":m '<-2<CR>gv=gv")
 
 -- Paste without losing clipboard
-keymap.set("x", "<leader>c", "\"_dP")
+map("x", "<leader>c", "\"_dP")
 
-keymap.set("n", "c", "\"_c")
-keymap.set("n", "C", "\"_C")
+map("n", "c", "\"_c")
+map("n", "C", "\"_C")
 
 -- Makes the file executable
-keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
-
--- Escape vim terminal
-keymap.set("t", "<esc>", "<C-\\><C-n><C-w>h", { silent = true })
+map("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 -- Fugitive
-keymap.set("n", "<leader>g", "<CMD>tab G<CR>")
+map("n", "<leader>g", "<CMD>tab G<CR>")
 
 -- Alternate file
-keymap.set({ "n", "x" }, "<Tab>", "<CMD>b#<CR>zz")
+map({ "n", "x" }, "<Tab>", "<CMD>b#<CR>zz")
 
 -- Toggle virtual text
-keymap.set("n", "<leader>d", vim.cmd.DiagnosticsToggleVirtualText)
+map("n", "<leader>d", vim.cmd.DiagnosticsToggleVirtualText)
 
 -- Swap semicolon colon
-keymap.set({ "n", "x" }, ";", ":")
-keymap.set({ "n", "x" }, ":", ";")
-keymap.set("n", "q;", "q:")
+map({ "n", "x" }, ";", ":")
+map({ "n", "x" }, ":", ";")
+map("n", "q;", "q:")
 
 -- Indent on paste
-keymap.set("n", "=p", "<Plug>(YankyPutAfterFilter)")
-keymap.set("n", "=P", "<Plug>(YankyPutBeforeFilter)")
+map("n", "=p", "<Plug>(YankyPutAfterFilter)")
+map("n", "=P", "<Plug>(YankyPutBeforeFilter)")
 
 -- Indent whole file
-keymap.set("n", "<leader>=", "mzgg=G`zzz")
-
--- Replace current line with buffer
-keymap.set("n", "R", "grr")
+map("n", "<leader>=", "mzgg=G`zzz")
 
 -- Toggle statusline
-keymap.set("n", "<C-g>", function()
+map("n", "<C-g>", function()
     if vim.o.laststatus == 0 then
         vim.o.laststatus = 2
         vim.cmd('set statusline="%F %m%=%l,%c"')
@@ -115,3 +109,17 @@ keymap.set("n", "<C-g>", function()
         vim.cmd("set statusline=%{repeat('─',winwidth('.'))}")
     end
 end)
+
+-- Fix alpha.nvim <C-o> behavior
+map('n', '<C-o>', function()
+    if vim.bo.filetype == 'alpha' then
+        -- Send <C-o> twice
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-o><C-o>', true, true, true), 'n', true)
+    else
+        -- Send <C-o> once
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-o>', true, true, true), 'n', true)
+    end
+end)
+
+-- Unbind escape in terminal
+vim.api.nvim_set_keymap('t', '<Esc>', '<NOP>', { noremap = true })
