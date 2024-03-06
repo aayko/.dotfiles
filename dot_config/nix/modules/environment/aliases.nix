@@ -10,5 +10,8 @@
     nl() {
       nix-locate /bin/"$1" | grep -v "(.*)" | awk -F '.out' '{ print $1 }'
     }
+    d() {
+        nohup $1 > /dev/null &
+    }
   '';
 }
