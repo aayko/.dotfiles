@@ -38,6 +38,11 @@ workspace $ws2 output {{ if .desktop -}}HDMI-1{{- else -}}eDP-1{{- end }}
 workspace $ws3 output {{ if .desktop -}}HDMI-1{{- else -}}eDP-1{{- end }}
 workspace $ws4 output {{ if .desktop -}}HDMI-1{{- else -}}eDP-1{{- end }}
 workspace $ws5 output {{ if .desktop -}}HDMI-0{{- else -}}eDP-1{{- end }}
+workspace $ws6 output {{ if .desktop -}}HDMI-1{{- else -}}eDP-1{{- end }}
+workspace $ws7 output {{ if .desktop -}}HDMI-1{{- else -}}eDP-1{{- end }}
+workspace $ws8 output {{ if .desktop -}}HDMI-1{{- else -}}eDP-1{{- end }}
+workspace $ws9 output {{ if .desktop -}}HDMI-1{{- else -}}eDP-1{{- end }}
+workspace $ws10 output {{ if .desktop -}}HDMI-0{{- else -}}eDP-1{{- end }}
 
 # -- Binds --
 bindsym $win+q kill
@@ -132,11 +137,11 @@ bindsym $alt+bracketleft  move container to workspace number $ws2
 bindsym $alt+braceleft    move container to workspace number $ws3
 bindsym $alt+parenleft    move container to workspace number $ws4
 bindsym $alt+ampersand    move container to workspace number $ws5
-bindsym $win+equal        move container to workspace number $ws6
-bindsym $win+bracketright move container to workspace number $ws7
-bindsym $win+braceright   move container to workspace number $ws8
-bindsym $win+parenright   move container to workspace number $ws9
-bindsym $win+percent      move container to workspace number $ws10
+bindsym $alt+equal        move container to workspace number $ws6
+bindsym $alt+bracketright move container to workspace number $ws7
+bindsym $alt+braceright   move container to workspace number $ws8
+bindsym $alt+parenright   move container to workspace number $ws9
+bindsym $alt+percent      move container to workspace number $ws10
 
 bindsym $win+Shift+h  resize shrink width 10 px or 10 ppt
 bindsym $win+Shift+j  resize grow height 10 px or 10 ppt
