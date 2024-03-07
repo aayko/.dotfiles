@@ -6,5 +6,6 @@
     ./fonts.nix
     ./packages.nix
     ./users.nix
+    ./1password.nix
   ];
 }

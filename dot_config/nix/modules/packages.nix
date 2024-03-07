@@ -20,6 +20,7 @@
     blueberry
     celluloid
     dunst
+    librewolf
     gimp
     gnome.gnome-calculator
     gnome.gnome-disk-utility
