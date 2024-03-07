@@ -94,29 +94,49 @@ bindsym $win+Ctrl+l move right
 bindsym $win+f fullscreen toggle
 bindsym $win+y floating toggle
 
-bindsym $win+1 workspace number $ws1
-bindsym $win+2 workspace number $ws2
-bindsym $win+3 workspace number $ws3
-bindsym $win+4 workspace number $ws4
-bindsym $win+5 workspace number $ws5
+bindsym $win+1  workspace number $ws1
+bindsym $win+2  workspace number $ws2
+bindsym $win+3  workspace number $ws3
+bindsym $win+4  workspace number $ws4
+bindsym $win+5  workspace number $ws5
+bindsym $win+6  workspace number $ws6
+bindsym $win+7  workspace number $ws7
+bindsym $win+8  workspace number $ws8
+bindsym $win+9  workspace number $ws9
+bindsym $win+10 workspace number $ws10
 
-bindsym $win+plus        workspace number $ws1
-bindsym $win+bracketleft workspace number $ws2
-bindsym $win+braceleft   workspace number $ws3
-bindsym $win+parenleft   workspace number $ws4
-bindsym $win+ampersand   workspace number $ws5
+bindsym $win+plus           workspace number $ws1
+bindsym $win+bracketleft    workspace number $ws2
+bindsym $win+braceleft      workspace number $ws3
+bindsym $win+parenleft      workspace number $ws4
+bindsym $win+ampersand      workspace number $ws5
+bindsym $win+equal          workspace number $ws6
+bindsym $win+bracketright   workspace number $ws7
+bindsym $win+braceright     workspace number $ws8
+bindsym $win+parenright     workspace number $ws9
+bindsym $win+percent        workspace number $ws10
 
-bindsym $alt+1 move container to workspace number $ws1
-bindsym $alt+2 move container to workspace number $ws2
-bindsym $alt+3 move container to workspace number $ws3
-bindsym $alt+4 move container to workspace number $ws4
-bindsym $alt+5 move container to workspace number $ws5
+bindsym $alt+1  move container to workspace number $ws1
+bindsym $alt+2  move container to workspace number $ws2
+bindsym $alt+3  move container to workspace number $ws3
+bindsym $alt+4  move container to workspace number $ws4
+bindsym $alt+5  move container to workspace number $ws5
+bindsym $alt+6  move container to workspace number $ws1
+bindsym $alt+7  move container to workspace number $ws2
+bindsym $alt+8  move container to workspace number $ws3
+bindsym $alt+9  move container to workspace number $ws4
+bindsym $alt+10 move container to workspace number $ws5
 
 bindsym $alt+plus         move container to workspace number $ws1
 bindsym $alt+bracketleft  move container to workspace number $ws2
 bindsym $alt+braceleft    move container to workspace number $ws3
 bindsym $alt+parenleft    move container to workspace number $ws4
 bindsym $alt+ampersand    move container to workspace number $ws5
+bindsym $win+equal        move container to workspace number $ws6
+bindsym $win+bracketright move container to workspace number $ws7
+bindsym $win+braceright   move container to workspace number $ws8
+bindsym $win+parenright   move container to workspace number $ws9
+bindsym $win+percent      move container to workspace number $ws10
 
 bindsym $win+Shift+h  resize shrink width 10 px or 10 ppt
 bindsym $win+Shift+j  resize grow height 10 px or 10 ppt
@@ -150,9 +170,10 @@ for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
 
 for_window [title="^imv"] floating enable, move position center
+for_window [class="1Password"] floating enable, move position center
+
 for_window [class="Main"] floating enable, move position center
 for_window [class="ConvertisseurDevises"] floating enable, move position center
-for_window [class="1Password"] floating enable, move position center
 
 for_window [class="^firefox$"] move container to workspace number 3, workspace number 3
 for_window [title="^ncspot$"] move container to workspace number 4, workspace number 4
