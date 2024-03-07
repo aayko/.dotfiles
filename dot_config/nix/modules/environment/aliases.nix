@@ -1,6 +1,10 @@
+{ pkgs, ... }:
+
 {
   environment.shellAliases = {
-    ne = "nvim $HOME/.config/nix/configuration.nix";
+    ne = "${pkgs.neovim}/bin/nvim $HOME/.config/nix";
+    ns = "${pkgs.nh}/bin/nh os switch";
+    nh = "${pkgs.nh}/bin/nh search";
     svn = "svn --config-dir $XDG_CONFIG_HOME/subversion";
     wget = "wget --hsts-file=$XDG_DATA_HOME/wget-hsts";
     adb = "HOME=$ANDROID_HOME adb";
@@ -8,7 +12,7 @@
 
   environment.shellInit = ''
     nl() {
-      nix-locate /bin/"$1" | grep -v "(.*)" | awk -F '.out' '{ print $1 }'
+      ${pkgs.nix-index}/bin/nix-locate /bin/"$1" | grep -v "(.*)" | awk -F '.out' '{ print $1 }'
     }
     d() {
         nohup $1 > /dev/null &

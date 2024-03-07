@@ -43,6 +43,7 @@
     RUSTUP_HOME = "${XDG_DATA_HOME}/rustup";
     WORDCHARS = "";
     ERRFILE = "${XDG_CACHE_HOME}/X11/xsession-errors";
+    FLAKE = "$HOME/.config/nix";
     BEMENU_OPTS = "--tb '#0f0f0f'\
    --tf '#ebdbb2'\
    --fb '#0f0f0f'\

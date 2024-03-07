@@ -14,6 +14,8 @@
   programs.nm-applet.enable = true;
 
   environment.systemPackages = with pkgs; [
+    nh
+
     # gui
     blueberry
     celluloid
