@@ -118,7 +118,7 @@ map ms mark-save
 map "'" mark-load
 map '"' mark-remove
 
-map e $nvim "$f"
+map e $EDITOR "$f"
 map E $sudoedit "$f"
 
 map zu unarchive
@@ -132,12 +132,11 @@ map P ${{
 }}
 
 map <enter> &mimeo "$f"
-map o $mimeopen --ask "$f"
+map o $clear; mimeopen --ask "$f"
 map O &dragon "$f"
 
 map md push :%mkdir<space>
 map mf push :%touch<space>
-map me push :&gtk-launch<space>nvim.desktop<space>
 
 map = ${{
     [[ -x "$f" ]] && chmod -x "$f" || chmod +x "$f"

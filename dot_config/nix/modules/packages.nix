@@ -33,6 +33,7 @@
     gthumb
     imv
     localsend
+    melonDS
     mpv
     obs-studio
     pavucontrol
@@ -56,7 +57,7 @@
       ];
     })
     ungoogled-chromium
-    melonDS
+    via
     zathura
 
     # gtk

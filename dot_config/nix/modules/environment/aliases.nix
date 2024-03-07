@@ -2,7 +2,7 @@
 
 {
   environment.shellAliases = {
-    ne = "cd $HOME/.config/nix ${pkgs.neovim}/bin/nvim .";
+    ne = "cd $HOME/.config/nix; ${pkgs.neovim}/bin/nvim .";
     ns = "${pkgs.nh}/bin/nh os switch";
     nh = "${pkgs.nh}/bin/nh search";
     svn = "svn --config-dir $XDG_CONFIG_HOME/subversion";
