@@ -21,14 +21,14 @@ return {
         { '<leader>pd', '<CMD>FzfLua lsp_document_diagnostics<CR>',  desc = 'Document diagnostics' },
         { '<leader>pD', '<CMD>FzfLua lsp_workspace_diagnostics<CR>', desc = 'Workspace diagnostics' },
         { '<leader>pf', '<CMD>FzfLua files<CR>',                     desc = 'Find files' },
-        { '<leader>pr', '<CMD>FzfLua lsp_references<CR>',                     desc = 'References' },
-        { '<leader>ps', '<CMD>FzfLua lsp_document_symbols<CR>',            desc = 'Symbols' },
-        { '<leader>pS', '<CMD>FzfLua lsp_workspace_symbols<CR>',            desc = 'Workspace symbols' },
-        { '<leader>pb', '<CMD>FzfLua buffers<CR>',            desc = 'Find Buffers' },
+        { '<leader>pr', '<CMD>FzfLua lsp_references<CR>',            desc = 'References' },
+        { '<leader>ps', '<CMD>FzfLua lsp_document_symbols<CR>',      desc = 'Symbols' },
+        { '<leader>pS', '<CMD>FzfLua lsp_workspace_symbols<CR>',     desc = 'Workspace symbols' },
+        { '<leader>pb', '<CMD>FzfLua buffers<CR>',                   desc = 'Find Buffers' },
         { '<leader>pg', '<CMD>FzfLua live_grep_glob<CR>',            desc = 'Grep' },
         { '<leader>pg', '<CMD>FzfLua grep_visual<CR>',               desc = 'Grep',                 mode = 'x' },
         { '<leader>ph', '<CMD>FzfLua help_tags<CR>',                 desc = 'Help' },
-        { '<leader>pH', '<CMD>FzfLua highlights<CR>',                 desc = 'Highlights' },
+        { '<leader>pH', '<CMD>FzfLua highlights<CR>',                desc = 'Highlights' },
         { '<leader>py', '<CMD>FzfLua oldfiles<CR>',                  desc = 'Recently opened files' },
     },
     opts = function()
@@ -54,7 +54,7 @@ return {
             },
             fzf_opts = {
                 ['--info'] = 'default',
-                ['--layout'] = 'reverse-list',
+                ['--layout'] = 'reverse',
             },
             keymap = {
                 builtin = {
@@ -70,11 +70,11 @@ return {
                 },
             },
             winopts = {
-                height = 0.9,
-                width = 0.75,
+                height = 1.0,
+                width = 1.0,
                 preview = {
                     scrollbar = false,
-                    layout = 'vertical',
+                    -- layout = 'vertical',
                     vertical = 'up:50%',
                 },
                 border = "single",
@@ -96,7 +96,7 @@ return {
                 code_actions = {
                     previewer = 'codeaction_native',
                     preview_pager =
-                        "delta --side-by-side --width=$FZF_PREVIEW_COLUMNS --hunk-header-style='omit' --file-style='omit'",
+                    "delta --side-by-side --width=$FZF_PREVIEW_COLUMNS --hunk-header-style='omit' --file-style='omit'",
                 },
             },
             oldfiles = {

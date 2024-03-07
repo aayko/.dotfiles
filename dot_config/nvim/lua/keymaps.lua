@@ -122,4 +122,26 @@ map('n', '<C-o>', function()
 end)
 
 -- Unbind escape in terminal
-vim.api.nvim_set_keymap('t', '<Esc>', '<NOP>', { noremap = true })
+map('t', '<Esc>', '<NOP>', { noremap = true })
+
+-- fzf cd to directories with a max depth of 1
+function fzf_cd(directories, prompt)
+    coroutine.wrap(function()
+        local dirs = {}
+        for _, directory in ipairs(directories) do
+            local subdirs = vim.fn.globpath(directory, '*/', 0, 1)
+            for _, subdir in ipairs(subdirs) do
+                local relative_subdir = vim.fn.fnamemodify(subdir, ':~')
+                table.insert(dirs, relative_subdir)
+            end
+        end
+        local choice = require('fzf-lua').fzf(dirs, { prompt = prompt })
+        if choice[1] ~= "esc" then
+            vim.api.nvim_set_current_dir(choice[2])
+            require('oil').open()
+        end
+    end)()
+end
+
+map('n', '<leader>po', ':lua fzf_cd({ "~/uni", "~/perso" }, "Projects> ")<CR>', { noremap = true, silent = true })
+map('n', '<leader>pc', ':lua fzf_cd({ "~/.config" }, "Config> ")<CR>', { noremap = true, silent = true })

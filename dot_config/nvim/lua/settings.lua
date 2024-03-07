@@ -71,6 +71,8 @@ vim.opt.ttimeout = false
 vim.o.grepprg = 'rg --vimgrep'
 vim.o.grepformat = '%f:%l:%c:%m'
 
+vim.g.undotree_WindowLayout = 2
+
 vim.cmd([[
     function! g:DisableMatchParen ()
     if exists(":NoMatchParen")
