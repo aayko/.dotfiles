@@ -15,6 +15,12 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undofile = true
 
+vim.g.mundo_width = 26;
+vim.g.mundo_preview_height = 10;
+vim.g.mundo_header = 0;
+vim.g.mundo_preview_bottom = 1;
+vim.g.mundo_preview_delay = 0;
+
 vim.opt.smartindent = true
 vim.opt.expandtab = true
 
@@ -70,8 +76,6 @@ vim.opt.ttimeout = false
 -- Use ripgrep for grepping.
 vim.o.grepprg = 'rg --vimgrep'
 vim.o.grepformat = '%f:%l:%c:%m'
-
-vim.g.undotree_WindowLayout = 2
 
 vim.cmd([[
     function! g:DisableMatchParen ()

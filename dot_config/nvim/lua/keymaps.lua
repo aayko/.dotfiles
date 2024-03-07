@@ -3,7 +3,7 @@ local map = vim.keymap.set
 -- Search/Replace pattern for word below cursor
 map("n", "<leader>r", [[:%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>]], { silent = false })
 
-map("n", "<leader>u", vim.cmd.UndotreeToggle)
+map("n", "<leader>u", vim.cmd.MundoToggle)
 
 -- Don't leave visual after indent
 map("x", "<", "<gv")
