@@ -19,6 +19,7 @@
     # gui
     blueberry
     celluloid
+    dia
     dunst
     librewolf
     gimp
