@@ -12,7 +12,6 @@ if [ -d "/sys/class/power_supply/BAT0" ]; then
 else
     machine="desktop"
 fi
-alias ns="sudo nixos-rebuild switch --flake $HOME/.config/nix\#$machine"
 
 alias please='sudo $(fc -ln -1)'
 

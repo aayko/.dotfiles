@@ -61,6 +61,19 @@ fzf-cd-widget() {
     return $ret
 }
 
+fzf-file-widget() {
+    setopt localoptions pipefail no_aliases 2> /dev/null
+    local cmd="find . -type f"
+    local file="$(eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --scheme=path --bind=ctrl-z:ignore ${FZF_DEFAULT_OPTS-} ${FZF_ALT_C_OPTS-}" $(__fzfcmd) +m)"
+    if [[ -z "$file" ]]; then
+        zle redisplay
+        return 0
+    fi
+    $EDITOR "$file"
+    zle reset-prompt
+}
+zle -N fzf-file-widget
+
 function fzf-cd-current() {
     fzf-cd-widget "."
 }

@@ -65,8 +65,9 @@ bindkey '^R' fzf-history-widget
 bindkey '^T' fzf-cd-config
 bindkey '^J' fzf-cd-projects
 
-bindkey "^x" insert-last-command-output
-bindkey "^o" lfcd
+bindkey '^K' fzf-file-widget
+
+bindkey '^O' lfcd
 
 bindkey '^P' history-substring-search-up
 bindkey '^N' history-substring-search-down
