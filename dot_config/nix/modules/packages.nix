@@ -198,5 +198,6 @@
     rnix-lsp
     texlab
     zulu
+    ant
   ];
 }
