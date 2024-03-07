@@ -18,7 +18,7 @@ map J zoom out
 map i recolor
 map <C-p> print
 
-set default-bg "#080808" #00
+set default-bg "#0f0f0f" #00
 set default-fg "#aaaaaa" #01
 
 set statusbar-fg "#B0B0B0" #04
@@ -27,5 +27,5 @@ set statusbar-bg "#202020" #01
 set highlight-color "#F4BF75" #0A
 set highlight-active-color "#6A9FB5" #0D
 
-set recolor-lightcolor "#080808" #00
-set recolor-darkcolor "#E0E0E0" #06
+set recolor-lightcolor "#0f0f0f" #00
+set recolor-darkcolor "#ebdbb2" #06
