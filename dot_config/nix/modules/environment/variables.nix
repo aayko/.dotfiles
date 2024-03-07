@@ -29,6 +29,7 @@
     CUDA_CACHE_PATH = "${XDG_CACHE_HOME}/nv";
     GRADLE_USER_HOME = "${XDG_DATA_HOME}/gradle";
     NIMBLE_DIR = "${XDG_DATA_HOME}/nimble";
+    TLDR_CACHE_DIR = "${XDG_CACHE_HOME}/tldr";
     STACK_ROOT = "${XDG_DATA_HOME}/stack";
     TEXMFVAR = "${XDG_CACHE_HOME}/texlive/texmf-var";
     WINEPREFIX = "${XDG_DATA_HOME}/wine";
