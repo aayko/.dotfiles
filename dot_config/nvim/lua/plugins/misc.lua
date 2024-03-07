@@ -67,7 +67,7 @@ return {
             vim.keymap.set("v", "g<C-x>", require("dial.map").dec_gvisual(), { noremap = true })
         end
     },
-    { "mbbill/undotree" },
+    { "simnalamburt/vim-mundo" },
     {
         "cameron-wags/rainbow_csv.nvim",
         config = true,
