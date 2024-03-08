@@ -7,5 +7,6 @@
     ./packages.nix
     ./users.nix
     ./1password.nix
+    ./via.nix
   ];
 }

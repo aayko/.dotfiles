@@ -57,7 +57,6 @@
       ];
     })
     ungoogled-chromium
-    via
     zathura
 
     # gtk

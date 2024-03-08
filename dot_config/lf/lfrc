@@ -118,7 +118,7 @@ map ms mark-save
 map "'" mark-load
 map '"' mark-remove
 
-map e $EDITOR "$f"
+map e $$EDITOR "$f"
 map E $sudoedit "$f"
 
 map zu unarchive
