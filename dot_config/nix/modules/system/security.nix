@@ -4,15 +4,12 @@
   security.polkit.enable = true;
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.sddm.enableGnomeKeyring = true;
+  programs.seahorse.enable = true;
 
-  security.pam.services.gnome_keyring = {
-    text = ''
-      auth     optional    ${pkgs.gnome.gnome-keyring}/lib/security/pam_gnome_keyring.so
-      session  optional    ${pkgs.gnome.gnome-keyring}/lib/security/pam_gnome_keyring.so auto_start
-
-      password  optional    ${pkgs.gnome.gnome-keyring}/lib/security/pam_gnome_keyring.so
-    '';
-  };
+  environment.systemPackages = with pkgs; [
+    gnome.gnome-keyring
+    polkit_gnome
+  ];
 
   systemd = {
     user.services.polkit-gnome-authentication-agent-1 = {

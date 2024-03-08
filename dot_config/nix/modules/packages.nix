@@ -20,15 +20,17 @@
     blueberry
     celluloid
     dia
+    (discord.override {
+      withOpenASAR = true;
+      withVencord = true;
+    })
     dunst
     librewolf
     gimp
     gnome.gnome-calculator
     gnome.gnome-disk-utility
     gnome.gnome-weather
-    gnome.gnome-keyring
     gnome.nautilus
-    gnome.seahorse
     gparted
     gthumb
     imv
@@ -37,16 +39,10 @@
     mpv
     obs-studio
     pavucontrol
+    perl538Packages.FileMimeInfo
     qbittorrent
     scrcpy
-    (vesktop.overrideAttrs (oldAttrs: {
-      nativeBuildInputs = [
-        copyDesktopItems
-        nodePackages.pnpm
-        nodejs_21
-        makeWrapper
-      ];
-    }))
+    vmware-horizon-client
     (vscode-with-extensions.override {
       vscodeExtensions = with vscode-extensions; [
         bbenoist.nix
@@ -117,7 +113,6 @@
     pamixer
     playerctl
     plocate
-    polkit_gnome
     ripgrep
     rustup
     sassc
@@ -126,6 +121,7 @@
     spotifyd
     sshfs-fuse
     tldr
+    trash-cli
     tree
     udiskie
     unzip
@@ -135,6 +131,7 @@
     xdg-user-dirs
     zip
 
+    # lf
     lf
     (ctpv.override {
       ueberzug = ueberzugpp;
@@ -142,7 +139,6 @@
     ueberzugpp
     poppler_utils
     libreoffice
-    trash-cli
     xdragon
 
     # scripts
@@ -152,34 +148,6 @@
     (import ./scripts/lock.nix { inherit pkgs; })
     (import ./scripts/powermenu.nix { inherit pkgs; })
     (import ./scripts/screenshot.nix { inherit pkgs; })
-
-    # xorg
-    autotiling
-    betterlockscreen
-    (j4-dmenu-desktop.override {
-      dmenu = bemenu;
-    })
-    bemenu
-    maim
-    picom
-    (polybar.override {
-      i3Support = true;
-    })
-    xdo
-    (st.overrideAttrs (oldAttrs: {
-      src = pkgs.fetchFromGitHub {
-        owner = "aayko";
-        repo = "st";
-        rev = "main";
-        hash = "sha256-kjefKnnAX4rpmt81fmqZRjJrsUdz0NU6ngWh4G+iWfA=";
-      };
-    }))
-    xclip
-    xclip
-    xcolor
-    xdotool
-    xsel
-    xss-lock
 
     # dev
     ghc
