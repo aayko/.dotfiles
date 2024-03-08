@@ -1,4 +1,3 @@
-encryption = "age"
 [data]
     x11 = true
     wayland = false
@@ -7,7 +6,8 @@ encryption = "age"
     nix = {{ if eq .chezmoi.osRelease.id "nixos" }}true{{ else }}false{{ end }}
     uni = {{ if eq .chezmoi.osRelease.id "ubuntu" }}true{{ else }}false{{ end }}
     server = {{ if eq .chezmoi.osRelease.id "debian" }}true{{ else }}false{{ end }}
-{{- if not .uni }}
+{{- if ne .chezmoi.osRelease.id "ubuntu" }}
+encryption = "age"
 [age]
     identity = "{{ .chezmoi.homeDir }}/.age/key"
     symmetric = true
