@@ -52,4 +52,10 @@
 
 .mozilla
 
+{{ if .ubuntu }}
+.config/git/
+.config/nix/modules/system/network/resolved.nix
+.ssh/
+{{ end }}
+
 {{ end }}
