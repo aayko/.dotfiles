@@ -52,7 +52,7 @@
 
 .mozilla
 
-{{ if .ubuntu }}
+{{ if .uni }}
 .config/git/
 .config/nix/modules/system/network/resolved.nix
 .ssh/
