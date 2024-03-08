@@ -131,7 +131,7 @@ map P ${{
     lf -remote 'send echo "Path copied to clipboard"'
 }}
 
-map <enter> &mimeo "$f"
+map <enter> &mimeopen "$f"
 map o $clear; mimeopen --ask "$f"
 map O &dragon "$f"
 
