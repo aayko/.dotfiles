@@ -122,7 +122,7 @@ map('n', '<C-o>', function()
 end)
 
 -- Unbind escape in terminal
-map('t', '<Esc>', '<NOP>', { noremap = true })
+map('t', '<Esc>', '<nop>', { noremap = true })
 
 -- fzf cd to directories with a max depth of 1
 function fzf_cd(directories, prompt)
