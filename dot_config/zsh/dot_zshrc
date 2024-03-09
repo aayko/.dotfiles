@@ -65,7 +65,7 @@ bindkey '^R' fzf-history-widget
 bindkey '^T' fzf-cd-config
 bindkey '^J' fzf-cd-projects
 
-bindkey '^K' fzf-file-widget
+bindkey '^X' fzf-file-widget
 
 bindkey '^O' lfcd
 

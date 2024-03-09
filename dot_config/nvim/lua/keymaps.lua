@@ -49,22 +49,6 @@ map('n', '<C-y>', function()
     end
 end)
 
--- Open pdf file under cursor in zathura while in oil.nvim
-map('n', '<C-p>', function()
-    if vim.o.filetype ~= 'oil' then return end
-    local file_name = vim.fn.getline('.'):match('%s+(.+)$')
-
-    if not file_name:match("%.pdf$") then return end
-
-    local current_dir = require("oil").get_current_dir()
-    local file_path = current_dir .. file_name
-    local escaped_file_path = vim.fn.shellescape(file_path)
-
-    local job_id = vim.fn.jobstart('zathura ' .. escaped_file_path, {
-        detach = true,
-    })
-end)
-
 -- Move lines
 map('v', 'J', ":m '>+1<CR>gv=gv")
 map('v', 'K', ":m '<-2<CR>gv=gv")
