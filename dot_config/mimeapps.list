@@ -8,6 +8,7 @@ image/webp=imv.desktop
 video/mp4=io.github.celluloid_player.Celluloid.desktop
 video/x-matroska=io.github.celluloid_player.Celluloid.desktop
 text/plain=nvim.desktop
+text/markdown=nvim.desktop
 inode/directory=lf.desktop
 application/x-directory=lf.desktop
 application/x-shellscript=nvim.desktop
