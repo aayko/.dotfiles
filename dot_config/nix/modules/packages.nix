@@ -31,6 +31,7 @@
     gnome.gnome-disk-utility
     gnome.gnome-weather
     gnome.nautilus
+    gnome.sushi
     gparted
     gthumb
     imv
