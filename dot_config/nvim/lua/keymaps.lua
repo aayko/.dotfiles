@@ -130,4 +130,4 @@ end
 map('n', '<leader>po', ':lua fzf_cd({ "~/uni", "~/perso" }, "Projects> ")<CR>', { noremap = true, silent = true })
 map('n', '<leader>pc', ':lua fzf_cd({ "~/.config" }, "Config> ")<CR>', { noremap = true, silent = true })
 
-map('n', 'go', ':silent !xdg-open <cfile> &<CR>')
+map({ 'n', 'x' }, 'go', ':silent !xdg-open <cfile> &<CR>')
