@@ -36,7 +36,6 @@
     GNUPGHOME = "${XDG_DATA_HOME}/gnupg";
     CABAL_DIR = "${XDG_DATA_HOME}/cabel";
     CABAL_CONFIG = "${XDG_CONFIG_HOME}/cabal/config";
-    _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=\"${XDG_CONFIG_HOME}/java\"";
     ZDOTDIR = "${XDG_CONFIG_HOME}/zsh";
     XCOMPOSEFILE = "${XDG_CONFIG_HOME}/xcompose";
     XCOMPOSECACHE = "${XDG_CACHE_HOME}/X11/xcompose";
