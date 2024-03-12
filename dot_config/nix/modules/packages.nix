@@ -44,8 +44,8 @@
     qbittorrent
     scrcpy
     vmware-horizon-client
-    (vscode-with-extensions.override {
-      vscodeExtensions = with vscode-extensions; [
+    (stable.vscode-with-extensions.override {
+      vscodeExtensions = with stable.vscode-extensions; [
         bbenoist.nix
         jdinhlife.gruvbox
         vscodevim.vim
@@ -119,7 +119,7 @@
     sassc
     socat
     speechd
-    spotifyd
+    stable.spotifyd
     sshfs-fuse
     tldr
     trash-cli
@@ -151,22 +151,37 @@
     (import ./scripts/screenshot.nix { inherit pkgs; })
 
     # dev
+
+    # haskell
     ghc
     haskellPackages.haskell-language-server
 
+    # php
     php
     nodePackages_latest.intelephense
 
-    python3
-    texliveMedium
-    tree-sitter
-
-    nodePackages.bash-language-server
-    clang-tools
-    lua-language-server
-    rnix-lsp
+    # latex
     texlab
+    texliveMedium
+
+    # nix
+    nil
+    nixpkgs-fmt
+
+    # java
     zulu
     ant
+
+    # shell
+    shellcheck
+    nodePackages.bash-language-server
+
+    # lua
+    lua-language-server
+    stylua
+
+    python3
+    tree-sitter
+    clang-tools
   ];
 }
