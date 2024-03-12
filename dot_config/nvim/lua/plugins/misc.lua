@@ -39,7 +39,9 @@ return {
     },
     {
         'numToStr/Comment.nvim',
-        opts = {},
+        opts = {
+            ignore = '^$'
+        },
     },
     {
         'monaqa/dial.nvim',
@@ -74,7 +76,7 @@ return {
     },
     {
         "github/copilot.vim",
-        enabled = true,
+        enabled = false,
     },
     "chaoren/vim-wordmotion",
     {
