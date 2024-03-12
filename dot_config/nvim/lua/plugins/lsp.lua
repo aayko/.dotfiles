@@ -14,8 +14,6 @@ return {
             config = function()
                 require("mason-null-ls").setup({
                     ensure_installed = {
-                        "stylua",
-                        "shellcheck",
                         "clang-format",
                         "pretty-php",
                     }
@@ -143,8 +141,6 @@ return {
             },
         })
 
-        -- Set up lspconfig.
-        local capabilities = require('cmp_nvim_lsp').default_capabilities()
         local lspconfig = require("lspconfig")
         local lspformat = require("lsp-format")
 
@@ -176,9 +172,20 @@ return {
             on_attach = lspformat.on_attach
         }
 
-        lspconfig.texlab.setup {}
-        lspconfig.nil_ls.setup {}
+        lspconfig.nil_ls.setup {
+            on_attach = lspformat.on_attach,
+            settings = {
+                ['nil'] = {
+                    formatting = {
+                        command = { "nixpkgs-fmt" },
+                    },
+                },
+            },
+        }
 
+        lspconfig.texlab.setup {}
+
+        local capabilities = require('cmp_nvim_lsp').default_capabilities()
         require("mason-lspconfig").setup_handlers {
             function(server_name) -- default handler (optional)
                 lspconfig[server_name].setup {
