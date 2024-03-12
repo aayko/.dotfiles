@@ -76,4 +76,5 @@
     "redhat.telemetry.enabled": false,
     "editor.autoClosingBrackets": "never",
     "editor.cursorStyle": "block",
+    "extensions.autoCheckUpdates": false,
 }
