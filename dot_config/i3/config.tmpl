@@ -4,6 +4,7 @@ set $alt Mod1
 set $win Mod4
 
 exec_always --no-startup-id autotiling
+exec_always --no-startup-id polybar-msg cmd restart
 {{- if not .nix }}
 exec_always --no-startup-id ~/.local/bin/inverse-scroll
 exec_always --no-startup-id ~/.local/bin/tap-to-click
@@ -103,6 +104,7 @@ bindsym $win+Ctrl+l move right
 
 bindsym $win+f fullscreen toggle
 bindsym $win+y floating toggle
+bindsym $win+g focus mode_toggle
 
 bindsym $win+1  workspace number $ws1
 bindsym $win+2  workspace number $ws2
@@ -183,7 +185,6 @@ for_window [title="^imv"] floating enable, move position center
 for_window [class="1Password"] floating enable, move position center
 
 for_window [class="Main"] floating enable, move position center
-for_window [class="ConvertisseurDevises"] floating enable, move position center
 
 for_window [class="^firefox$"] move container to workspace number 3, workspace number 3
 for_window [title="^ncspot$"] move container to workspace number 4, workspace number 4
