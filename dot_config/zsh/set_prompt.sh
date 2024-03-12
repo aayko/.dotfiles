@@ -14,7 +14,7 @@ function set_prompt {
         git_info=" $branch_name$dirty_status"
     fi
 
-    local prompt_final_symbol=":"
+    local prompt_final_symbol=" >"
     if [ "$USER" = root ]; then
         prompt_final_symbol=" ##"
     elif [ -n "$VIMRUNTIME" ]; then
@@ -26,8 +26,8 @@ function set_prompt {
     fi
 
     if [ $0 = bash ]; then
-        PS1=" \w$bash_green$git_info$bash_color_reset$prompt_final_symbol "
+        PS1="\w$bash_green$git_info$bash_color_reset$prompt_final_symbol "
     else 
-        PS1=" %~%F{green}$git_info%f$prompt_final_symbol "
+        PS1="%~%F{green}$git_info%f$prompt_final_symbol "
     fi
 }
