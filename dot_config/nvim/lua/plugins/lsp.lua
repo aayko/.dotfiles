@@ -135,15 +135,11 @@ return {
 
         require("mason-lspconfig").setup({
             ensure_installed = {
-                -- 'bashls',
-                -- 'clangd',
                 'jdtls',
                 'html',
                 'emmet_language_server',
                 'cssls',
-                -- 'lua_ls',
                 'vimls',
-                -- 'rnix',
             },
         })
 
@@ -181,7 +177,7 @@ return {
         }
 
         lspconfig.texlab.setup {}
-        lspconfig.rnix.setup {}
+        lspconfig.nil_ls.setup {}
 
         require("mason-lspconfig").setup_handlers {
             function(server_name) -- default handler (optional)
