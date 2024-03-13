@@ -76,8 +76,8 @@
     history_length = 20
 
     ### Misc/Advanced ###
-    dmenu = /usr/bin/dmenu -p dunst:
-    browser = /usr/bin/xdg-open
+    dmenu = dmenu -p dunst:
+    browser = xdg-open
     always_run_script = true
     title = Dunst
     class = Dunst
@@ -89,17 +89,17 @@
     mouse_right_click = do_action
 
 [urgency_low]
-    background = "#080808"
+    background = "#0f0f0f"
     frame_color = "#333333"
     timeout = 2
 
 [urgency_normal]
-    background = "#080808"
+    background = "#0f0f0f"
     frame_color = "#333333"
     timeout = 2
 
 [urgency_critical]
-    background = "#080808"
+    background = "#0f0f0f"
     frame_color = "#cc3333"
     foreground = "#cc3333"
     timeout = 0
