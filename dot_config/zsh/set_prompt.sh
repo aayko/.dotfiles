@@ -16,7 +16,7 @@ function set_prompt {
 
     local prompt_final_symbol=" >"
     if [ "$USER" = root ]; then
-        prompt_final_symbol=" ##"
+        prompt_final_symbol=" #"
     elif [ -n "$VIMRUNTIME" ]; then
         prompt_final_symbol=" %%"
     elif [ -n "$IN_NIX_SHELL" ]; then

@@ -15,6 +15,13 @@
         fi
       '';
     };
+    copyBashrcToRoot = {
+      text = ''
+        if [ ! -e /root/.bashrc ]; then
+          cp /home/ayko/.bashrc /root/.bashrc
+        fi
+      '';
+    };
   };
 
   boot.kernelParams = [ "quiet" "rd.systemd.show_status=false" "rd.udev.log_level=3" "udev.log_priority=3" ];
