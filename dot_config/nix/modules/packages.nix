@@ -53,6 +53,7 @@
         github.copilot-chat
       ];
     })
+    signal-desktop
     ungoogled-chromium
     zathura
 

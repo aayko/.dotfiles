@@ -67,7 +67,10 @@
     autoRepeatInterval = 30;
 
     libinput = {
-      mouse.accelProfile = "flat";
+      mouse = {
+        accelProfile = "flat";
+        accelSpeed = "0";
+      };
       enable = true;
     };
   };
