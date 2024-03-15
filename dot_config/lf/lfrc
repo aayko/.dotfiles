@@ -102,7 +102,7 @@ map s invert-below
 map S su
 map u unselect
 
-map R :source /home/ayko/.config/lf/lfrc; reload
+map R :source /home/$USER/.config/lf/lfrc; reload
 
 map j down
 map k up
@@ -150,21 +150,21 @@ map w ${{
 
 # movement
 map g/ cd /
-map gh cd /home/ayko/
+map gh cd /home/$USER/
 
-map gd cd /home/ayko/documents
-map gD cd /home/ayko/downloads
-map gp cd /home/ayko/perso
-map gu cd /home/ayko/uni
-map gr cd /home/ayko/repos
-map gP cd /home/ayko/pictures
-map gv cd /home/ayko/pictures/videos
-map gc cd /home/ayko/.config
-map gl cd /home/ayko/.local
-map gb cd /home/ayko/.local/bin
-map gt cd /home/ayko/.local/share/Trash/files
-map gz cd /home/ayko/.local/share/chezmoi
+map gd cd /home/$USER/documents
+map gD cd /home/$USER/downloads
+map gp cd /home/$USER/perso
+map gu cd /home/$USER/uni
+map gr cd /home/$USER/repos
+map gP cd /home/$USER/pictures
+map gv cd /home/$USER/pictures/videos
+map gc cd /home/$USER/.config
+map gl cd /home/$USER/.local
+map gb cd /home/$USER/.local/bin
+map gt cd /home/$USER/.local/share/Trash/files
+map gz cd /home/$USER/.local/share/chezmoi
 map ga cd /usr/share/applications
-map gm cd /run/media/ayko
+map gm cd /run/media/$USER
 map gn cd /run/current-system/
-map ge cd /home/ayko/.config/nix
+map ge cd /home/$USER/.config/nix

@@ -29,7 +29,6 @@
 {{ end }}
 
 {{ if .server }}
-.mozilla/
 .config/dunst/
 .config/zathura/
 {{ end }}
@@ -49,8 +48,6 @@
 .local/bin/inject.exe
 .local/bin/bakkes-inject
 {{- end }}
-
-.mozilla
 
 {{ if .uni }}
 .config/git/
