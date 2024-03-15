@@ -2,16 +2,12 @@
 
 {
   programs.dconf.enable = true;
+  programs.firefox.enable = true;
+  programs.nm-applet.enable = true;
 
   programs.zsh = {
     enable = true;
   };
-
-  programs.firefox = {
-    enable = true;
-  };
-
-  programs.nm-applet.enable = true;
 
   environment.systemPackages = with pkgs; [
     nh
@@ -25,7 +21,6 @@
       withVencord = true;
     })
     dunst
-    librewolf
     gimp
     gnome.gnome-calculator
     gnome.gnome-disk-utility
