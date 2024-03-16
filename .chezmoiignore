@@ -1,5 +1,10 @@
 {{ if eq .chezmoi.os "linux" }}
 
+{{ if not .nix }}
+.config/nixos
+{{ end }}
+
+{{ if not .graphical }}
 {{ if not .x11 }}
 .config/polybar/
 .config/i3/
@@ -7,8 +12,13 @@
 .config/autorandr/
 {{ end }}
 
-{{ if not .nix }}
-.config/nixos
+{{ if not .wayland }}
+.config/foot/
+.config/hypr/
+.config/swaylock/
+.config/tofi/
+.config/waybar/
+{{ end }}
 {{ end }}
 
 {{ if .nix }}
@@ -20,15 +30,7 @@
 !.local/bin/*.py
 {{ end }}
 
-{{ if not .wayland }}
-.config/foot/
-.config/hypr/
-.config/swaylock/
-.config/tofi/
-.config/waybar/
-{{ end }}
-
-{{ if .server }}
+{{ if not .graphical }}
 .config/dunst/
 .config/zathura/
 {{ end }}

@@ -5,7 +5,7 @@
     laptop = {{ if ne (stat "/sys/class/power_supply/BAT0") nil }}true{{ else }}false{{ end }}
     nix = {{ if eq .chezmoi.osRelease.id "nixos" }}true{{ else }}false{{ end }}
     uni = {{ if eq .chezmoi.osRelease.id "ubuntu" }}true{{ else }}false{{ end }}
-    server = {{ if eq .chezmoi.osRelease.id "debian" }}true{{ else }}false{{ end }}
+    graphical = {{ if eq .chezmoi.hostname "kumo" "jinko" }}false{{ else }}true{{ end }}
 {{- if ne .chezmoi.osRelease.id "ubuntu" }}
 encryption = "age"
 [age]
