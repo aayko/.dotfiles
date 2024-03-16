@@ -5,7 +5,8 @@ set cleaner ctpvclear
 
 # Settings
 set ratios 1:1
-set info size:time
+set info 
+set sortby natural
 
 set ignorecase  true
 set icons       false
@@ -81,6 +82,10 @@ map N search-prev
 
 map . set hidden!
 map ` !true
+
+map tn :set sortby natural; set info
+map tt :set sortby time; set info time
+map ts :set sortby size; set info size
 
 map A :rename; cmd-end
 map c push A<c-u>
