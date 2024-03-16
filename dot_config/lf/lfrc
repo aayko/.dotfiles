@@ -95,10 +95,10 @@ map C clear
 map x cut
 map \$ push :$
 
-map t toggle
+map s toggle
 map <space> :toggle; down
-map v invert
-map s invert-below
+map V invert
+map v invert-below
 map S su
 map u unselect
 
@@ -120,6 +120,7 @@ map '"' mark-remove
 
 map e $$EDITOR "$f"
 map E $sudoedit "$f"
+map B $$EDITOR "~/.config/lf/lfrc"
 
 map zu unarchive
 map zd unarchive-delete
@@ -150,21 +151,21 @@ map w ${{
 
 # movement
 map g/ cd /
-map ~ cd /home/ayko/
+map ~ cd ~
 
-map gd cd /home/ayko/documents
-map gD cd /home/ayko/downloads
-map gp cd /home/ayko/perso
-map gu cd /home/ayko/uni
-map gr cd /home/ayko/repos
-map gP cd /home/ayko/pictures
-map gv cd /home/ayko/pictures/videos
-map gc cd /home/ayko/.config
-map gl cd /home/ayko/.local
-map gb cd /home/ayko/.local/bin
-map gt cd /home/ayko/.local/share/Trash/files
-map gz cd /home/ayko/.local/share/chezmoi
+map gd cd ~/documents
+map gD cd ~/downloads
+map gp cd ~/perso
+map gu cd ~/uni
+map gr cd ~/repos
+map gP cd ~/pictures
+map gv cd ~/pictures/videos
+map gc cd ~/.config
+map ge cd ~/.config/nix
+map gl cd ~/.local
+map gb cd ~/.local/bin
+map gt cd ~/.local/share/Trash/files
+map gz cd ~/.local/share/chezmoi
 map ga cd /usr/share/applications
 map gm cd /run/media/ayko
 map gn cd /run/current-system/
-map ge cd /home/ayko/.config/nix
