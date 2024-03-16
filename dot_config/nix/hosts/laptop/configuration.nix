@@ -7,9 +7,8 @@ in
   imports = [
     ./hardware-configuration.nix
     ../../modules
-    ../../modules/desktop.nix
-    ../../modules/extra/capsLockRemap.nix
-    ../../modules/extra/suspendAndHibernate.nix
+    ../../modules/graphical.nix
+    ../../modules/laptop
   ];
 
   networking.hostName = "ryusei";
@@ -22,6 +21,11 @@ in
     ACTION=="change", SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="0", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/ayko/.Xauthority" RUN+="${pkgs.su}/bin/su ayko -c '${charging-notify}/bin/charging-notify 0'"
     ACTION=="change", SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="1", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/ayko/.Xauthority" RUN+="${pkgs.su}/bin/su ayko -c '${charging-notify}/bin/charging-notify 1'"
   '';
+
+  environment.systemPackages = with pkgs; [
+    (import ../../modules/scripts/change-brightness.nix { inherit pkgs; })
+    (import ../../modules/scripts/lock.nix { inherit pkgs; })
+  ];
 
   services.logind.lidSwitch = "ignore";
   services.auto-cpufreq.enable = true;
