@@ -118,9 +118,9 @@ map ms mark-save
 map "'" mark-load
 map '"' mark-remove
 
-map e $$EDITOR "$f"
-map E $sudoedit "$f"
-map B $$EDITOR "~/.config/lf/lfrc"
+map e $$EDITOR $f
+map E $sudoedit $f
+map B $$EDITOR ~/.config/lf/lfrc
 
 map zu unarchive
 map zd unarchive-delete
