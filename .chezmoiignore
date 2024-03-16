@@ -4,13 +4,24 @@
 .config/nixos
 {{ end }}
 
-{{ if .graphical }}
+{{ if not .graphical }}
 .config/dunst/
 .config/zathura/
 .config/gtk*/
 .config/Code
 .config/VSCodium
 .config/chromium-flags.conf
+.config/polybar/
+.config/i3/
+.config/betterlockscreen
+.config/picom/
+.config/autorandr/
+.config/foot/
+.config/hypr/
+.config/swaylock/
+.config/tofi/
+.config/waybar/
+{{ end }}
 
 {{ if not .x11 }}
 .config/polybar/
@@ -26,7 +37,6 @@
 .config/swaylock/
 .config/tofi/
 .config/waybar/
-{{ end }}
 {{ end }}
 
 {{ if .nix }}
