@@ -4,10 +4,18 @@
 .config/nixos
 {{ end }}
 
-{{ if not .graphical }}
+{{ if .graphical }}
+.config/dunst/
+.config/zathura/
+.config/gtk*/
+.config/Code
+.config/VSCodium
+.config/chromium-flags.conf
+
 {{ if not .x11 }}
 .config/polybar/
 .config/i3/
+.config/betterlockscreen
 .config/picom/
 .config/autorandr/
 {{ end }}
@@ -28,11 +36,6 @@
 !.local/bin/battery-notify
 !.local/bin/firefox-restore
 !.local/bin/*.py
-{{ end }}
-
-{{ if not .graphical }}
-.config/dunst/
-.config/zathura/
 {{ end }}
 
 {{ if not .laptop }}
