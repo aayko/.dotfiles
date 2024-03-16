@@ -7,6 +7,7 @@ in
   imports = [
     ./hardware-configuration.nix
     ../../modules
+    ../../modules/desktop.nix
     ../../modules/extra/capsLockRemap.nix
     ../../modules/extra/suspendAndHibernate.nix
   ];
