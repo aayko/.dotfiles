@@ -18,11 +18,6 @@
           config.allowUnfree = true;
         };
       })
-      (final: _prev: {
-        wsl = import inputs.nixos-wsl {
-          system = final.system;
-        };
-      })
     ];
     config.allowUnfree = true;
   };
