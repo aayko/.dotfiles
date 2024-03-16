@@ -3,6 +3,7 @@
     ./environment
     ./packages.nix
     ./users.nix
-    ./nixconf.nix
+    ./development.nix
+    ./nixConfig.nix
   ];
 }

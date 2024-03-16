@@ -1,76 +1,12 @@
 { pkgs, ... }:
 
 {
-  programs.dconf.enable = true;
-  programs.firefox.enable = true;
-  programs.nm-applet.enable = true;
-
   programs.zsh = {
     enable = true;
   };
 
   environment.systemPackages = with pkgs; [
     nh
-
-    # gui
-    blueberry
-    celluloid
-    dia
-    (discord.override {
-      withOpenASAR = true;
-      withVencord = true;
-    })
-    dunst
-    gimp
-    gnome.gnome-calculator
-    gnome.gnome-disk-utility
-    gnome.gnome-weather
-    gnome.nautilus
-    gnome.sushi
-    gparted
-    gthumb
-    imv
-    localsend
-    melonDS
-    mpv
-    obs-studio
-    pavucontrol
-    perl538Packages.FileMimeInfo
-    qbittorrent
-    scrcpy
-    vmware-horizon-client
-    (stable.vscode-with-extensions.override {
-      vscodeExtensions = with stable.vscode-extensions; [
-        bbenoist.nix
-        jdinhlife.gruvbox
-        vscodevim.vim
-        github.copilot
-        github.copilot-chat
-      ];
-    })
-    signal-desktop
-    ungoogled-chromium
-    zathura
-
-    # gtk
-    (colloid-gtk-theme.override {
-      themeVariants = [ "grey" ];
-      colorVariants = [ "dark" ];
-      sizeVariants = [ "standard" ];
-      tweaks = [ "black" "rimless" ];
-    })
-    (colloid-icon-theme.override {
-      schemeVariants = [ "default" ];
-      colorVariants = [ "grey" ];
-    })
-
-    # sddm
-    (where-is-my-sddm-theme.override {
-      themeConfig.General = {
-        cursorColor = "#ffffff";
-        passwordCharacter = "*";
-      };
-    })
 
     # tui
     bluetuith
@@ -83,7 +19,6 @@
     acpi
     age
     ansible
-    autorandr
     bc
     btop
     chezmoi
@@ -96,11 +31,8 @@
     git
     gnumake
     gnutar
-    gtk3
     gzip
     jq
-    libnotify
-    ly
     mimeo
     neofetch
     nitch
@@ -139,45 +71,9 @@
     xdragon
 
     # scripts
-    (import ./scripts/change-brightness.nix { inherit pkgs; })
     (import ./scripts/change-volume.nix { inherit pkgs; })
     (import ./scripts/color-picker.nix { inherit pkgs; })
-    (import ./scripts/lock.nix { inherit pkgs; })
     (import ./scripts/powermenu.nix { inherit pkgs; })
     (import ./scripts/screenshot.nix { inherit pkgs; })
-
-    # dev
-
-    # haskell
-    ghc
-    haskellPackages.haskell-language-server
-
-    # php
-    php
-    nodePackages_latest.intelephense
-
-    # latex
-    texlab
-    texliveMedium
-
-    # nix
-    nil
-    nixpkgs-fmt
-
-    # java
-    zulu
-    ant
-
-    # shell
-    shellcheck
-    nodePackages.bash-language-server
-
-    # lua
-    lua-language-server
-    stylua
-
-    python3
-    tree-sitter
-    clang-tools
   ];
 }
