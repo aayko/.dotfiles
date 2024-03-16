@@ -1,4 +1,12 @@
 include "%L"
 
-<Multi_key> <comma> <e> : "è" U00E8
-<Multi_key> <comma> <a> : "à" U00E0
+<Multi_key> <r> : "ë" U00EB
+<Multi_key> <f> : "é" U00E8
+<Multi_key> <e> : "ê" U00EA
+<Multi_key> <d> : "è" U00E9
+<Multi_key> <a> : "à" U00E0
+<Multi_key> <s> : "ô" U00F4
+<Multi_key> <i> : "î" U00EE
+<Multi_key> <u> : "ù" U00F9
+<Multi_key> <j> : "û" U00FB
+<Multi_key> <c> : "ç" U00E7
