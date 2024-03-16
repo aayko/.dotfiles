@@ -36,10 +36,9 @@
           };
         }))
         xclip
-        xclip
+        xsel
         xcolor
         xdotool
-        xsel
         xss-lock
       ];
     };
