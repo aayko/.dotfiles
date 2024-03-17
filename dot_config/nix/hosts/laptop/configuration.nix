@@ -7,7 +7,8 @@ in
   imports = [
     ./hardware-configuration.nix
     ../../modules
-    ../../modules/graphical.nix
+    ../../modules/syncthing
+    ../../modules/graphical
     ../../modules/laptop
   ];
 

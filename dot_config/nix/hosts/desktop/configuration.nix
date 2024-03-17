@@ -3,7 +3,8 @@
 {
   imports = [
     ../../modules
-    ../../modules/graphical.nix
+    ../../modules/graphical
+    ../../modules/syncthing
     ./hardware-configuration.nix
   ];
 

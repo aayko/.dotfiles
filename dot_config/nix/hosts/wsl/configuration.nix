@@ -5,7 +5,7 @@
 # NixOS-WSL specific options are documented on the NixOS-WSL repository:
 # https://github.com/nix-community/NixOS-WSL
 
-{ config, inputs, lib, pkgs, ... }:
+{ inputs, lib, pkgs, ... }:
 
 {
   imports = [
@@ -18,6 +18,8 @@
   wsl.wslConf.network.hostname = "kumo";
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+
+  mynix.bootConfig.enable = false;
 
   environment.systemPackages = with pkgs; [
     xclip
