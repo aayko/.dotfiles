@@ -7,15 +7,16 @@ in
   imports = [
     ./hardware-configuration.nix
     ../../modules
-    ../../modules/syncthing
-    ../../modules/graphical
-    ../../modules/laptop
   ];
 
   networking.hostName = "ryusei";
   hardware.brillo.enable = true;
 
-  mynix.bootConfig.enable = true;
+  mynix.syncthing.enable = true;
+  mynix.graphical.enable = true;
+
+  mynix.remapCapsLock.enable = true;
+  mynix.suspendAndHibernate.enable = true;
 
   boot.blacklistedKernelModules = [ "pcspkr" ];
 

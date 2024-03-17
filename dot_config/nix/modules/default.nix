@@ -4,6 +4,10 @@
   imports = [
     ./network
     ./environment
+    ./server
+    ./syncthing
+    ./laptop
+    ./graphical
     ./boot.nix
     ./packages.nix
     ./users.nix

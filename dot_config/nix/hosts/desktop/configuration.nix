@@ -2,19 +2,18 @@
 
 {
   imports = [
-    ../../modules
-    ../../modules/graphical
-    ../../modules/syncthing
     ./hardware-configuration.nix
+    ../../modules
   ];
 
   networking.hostName = "yugen";
   systemd.network.netdevs.wlo1.enable = false;
   networking.interfaces.wlo1.useDHCP = false;
 
-  boot.supportedFilesystems = [ "ntfs" ];
+  mynix.syncthing.enable = true;
+  mynix.graphical.enable = true;
 
-  mynix.bootConfig.enable = true;
+  boot.supportedFilesystems = [ "ntfs" ];
 
   services.xserver.displayManager.setupCommands = ''
     ${pkgs.xorg.xrandr}/bin/xrandr --output HDMI-0 --off

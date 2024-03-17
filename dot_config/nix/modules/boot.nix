@@ -2,7 +2,8 @@
 
 {
   options = {
-    mynix.bootConfig.enable = lib.mkEnableOption {
+    mynix.bootConfig.enable = lib.mkOption {
+      type = lib.types.bool;
       default = true;
       description = "Setup boot config";
     };

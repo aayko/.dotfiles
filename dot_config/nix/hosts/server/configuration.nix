@@ -3,12 +3,12 @@
 {
   imports = [
     ../../modules
-    ../../modules/syncthing
   ];
 
   networking.hostName = "jinko";
 
-  mynix.bootConfig.enable = true;
+  mynix.jellyfin.enable = true;
+  mynix.syncthing.enable = true;
 
   environment.systemPackages = with pkgs; [
     xclip

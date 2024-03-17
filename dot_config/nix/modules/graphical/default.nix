@@ -1,5 +1,8 @@
-{ pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
+let
+  cfg = config.mynix;
+in
 {
   imports = [
     ./via.nix
@@ -10,24 +13,28 @@
     ./xserver.nix
   ];
 
-  services.openssh.enable = true;
-  services.dbus.enable = true;
-  services.printing.enable = true;
-  services.udisks2.enable = true;
-  services.gvfs.enable = true;
-
-  programs.dconf.enable = true;
-  programs.firefox.enable = true;
-  programs.nm-applet.enable = true;
-
-  services.autorandr = {
-    enable = true;
-    hooks.postswitch = {
-      "set-wallpaper" = "${pkgs.feh}/bin/feh --no-fehbg --bg-fill ~/.config/i3/wallpaper.png";
-    };
+  options = {
+    mynix.graphical.enable = lib.mkEnableOption "Setup graphical config";
   };
 
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
-  hardware.bluetooth.enable = true;
+  config = lib.mkIf cfg.graphical.enable {
+    mynix.fontConfig.enable = true;
+    mynix.xserver.enable = true;
+    mynix.graphicalPackages.enable = true;
+    mynix.via.enable = true;
+
+    mynix._1password.enable = true;
+    mynix.security.enable = true;
+
+    services.autorandr = {
+      enable = true;
+      hooks.postswitch = {
+        "set-wallpaper" = "${pkgs.feh}/bin/feh --no-fehbg --bg-fill ~/.config/i3/wallpaper.png";
+      };
+    };
+
+    sound.enable = true;
+    hardware.pulseaudio.enable = true;
+    hardware.bluetooth.enable = true;
+  };
 }
