@@ -1,9 +1,0 @@
-{
-    "diagnostics.globals": [
-        "vim",
-        "fzf_cd_widget"
-    ],
-    "diagnostics.disable": [
-        "lowercase-global"
-    ]
-}
