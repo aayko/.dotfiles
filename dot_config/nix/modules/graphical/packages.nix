@@ -1,18 +1,6 @@
 { pkgs, ... }:
 
 {
-  imports = [
-    ./system
-    ./services
-    ./via.nix
-    ./1password.nix
-    ./fonts.nix
-  ];
-
-  programs.dconf.enable = true;
-  programs.firefox.enable = true;
-  programs.nm-applet.enable = true;
-
   environment.systemPackages = with pkgs; [
     autorandr
     gtk3
@@ -78,3 +66,4 @@
     })
   ];
 }
+
