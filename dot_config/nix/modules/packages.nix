@@ -22,7 +22,6 @@
     bc
     btop
     chezmoi
-    _1password
     cron
     dict
     efibootmgr
