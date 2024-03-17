@@ -1,0 +1,12 @@
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[includeIf "gitdir:~/"]
+  path = /home/ayko/.config/git/config-perso
+[includeIf "gitdir:~/uni/"]
+  path = /home/ayko/.config/git/config-uni
+[init]
+  defaultBranch = main
