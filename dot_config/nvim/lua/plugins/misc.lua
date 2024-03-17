@@ -45,8 +45,12 @@ return {
             direction = 'float',
             float_opts = {
                 border = "single",
-                width = vim.o.columns,
-                height = vim.o.lines
+                width = function()
+                    return vim.o.columns
+                end,
+                height = function()
+                    return vim.o.lines
+                end,
             },
             highlights = {
                 FloatBorder = {
