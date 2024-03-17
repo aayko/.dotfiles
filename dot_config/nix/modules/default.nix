@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./network
     ./environment
     ./boot.nix
     ./packages.nix

@@ -14,6 +14,8 @@
 
   boot.supportedFilesystems = [ "ntfs" ];
 
+  mynix.bootConfig.enable = true;
+
   services.xserver.displayManager.setupCommands = ''
     ${pkgs.xorg.xrandr}/bin/xrandr --output HDMI-0 --off
   '';

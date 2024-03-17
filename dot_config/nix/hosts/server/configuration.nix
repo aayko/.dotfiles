@@ -8,6 +8,8 @@
 
   networking.hostName = "jinko";
 
+  mynix.bootConfig.enable = true;
+
   environment.systemPackages = with pkgs; [
     xclip
     xsel

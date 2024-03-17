@@ -14,6 +14,7 @@
       withVencord = true;
     })
     dunst
+    jellyfin-media-player
     gimp
     gnome.gnome-calculator
     gnome.gnome-disk-utility

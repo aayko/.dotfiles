@@ -15,6 +15,8 @@ in
   networking.hostName = "ryusei";
   hardware.brillo.enable = true;
 
+  mynix.bootConfig.enable = true;
+
   boot.blacklistedKernelModules = [ "pcspkr" ];
 
   services.udev.extraRules = ''
