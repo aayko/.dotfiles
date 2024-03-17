@@ -1,21 +1,41 @@
 [Default Applications]
 application/pdf=org.pwmt.zathura.desktop
 application/x-ipynb+json=codium.desktop
+
 image/apng=imv.desktop
 image/vnd.microsoft.icon=imv.desktop
 image/jpeg=imv.desktop
 image/webp=imv.desktop
+
 video/mp4=io.github.celluloid_player.Celluloid.desktop
 video/x-matroska=io.github.celluloid_player.Celluloid.desktop
-text/plain=nvim.desktop
-text/markdown=nvim.desktop
+
 inode/directory=lf.desktop
 application/x-directory=lf.desktop
+
+text/plain=nvim.desktop
+text/markdown=nvim.desktop
+text/x-java=nvim.desktop
+text/x-haskell=nvim.desktop
+text/x-chdr=nvim.desktop
+text/x-csrc=nvim.desktop
+text/x-makefile=nvim.desktop
+text/x-python=nvim.desktop
+text/x-log=nvim.desktop
+text/x-readme=nvim.desktop
+text/x-patch=nvim.desktop
+text/css=nvim.desktop
+application/x-php=nvim.desktop
+application/x-desktop=nvim.desktop
+application/json=nvim.desktop
+application/xml=nvim.desktop
 application/x-shellscript=nvim.desktop
+
 x-scheme-handler/http=firefox.desktop
 x-scheme-handler/https=firefox.desktop
 x-scheme-handler/chrome=firefox.desktop
 x-scheme-handler/mailto=firefox.desktop
+application/x-dia-diagram=org.gnome.Dia.desktop
 
 [Added Associations]
 x-scheme-handler/http=firefox.desktop

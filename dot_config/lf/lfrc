@@ -66,6 +66,8 @@ cmd su ${{
 cmd zip push :$zip<space>-r
 cmd tar push :$tar<space>cvf<space>.tar<left><left><left><left>
 
+cmd open &mimeopen "$f"
+
 # Bindings
 clearmaps
 
@@ -137,8 +139,7 @@ map P ${{
     lf -remote 'send echo "Path copied to clipboard"'
 }}
 
-map <enter> &mimeopen "$f"
-map o $clear; mimeopen --ask "$f"
+map <enter> open
 map O &dragon "$f"
 
 map md push :%mkdir<space>

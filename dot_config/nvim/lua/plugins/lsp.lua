@@ -149,6 +149,8 @@ return {
         -- Language servers
         lspconfig.bashls.setup {}
 
+        lspconfig.taplo.setup {}
+
         lspconfig.hls.setup {
             on_attach = lspformat.on_attach,
         }

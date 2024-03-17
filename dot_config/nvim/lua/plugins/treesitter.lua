@@ -30,6 +30,7 @@ return {
                 "php",
                 "haskell",
                 "latex",
+                "toml"
             },
             highlight = { enable = true },
             indent = { enable = true },
