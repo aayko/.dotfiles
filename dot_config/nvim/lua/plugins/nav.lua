@@ -40,8 +40,53 @@ return {
         end
     },
     {
+        "lmburns/lf.nvim",
+        dependencies = "toggleterm.nvim",
+        lazy = false,
+        init = function()
+            -- This feature will not work if the plugin is lazy-loaded
+            vim.g.lf_netrw = 1
+
+            vim.keymap.set("n", "<C-y>", "<Cmd>Lf<CR>")
+
+            vim.api.nvim_create_autocmd("User", {
+                pattern = "LfTermEnter",
+                callback = function(a)
+                    vim.api.nvim_buf_set_keymap(a.buf, "t", "q", "q", { nowait = true })
+                    vim.api.nvim_buf_set_keymap(a.buf, "t", "<ESC>", "q", { nowait = true })
+                    vim.api.nvim_buf_set_keymap(a.buf, "t", "<C-y>", "q", { nowait = true })
+                end,
+            })
+        end,
+        opts = {
+            default_action = "drop",      -- default action when `Lf` opens a file
+            winblend = 0,                 -- psuedotransparency level
+            direction = "float",          -- window type: float horizontal vertical
+            border = "single",            -- border kind: single double shadow curved
+            height = vim.o.lines,         -- height of the *floating* window
+            width = vim.o.columns,        -- width of the *floating* window
+            escape_quit = true,           -- map escape to the quit command (so it doesn't go into a meta normal mode)
+            focus_on_open = true,         -- focus the current file when opening Lf (experimental)
+            mappings = false,             -- whether terminal buffer mapping is enabled
+            default_file_manager = true,  -- make lf default file manager
+            disable_netrw_warning = true, -- don't display a message when opening a directory with `default_file_manager` as true
+        },
+    },
+    {
         'stevearc/oil.nvim',
-        config = true,
+        enabled = false,
+        init = function()
+            vim.keymap.set('n', '<C-y>', function()
+                if vim.o.filetype == 'oil' then
+                    require('oil').close()
+                else
+                    require('oil').open(vim.fn.getcwd())
+                end
+            end)
+
+            -- Hide hidden files in notes directory
+            vim.cmd [[ autocmd VimEnter * if luaeval('require("oil").get_current_dir()') == '/home/ayko/notes/' | call luaeval('require("oil").toggle_hidden()') | endif ]]
+        end,
         opts = {
             delete_to_trash = true,
             view_options = {

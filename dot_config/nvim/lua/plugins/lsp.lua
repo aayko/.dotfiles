@@ -32,6 +32,9 @@ return {
         },
         'saadparwaiz1/cmp_luasnip',
     },
+    init = function()
+        vim.api.nvim_set_hl(0, "LspInfoBorder", { link = "@ibl.whitespace.char.1" })
+    end,
     config = function()
         require("luasnip.loaders.from_vscode").lazy_load()
         require('lspconfig.ui.windows').default_options.border = 'single'
@@ -145,11 +148,15 @@ return {
         local lspformat = require("lsp-format")
 
         lspformat.setup {}
+        -- Use synchronous formatting when quitting and saving
+        vim.cmd [[cabbrev wq execute "Format sync" <bar> wq]]
+        vim.cmd [[cabbrev x execute "Format sync" <bar> x]]
 
         -- Language servers
         lspconfig.bashls.setup {}
 
         lspconfig.taplo.setup {}
+
 
         lspconfig.hls.setup {
             on_attach = lspformat.on_attach,

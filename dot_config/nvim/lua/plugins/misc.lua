@@ -1,6 +1,11 @@
 return {
     { "vim-scripts/ReplaceWithRegister" },
-    { 'tpope/vim-fugitive' },
+    {
+        'tpope/vim-fugitive',
+        init = function()
+            vim.keymap.set("n", "<leader>g", "<CMD>tab G<CR>")
+        end
+    },
     {
         -- auto rename and closing tags for html
         'windwp/nvim-ts-autotag',
@@ -31,10 +36,23 @@ return {
     },
     {
         'akinsho/toggleterm.nvim',
+        init = function()
+            vim.keymap.set('t', '<Esc>', '<nop>', { noremap = true })
+        end,
         opts = {
-            direction = "tab",
-            shade_terminals = false,
             open_mapping = [[<c-\>]],
+            shade_terminals = false,
+            direction = 'float',
+            float_opts = {
+                border = "single",
+                width = vim.o.columns,
+                height = vim.o.lines
+            },
+            highlights = {
+                FloatBorder = {
+                    link = "WinSeparator"
+                },
+            },
         },
     },
     {
@@ -81,6 +99,18 @@ return {
     "chaoren/vim-wordmotion",
     {
         'goolord/alpha-nvim',
+        init = function()
+            -- Fix alpha.nvim <C-o> behavior
+            vim.keymap.set('n', '<C-o>', function()
+                if vim.bo.filetype == 'alpha' then
+                    -- Send <C-o> twice
+                    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-o><C-o>', true, true, true), 'n', true)
+                else
+                    -- Send <C-o> once
+                    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-o>', true, true, true), 'n', true)
+                end
+            end)
+        end,
         config = function()
             local alpha = require("alpha")
             local dashboard = require("alpha.themes.dashboard")
@@ -119,21 +149,19 @@ return {
     },
     {
         "chrishrb/gx.nvim",
-        keys = { { "gx", "<cmd>Browse<cr>", mode = { "n", "x" } } },
         cmd = { "Browse" },
         init = function()
             vim.g.netrw_nogx = 1 -- disable netrw gx
+            vim.keymap.set({ "n", "x" }, "gx", vim.cmd.Browse)
         end,
-        dependencies = { "nvim-lua/plenary.nvim" },
-        config = function()
-            require("gx").setup {
-                handlers = {
-                    plugin = true,
-                },
-                handler_options = {
-                    search_engine = "https://www.startpage.com/sp/search?query=",
-                },
-            }
-        end,
+        dependencies = "nvim-lua/plenary.nvim",
+        opts = {
+            handlers = {
+                plugin = true,
+            },
+            handler_options = {
+                search_engine = "https://www.startpage.com/sp/search?query=",
+            },
+        }
     },
 }

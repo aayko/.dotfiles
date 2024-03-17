@@ -77,18 +77,18 @@ vim.opt.ttimeout = false
 vim.o.grepprg = 'rg --vimgrep'
 vim.o.grepformat = '%f:%l:%c:%m'
 
-vim.cmd([[
-    function! g:DisableMatchParen ()
-    if exists(":NoMatchParen")
-        :NoMatchParen
-        endif
-        endfunction
+-- vim.cmd([[
+--     function! g:DisableMatchParen ()
+--     if exists(":NoMatchParen")
+--         :NoMatchParen
+--         endif
+--         endfunction
 
-        augroup plugin_initialize
-    autocmd!
-    autocmd VimEnter * call DisableMatchParen()
-    augroup END
-]])
+--         augroup plugin_initialize
+--     autocmd!
+--     autocmd VimEnter * call DisableMatchParen()
+--     augroup END
+-- ]])
 
 -- Number of recent files
 vim.opt.shada = "!,'300,<50,s10,h"
@@ -104,23 +104,3 @@ vim.o.cmdheight = 0
 
 -- Block in insert mode
 vim.opt.guicursor = ""
-
--- Use synchronous formatting when quitting and saving
-vim.cmd [[cabbrev wq execute "Format sync" <bar> wq]]
-vim.cmd [[cabbrev x execute "Format sync" <bar> x]]
-
-vim.cmd("colorscheme gruvbox")
-
-vim.api.nvim_set_hl(0, "@ibl.scope.char.1", { fg = "#fe8019" })
-
-vim.api.nvim_set_hl(0, "Visual", { bg = "#3c3836" })
-
--- cleaner window separator
-vim.api.nvim_set_hl(0, "WinSeparator", { link = "@ibl.whitespace.char.1" })
-vim.api.nvim_set_hl(0, "StatusLine", { link = "WinSeparator" })
-vim.api.nvim_set_hl(0, "StatusLineNC", { link = "WinSeparator" })
-
-vim.api.nvim_set_hl(0, "YankyYanked", { link = "IncSearch" })
-
-vim.api.nvim_set_hl(0, "FzfLuaBorder", { link = "@ibl.whitespace.char.1" })
-vim.api.nvim_set_hl(0, "LspInfoBorder", { link = "@ibl.whitespace.char.1" })

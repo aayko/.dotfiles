@@ -22,6 +22,3 @@ vim.api.nvim_create_autocmd("BufReadPost", {
         end
     end,
 })
-
--- Hide hidden files in notes directory
-vim.cmd [[ autocmd VimEnter * if luaeval('require("oil").get_current_dir()') == '/home/ayko/notes/' | call luaeval('require("oil").toggle_hidden()') | endif ]]

@@ -3,6 +3,9 @@ return {
     lazy = false,
     priority = 1000,
     config = true,
+    init = function()
+        vim.cmd("colorscheme gruvbox")
+    end,
     opts = {
         overrides = {
             CursorLine = { bg = "#1d2021" },
