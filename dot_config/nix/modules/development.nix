@@ -23,8 +23,10 @@
     # lua
     lua-language-server
     stylua
+
     python3
     tree-sitter
     clang-tools
+    taplo
   ];
 }
