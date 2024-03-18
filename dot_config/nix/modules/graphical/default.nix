@@ -11,6 +11,7 @@ in
     ./packages.nix
     ./security.nix
     ./xserver.nix
+    ./steam.nix
   ];
 
   options = {

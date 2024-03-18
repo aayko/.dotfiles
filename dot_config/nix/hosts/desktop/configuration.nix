@@ -7,21 +7,19 @@
   ];
 
   networking.hostName = "yugen";
+
   systemd.network.netdevs.wlo1.enable = false;
   networking.interfaces.wlo1.useDHCP = false;
 
   mynix.syncthing.enable = true;
   mynix.graphical.enable = true;
+  mynix.steam.enable = true;
 
   boot.supportedFilesystems = [ "ntfs" ];
 
   services.xserver.displayManager.setupCommands = ''
-    ${pkgs.xorg.xrandr}/bin/xrandr --output HDMI-0 --off
-  '';
-
-  services.xserver.displayManager.sessionCommands = ''
-    ${pkgs.xorg.xset}/bin/xset s off -dpms
     ${pkgs.autorandr}/bin/autorandr --change
+    ${pkgs.xorg.xset}/bin/xset s off -dpms
   '';
 
   services.xserver.videoDrivers = [ "nvidia" ];

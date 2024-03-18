@@ -96,8 +96,10 @@ vim.opt.shada = "!,'300,<50,s10,h"
 vim.cmd("set viminfofile=")
 
 -- Hide status bar (toggle with <C-g>)
-vim.o.laststatus = 0
-vim.cmd("set statusline=%{repeat('─',winwidth('.'))}")
+-- vim.o.laststatus = 0
+-- vim.cmd("set statusline=%{repeat('─',winwidth('.'))}")
+vim.o.laststatus = 2
+vim.cmd('set statusline="%F %m%=%l,%c"')
 
 -- Hide command line
 vim.o.cmdheight = 0

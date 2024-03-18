@@ -38,6 +38,17 @@ vim.keymap.set("n", "<C-i>", "<C-i>zz", { noremap = true })
 -- Center on first search
 vim.cmd("cnoremap <silent><expr> <enter> index(['/', '?'], getcmdtype()) >= 0 ? '<enter>zz' : '<enter>'")
 
+-- Fix alpha.nvim <C-o> behavior
+vim.keymap.set('n', '<C-o>', function()
+    if vim.bo.filetype == 'alpha' then
+        -- Send <C-o> twice
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-o><C-o>', true, true, true), 'n', true)
+    else
+        -- Send <C-o> once
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-o>', true, true, true), 'n', true)
+    end
+end)
+
 -- Move lines
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
