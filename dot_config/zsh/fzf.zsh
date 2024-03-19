@@ -115,7 +115,7 @@ zle -N fzf-history-widget
 _gen_fzf_default_opts() {
 
 local color00='#0f0f0f'
-local color01='#3c3836'
+local color01='#2e2d2c'
 local color02='#504945'
 local color03='#665c54'
 local color04='#bdae93'

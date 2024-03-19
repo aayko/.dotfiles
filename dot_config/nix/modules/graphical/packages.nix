@@ -52,12 +52,11 @@ in
       scrcpy
       vmware-horizon-client
       (stable.vscode-with-extensions.override {
+        vscode = vscodium-fhs;
         vscodeExtensions = with stable.vscode-extensions; [
           bbenoist.nix
           jdinhlife.gruvbox
           vscodevim.vim
-          github.copilot
-          github.copilot-chat
         ];
       })
       signal-desktop
