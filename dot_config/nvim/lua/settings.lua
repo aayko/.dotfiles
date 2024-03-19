@@ -98,6 +98,8 @@ vim.cmd("set viminfofile=")
 -- Hide status bar (toggle with <C-g>)
 -- vim.o.laststatus = 0
 -- vim.cmd("set statusline=%{repeat('─',winwidth('.'))}")
+vim.o.laststatus = 3
+vim.cmd('set statusline="%F %m%=%l,%c"')
 
 -- Hide command line
 vim.o.cmdheight = 0

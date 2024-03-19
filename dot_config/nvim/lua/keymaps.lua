@@ -83,7 +83,7 @@ vim.keymap.set("n", "<leader>=", "mzgg=G`zzz")
 -- Toggle statusline
 vim.keymap.set("n", "<C-g>", function()
     if vim.o.laststatus == 0 then
-        vim.o.laststatus = 2
+        vim.o.laststatus = 3
         vim.cmd('set statusline="%F %m%=%l,%c"')
     else
         vim.o.laststatus = 0
