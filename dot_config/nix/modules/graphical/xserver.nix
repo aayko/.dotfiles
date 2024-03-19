@@ -40,7 +40,7 @@ in
               owner = "aayko";
               repo = "st";
               rev = "main";
-              hash = "sha256-kjefKnnAX4rpmt81fmqZRjJrsUdz0NU6ngWh4G+iWfA=";
+              hash = "sha256-7bhZwsJWJbJT2+yG8FC1acnuaAABckQ0iuAnXXh5gHs=";
             };
           }))
           xclip
