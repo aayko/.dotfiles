@@ -98,7 +98,28 @@ return {
     },
     {
         "github/copilot.vim",
-        enabled = false,
+        enabled = true,
+    },
+    {
+        "CopilotC-Nvim/CopilotChat.nvim",
+        branch = "canary",
+        dependencies = {
+            "github/copilot.vim",
+            "nvim-lua/plenary.nvim",
+        },
+        init = function()
+            vim.keymap.set("n", "<C-p>", vim.cmd.CopilotChatToggle)
+        end,
+        opts = {
+            model = 'gpt-4',
+            show_help = false,
+            window = {
+                layout = "float",
+                title = "Copilot",
+                width = 1,
+                height = 1,
+            },
+        },
     },
     { "chaoren/vim-wordmotion" },
     {

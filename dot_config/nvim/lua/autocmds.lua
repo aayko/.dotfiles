@@ -1,5 +1,8 @@
 -- Remove new line comments behaviour on every file
-vim.cmd([[ autocmd BufNewFile,BufRead * setlocal formatoptions-=cro ]])
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+    pattern = "*",
+    command = "setlocal formatoptions-=cro"
+})
 
 local function augroup(name)
     return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })

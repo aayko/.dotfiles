@@ -61,7 +61,7 @@ vim.opt.foldmethod = "indent"
 
 vim.g.showmatch = true
 
-vim.opt.cursorline = true
+vim.opt.cursorline = false
 vim.opt.cursorlineopt = "line"
 
 vim.g.loaded_netrw = 1
@@ -77,18 +77,18 @@ vim.opt.ttimeout = false
 vim.o.grepprg = 'rg --vimgrep'
 vim.o.grepformat = '%f:%l:%c:%m'
 
--- vim.cmd([[
---     function! g:DisableMatchParen ()
---     if exists(":NoMatchParen")
---         :NoMatchParen
---         endif
---         endfunction
+vim.cmd([[
+    function! g:DisableMatchParen ()
+    if exists(":NoMatchParen")
+        :NoMatchParen
+        endif
+        endfunction
 
---         augroup plugin_initialize
---     autocmd!
---     autocmd VimEnter * call DisableMatchParen()
---     augroup END
--- ]])
+        augroup plugin_initialize
+    autocmd!
+    autocmd VimEnter * call DisableMatchParen()
+    augroup END
+]])
 
 -- Number of recent files
 vim.opt.shada = "!,'300,<50,s10,h"
@@ -98,11 +98,18 @@ vim.cmd("set viminfofile=")
 -- Hide status bar (toggle with <C-g>)
 -- vim.o.laststatus = 0
 -- vim.cmd("set statusline=%{repeat('─',winwidth('.'))}")
-vim.o.laststatus = 2
-vim.cmd('set statusline="%F %m%=%l,%c"')
 
 -- Hide command line
 vim.o.cmdheight = 0
 
 -- Block in insert mode
 vim.opt.guicursor = ""
+
+vim.cmd([[
+    let g:copilot_filetypes = {
+        \ 'java': v:false,
+        \ 'c': v:false,
+        \ 'php': v:false,
+        \ 'hs': v:false,
+    \ }
+]])

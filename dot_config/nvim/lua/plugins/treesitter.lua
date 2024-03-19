@@ -5,6 +5,24 @@ return {
         "nvim-treesitter/nvim-treesitter-textobjects",
         "nvim-treesitter/playground",
         "nvim-treesitter/nvim-treesitter-context",
+        {
+            "HiPhish/rainbow-delimiters.nvim",
+            config = function()
+                require('rainbow-delimiters.setup').setup {
+                    blacklist = {
+                        "html",
+                    },
+                    highlight = {
+                        'RainbowDelimiterViolet',
+                        'RainbowDelimiterBlue',
+                        'RainbowDelimiterGreen',
+                        'RainbowDelimiterCyan',
+                        'RainbowDelimiterYellow',
+                        'RainbowDelimiterOrange',
+                    },
+                }
+            end
+        },
     },
     config = function()
         require("nvim-treesitter.parsers")

@@ -32,9 +32,6 @@ return {
         },
         'saadparwaiz1/cmp_luasnip',
     },
-    init = function()
-        vim.api.nvim_set_hl(0, "LspInfoBorder", { link = "@ibl.whitespace.char.1" })
-    end,
     config = function()
         require("luasnip.loaders.from_vscode").lazy_load()
         require('lspconfig.ui.windows').default_options.border = 'single'
@@ -187,6 +184,12 @@ return {
                 ['nil'] = {
                     formatting = {
                         command = { "nixpkgs-fmt" },
+                    },
+                    nix = {
+                        flake = {
+                            autoArchive = true,
+                            autoEvalInputs = false,
+                        },
                     },
                 },
             },
