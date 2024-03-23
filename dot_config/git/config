@@ -8,5 +8,3 @@
   path = /home/ayko/.config/git/config-perso
 [includeIf "gitdir:~/uni/"]
   path = /home/ayko/.config/git/config-uni
-[init]
-  defaultBranch = main
