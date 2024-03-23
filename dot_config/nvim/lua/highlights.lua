@@ -38,3 +38,5 @@ vim.api.nvim_set_hl(0, "@tag.attribute", { link = "GruvboxYellow" })
 vim.api.nvim_set_hl(0, "@markup.heading", { link = "GruvboxFg0" })
 vim.api.nvim_set_hl(0, "@constant", { link = "GruvboxAquaBold" })
 vim.api.nvim_set_hl(0, "@none.html", { link = "GruvboxFg0" })
+
+vim.api.nvim_set_hl(0, "@punctuation.bracket.php", { link = "GruvboxGray" })

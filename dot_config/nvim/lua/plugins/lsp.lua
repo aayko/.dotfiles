@@ -154,14 +154,13 @@ return {
 
         lspconfig.taplo.setup {}
 
+        lspconfig.texlab.setup {}
 
-        lspconfig.hls.setup {
-            on_attach = lspformat.on_attach,
-        }
+        lspconfig.intelephense.setup {}
 
-        lspconfig.clangd.setup {
-            on_attach = lspformat.on_attach,
-        }
+        lspconfig.hls.setup { on_attach = lspformat.on_attach }
+
+        lspconfig.clangd.setup { on_attach = lspformat.on_attach }
 
         lspconfig.lua_ls.setup {
             on_attach = lspformat.on_attach,
@@ -172,10 +171,6 @@ return {
                     }
                 }
             }
-        }
-
-        lspconfig.intelephense.setup {
-            on_attach = lspformat.on_attach
         }
 
         lspconfig.nil_ls.setup {
@@ -194,8 +189,6 @@ return {
                 },
             },
         }
-
-        lspconfig.texlab.setup {}
 
         local capabilities = require('cmp_nvim_lsp').default_capabilities()
         require("mason-lspconfig").setup_handlers {

@@ -7,6 +7,7 @@ set cleaner ctpvclear
 set ratios 1:1
 set info 
 set sortby natural
+set hidden true
 
 set ignorecase  true
 set icons       false

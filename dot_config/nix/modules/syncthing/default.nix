@@ -20,6 +20,8 @@ in
   };
 
   config = lib.mkIf cfg.syncthing.enable {
+    programs.fuse.userAllowOther = true;
+
     services.syncthing = rec {
       enable = true;
       user = "ayko";

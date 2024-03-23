@@ -21,8 +21,7 @@ pkgs.writeShellApplication {
             maim --select -u "$folder$file" && copy_image
         else
             hyprshot -o "$folder" -f "$file" -m region -s
-        fi
-        send_notification
+        fi && send_notification
     }
 
     function window() {
@@ -30,8 +29,7 @@ pkgs.writeShellApplication {
             maim -u --window "$(xdotool getactivewindow)" "$folder$file" && copy_image
         else
             hyprshot -o "$folder" -f "$file" -m window -sc
-        fi
-        send_notification
+        fi && send_notification
     }
 
     function monitor() {
@@ -39,8 +37,7 @@ pkgs.writeShellApplication {
             maim -g 1920x1080+0+0 -u "$folder$file" && copy_image
         else
             hyprshot -o "$folder" -f "$file" -m output -sc
-        fi
-        send_notification
+        fi && send_notification
     }
 
     doc() {
