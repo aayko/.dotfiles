@@ -7,7 +7,8 @@
     haskellPackages.haskell-language-server
     # php
     php
-    nodePackages_latest.intelephense
+    nodePackages.intelephense
+    nodePackages.browser-sync
     # latex
     texlab
     texliveMedium
