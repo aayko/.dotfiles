@@ -46,12 +46,13 @@ __fzfcmd() {
 
 fzf-cd-widget() {
     setopt localoptions pipefail no_aliases 2> /dev/null
-    local cmd="find $1 -maxdepth 1 -type d"
+    local cmd="find $1 -maxdepth 1 -type d ! -name '.stfolder' ! -name '.stversions' | sed \"s|^$HOME|~|\""
     local dir="$(eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --scheme=path --bind=ctrl-z:ignore ${FZF_DEFAULT_OPTS-} ${FZF_ALT_C_OPTS-}" $(__fzfcmd) +m)"
     if [[ -z "$dir" ]]; then
         zle redisplay
         return 0
     fi
+    dir="${dir/#\~/$HOME}" # Replace ~/ with /home/user/
     zle push-line # Clear buffer. Auto-restored on next prompt.
     BUFFER="cd ${(q)dir}; clear"
     zle accept-line
