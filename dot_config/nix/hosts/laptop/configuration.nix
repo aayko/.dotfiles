@@ -12,6 +12,9 @@ in
   networking.hostName = "ryusei";
   hardware.brillo.enable = true;
 
+  networking.firewall.allowedUDPPorts = [ 8080 ];
+  networking.firewall.allowedTCPPorts = [ 8080 ];
+
   mynix.syncthing.enable = true;
   mynix.graphical.enable = true;
 
